@@ -11,7 +11,7 @@ public enum PlayerType
 public class Temp_Player : MonoBehaviour
 {
     public float speed = 5.0f;
-    [SerializeField] public PlayerType type = PlayerType.Fire;
+    public PlayerType type = PlayerType.Fire;
 
     void Update()
     {
