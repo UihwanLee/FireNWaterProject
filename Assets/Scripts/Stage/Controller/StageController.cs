@@ -45,4 +45,9 @@ public class StageController : MonoBehaviour
     {
         Logger.NotImpl();
     }
+
+    public void CheckScore()
+    {
+        Logger.NotImpl();
+    }
 }
