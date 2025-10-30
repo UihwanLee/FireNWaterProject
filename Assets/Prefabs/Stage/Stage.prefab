@@ -125,9 +125,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2318228133941124907, guid: 4e6c9c2721609fe45af3daf824276863, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318228133941124907, guid: 4e6c9c2721609fe45af3daf824276863, type: 3}
+      propertyPath: m_SortingOrder
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318228133941124907, guid: 4e6c9c2721609fe45af3daf824276863, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967390036479308934, guid: 4e6c9c2721609fe45af3daf824276863, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967390036479308934, guid: 4e6c9c2721609fe45af3daf824276863, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4017361785083594517, guid: 4e6c9c2721609fe45af3daf824276863, type: 3}
       propertyPath: m_Name
       value: Grid
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469756748847631094, guid: 4e6c9c2721609fe45af3daf824276863, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469756748847631094, guid: 4e6c9c2721609fe45af3daf824276863, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469756748847631094, guid: 4e6c9c2721609fe45af3daf824276863, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
