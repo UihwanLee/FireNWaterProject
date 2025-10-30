@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerType
+{
+    Fire,
+    Water
+}
+
 public class Temp_Player : MonoBehaviour
 {
     public float speed = 5.0f;
+    [SerializeField] public PlayerType type = PlayerType.Fire;
 
     void Update()
     {
@@ -20,4 +27,10 @@ public class Temp_Player : MonoBehaviour
         // 캐릭터 이동
         transform.Translate(moveDirection * speed * Time.deltaTime);
     }
+
+    public void PlayerDead()
+    {
+        Debug.Log("PlayerDead");
+    }
+    
 }
