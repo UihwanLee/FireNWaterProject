@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8698180495811329608}
   - component: {fileID: 2332801503168272706}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7539260544591847488}
   - component: {fileID: 8470032419971212022}
   - component: {fileID: 8219016556962955234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wade
   m_TagString: Untagged
   m_Icon: {fileID: 0}

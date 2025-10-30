@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7462636237758468903}
   - component: {fileID: 4350352802757906588}
   - component: {fileID: 6777413383344226356}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ember
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  jumpForce: 5
+  isGrounded: 0
   characterRenderer: {fileID: 1704713298053128444}
 --- !u!1 &6021746932324151184
 GameObject:
@@ -121,7 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7823761744566779556}
   - component: {fileID: 1704713298053128444}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
