@@ -17,26 +17,29 @@ public class Obstacle : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-        EmberController emberController = other.GetComponent<EmberController>();
+       BaseController controller = other.GetComponent<BaseController>();
 
         bool DeadCondition = false;
         
-        if (other.CompareTag("Player"))
+        if (controller != null)
         {
-            //플레이어 타입 검사 
-            //플레이어에 enum type추가 후 주석 변경
-           // if (type == ObstacleType.Poison || (type == ObstacleType.Lava && emberController.type == PlayerType.Water)
-             //                               || (type == ObstacleType.Water && emberController.type == PlayerType.Fire))
+            Debug.Log("Find Controller");
+            var layer = controller.gameObject.layer;
+            Debug.Log(layer);
+            int maskEmber = LayerMask.GetMask("Ember");
+            Debug.Log(maskEmber);
+            int maskWade = LayerMask.GetMask("Wade");
+            
+            if (type == ObstacleType.Poison || (type == ObstacleType.Lava && layer == maskWade)
+                                           || (type == ObstacleType.Water && layer == maskEmber))
             {
-                Debug.Log("Dead Conditon on");
                 DeadCondition = true;
             }
         }
 
         if (DeadCondition)
         {
-            //playerdead함수 호출
-            //emberController.PlayerDead();
+            Debug.Log("Dead");
         }
         
         
