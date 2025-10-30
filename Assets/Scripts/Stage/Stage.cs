@@ -9,13 +9,13 @@ public enum StageScore
 [System.Serializable]
 public class Stage
 {
-    public int StageNumber { get; private set; }
+    public int StageId { get; private set; }
     public float LimitTime { get; private set; }
     public int ElementCount { get; set; }
 
-    public Stage(int number, float limitTime, int elementCount)
+    public Stage(int id, float limitTime, int elementCount)
     {
-        StageNumber = number;
+        StageId = id;
         LimitTime = limitTime;
         ElementCount = elementCount;
     }
@@ -24,13 +24,13 @@ public class Stage
 [System.Serializable]
 public class StageClearInfo
 {
-    public int StageNumber { get; set; }
+    public int StageId { get; set; }
     public StageScore StageScore { get; set; }
     public float ClearTime { get; set; }
 
     public StageClearInfo(Stage stage)
     {
-        StageNumber = stage.StageNumber;
+        StageId = stage.StageId;
         StageScore = StageScore.None;
         ClearTime = 0f;
     }
