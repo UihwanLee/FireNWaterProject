@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+public enum GameState
+{
+    None,
+    Ready,
+    Play,
+    Dead,
+    Stop,
+}
 
 public class StageManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private GameManager _gameManager;
+    [SerializeField] private GameObject[] _stages;
+    private GameObject _stage;
 
-    // Update is called once per frame
-    void Update()
+
+    private GameState _currentGameState = GameState.None;
+    public GameState CurrentGameState => _currentGameState;
+
+    public void Init(GameManager gameManager)
     {
-        
+        _gameManager = gameManager;
     }
 }

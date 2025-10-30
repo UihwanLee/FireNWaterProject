@@ -1,13 +1,6 @@
 using UnityEngine;
 
-public enum GameState
-{
-    None,
-    Ready,
-    Play,
-    Dead,
-    Stop,
-}
+
 
 public class GameManager : MonoBehaviour
 {
@@ -17,10 +10,6 @@ public class GameManager : MonoBehaviour
     // 추후 매니저 추가 예정
     [Header("Managers")]
     [SerializeField] private ScoreManager _scoreManager;
-
-    private GameState _currentGameState = GameState.None;
-    public GameState CurrentGameState => _currentGameState;
-
 
     private void Awake()
     {
