@@ -5,13 +5,13 @@ using UnityEngine;
 public class WadeController : BaseController
 {
     /// <summary>
-    /// WadeController ½ºÅ©¸³Æ®
+    /// WadeController
     /// 
-    /// Wade Ä³¸¯ÅÍ´Â 2p Ä³¸¯ÅÍ·Î ¹æÇâÅ° Å° ÀÔ·ÂÀ» ¹Ş¾Æ ÀÌµ¿
+    /// Wade ìºë¦­í„°ëŠ” 2p í”Œë ˆì´ì–´ë¡œ ë°©í–¥í‚¤ë¥¼ ë°›ëŠ”ë‹¤
     /// </summary>
     protected override void HandleAction()
     {
-        // Wade Ä³¸¯ÅÍ´Â ÁÂ¿ì ÀÌµ¿¸¸ ÇÑ´Ù.
+        // Wade ì´ë™: ì¢Œ, ìš°ë¡œë§Œ ì›€ì§ì¸ë‹¤.
         float horizontal = 0f;
 
         if (Input.GetKey(KeyCode.LeftArrow)) horizontal = -1f;
@@ -19,7 +19,7 @@ public class WadeController : BaseController
 
         moveDirection = new Vector2(horizontal, 0f).normalized;
 
-        // Ember Á¡ÇÁ : WÅ° ÀÔ·Â
+        // Wade ì í”„ : Wí‚¤ ì…ë ¥
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Jump();

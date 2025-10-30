@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+                                                                                                                                             
 public class BaseController : MonoBehaviour
 {
     /// <summary>
-    /// BaseController : Ä³¸¯ÅÍ ±âº» ¿òÁ÷ÀÓ
+    /// BaseController : ìºë¦­í„° ê¸°ë³¸ BaseController
     /// </summary>
 
     protected Rigidbody2D _rigidbody;
 
     [Header("Character Stat")]
-    [Range(1f, 20f)][SerializeField] protected float moveSpeed = 5f;        // Ä³¸¯ÅÍ ÀÌµ¿ ¼Óµµ
-    [Range(1f, 20f)][SerializeField] protected float jumpForce = 5f;        // Ä³¸¯ÅÍ Á¡ÇÁ·Â
-    protected Vector2 moveDirection = Vector2.zero;                         // Ä³¸¯ÅÍ ÀÌµ¿ ¹æÇâ (ÁÂ, ¿ì)
+    [Range(1f, 20f)][SerializeField] protected float moveSpeed = 5f;        // ìºë¦­í„° ì›€ì§ì„
+    [Range(1f, 20f)][SerializeField] protected float jumpForce = 5f;        // ìºë¦­í„° ì í”„ë ¥
+    protected Vector2 moveDirection = Vector2.zero;                         // ìºë¦­í„° ì´ë™ ë°©í–¥
 
-    [SerializeField] private bool isGrounded = false;                       // Ä³¸¯ÅÍ Ground ÆÇ´Ü º¯¼ö
+    [SerializeField] private bool isGrounded = false;                       // ìºë¦­í„° Ground ì²´í¬ ë³€ìˆ˜
 
     [Header("Character Component")]
-    [SerializeField] protected SpriteRenderer characterRenderer;            // Ä³¸¯ÅÍ Sprite Renderer
+    [SerializeField] protected SpriteRenderer characterRenderer;            // ìºë¦­í„° Sprite Renderer
 
     private int groundLayer;                                                // Ground Layer
 
@@ -42,8 +42,8 @@ public class BaseController : MonoBehaviour
     }
 
     /// <summary>
-    /// ÀÔ·ÂÀ» ¹Ş¾Æ¼­ µ¿ÀÛÀ» Ã³¸®ÇÏ´Â ÇÔ¼ö
-    /// Ä³¸¯ÅÍ¸¶´Ù ´Ù¸£°Ô µ¿ÀÛ
+    /// ì‚¬ìš©ì ì…ë ¥ì— ë”°ë¥¸ ë™ì‘ì²˜ë¦¬
+    /// ìºë¦­í„°ë§ˆë‹¤ ë‹¤ë¥¸ ì…ë ¥ì„ ë°›ì•„ ì²˜ë¦¬í•œë‹¤.
     /// </summary>
     protected virtual void HandleAction()
     {
@@ -51,35 +51,36 @@ public class BaseController : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹æÇâ¿¡ µû¶ó Move (ÁÂ, ¿ì)
+    /// ìºë¦­í„° Move (ì¢Œ, ìš°)
     /// </summary>
     protected virtual void Move()
     {
-        // ÁÂ ¿ì ÀÌµ¿¸¸ ¼³Á¤
-        _rigidbody.velocity = new Vector2(moveDirection.x * moveSpeed, _rigidbody.velocity.y);
+        // ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        float movePosX = moveDirection.x * moveSpeed;
+        _rigidbody.velocity = new Vector2(movePosX, _rigidbody.velocity.y);
     }
 
     /// <summary>
-    /// Á¡ÇÁ ±â´É
+    /// ìºë¦­í„° Jump
     /// </summary>
     protected void Jump()
     {
         if(isGrounded)
         {
-            // ¶¥¿¡ ÂøÁöµÈ »óÅÂ¶ó¸é Á¡ÇÁ
+            // ìºë¦­í„°ê°€ ë•…ì— ì°©ì§€ëœ ìƒíƒœë¼ë©´ ì í”„
             _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false;
         }
     }
 
     /// <summary>
-    /// ¹æÇâ¿¡ µû¶ó Rotate (ÁÂ, ¿ì)
+    /// ìºë¦­í„° Rotate (ì¢Œ, ìš°)
     /// </summary>
     protected virtual void Rotate()
     {
         if (moveDirection.x != 0.0f)
         {
-            // ¿òÁ÷ÀÓÀÌ ÀÖÀ» ¶§ flip º¯È¯
+            // ìºë¦­í„° ì´ë™ ë°©í–¥ì— ë”°ë¥¸ flip ë³€ê²½
             bool isMovingLeft = (moveDirection.x < 0.0f);
             characterRenderer.flipX = isMovingLeft;
         }
@@ -87,7 +88,7 @@ public class BaseController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // ¶¥°ú Á¢ÃËÇÏ¸é isGrounded ¼³Á¤
+        // Ground Layerì™€ ì¶©ëŒ ì‹œ isGrounded ë³€ê²½
         if (collision.gameObject.layer == groundLayer)
         {
             isGrounded = true;
