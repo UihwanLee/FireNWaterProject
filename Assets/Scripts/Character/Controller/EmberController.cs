@@ -17,12 +17,20 @@ public class EmberController : BaseController
         if (Input.GetKey(KeyCode.A)) horizontal = -1f;
         else if (Input.GetKey(KeyCode.D)) horizontal = 1f;
 
-        moveDirection = new Vector2(horizontal, 0f).normalized;
+        Vector2 dir = new Vector2(horizontal, 0f).normalized;
+
 
         // Ember 점프 : W키 입력
         if (Input.GetKeyDown(KeyCode.W))
         {
             Jump();
         }
+
+        if (moveDirection == dir)
+        {
+            return;
+        }
+
+        moveDirection = dir;
     }
 }
