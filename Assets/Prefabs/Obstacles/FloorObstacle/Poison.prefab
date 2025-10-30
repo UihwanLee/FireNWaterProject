@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7140365970980914143}
   - component: {fileID: 7132289559544199165}
   m_Layer: 0
-  m_Name: Obstacle(floor)
+  m_Name: Poison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

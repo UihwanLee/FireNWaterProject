@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,5 +25,15 @@ public class EmberCollisionHandler : MonoBehaviour
         {
             controller.IsGrounded = true;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Water water = other.GetComponent<Water>();
+        if (water != null)
+        {
+            water.Activate(controller);
+        }
+        
     }
 }
