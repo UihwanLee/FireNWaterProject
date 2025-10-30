@@ -16,15 +16,17 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private ObstacleType type = ObstacleType.Lava;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Temp_Player player = other.GetComponent<Temp_Player>();
+        
+        EmberController emberController = other.GetComponent<EmberController>();
 
         bool DeadCondition = false;
         
         if (other.CompareTag("Player"))
         {
             //플레이어 타입 검사 
-            if (type == ObstacleType.Poison || (type == ObstacleType.Lava && player.type == PlayerType.Water)
-                                            || (type == ObstacleType.Water && player.type == PlayerType.Fire))
+            //플레이어에 enum type추가 후 주석 변경
+           // if (type == ObstacleType.Poison || (type == ObstacleType.Lava && emberController.type == PlayerType.Water)
+             //                               || (type == ObstacleType.Water && emberController.type == PlayerType.Fire))
             {
                 Debug.Log("Dead Conditon on");
                 DeadCondition = true;
@@ -34,7 +36,7 @@ public class Obstacle : MonoBehaviour
         if (DeadCondition)
         {
             //playerdead함수 호출
-            player.PlayerDead();
+            //emberController.PlayerDead();
         }
         
         
