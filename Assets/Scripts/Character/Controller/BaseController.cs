@@ -12,7 +12,12 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D _rigidbody;
 
     [Header("Character Stat")]
-    [Range(1f, 20f)][SerializeField] protected float moveSpeed = 5f;        // 캐릭터 움직임
+    [SerializeField] protected float minSpeed = 1f;          // 캐릭터 최소 속도
+    [SerializeField] protected float maxSpeed = 5f;         // 캐릭터 최대 속도
+
+    [SerializeField] private float acceleration = 5f;       // 캐릭터 가속도
+    [SerializeField] private float deceleration = 5f;       // 캐릭터 감속도
+
     [Range(1f, 20f)][SerializeField] protected float jumpForce = 5f;        // 캐릭터 점프력
     protected Vector2 moveDirection = Vector2.zero;                         // 캐릭터 이동 방향
 
@@ -40,6 +45,8 @@ public class BaseController : MonoBehaviour
         Move();
     }
 
+    #region 캐릭터 동작 처리
+
     /// <summary>
     /// 사용자 입력에 따른 동작처리
     /// 캐릭터마다 다른 입력을 받아 처리한다.
@@ -54,9 +61,26 @@ public class BaseController : MonoBehaviour
     /// </summary>
     protected virtual void Move()
     {
-        // �� �� �̵��� ����
-        float movePosX = moveDirection.x * moveSpeed;
-        _rigidbody.velocity = new Vector2(movePosX, _rigidbody.velocity.y);
+        bool isInput = moveDirection.x != 0f;             // 입력 체크
+        bool isMovingLeft = (moveDirection.x < 0.0f);     // 방향 전환 체크
+
+        // 1. 입력 받고 있는지 체크
+        if (isInput)
+        {
+            float movePosX = moveDirection.x * acceleration;
+
+            Vector2 moveVector = new Vector2(movePosX, _rigidbody.velocity.y);
+            _rigidbody.AddForce(moveVector, ForceMode2D.Force);
+
+            if (_rigidbody.velocity.x > maxSpeed)
+            {
+                _rigidbody.velocity = _rigidbody.velocity.normalized * maxSpeed;
+            }
+        }
+        else
+        {
+            _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
+        }
     }
 
     /// <summary>
@@ -84,6 +108,23 @@ public class BaseController : MonoBehaviour
             characterRenderer.flipX = isMovingLeft;
         }
     }
+
+    #endregion
+
+    #region 캐릭터 상태 처리
+
+    /// <summary>
+    /// 캐릭터 Die
+    /// </summary>
+    public virtual void Death()
+    {
+        _rigidbody.velocity = Vector2.zero;
+
+        // Death 로직 처리
+        Debug.Log($"{gameObject.name}가 죽었습니다!");
+    }
+
+    #endregion
 
     // 프로퍼티
     public bool IsGrounded { get { return isGrounded; } set { isGrounded = value; } }

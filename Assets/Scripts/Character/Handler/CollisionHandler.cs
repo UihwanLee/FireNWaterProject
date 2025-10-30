@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmberCollisionHandler : MonoBehaviour
+public class CollisionHandler : MonoBehaviour
 {
     /*
-     * Ember 캐릭터에 대한 충돌 처리
+     * 캐릭터에 대한 충돌 처리
      */
 
-    private EmberController controller;
+    private BaseController controller;
     private int groundLayer;
 
     private void Start()
     {
-        controller = GetComponent<EmberController>();
+        controller = GetComponent<BaseController>();
         groundLayer = LayerMask.NameToLayer("Ground");
     }
 

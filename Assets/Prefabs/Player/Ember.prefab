@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7462636237758468903}
   - component: {fileID: 4350352802757906588}
   - component: {fileID: 6777413383344226356}
-  - component: {fileID: 2375833232080304750}
+  - component: {fileID: 2545992546454338787}
   m_Layer: 7
   m_Name: Ember
   m_TagString: Untagged
@@ -110,11 +110,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8082369bddafd74ab9c8b9f397b3830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  minSpeed: 1
+  maxSpeed: 5
+  curSpeed: 1
+  acceleration: 5
+  deceleration: 5
   jumpForce: 5
   isGrounded: 0
   characterRenderer: {fileID: 1704713298053128444}
---- !u!114 &2375833232080304750
+--- !u!114 &2545992546454338787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +127,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 628639000870536869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea8ea562aa301d4386230e653f67937, type: 3}
+  m_Script: {fileID: 11500000, guid: 52fc5d1d1ebec934eba7ad84ef26818c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6021746932324151184
