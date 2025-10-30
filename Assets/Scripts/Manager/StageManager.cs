@@ -48,6 +48,12 @@ public class StageManager : MonoBehaviour
 
     public void SelectStage(int id)
     {
+        if (!_stages.TryGetValue(id, out var stage))
+        {
+            Logger.Log($"{id} 번째 스테이지 존재하지 않음");
+            return;
+        }
+
         _currentStage = _stages[id];
         _currentStage.gameObject.SetActive(true);   // 활성화
         StartStage();                               // 자동 시작
