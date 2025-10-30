@@ -12,5 +12,17 @@ public class WadeController : BaseController
     protected override void HandleAction()
     {
         // Wade 캐릭터는 좌우 이동만 한다.
+        float horizontal = 0f;
+
+        if (Input.GetKey(KeyCode.LeftArrow)) horizontal = -1f;
+        else if (Input.GetKey(KeyCode.RightArrow)) horizontal = 1f;
+
+        moveDirection = new Vector2(horizontal, 0f).normalized;
+
+        // Ember 점프 : W키 입력
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Jump();
+        }
     }
 }

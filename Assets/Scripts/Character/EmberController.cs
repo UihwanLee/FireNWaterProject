@@ -12,7 +12,11 @@ public class EmberController : BaseController
     protected override void HandleAction()
     {
         // Ember 캐릭터는 좌우 이동만 한다.
-        float horizontal = Input.GetAxis("Horizontal");
+        float horizontal = 0f;
+        
+        if (Input.GetKey(KeyCode.A)) horizontal = -1f;
+        else if (Input.GetKey(KeyCode.D)) horizontal = 1f;
+
         moveDirection = new Vector2(horizontal, 0f).normalized;
 
         // Ember 점프 : W키 입력
