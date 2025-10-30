@@ -1,14 +1,5 @@
 using UnityEngine;
 
-public enum GameState
-{
-    None,
-    Ready,
-    Play,
-    Dead,
-    Stop,
-}
-
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
@@ -17,10 +8,6 @@ public class GameManager : MonoBehaviour
     // 추후 매니저 추가 예정
     [Header("Managers")]
     [SerializeField] private ScoreManager _scoreManager;
-
-    private GameState _currentGameState = GameState.None;
-    public GameState CurrentGameState => _currentGameState;
-
 
     private void Awake()
     {
@@ -43,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-
+        // 스테이지 맵으로 전환하기
+        // if 튜토리얼을 하지 않았다면 튜토리얼 스테이지로 아니라면 맵으로
     }
 }
