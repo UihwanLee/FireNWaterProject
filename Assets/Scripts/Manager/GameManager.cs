@@ -1,7 +1,5 @@
 using UnityEngine;
 
-
-
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
@@ -32,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-
+        // 스테이지 맵으로 전환하기
+        // if 튜토리얼을 하지 않았다면 튜토리얼 스테이지로 아니라면 맵으로
     }
 }
