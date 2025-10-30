@@ -14,7 +14,7 @@ public class StageManager : MonoBehaviour
 {
     private GameManager _gameManager;
     private Dictionary<int, StageController> _stages = new();
-    private StageController _currentStage = null;
+    private StageController _currentStage;
 
 
     private GameState _currentGameState = GameState.None;
@@ -44,5 +44,10 @@ public class StageManager : MonoBehaviour
         }
 
         Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
+    }
+
+    public void SelectStage(int id)
+    {
+        _currentStage = _stages[id];
     }
 }
