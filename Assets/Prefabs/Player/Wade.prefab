@@ -201,7 +201,7 @@ MonoBehaviour:
   deceleration: 0.5
   jumpForce: 30
   characterRenderer: {fileID: 2332801503168272706}
-  animationHandler: {fileID: 0}
+  animationHandler: {fileID: 1853714335293349952}
 --- !u!114 &5338727114268366990
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,6 +48,7 @@ public class BaseController : MonoBehaviour
     protected virtual void Update()
     {
         HandleAction();
+        AnimationHandle();
         Rotate();
     }
 
@@ -73,10 +74,15 @@ public class BaseController : MonoBehaviour
     /// </summary>
     protected virtual void Move()
     {
+        // 현재 점프 중이거나 떨어지고 있는 중이면 리턴
+        if (currentState == CharacterState.JumpUp || currentState == CharacterState.FallDown) return;
+
         bool isInput = moveDirection.x != 0f;             // 입력 체크
 
         if (isInput)
         {
+            ChangeState(CharacterState.Move);
+
             float movePosX = moveDirection.x * acceleration;
 
             Vector2 moveVector = new Vector2(movePosX, _rigidbody.velocity.y);
@@ -89,6 +95,7 @@ public class BaseController : MonoBehaviour
         }
         else
         {
+            ChangeState(CharacterState.Idle);
             _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
         }
     }
@@ -124,6 +131,14 @@ public class BaseController : MonoBehaviour
     #region 캐릭터 상태 처리
 
     /// <summary>
+    /// 캐릭터 상태 변경
+    /// </summary>
+    private void ChangeState(CharacterState changeState)
+    {
+        currentState = changeState;
+    }
+
+    /// <summary>
     /// 현재 캐릭터가 점프하고 있는 상태인지 떨어지고 있는 상태인지 체크
     /// </summary>
     private void CheckVelocityStateIsJumpingOrFall()
@@ -132,9 +147,12 @@ public class BaseController : MonoBehaviour
 
         if (currentVelocityY < 0.0f)
         {
-            Debug.Log("떨어지고 있는 상태");
+            ChangeState(CharacterState.FallDown);
         }
-        else Debug.Log("점프 중");
+        else if (currentVelocityY > 0.0f)
+        {
+            ChangeState(CharacterState.JumpUp);
+        }
     }
 
     /// <summary>
