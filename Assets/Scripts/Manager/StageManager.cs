@@ -49,5 +49,47 @@ public class StageManager : MonoBehaviour
     public void SelectStage(int id)
     {
         _currentStage = _stages[id];
+        _currentStage.gameObject.SetActive(true);   // 활성화
+        StartStage();                               // 자동 시작
+    }
+
+    private void StartStage()
+    {
+        _currentGameState = GameState.Play;
+        _currentStage.StartStage();
+    }
+
+    public void PauseStage()
+    {
+        _currentGameState = GameState.Stop;
+        _currentStage.PauseStage();
+    }
+
+    public void GameOver()
+    {
+        _currentGameState = GameState.Dead;
+        _currentStage.GameOver();
+    }
+
+    public void RestartStage()
+    {
+        _currentStage.ResetStageInfo();
+        _currentStage.StartStage();
+    }
+
+    public void ExitStage()
+    {
+        _currentGameState = GameState.None;
+        _currentStage.ResetStageInfo();
+        _currentStage.ExitStage();
+        _currentStage.gameObject.SetActive(false);  // 비활성화
+    }
+
+    public void ClearStage()
+    {
+        _currentStage.ClearStage();
+        _currentStage.CheckScore();
+        _currentStage.gameObject.SetActive(false);  // 비활성화
+        _currentGameState = GameState.None;
     }
 }
