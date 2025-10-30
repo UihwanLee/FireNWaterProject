@@ -5,13 +5,13 @@ using UnityEngine;
 public class EmberController : BaseController
 {
     /// <summary>
-    /// EmberController ??????
+    /// EmberController 
     /// 
-    /// Ember ��????? 1p ��????? W,A,S,D ? ????? ??? ???
+    /// Ember 캐릭터는 1p 플레이어로 W,A,S,D 입력 키를 받는다
     /// </summary>
     protected override void HandleAction()
     {
-        // Ember ��????? ?��? ????? ???.
+        // Ember 이동: 좌, 우로만 움직인다.
         float horizontal = 0f;
         
         if (Input.GetKey(KeyCode.A)) horizontal = -1f;
@@ -19,7 +19,7 @@ public class EmberController : BaseController
 
         moveDirection = new Vector2(horizontal, 0f).normalized;
 
-        // Ember ???? : W? ???
+        // Ember 점프 : W키 입력
         if (Input.GetKeyDown(KeyCode.W))
         {
             Jump();
