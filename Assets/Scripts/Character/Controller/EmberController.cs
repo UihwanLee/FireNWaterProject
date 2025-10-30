@@ -5,17 +5,21 @@ using UnityEngine;
 public class EmberController : BaseController
 {
     /// <summary>
-    /// EmberController ½ºÅ©¸³Æ®
+    /// EmberController 
     /// 
-    /// Ember Ä³¸¯ÅÍ´Â 1p Ä³¸¯ÅÍ·Î W,A,S,D Å° ÀÔ·ÂÀ» ¹Ş¾Æ ÀÌµ¿
+    /// Ember ìºë¦­í„°ëŠ” 1p í”Œë ˆì´ì–´ë¡œ W,A,S,D ì…ë ¥ í‚¤ë¥¼ ë°›ëŠ”ë‹¤
     /// </summary>
     protected override void HandleAction()
     {
-        // Ember Ä³¸¯ÅÍ´Â ÁÂ¿ì ÀÌµ¿¸¸ ÇÑ´Ù.
-        float horizontal = Input.GetAxis("Horizontal");
+        // Ember ì´ë™: ì¢Œ, ìš°ë¡œë§Œ ì›€ì§ì¸ë‹¤.
+        float horizontal = 0f;
+        
+        if (Input.GetKey(KeyCode.A)) horizontal = -1f;
+        else if (Input.GetKey(KeyCode.D)) horizontal = 1f;
+
         moveDirection = new Vector2(horizontal, 0f).normalized;
 
-        // Ember Á¡ÇÁ : WÅ° ÀÔ·Â
+        // Ember ì í”„ : Wí‚¤ ì…ë ¥
         if (Input.GetKeyDown(KeyCode.W))
         {
             Jump();
