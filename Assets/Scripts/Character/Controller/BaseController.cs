@@ -12,13 +12,13 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D _rigidbody;
 
     [Header("Character Stat")]
-    [SerializeField] protected float minSpeed = 1f;          // 캐릭터 최소 속도
-    [SerializeField] protected float maxSpeed = 5f;         // 캐릭터 최대 속도
+    [SerializeField] protected float minSpeed = 1f;                         // 캐릭터 최소 속도
+    [SerializeField] protected float maxSpeed = 5f;                         // 캐릭터 최대 속도
 
-    [SerializeField] private float acceleration = 5f;       // 캐릭터 가속도
-    [SerializeField] private float deceleration = 5f;       // 캐릭터 감속도
+    [SerializeField] private float acceleration = 30f;                      // 캐릭터 가속도
+    [SerializeField] private float deceleration = 0.5f;                     // 캐릭터 감속도
 
-    [Range(1f, 20f)][SerializeField] protected float jumpForce = 5f;        // 캐릭터 점프력
+    [SerializeField] protected float jumpForce = 50f;                       // 캐릭터 점프력
     protected Vector2 moveDirection = Vector2.zero;                         // 캐릭터 이동 방향
 
     [SerializeField] private bool isGrounded = false;                       // 캐릭터 Ground 체크 변수
