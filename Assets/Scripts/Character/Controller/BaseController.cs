@@ -26,7 +26,6 @@ public class BaseController : MonoBehaviour
     protected void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        groundLayer = LayerMask.NameToLayer("Ground");
         isGrounded = false;
     }
 
@@ -86,12 +85,6 @@ public class BaseController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Ground Layer와 충돌 시 isGrounded 변경
-        if (collision.gameObject.layer == groundLayer)
-        {
-            isGrounded = true;
-        }
-    }
+    // 프로퍼티
+    public bool IsGrounded { get { return isGrounded; } set { isGrounded = value; } }
 }

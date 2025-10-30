@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7462636237758468903}
   - component: {fileID: 4350352802757906588}
   - component: {fileID: 6777413383344226356}
+  - component: {fileID: 2375833232080304750}
   m_Layer: 7
   m_Name: Ember
   m_TagString: Untagged
@@ -113,6 +114,18 @@ MonoBehaviour:
   jumpForce: 5
   isGrounded: 0
   characterRenderer: {fileID: 1704713298053128444}
+--- !u!114 &2375833232080304750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628639000870536869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea8ea562aa301d4386230e653f67937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6021746932324151184
 GameObject:
   m_ObjectHideFlags: 0

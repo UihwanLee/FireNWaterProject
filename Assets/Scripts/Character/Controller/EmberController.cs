@@ -7,7 +7,7 @@ public class EmberController : BaseController
     /// <summary>
     /// EmberController 
     /// 
-    /// Ember 캐릭터는 1p 플레이어로 W,A,S,D Ű 입력 키를 받는다
+    /// Ember 캐릭터는 1p 플레이어로 W,A,S,D 입력 키를 받는다
     /// </summary>
     protected override void HandleAction()
     {
