@@ -8,7 +8,7 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
 
-    [SerializeField] private float mass = 1.0f;
+    [SerializeField] private float mass = 30.0f;
 
     private float boxspeed;
 
@@ -16,7 +16,6 @@ public class Box : MonoBehaviour
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.mass = mass;
-
-
+        
     }
 }
