@@ -38,8 +38,9 @@ public class StageManager : MonoBehaviour
                 continue;
             }
 
-            _stages[id] = stage;
-            stage.gameObject.SetActive(false);
+            _stages[id] = stage;                                        // dict 채우기
+
+            stage.gameObject.SetActive(false);                          // 모두 비활성화 하기
         }
 
         Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
