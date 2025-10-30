@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dae6285ebcde38f4592322ca242bcbf7
+guid: 322b2bdca0195034b98dbbb018892bc6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_0
+      name: Wade_Run (32x32)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14e878db52696974ca011d2fe6fce353
-      internalID: 114351482
+      spriteID: 89fa61c25311f4e4f826a40e6971a5e3
+      internalID: 1184082552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_1
+      name: Wade_Run (32x32)_1
       rect:
         serializedVersion: 2
         x: 32
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3aed6a0967c10ce46b5c450ac56513ff
-      internalID: 1017275795
+      spriteID: bef3e0fe7fd2cee4096b677aa94a492b
+      internalID: -1594424942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_2
+      name: Wade_Run (32x32)_2
       rect:
         serializedVersion: 2
         x: 64
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4b5b6139a5597941a3390daea57c5e0
-      internalID: -1870780221
+      spriteID: a7e9a570372e295409c3dfe78c8c7f0a
+      internalID: 226890225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_3
+      name: Wade_Run (32x32)_3
       rect:
         serializedVersion: 2
         x: 96
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fc5a9150ce215a4e8d91abee6b41206
-      internalID: 2063761541
+      spriteID: 95ed8377067d9c648b7bc5d22eeb8e96
+      internalID: -145926105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_4
+      name: Wade_Run (32x32)_4
       rect:
         serializedVersion: 2
         x: 128
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05c9ff05558dca9479c71db79a68d68e
-      internalID: -2054822601
+      spriteID: f54597e0da06dc145b72bf43d847363f
+      internalID: -1215978694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_5
+      name: Wade_Run (32x32)_5
       rect:
         serializedVersion: 2
         x: 160
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 867a37940cc740f469e9251fa45b35d5
-      internalID: -51852756
+      spriteID: 2046ffc5832e4e941984997c720723a1
+      internalID: -780780664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_6
+      name: Wade_Run (32x32)_6
       rect:
         serializedVersion: 2
         x: 192
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd805de667cbda7458d2cc31a2c752e1
-      internalID: 440906212
+      spriteID: e974399d18a17cc43a06cf530a55ad74
+      internalID: -808992200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_7
+      name: Wade_Run (32x32)_7
       rect:
         serializedVersion: 2
         x: 224
@@ -284,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c3764bb26a67364f992395e0823cb6f
-      internalID: 46963954
+      spriteID: b0f4d9fec163c05499c76f6547a8f51b
+      internalID: 1302571618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_8
+      name: Wade_Run (32x32)_8
       rect:
         serializedVersion: 2
         x: 256
@@ -305,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f81fdb8007d2d14c92cf9f7966517af
-      internalID: 818880731
+      spriteID: 8daed773797874d47b118f246c9d53f9
+      internalID: -903820734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_9
+      name: Wade_Run (32x32)_9
       rect:
         serializedVersion: 2
         x: 288
@@ -326,14 +326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8da0fd9e75d7cd419fe593c2b02ccb7
-      internalID: -556138741
+      spriteID: c9475b9813b9a08459147928167477aa
+      internalID: 1306602077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wade_Idle (32x32)_10
+      name: Wade_Run (32x32)_10
       rect:
         serializedVersion: 2
         x: 320
@@ -347,8 +347,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f20d28c287647fc45939a11b7b3bd8b3
-      internalID: 1892575733
+      spriteID: 174e5cc41344e4c49b71a21e68ed1330
+      internalID: 454637031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wade_Run (32x32)_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddb310cc6d64a4343ba870e30a8b3b60
+      internalID: 625986800
       vertices: []
       indices: 
       edges: []
@@ -364,17 +385,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Wade_Idle (32x32)_0: 114351482
-      Wade_Idle (32x32)_1: 1017275795
-      Wade_Idle (32x32)_10: 1892575733
-      Wade_Idle (32x32)_2: -1870780221
-      Wade_Idle (32x32)_3: 2063761541
-      Wade_Idle (32x32)_4: -2054822601
-      Wade_Idle (32x32)_5: -51852756
-      Wade_Idle (32x32)_6: 440906212
-      Wade_Idle (32x32)_7: 46963954
-      Wade_Idle (32x32)_8: 818880731
-      Wade_Idle (32x32)_9: -556138741
+      Wade_Run (32x32)_0: 1184082552
+      Wade_Run (32x32)_1: -1594424942
+      Wade_Run (32x32)_10: 454637031
+      Wade_Run (32x32)_11: 625986800
+      Wade_Run (32x32)_2: 226890225
+      Wade_Run (32x32)_3: -145926105
+      Wade_Run (32x32)_4: -1215978694
+      Wade_Run (32x32)_5: -780780664
+      Wade_Run (32x32)_6: -808992200
+      Wade_Run (32x32)_7: 1302571618
+      Wade_Run (32x32)_8: -903820734
+      Wade_Run (32x32)_9: 1306602077
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
