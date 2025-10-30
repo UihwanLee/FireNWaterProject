@@ -2,7 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-                                                                                                                                             
+
+public enum CharacterState
+{
+    Idle,
+    Move,
+    JumpUp,
+    FallDown,
+    Die
+}
+
 public class BaseController : MonoBehaviour
 {
     /// <summary>
@@ -19,19 +28,21 @@ public class BaseController : MonoBehaviour
     [SerializeField] private float deceleration = 0.5f;                     // 캐릭터 감속도
 
     [SerializeField] protected float jumpForce = 50f;                       // 캐릭터 점프력
+    
     protected Vector2 moveDirection = Vector2.zero;                         // 캐릭터 이동 방향
 
-    [SerializeField] private bool isGrounded = false;                       // 캐릭터 Ground 체크 변수
+    private bool isGrounded = false;                                        // 캐릭터 Ground 체크 변수
+    private CharacterState currentState;                                    // 캐릭터 상태 변수
 
     [Header("Character Component")]
     [SerializeField] protected SpriteRenderer characterRenderer;            // 캐릭터 Sprite Renderer
-
-    private int groundLayer;                                                // Ground Layer
+    [SerializeField] protected AnimationHandler animationHandler;           // 캐릭터 Animation 담당 클래스
 
     protected void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         isGrounded = false;
+        currentState = CharacterState.Idle;
     }
 
     protected virtual void Update()
@@ -43,6 +54,7 @@ public class BaseController : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         Move();
+        CheckVelocityStateIsJumpingOrFall();
     }
 
     #region 캐릭터 동작 처리
@@ -62,9 +74,7 @@ public class BaseController : MonoBehaviour
     protected virtual void Move()
     {
         bool isInput = moveDirection.x != 0f;             // 입력 체크
-        bool isMovingLeft = (moveDirection.x < 0.0f);     // 방향 전환 체크
 
-        // 1. 입력 받고 있는지 체크
         if (isInput)
         {
             float movePosX = moveDirection.x * acceleration;
@@ -112,6 +122,47 @@ public class BaseController : MonoBehaviour
     #endregion
 
     #region 캐릭터 상태 처리
+
+    /// <summary>
+    /// 현재 캐릭터가 점프하고 있는 상태인지 떨어지고 있는 상태인지 체크
+    /// </summary>
+    private void CheckVelocityStateIsJumpingOrFall()
+    {
+        float currentVelocityY = _rigidbody.velocity.y;
+
+        if (currentVelocityY < 0.0f)
+        {
+            Debug.Log("떨어지고 있는 상태");
+        }
+        else Debug.Log("점프 중");
+    }
+
+    /// <summary>
+    /// Animation처리
+    /// </summary>
+    private void AnimationHandle()
+    {
+        switch(currentState)
+        {
+            case CharacterState.Idle:
+                animationHandler.Idle();
+                break;
+            case CharacterState.Move:
+                animationHandler.Move();
+                break;
+            case CharacterState.JumpUp:
+                animationHandler.JumpUp();
+                break;
+            case CharacterState.FallDown:
+                animationHandler.FallDown();
+                break;
+            case CharacterState.Die:
+                animationHandler.Die();
+                break;
+            default:
+                break;
+        }
+    }
 
     /// <summary>
     /// 캐릭터 Die
