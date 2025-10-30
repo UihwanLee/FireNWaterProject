@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 57e01a13a7e1201498c48633bcea1e59
+guid: 0af050f12e3b116458486199631d10d7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,6 +94,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -110,232 +123,232 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle (32x32)_0
+      name: Ember_Idle (32x32)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ac513b4cf469eb4d977949c06b3e7ef
-      internalID: 1857650885
+      spriteID: 7d448d92ba69ea249aba296adeb38474
+      internalID: 326037048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_1
+      name: Ember_Idle (32x32)_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 912bbcf06327440429d9078ae4ae9ac7
-      internalID: 1439499343
+      spriteID: 4423b1c4735593948a0d69e5944db2c2
+      internalID: -1810370614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_2
+      name: Ember_Idle (32x32)_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 823f3743ad31f454c85e8d5ac5e47b5b
-      internalID: -653297998
+      spriteID: e24c72ff105878b4196e880c913f7938
+      internalID: 1648299051
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_3
+      name: Ember_Idle (32x32)_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f099609c79dbe9469ad4ba24b14b438
-      internalID: -2022058122
+      spriteID: 93d7c3b9aee7c7542a3ae424071e117f
+      internalID: 233577501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_4
+      name: Ember_Idle (32x32)_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 745ec117a04d1fe4da3ca2ebc0da60db
-      internalID: 852265788
+      spriteID: ffd616afee3f58e409cc6a204fac15a2
+      internalID: -1123767903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_5
+      name: Ember_Idle (32x32)_5
       rect:
         serializedVersion: 2
         x: 160
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad1d279970374004aa7029981abb11a0
-      internalID: -598847010
+      spriteID: ed0857242621a7f4793638e345228540
+      internalID: -928998477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_6
+      name: Ember_Idle (32x32)_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dcaa3c8688a7dc438d9709dd7a8a11e
-      internalID: -2096654770
+      spriteID: 141f5863f3a726044aa8ced6d2eb75a7
+      internalID: 1863607099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_7
+      name: Ember_Idle (32x32)_7
       rect:
         serializedVersion: 2
         x: 224
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 896590c72a13ff34b85d0d1db1466126
-      internalID: 1821902238
+      spriteID: a53124a07617e384a828997482bcdf28
+      internalID: 327746967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_8
+      name: Ember_Idle (32x32)_8
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 194b9dc95d51e3649bf28e613b19134a
-      internalID: -212646994
+      spriteID: 0d7323411d0c8dc4ba4709344df44171
+      internalID: -957952774
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_9
+      name: Ember_Idle (32x32)_9
       rect:
         serializedVersion: 2
         x: 288
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: daf276c8527c5dd4fa5619f042fae0e6
-      internalID: -1636686317
+      spriteID: 6357d9ecc5f1c624d8a607c22ddd1b36
+      internalID: 595621849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle (32x32)_10
+      name: Ember_Idle (32x32)_10
       rect:
         serializedVersion: 2
         x: 320
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d04219af4283000459341134976e4c35
-      internalID: -543770379
+      spriteID: 2eb991028cbaea84d92e27d5a24429c8
+      internalID: 2102017537
       vertices: []
       indices: 
       edges: []
@@ -351,17 +364,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Idle (32x32)_0: 1857650885
-      Idle (32x32)_1: 1439499343
-      Idle (32x32)_10: -543770379
-      Idle (32x32)_2: -653297998
-      Idle (32x32)_3: -2022058122
-      Idle (32x32)_4: 852265788
-      Idle (32x32)_5: -598847010
-      Idle (32x32)_6: -2096654770
-      Idle (32x32)_7: 1821902238
-      Idle (32x32)_8: -212646994
-      Idle (32x32)_9: -1636686317
+      Ember_Idle (32x32)_0: 326037048
+      Ember_Idle (32x32)_1: -1810370614
+      Ember_Idle (32x32)_10: 2102017537
+      Ember_Idle (32x32)_2: 1648299051
+      Ember_Idle (32x32)_3: 233577501
+      Ember_Idle (32x32)_4: -1123767903
+      Ember_Idle (32x32)_5: -928998477
+      Ember_Idle (32x32)_6: 1863607099
+      Ember_Idle (32x32)_7: 327746967
+      Ember_Idle (32x32)_8: -957952774
+      Ember_Idle (32x32)_9: 595621849
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
