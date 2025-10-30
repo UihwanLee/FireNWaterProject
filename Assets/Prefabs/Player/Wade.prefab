@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7539260544591847488}
   - component: {fileID: 8470032419971212022}
   - component: {fileID: 8219016556962955234}
-  - component: {fileID: -122592938954082816}
+  - component: {fileID: 5338727114268366990}
   m_Layer: 8
   m_Name: Wade
   m_TagString: Untagged
@@ -198,7 +198,7 @@ MonoBehaviour:
   jumpForce: 5
   isGrounded: 0
   characterRenderer: {fileID: 2332801503168272706}
---- !u!114 &-122592938954082816
+--- !u!114 &5338727114268366990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,6 +207,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3948182281637138151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2b501e920f70a04eb9f291f6da878a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 52fc5d1d1ebec934eba7ad84ef26818c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
