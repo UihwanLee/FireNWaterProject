@@ -7,4 +7,9 @@ public static class Logger
     {
         Debug.LogWarning($"[{methodName}] 아직 구현 안 함.");
     }
+
+    public static void Log(string text, [CallerMemberName] string methodName = "")
+    {
+        Debug.LogWarning($"[{methodName}] {text}");
+    }
 }
