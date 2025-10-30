@@ -40,6 +40,8 @@ public class BaseController : MonoBehaviour
         Move();
     }
 
+    #region 캐릭터 동작 처리
+
     /// <summary>
     /// 사용자 입력에 따른 동작처리
     /// 캐릭터마다 다른 입력을 받아 처리한다.
@@ -84,6 +86,23 @@ public class BaseController : MonoBehaviour
             characterRenderer.flipX = isMovingLeft;
         }
     }
+
+    #endregion
+
+    #region 캐릭터 상태 처리
+
+    /// <summary>
+    /// 캐릭터 Die
+    /// </summary>
+    public virtual void Death()
+    {
+        _rigidbody.velocity = Vector2.zero;
+
+        // Death 로직 처리
+        Debug.Log($"{gameObject.name}가 죽었습니다!");
+    }
+
+    #endregion
 
     // 프로퍼티
     public bool IsGrounded { get { return isGrounded; } set { isGrounded = value; } }
