@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance => _instance;
 
-    // Ãß±¸ manager Ãß°¡ ¿¹Á¤
+    // ì¶”í›„ ë§¤ë‹ˆì € ì¶”ê°€ ì˜ˆì •
     [Header("Managers")]
     [SerializeField] private ScoreManager _scoreManager;
 
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // ¸Å´ÏÀú ÃÊ±âÈ­ (¾À ÀüÈ¯ ½Ã Áßº¹ ¹æÁö¸¦ À§ÇÑ ÃÊ±âÈ­ & ¾À ÀüÈ¯ ½Ã »èÁ¦ x)
+        // ì”¬ ë³€ê²½ë˜ë”ë¼ë„ ìœ ì§€ë˜ê²Œ ì´ˆê¸°í™” ë° ì„¤ì •
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
