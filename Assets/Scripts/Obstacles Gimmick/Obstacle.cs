@@ -23,8 +23,12 @@ public class Obstacle : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //플레이어 타입 검사 
-            if( type == ObstacleType.Poison || (type == ObstacleType.Lava && player.type  == PlayerType.Water) 
-               || (type == ObstacleType.Water && player.type == PlayerType.Fire)) DeadCondition = true;
+            if (type == ObstacleType.Poison || (type == ObstacleType.Lava && player.type == PlayerType.Water)
+                                            || (type == ObstacleType.Water && player.type == PlayerType.Fire))
+            {
+                Debug.Log("Dead Conditon on");
+                DeadCondition = true;
+            }
         }
 
         if (DeadCondition)
