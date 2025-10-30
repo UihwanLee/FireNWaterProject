@@ -1,15 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState
-{
-    None,
-    Ready,
-    Play,
-    Dead,
-    Stop,
-}
-
 public class StageManager : MonoBehaviour
 {
     private GameManager _gameManager;

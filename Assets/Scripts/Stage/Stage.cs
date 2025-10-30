@@ -1,3 +1,12 @@
+public enum GameState
+{
+    None,
+    Ready,
+    Play,
+    Dead,
+    Stop,
+}
+
 public enum StageScore
 {
     None, // Default
