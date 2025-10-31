@@ -34,6 +34,7 @@ public class CollisionHandler : MonoBehaviour
         Poison poison = other.GetComponent<Poison>();
         FireGem fireGem = other.GetComponent<FireGem>();
         Watergem watergem = other.GetComponent<Watergem>();
+        Lever lever = other.GetComponent<Lever>();
         
         //장애물 판정
         if(poison != null) poison.Activate(controller);
@@ -58,6 +59,12 @@ public class CollisionHandler : MonoBehaviour
         {
             controller.gameObject.layer = LayerMask.NameToLayer("Water");
             watergem.Activate(controller);
+        }
+        
+        //레버 판정
+        if (lever != null)
+        {
+            lever.Activate(controller);
         }
         
     }
