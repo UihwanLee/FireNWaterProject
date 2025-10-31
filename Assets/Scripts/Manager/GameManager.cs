@@ -58,8 +58,8 @@ public class GameManager : MonoBehaviour
         { GameState.Ready, new[] { GameState.Start, GameState.None } },
         { GameState.Start, new[] { GameState.Play, GameState.Stop } },
         { GameState.Play,  new[] { GameState.Stop, GameState.Clear, GameState.Dead } },
-        { GameState.Stop,  new[] { GameState.Play, GameState.End } },
-        { GameState.Dead,  new[] { GameState.End } },
+        { GameState.Stop,  new[] { GameState.Start, GameState.Play, GameState.End } },
+        { GameState.Dead,  new[] { GameState.Start, GameState.End } },
         { GameState.Clear, new[] { GameState.End } },
         { GameState.End,   new[] { GameState.None, GameState.Ready } }
     };
