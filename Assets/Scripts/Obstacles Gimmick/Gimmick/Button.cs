@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour, InteractWithController, InteractableObstacle
+public class Button : MonoBehaviour, InteractWithController
 {
     [SerializeField] private Gate targetGate;
     public void Activate(BaseController bc)
@@ -13,7 +13,10 @@ public class Button : MonoBehaviour, InteractWithController, InteractableObstacl
     public void Interact()
     {
         //게이트에 신호
-        targetGate.Interact();
+        if (targetGate != null)
+        {
+            targetGate.Interact(true);
+        }
     }
    
     public void Recovery()

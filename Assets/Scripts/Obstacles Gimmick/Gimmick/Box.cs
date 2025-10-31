@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Box : MonoBehaviour , InteractWithController , InteractableObstacle
+public class Box : MonoBehaviour , InteractWithController
 {
     public void Activate(BaseController bc)
     {

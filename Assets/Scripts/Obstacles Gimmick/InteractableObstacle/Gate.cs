@@ -5,21 +5,20 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour, InteractableObstacle
 {
-    [Range((float)0.5,2)][SerializeField] private float Scale = 1.0f;
-    [SerializeField] private float moveSpeed = 2.0f;
+    /*
+     * 좌우 방
+     */
     
-    private float moveRange;
+    [Range((float)1,2)][SerializeField] private float moveRange = 1.0f;
+   
     private void Awake()
     {
-        transform.localScale = new Vector3(Scale, 1f, 1f);
         moveRange = transform.localScale.x;
     }
+    
 
-
-    public void Interact()
+    public void Interact(bool on)
     {
-      Vector3 currentPos =  transform.position;
-      currentPos.x += moveRange;
-      transform.position = currentPos;
+        throw new NotImplementedException();
     }
 }

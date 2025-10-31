@@ -34,6 +34,7 @@ public class CollisionHandler : MonoBehaviour
         Poison poison = other.GetComponent<Poison>();
         FireGem fireGem = other.GetComponent<FireGem>();
         Watergem watergem = other.GetComponent<Watergem>();
+        Lever lever = other.GetComponent<Lever>();
         Button button = other.GetComponent<Button>();
         
         //장애물 판정
@@ -72,8 +73,10 @@ public class CollisionHandler : MonoBehaviour
             Debug.Log("Velocity: " + rb2d.velocity);
             button.Activate(controller);
         }
-            
         
+        //래버 감지
+        if (lever != null) lever.OnPusherEnter(controller);
+            
         
     }
 
@@ -83,11 +86,7 @@ public class CollisionHandler : MonoBehaviour
         Button button = other.GetComponent<Button>();
         
         //레버 판정
-        if (lever != null)
-        {
-            lever.Activate(controller);
-            if (Mathf.Approximately(lever.transform.eulerAngles.z, lever.targetAngle*0.8f)) return;
-        }
+        if (lever != null) lever.OnPusherStay(controller);
         
         //버튼 누름 판정
         if (button != null)
@@ -98,7 +97,11 @@ public class CollisionHandler : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
+        Lever lever = other.GetComponent<Lever>();
         Button button = other.GetComponent<Button>();
+        
+        if (lever != null) lever.OnPusherExit(controller);
+        
         if (button != null)
         {
             button.Recovery();

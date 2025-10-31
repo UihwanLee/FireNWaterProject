@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Lever : MonoBehaviour, InteractWithController
@@ -20,38 +21,57 @@ public class Lever : MonoBehaviour, InteractWithController
     
     public void Activate(BaseController bc)
     {
-        BoxCollider2D box = gameObject.GetComponent<BoxCollider2D>();
-        box.isTrigger = true;
         
-        Rigidbody2D rb2d = bc.GetComponent<Rigidbody2D>(); 
-        //플레이어 움직임 여부
-        var velocityX = rb2d.velocity.x;
-        bool isMoving = Mathf.Abs(velocityX) > velDeadZone;
-        
-        // 플레이어 푸시 방향 판단
-        float direction = 0;
-        //오른쪽으로 움직이면 레버의 위치를 오른쪽으로 더 보정
-        if(rb2d.velocity.x >0) direction = bc.transform.position.x - (transform.position.x+1) ;
-        //왼쪽으로 움직이면~
-        if(rb2d.velocity.x <0) direction = bc.transform.position.x - (transform.position.x -1);
-        
-        bool leftPush = direction > 0;
-        
-        //목표 각도 설정
-        if (isMoving)
-        {
-            bool pushRtoL = leftPush && velocityX < 0;
-            bool pushLtoR = !leftPush && velocityX > 0;
-            
-            if (pushRtoL) targetAngle = maxAngle;
-            else if (pushLtoR) targetAngle = minAngle;
-            else targetAngle = neutralAngle;
-        }
-
-        //회전
-        float currentZ = transform.eulerAngles.z;
-        float nextZ = Mathf.LerpAngle(currentZ, targetAngle, Time.deltaTime * rotateSpeed);
-        transform.rotation = Quaternion.Euler(0f, 0f, nextZ);
         
     }
+    
+    public void OnPusherEnter(BaseController bc)
+    {
+        
+    }
+
+    public void OnPusherStay(BaseController bc)
+    {
+        
+    }
+
+    public void OnPusherExit(BaseController bc)
+    {
+        
+    }
+
+
 }
+
+
+
+
+/*Rigidbody2D rb2d = bc.GetComponent<Rigidbody2D>();
+       //플레이어 움직임 여부
+       var velocityX = rb2d.velocity.x;
+       bool isMoving = Mathf.Abs(velocityX) > velDeadZone;
+
+       // 플레이어 푸시 방향 판단
+       float direction = 0;
+       //오른쪽으로 움직이면 레버의 위치를 오른쪽으로 더 보정
+       if(rb2d.velocity.x >0) direction = bc.transform.position.x - (transform.position.x+1) ;
+       //왼쪽으로 움직이면~
+       if(rb2d.velocity.x <0) direction = bc.transform.position.x - (transform.position.x -1);
+
+       bool leftPush = direction > 0;
+
+       //목표 각도 설정
+       if (isMoving)
+       {
+           bool pushRtoL = leftPush && velocityX < 0;
+           bool pushLtoR = !leftPush && velocityX > 0;
+
+           if (pushRtoL) targetAngle = maxAngle;
+           else if (pushLtoR) targetAngle = minAngle;
+           else targetAngle = neutralAngle;
+       }
+
+       //회전
+       float currentZ = transform.eulerAngles.z;
+       float nextZ = Mathf.LerpAngle(currentZ, targetAngle, Time.deltaTime * rotateSpeed);
+       transform.rotation = Quaternion.Euler(0f, 0f, nextZ);*/
