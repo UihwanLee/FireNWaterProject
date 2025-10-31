@@ -74,7 +74,6 @@ public class StageManager : MonoBehaviour
                 break;
             case GameState.Clear:                   // 성공, 점수 계산
                 ClearStage();
-                _currentStage.CheckScore();
                 break;
             case GameState.End:                     // 맵으로 나가기
                 ExitStage();
