@@ -157,7 +157,7 @@ public class StageManager : MonoBehaviour
         _ember.SetActive(true);
         _wade.SetActive(true);
 
-        _currentStage.StartStage(_ember, _wade);
+        _currentStage.SetSpawnPoint(_ember, _wade);
         _gameManager.ChangeGameState(GameState.Play);
     }
 

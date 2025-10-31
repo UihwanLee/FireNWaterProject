@@ -35,10 +35,8 @@ public class StageController : MonoBehaviour
         Logger.Log($"stage: {_stage}\n stage info: {_stageClearInfo}");
     }
 
-    public void StartStage(GameObject ember, GameObject wade)
+    public void SetSpawnPoint(GameObject ember, GameObject wade)
     {
-        Logger.Log("게임 시작");
-
         // 스폰 장소 지정
         ember.transform.position = _emberSpwanPoint.position;
         wade.transform.position = _wadeSpwanPoint.position;
