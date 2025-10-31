@@ -10,10 +10,12 @@ public class StageController : MonoBehaviour
     [SerializeField] private int _elementCount;
     [SerializeField] private float _limitTime;
 
+    public int StageId => _stageId;
+    public int ElementCount => _elementCount;
+    public float LimitTime => _limitTime;
+
     private Stage _stage;
     private StageClearInfo _stageClearInfo;
-
-    public int StageId => _stageId;
 
     private void Awake()
     {
@@ -43,11 +45,6 @@ public class StageController : MonoBehaviour
     }
 
     public void GameOver()
-    {
-        Logger.NotImpl();
-    }
-
-    public void ResetStageInfo()
     {
         Logger.NotImpl();
     }

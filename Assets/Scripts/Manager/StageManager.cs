@@ -7,6 +7,22 @@ public class StageManager : MonoBehaviour
     private Dictionary<int, StageController> _stages = new();
     private StageController _currentStage;
 
+    // 측정할 정보
+    private float _timer = 0f;
+    public float Timer
+    {
+        get => _timer;
+        private set
+        {
+            if (_currentStage.LimitTime < value)
+            {
+                // todo: limit time이랑 비교하기
+            }
+            _timer = value;
+        }
+    }
+
+    // 초기화
     public void Init(GameManager gameManager)
     {
         _gameManager = gameManager;
@@ -34,6 +50,15 @@ public class StageManager : MonoBehaviour
         SelectStage(1);
     }
 
+    private void Update()
+    {
+        if (_gameManager.CurrentGameState == GameState.Play)
+        {
+            // 타이머 돌아가는 로직 작성
+        }
+    }
+
+    // 스테이지 선택
     public void SelectStage(int id)
     {
         if (!_stages.TryGetValue(id, out var stage))
@@ -90,7 +115,7 @@ public class StageManager : MonoBehaviour
 
     private void StartStage()
     {
-        _currentStage.ResetStageInfo();
+        ResetStageInfo();
         _currentStage.StartStage();
     }
 
@@ -106,7 +131,7 @@ public class StageManager : MonoBehaviour
 
     public void ExitStage()
     {
-        _currentStage.ResetStageInfo();
+        ResetStageInfo();
         _currentStage.ExitStage();
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;
@@ -124,5 +149,8 @@ public class StageManager : MonoBehaviour
         int id = _currentStage.StageId;
         ClearStage();
         SelectStage(id);
+    private void ResetStageInfo()
+    {
+        Timer = 0f;
     }
 }
