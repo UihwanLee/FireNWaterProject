@@ -26,6 +26,23 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (_ember == null)
+        {
+            // 엠버 프리팹 원격으로 가져오기
+            Logger.Log("엠버 프리팹 가져오기");
+        }
+
+        if (_wade == null)
+        {
+            // 웨이드 프리팹 원격으로 가져오기
+            Logger.Log("웨이드 프리팹 가져오기");
+        }
+
+        Logger.Log("엠버, 웨이드 초기화 완료");
+    }
+
     // 초기화
     public void Init(GameManager gameManager)
     {
@@ -132,7 +149,12 @@ public class StageManager : MonoBehaviour
     private void StartStage()
     {
         ResetStageInfo();
-        _currentStage.StartStage();
+
+        Logger.Log("엠버, 웨이드 활성화");
+        _ember.SetActive(true);
+        _wade.SetActive(true);
+
+        _currentStage.StartStage(_ember, _wade);
         _gameManager.ChangeGameState(GameState.Play);
     }
 
