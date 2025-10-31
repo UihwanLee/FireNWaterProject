@@ -17,7 +17,7 @@ public class StageController : MonoBehaviour
     private Stage _stage;
     private StageClearInfo _stageClearInfo;
 
-    private void Awake()
+    private void OnEnable()
     {
         if (_spwanPoint == null)
         {
