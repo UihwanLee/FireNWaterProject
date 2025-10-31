@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class StageController : MonoBehaviour
 {
-    [SerializeField] private Transform _spwanPoint;
+    [Header("캐릭터 스폰 포인트")]
+    [SerializeField] private Transform _emberSpwanPoint;
+    [SerializeField] private Transform _wadeSpwanPoint;
 
     [Header("스테이지 정보")]
     [SerializeField] private int _stageId;
@@ -19,9 +21,14 @@ public class StageController : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_spwanPoint == null)
+        if (_emberSpwanPoint == null)
         {
-            transform.position = Vector3.zero;
+            _emberSpwanPoint.position = Vector3.zero;
+        }
+
+        if (_wadeSpwanPoint == null)
+        {
+            _wadeSpwanPoint.position = Vector3.zero;
         }
 
         _stage = new(_stageId, _limitTime, _elementCount);
