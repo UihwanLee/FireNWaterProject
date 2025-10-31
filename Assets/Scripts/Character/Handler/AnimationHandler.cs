@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
 {
+    private static readonly int IsMoving = Animator.StringToHash("IsMove");
+    private static readonly int IsJumpingUp = Animator.StringToHash("IsJumpUp");
+    private static readonly int IsFallingDown = Animator.StringToHash("IsFallDown");
+
     private Animator animator;
 
     private void Start()
@@ -11,24 +15,19 @@ public class AnimationHandler : MonoBehaviour
         this.animator = GetComponentInChildren<Animator>();
     }
 
-    public void Idle()
+    public void Move(bool isMove)
     {
-
+        animator.SetBool(IsMoving, isMove);
     }
 
-    public void Move()
+    public void JumpUp(bool isJumpUp)
     {
-
+        animator.SetBool(IsJumpingUp, isJumpUp);
     }
 
-    public void JumpUp()
+    public void FallDown(bool isFallDown)
     {
-
-    }
-
-    public void FallDown()
-    {
-
+        animator.SetBool(IsFallingDown, isFallDown);
     }
 
     public void Die()

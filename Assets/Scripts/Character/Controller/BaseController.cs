@@ -176,26 +176,9 @@ public class BaseController : MonoBehaviour
     /// </summary>
     private void AnimationHandle()
     {
-        switch(currentState)
-        {
-            case CharacterState.Idle:
-                animationHandler.Idle();
-                break;
-            case CharacterState.Move:
-                animationHandler.Move();
-                break;
-            case CharacterState.JumpUp:
-                animationHandler.JumpUp();
-                break;
-            case CharacterState.FallDown:
-                animationHandler.FallDown();
-                break;
-            case CharacterState.Die:
-                animationHandler.Die();
-                break;
-            default:
-                break;
-        }
+        animationHandler.Move((currentState == CharacterState.Move));
+        animationHandler.JumpUp((currentState == CharacterState.JumpUp));
+        animationHandler.FallDown((currentState == CharacterState.FallDown));
     }
 
     /// <summary>
