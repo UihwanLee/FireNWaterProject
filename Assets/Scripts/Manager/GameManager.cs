@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -37,11 +38,32 @@ public class GameManager : MonoBehaviour
     {
         // 스테이지 맵으로 전환하기
         // if 튜토리얼을 하지 않았다면 튜토리얼 스테이지로 아니라면 맵으로
+        ChangeGameState(GameState.Start);
     }
+
+    // 전이 가능한 상태 지정
+    private readonly Dictionary<GameState, GameState[]> _allowedTransitions = new()
+    {
+        { GameState.None,  new[] { GameState.Ready } },
+        { GameState.Ready, new[] { GameState.Start, GameState.None } },
+        { GameState.Start, new[] { GameState.Play, GameState.Stop } },
+        { GameState.Play,  new[] { GameState.Stop, GameState.Clear, GameState.Dead } },
+        { GameState.Stop,  new[] { GameState.Play, GameState.End } },
+        { GameState.Dead,  new[] { GameState.End } },
+        { GameState.Clear, new[] { GameState.End } },
+        { GameState.End,   new[] { GameState.None, GameState.Ready } }
+    };
 
     public void ChangeGameState(GameState gameState)
     {
         if (CurrentGameState == gameState) return;  // 동일한 상태일 경우 스킵
+
+        if (!_allowedTransitions.TryGetValue(CurrentGameState, out var allowedStates) ||
+            Array.IndexOf(allowedStates, gameState) == -1)
+        {
+            Logger.Log($"상태 변경 불가: {CurrentGameState} → {gameState}");
+            return;
+        }
 
         _currentGameState = gameState;
         OnStageChanged?.Invoke(_currentGameState);
