@@ -177,8 +177,8 @@ public class BaseController : MonoBehaviour
     private void AnimationHandle()
     {
         animationHandler.Move((currentState == CharacterState.Move));
-        /*animationHandler.JumpUp((currentState == CharacterState.JumpUp));
-        animationHandler.FallDown((currentState == CharacterState.FallDown));*/
+        animationHandler.JumpUp((currentState == CharacterState.JumpUp));
+        animationHandler.FallDown((currentState == CharacterState.FallDown));
     }
 
     /// <summary>
