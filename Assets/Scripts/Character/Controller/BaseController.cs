@@ -31,12 +31,16 @@ public class BaseController : MonoBehaviour
     
     protected Vector2 moveDirection = Vector2.zero;                         // 캐릭터 이동 방향
 
-    private bool isGrounded = false;                                        // 캐릭터 Ground 체크 변수
+    [SerializeField] private bool isGrounded = false;                       // 캐릭터 Ground 체크 변수
     private CharacterState currentState;                                    // 캐릭터 상태 변수
 
     [Header("Character Component")]
     [SerializeField] protected SpriteRenderer characterRenderer;            // 캐릭터 Sprite Renderer
     [SerializeField] protected AnimationHandler animationHandler;           // 캐릭터 Animation 담당 클래스
+
+    [SerializeField] Transform groundCheckTransfrom;                        // 캐릭터 Ground Check Transform
+    [SerializeField] private LayerMask groundLayer;                         // Ground LayerMask
+    private float groundCheckRadius = 0.2f;                                 // Ground Check Radius
 
     protected void Awake()
     {
@@ -55,6 +59,7 @@ public class BaseController : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         Move();
+        CheckGrounded();
         CheckVelocityStateIsJumpingOrFall();
     }
 
@@ -74,15 +79,10 @@ public class BaseController : MonoBehaviour
     /// </summary>
     protected virtual void Move()
     {
-        // 현재 점프 중이거나 떨어지고 있는 중이면 리턴
-        if (currentState == CharacterState.JumpUp || currentState == CharacterState.FallDown) return;
-
         bool isInput = moveDirection.x != 0f;             // 입력 체크
 
         if (isInput)
         {
-            ChangeState(CharacterState.Move);
-
             float movePosX = moveDirection.x * acceleration;
 
             Vector2 moveVector = new Vector2(movePosX, _rigidbody.velocity.y);
@@ -95,7 +95,6 @@ public class BaseController : MonoBehaviour
         }
         else
         {
-            ChangeState(CharacterState.Idle);
             _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
         }
     }
@@ -131,6 +130,14 @@ public class BaseController : MonoBehaviour
     #region 캐릭터 상태 처리
 
     /// <summary>
+    /// 캐릭터 Grounded 체크
+    /// </summary>
+    private void CheckGrounded()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheckTransfrom.position, groundCheckRadius, groundLayer);
+    }
+
+    /// <summary>
     /// 캐릭터 상태 변경
     /// </summary>
     private void ChangeState(CharacterState changeState)
@@ -143,15 +150,24 @@ public class BaseController : MonoBehaviour
     /// </summary>
     private void CheckVelocityStateIsJumpingOrFall()
     {
+        float currentVelocityX = _rigidbody.velocity.x;
         float currentVelocityY = _rigidbody.velocity.y;
 
-        if (currentVelocityY < 0.0f)
+        if(currentVelocityX != 0.0f && currentVelocityY == 0.0f)
+        {
+            ChangeState(CharacterState.Move);
+        }
+        else if (currentVelocityY < -0.1f)
         {
             ChangeState(CharacterState.FallDown);
         }
-        else if (currentVelocityY > 0.0f)
+        else if (currentVelocityY > 0.1f)
         {
             ChangeState(CharacterState.JumpUp);
+        }
+        else if(currentVelocityY == 0.0f)
+        {
+            ChangeState(CharacterState.Idle);
         }
     }
 
@@ -194,7 +210,4 @@ public class BaseController : MonoBehaviour
     }
 
     #endregion
-
-    // 프로퍼티
-    public bool IsGrounded { get { return isGrounded; } set { isGrounded = value; } }
 }

@@ -22,7 +22,7 @@ public class CollisionHandler : MonoBehaviour
         // Ground Layer와 충돌 시 isGrounded 변경
         if (collision.gameObject.layer == groundLayer)
         {
-            controller.IsGrounded = true;
+            //controller.IsGrounded = true;
         }
     }
 }

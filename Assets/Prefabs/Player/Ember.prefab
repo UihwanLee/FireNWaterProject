@@ -35,6 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7823761744566779556}
+  - {fileID: 1832882199501145492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &7462636237758468903
@@ -96,8 +97,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.64, y: 1}
+  m_Offset: {x: -0.1, y: 0}
+  m_Size: {x: 1.2, y: 2}
   m_Direction: 0
 --- !u!114 &6777413383344226356
 MonoBehaviour:
@@ -115,9 +116,14 @@ MonoBehaviour:
   maxSpeed: 5
   acceleration: 30
   deceleration: 0.5
-  jumpForce: 30
+  jumpForce: 40
+  isGrounded: 0
   characterRenderer: {fileID: 1704713298053128444}
   animationHandler: {fileID: 104016049596306909}
+  groundCheckTransfrom: {fileID: 1832882199501145492}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &2545992546454338787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,3 +254,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &8811815754090254978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1832882199501145492}
+  m_Layer: 7
+  m_Name: GroundCheckTrans
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1832882199501145492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811815754090254978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.87, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6345130917737343116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
