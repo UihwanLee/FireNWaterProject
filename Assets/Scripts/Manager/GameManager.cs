@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         { GameState.Play,  new[] { GameState.Stop, GameState.Clear, GameState.Dead } },
         { GameState.Stop,  new[] { GameState.Start, GameState.Play, GameState.End } },
         { GameState.Dead,  new[] { GameState.Start, GameState.End } },
-        { GameState.Clear, new[] { GameState.End } },
+        { GameState.Clear, new[] { GameState.End, GameState.Next } },
         { GameState.End,   new[] { GameState.None } }
     };
 

@@ -101,6 +101,11 @@ public class StageManager : MonoBehaviour
             return;
         }
 
+        if (_currentStage != null)
+        {
+            _currentStage.gameObject.SetActive(false);          // 이전 스테이지 확인
+        }
+
         _currentStage = _stages[id];
         _currentStage.gameObject.SetActive(true);               // 활성화
         Logger.Log($"{id} 번째 스테이지 활성화");
@@ -142,8 +147,6 @@ public class StageManager : MonoBehaviour
             case GameState.Next:                    // 다음 스테이지
                 NextStage();
                 break;
-            case GameState.None:
-                break;
             default:
                 break;
         }
@@ -164,6 +167,7 @@ public class StageManager : MonoBehaviour
 
     public void GameOver()
     {
+        ResetStageInfo();
         _currentStage.GameOver();
     }
 
@@ -173,19 +177,19 @@ public class StageManager : MonoBehaviour
         SetPlayerActive(false);
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;
+
+        _gameManager.ChangeGameState(GameState.None);
     }
 
     public void ClearStage()
     {
         _currentStage.ClearStage();
         _currentStage.CheckScore();
-        _currentStage.gameObject.SetActive(false);  // 비활성화
     }
 
     public void NextStage()
     {
         int id = _currentStage.StageId;
-        ClearStage();
         SelectStage(id + 1);                        // 예외처리는 SelectStage에서 진행
     }
 
