@@ -41,12 +41,22 @@ public class StageManager : MonoBehaviour
         }
 
         _currentStage = _stages[id];
-        _currentStage.gameObject.SetActive(true);   // 활성화
-        HandleStateChanged(GameState.Start);        // 자동 시작
+        _currentStage.gameObject.SetActive(true);               // 활성화
+        _gameManager.ChangeGameState(GameState.Start);          // 자동 시작
     }
 
+    /// <summary>
+    /// 게임 상태에 따라 다른 로직을 처리하기 위한 메서드
+    /// 유효성 검사를 위해 GameManager의 ChangeGameState 사용을 권장
+    /// </summary>
+    /// <param name="state"></param>
     private void HandleStateChanged(GameState state)
     {
+        if (_currentStage == null)
+        {
+            Logger.Log($"현재 저장된 stage 없음");
+        }
+
         switch (state)
         {
             case GameState.Ready:                   // 맵 로드
@@ -67,8 +77,11 @@ public class StageManager : MonoBehaviour
                 ClearStage();
                 _currentStage.CheckScore();
                 break;
-            case GameState.End:                     // 다음 스테이지, 맵으로 나가기
+            case GameState.End:                     // 맵으로 나가기
                 ExitStage();
+                break;
+            case GameState.Next:                    // 다음 스테이지
+                NextStage();
                 break;
             case GameState.None:
                 break;
@@ -103,6 +116,7 @@ public class StageManager : MonoBehaviour
         _currentStage.ResetStageInfo();
         _currentStage.ExitStage();
         _currentStage.gameObject.SetActive(false);  // 비활성화
+        _currentStage = null;
     }
 
     public void ClearStage()
@@ -110,5 +124,12 @@ public class StageManager : MonoBehaviour
         _currentStage.ClearStage();
         _currentStage.CheckScore();
         _currentStage.gameObject.SetActive(false);  // 비활성화
+    }
+
+    public void NextStage()
+    {
+        int id = _currentStage.StageId;
+        ClearStage();
+        SelectStage(id);
     }
 }
