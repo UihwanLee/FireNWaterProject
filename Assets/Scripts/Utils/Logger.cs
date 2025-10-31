@@ -17,4 +17,9 @@ public static class Logger
     {
         Debug.Log($"[{methodName}] {text}");
     }
+
+    public static void LogError(string text, [CallerMemberName] string methodName = "")
+    {
+        Debug.LogError($"[{methodName}] {text}");
+    }
 }

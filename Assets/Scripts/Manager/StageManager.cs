@@ -36,7 +36,7 @@ public class StageManager : MonoBehaviour
 
             if (_stages.ContainsKey(id))
             {
-                Debug.Log($"[StageManager.Init] {id} 번째 스테이지 중복 할당");
+                Debug.LogError($"[StageManager.Init] {id} 번째 스테이지 중복 할당");
                 continue;
             }
 
@@ -63,7 +63,7 @@ public class StageManager : MonoBehaviour
     {
         if (!_stages.TryGetValue(id, out var stage))
         {
-            Logger.LogWarning($"{id} 번째 스테이지 존재하지 않음");
+            Logger.LogError($"{id} 번째 스테이지 존재하지 않음");
             return;
         }
 
@@ -81,7 +81,7 @@ public class StageManager : MonoBehaviour
     {
         if (_currentStage == null)
         {
-            Logger.LogWarning($"현재 저장된 stage 없음");
+            Logger.LogError($"현재 저장된 stage 없음");
         }
 
         switch (state)
