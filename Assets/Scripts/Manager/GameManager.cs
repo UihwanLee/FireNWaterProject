@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     // 추후 매니저 추가 예정
     [Header("Managers")]
     [SerializeField] private ScoreManager _scoreManager;
+    private StageManager _stageManager;
 
     private GameState _currentGameState = GameState.None;
     public GameState CurrentGameState => _currentGameState;
@@ -31,6 +32,12 @@ public class GameManager : MonoBehaviour
         {
             _scoreManager = GetComponentInChildren<ScoreManager>();
         }
+    }
+
+    public void UpdateSceneToStage()
+    {
+        _stageManager = FindObjectOfType<StageManager>();
+        _stageManager.Init(this);
     }
 
     private void Update()
