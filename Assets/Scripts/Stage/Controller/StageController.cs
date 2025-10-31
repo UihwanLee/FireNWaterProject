@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class StageController : MonoBehaviour
 {
     [Header("캐릭터 스폰 포인트")]
