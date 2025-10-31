@@ -61,11 +61,25 @@ public class CollisionHandler : MonoBehaviour
             watergem.Activate(controller);
         }
         
+        
+        
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        Lever lever = other.GetComponent<Lever>();
+        
         //레버 판정
         if (lever != null)
         {
             lever.Activate(controller);
+            if (Mathf.Approximately(lever.transform.eulerAngles.z, lever.targetAngle*0.8f)) return;
         }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
         
     }
 }

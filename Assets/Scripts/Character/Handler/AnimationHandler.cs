@@ -20,7 +20,7 @@ public class AnimationHandler : MonoBehaviour
         animator.SetBool(IsMoving, isMove);
     }
 
-    public void JumpUp(bool isJumpUp)
+    /*public void JumpUp(bool isJumpUp)
     {
         animator.SetBool(IsJumpingUp, isJumpUp);
     }
@@ -33,5 +33,5 @@ public class AnimationHandler : MonoBehaviour
     public void Die()
     {
 
-    }
+    }*/
 }
