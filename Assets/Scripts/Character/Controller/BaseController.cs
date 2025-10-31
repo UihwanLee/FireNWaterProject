@@ -208,6 +208,7 @@ public class BaseController : MonoBehaviour
         Debug.Log($"{gameObject.name}가 죽었습니다!");
 
         OnPlayerDied?.Invoke();
+        ChangeState(CharacterState.Die);
     }
 
     #endregion
