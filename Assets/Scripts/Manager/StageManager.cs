@@ -87,6 +87,7 @@ public class StageManager : MonoBehaviour
     private void OnDisable()
     {
         Debug.Log("[StageManager] OnDisable 호출됨");
+        _gameManager.OnGameStateChanged -= HandleStateChanged;
     }
 
     // 스테이지 선택
