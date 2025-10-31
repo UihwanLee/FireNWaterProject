@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeGameState(GameState.Ready);
         if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeGameState(GameState.Start);
         if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeGameState(GameState.Play);
         if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeGameState(GameState.Stop);
@@ -61,14 +60,13 @@ public class GameManager : MonoBehaviour
     // 전이 가능한 상태 지정
     private readonly Dictionary<GameState, GameState[]> _allowedTransitions = new()
     {
-        { GameState.None,  new[] { GameState.Ready } },
-        { GameState.Ready, new[] { GameState.Start, GameState.None } },
+        { GameState.None,  new[] { GameState.Start } },
         { GameState.Start, new[] { GameState.Play, GameState.Stop } },
         { GameState.Play,  new[] { GameState.Stop, GameState.Clear, GameState.Dead } },
         { GameState.Stop,  new[] { GameState.Start, GameState.Play, GameState.End } },
         { GameState.Dead,  new[] { GameState.Start, GameState.End } },
         { GameState.Clear, new[] { GameState.End } },
-        { GameState.End,   new[] { GameState.None, GameState.Ready } }
+        { GameState.End,   new[] { GameState.None } }
     };
 
     public void ChangeGameState(GameState gameState)

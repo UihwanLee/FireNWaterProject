@@ -59,9 +59,6 @@ public class StageManager : MonoBehaviour
 
         switch (state)
         {
-            case GameState.Ready:                   // 맵 로드
-                _currentStage.ResetStageInfo();
-                break;
             case GameState.Start:                   // 카운트 다운, 로딩 등
                 StartStage();
                 break;
