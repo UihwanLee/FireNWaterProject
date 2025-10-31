@@ -148,7 +148,9 @@ public class StageManager : MonoBehaviour
     {
         int id = _currentStage.StageId;
         ClearStage();
-        SelectStage(id);
+        SelectStage(id + 1);                        // 예외처리는 SelectStage에서 진행
+    }
+
     private void ResetStageInfo()
     {
         Timer = 0f;
