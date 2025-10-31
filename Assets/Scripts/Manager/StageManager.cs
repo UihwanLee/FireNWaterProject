@@ -7,10 +7,6 @@ public class StageManager : MonoBehaviour
     private Dictionary<int, StageController> _stages = new();
     private StageController _currentStage;
 
-
-    private GameState _currentGameState = GameState.None;
-    public GameState CurrentGameState => _currentGameState;
-
     public void Init(GameManager gameManager)
     {
         _gameManager = gameManager;
@@ -18,7 +14,6 @@ public class StageManager : MonoBehaviour
         var stages = GetComponentsInChildren<StageController>(true);    // 비활성화된 object도 탐색
 
         _stages.Clear();
-
         foreach (var stage in stages)
         {
             int id = stage.StageId;
@@ -30,10 +25,10 @@ public class StageManager : MonoBehaviour
             }
 
             _stages[id] = stage;                                        // dict 채우기
-
             stage.gameObject.SetActive(false);                          // 모두 비활성화 하기
         }
 
+        _gameManager.OnStageChanged += HandleStateChanged;
         Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
     }
 
@@ -47,24 +42,53 @@ public class StageManager : MonoBehaviour
 
         _currentStage = _stages[id];
         _currentStage.gameObject.SetActive(true);   // 활성화
-        StartStage();                               // 자동 시작
+        HandleStateChanged(GameState.Start);        // 자동 시작
+    }
+
+    private void HandleStateChanged(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Ready:                   // 맵 로드
+                _currentStage.ResetStageInfo();
+                break;
+            case GameState.Start:                   // 카운트 다운, 로딩 등
+                StartStage();
+                break;
+            case GameState.Play:                    // 실제 플레이(조작, 점수/시간 측정)
+                break;
+            case GameState.Stop:                    // 조작 불가, 시간 멈춤, 메뉴 표시
+                PauseStage();
+                break;
+            case GameState.Dead:                    // 실패, 재시작 대기
+                GameOver();
+                break;
+            case GameState.Clear:                   // 성공, 점수 계산
+                ClearStage();
+                _currentStage.CheckScore();
+                break;
+            case GameState.End:                     // 다음 스테이지, 맵으로 나가기
+                ExitStage();
+                break;
+            case GameState.None:
+                break;
+            default:
+                break;
+        }
     }
 
     private void StartStage()
     {
-        _currentGameState = GameState.Play;
         _currentStage.StartStage();
     }
 
     public void PauseStage()
     {
-        _currentGameState = GameState.Stop;
         _currentStage.PauseStage();
     }
 
     public void GameOver()
     {
-        _currentGameState = GameState.Dead;
         _currentStage.GameOver();
     }
 
@@ -76,7 +100,6 @@ public class StageManager : MonoBehaviour
 
     public void ExitStage()
     {
-        _currentGameState = GameState.None;
         _currentStage.ResetStageInfo();
         _currentStage.ExitStage();
         _currentStage.gameObject.SetActive(false);  // 비활성화
@@ -87,6 +110,5 @@ public class StageManager : MonoBehaviour
         _currentStage.ClearStage();
         _currentStage.CheckScore();
         _currentStage.gameObject.SetActive(false);  // 비활성화
-        _currentGameState = GameState.None;
     }
 }
