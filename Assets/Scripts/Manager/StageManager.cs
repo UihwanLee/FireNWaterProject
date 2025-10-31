@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    [Header("캐릭터")]
+    [SerializeField] private GameObject _ember;
+    [SerializeField] private GameObject _wade;
+
     private GameManager _gameManager;
     private Dictionary<int, StageController> _stages = new();
     private StageController _currentStage;
