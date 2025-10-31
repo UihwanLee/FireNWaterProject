@@ -92,6 +92,7 @@ public class StageManager : MonoBehaviour
 
     private void StartStage()
     {
+        _currentStage.ResetStageInfo();
         _currentStage.StartStage();
     }
 
@@ -103,12 +104,6 @@ public class StageManager : MonoBehaviour
     public void GameOver()
     {
         _currentStage.GameOver();
-    }
-
-    public void RestartStage()
-    {
-        _currentStage.ResetStageInfo();
-        _currentStage.StartStage();
     }
 
     public void ExitStage()
