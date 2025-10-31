@@ -24,6 +24,7 @@ public class StageController : MonoBehaviour
 
         _stage = new(_stageId, _limitTime, _elementCount);
         _stageClearInfo = new(_stage);
+        Logger.Log($"stage: {_stage.ToString()}\n stage info: {_stageClearInfo.ToString()}");
     }
 
     public void StartStage()

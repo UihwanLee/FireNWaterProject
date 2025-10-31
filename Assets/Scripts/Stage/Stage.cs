@@ -31,6 +31,11 @@ public class Stage
         LimitTime = limitTime;
         ElementCount = elementCount;
     }
+
+    public override string ToString()
+    {
+        return "{ " + $"id: {StageId}, limit time: {LimitTime}, element count: {ElementCount}" + " }";
+    }
 }
 
 [System.Serializable]
@@ -45,5 +50,10 @@ public class StageClearInfo
         StageId = stage.StageId;
         StageScore = StageScore.None;
         ClearTime = 0f;
+    }
+
+    public override string ToString()
+    {
+        return "{ " + $"id: {StageId}, stage score: {StageScore}, clear time: {ClearTime}" + " }";
     }
 }
