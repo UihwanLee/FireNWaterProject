@@ -11,7 +11,7 @@ public class StageManager : MonoBehaviour
     private Dictionary<int, StageController> _stages = new();
     private StageController _currentStage;
 
-    private EmberController _emeberController;
+    private EmberController _emberController;
     private WadeController _wadeController;
 
     // 측정할 정보
@@ -43,10 +43,10 @@ public class StageManager : MonoBehaviour
             Logger.Log("웨이드 프리팹 가져오기");
         }
 
-        if (!_ember.TryGetComponent<EmberController>(out _emeberController))
+        if (!_ember.TryGetComponent<EmberController>(out _emberController))
         {
             Logger.Log("Ember Controller 가져오기");
-            _emeberController = FindObjectOfType<EmberController>();
+            _emberController = FindObjectOfType<EmberController>();
         }
 
         if (!_wade.TryGetComponent<WadeController>(out _wadeController))
@@ -82,7 +82,7 @@ public class StageManager : MonoBehaviour
         }
 
         _gameManager.OnGameStateChanged += HandleStateChanged;
-        _emeberController.OnPlayerDied += HandlePlayerDeath;
+        _emberController.OnPlayerDied += HandlePlayerDeath;
         _wadeController.OnPlayerDied += HandlePlayerDeath;
         Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
     }
@@ -101,7 +101,7 @@ public class StageManager : MonoBehaviour
     {
         Debug.Log("[StageManager] OnDisable 호출됨");
         _gameManager.OnGameStateChanged -= HandleStateChanged;
-        _emeberController.OnPlayerDied -= HandlePlayerDeath;
+        _emberController.OnPlayerDied -= HandlePlayerDeath;
         _wadeController.OnPlayerDied -= HandlePlayerDeath;
     }
 
