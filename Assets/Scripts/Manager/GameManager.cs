@@ -33,6 +33,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeGameState(GameState.Ready);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeGameState(GameState.Start);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeGameState(GameState.Play);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeGameState(GameState.Stop);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) ChangeGameState(GameState.Dead);
+        if (Input.GetKeyDown(KeyCode.Alpha6)) ChangeGameState(GameState.Clear);
+        if (Input.GetKeyDown(KeyCode.Alpha7)) ChangeGameState(GameState.End);
+    }
 
     public void StartGame()
     {
