@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         }
 
         _currentGameState = gameState;
-        OnGameStateChanged?.Invoke(_currentGameState);
         Logger.Log($"상태 변경: {_currentGameState}");
+        OnGameStateChanged?.Invoke(_currentGameState);
     }
 }

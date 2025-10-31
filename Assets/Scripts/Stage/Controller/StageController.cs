@@ -32,9 +32,6 @@ public class StageController : MonoBehaviour
     public void StartStage()
     {
         Logger.Log("게임 시작");
-
-        // 시간 측정
-
         Logger.NotImpl();
     }
 

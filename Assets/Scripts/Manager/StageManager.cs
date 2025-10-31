@@ -52,10 +52,23 @@ public class StageManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("[StageManager.Update] 실행중");
         if (_gameManager.CurrentGameState == GameState.Play)
         {
             // 타이머 돌아가는 로직 작성
+            Timer += Time.deltaTime;
         }
+        Logger.Log($"시간: {Timer.ToString()}");
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("[StageManager] OnEnable 호출됨");
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("[StageManager] OnDisable 호출됨");
     }
 
     // 스테이지 선택
@@ -69,6 +82,7 @@ public class StageManager : MonoBehaviour
 
         _currentStage = _stages[id];
         _currentStage.gameObject.SetActive(true);               // 활성화
+        Logger.Log($"{id} 번째 스테이지 활성화");
         _gameManager.ChangeGameState(GameState.Start);          // 자동 시작
     }
 
@@ -90,6 +104,7 @@ public class StageManager : MonoBehaviour
                 StartStage();
                 break;
             case GameState.Play:                    // 실제 플레이(조작, 점수/시간 측정)
+                Logger.Log("플레이 중");
                 break;
             case GameState.Stop:                    // 조작 불가, 시간 멈춤, 메뉴 표시
                 PauseStage();
