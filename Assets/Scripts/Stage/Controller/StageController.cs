@@ -1,18 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class StageController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Transform _spwanPoint;
+    [SerializeField] private int _stageId;
+
+    public int StageId => _stageId;
+
+    private void Awake()
     {
-        
+        if (_spwanPoint == null)
+        {
+            transform.position = Vector3.zero;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartStage()
     {
-        
+        Logger.NotImpl();
+    }
+
+    public void PauseStage()
+    {
+        Logger.NotImpl();
+    }
+
+    public void ExitStage()
+    {
+        Logger.NotImpl();
+    }
+
+    public void GameOver()
+    {
+        Logger.NotImpl();
+    }
+
+    public void ResetStageInfo()
+    {
+        Logger.NotImpl();
+    }
+
+    public void ClearStage()
+    {
+        Logger.NotImpl();
+    }
+
+    public void CheckScore()
+    {
+        Logger.NotImpl();
     }
 }
