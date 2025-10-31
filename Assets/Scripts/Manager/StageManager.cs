@@ -152,11 +152,7 @@ public class StageManager : MonoBehaviour
     private void StartStage()
     {
         ResetStageInfo();
-
-        Logger.Log("엠버, 웨이드 활성화");
-        _ember.SetActive(true);
-        _wade.SetActive(true);
-
+        SetPlayerActive(true);
         _currentStage.SetSpawnPoint(_ember, _wade);
         _gameManager.ChangeGameState(GameState.Play);
     }
@@ -174,7 +170,7 @@ public class StageManager : MonoBehaviour
     public void ExitStage()
     {
         ResetStageInfo();
-        _currentStage.ExitStage();
+        SetPlayerActive(false);
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;
     }
@@ -196,5 +192,12 @@ public class StageManager : MonoBehaviour
     private void ResetStageInfo()
     {
         Timer = 0f;
+    }
+
+    private void SetPlayerActive(bool active)
+    {
+        Logger.Log($"Ember, Wade {(active ? "활성화" : "비활성화")}");
+        _ember.SetActive(active);
+        _wade.SetActive(active);
     }
 }
