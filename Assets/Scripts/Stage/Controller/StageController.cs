@@ -4,7 +4,14 @@ using UnityEngine;
 public class StageController : MonoBehaviour
 {
     [SerializeField] private Transform _spwanPoint;
+
+    [Header("스테이지 정보")]
     [SerializeField] private int _stageId;
+    [SerializeField] private int _elementCount;
+    [SerializeField] private float _limitTime;
+
+    private Stage _stage;
+    private StageClearInfo _stageClearInfo;
 
     public int StageId => _stageId;
 
@@ -14,6 +21,9 @@ public class StageController : MonoBehaviour
         {
             transform.position = Vector3.zero;
         }
+
+        _stage = new(_stageId, _limitTime, _elementCount);
+        _stageClearInfo = new(_stage);
     }
 
     public void StartStage()
