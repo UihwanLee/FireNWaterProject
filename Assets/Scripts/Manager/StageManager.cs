@@ -43,27 +43,20 @@ public class StageManager : MonoBehaviour
             Logger.Log("웨이드 프리팹 가져오기");
         }
 
-        _ember.SetActive(false);
-        _wade.SetActive(false);
-        Logger.Log("엠버, 웨이드 초기화 및 비활성화 완료");
-
-        if (_ember.TryGetComponent<EmberController>(out var _emeberController))
+        if (!_ember.TryGetComponent<EmberController>(out _emeberController))
         {
             Logger.Log("Ember Controller 가져오기");
             _emeberController = FindObjectOfType<EmberController>();
         }
 
-        if (_wade.TryGetComponent<WadeController>(out var _wadeController))
+        if (!_wade.TryGetComponent<WadeController>(out _wadeController))
         {
             Logger.Log("Wade Controller 가져오기");
             _wadeController = FindObjectOfType<WadeController>();
         }
-    }
 
-    private void OnEnable()
-    {
-        _emeberController.OnPlayerDied += HandlePlayerDeath;
-        _wadeController.OnPlayerDied += HandlePlayerDeath;
+        SetPlayerActive(false);
+        Logger.Log("엠버, 웨이드 초기화 및 비활성화 완료");
     }
 
     // 초기화
@@ -89,6 +82,8 @@ public class StageManager : MonoBehaviour
         }
 
         _gameManager.OnGameStateChanged += HandleStateChanged;
+        _emeberController.OnPlayerDied += HandlePlayerDeath;
+        _wadeController.OnPlayerDied += HandlePlayerDeath;
         Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
     }
 
