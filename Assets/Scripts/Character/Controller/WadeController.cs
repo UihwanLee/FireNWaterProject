@@ -17,12 +17,19 @@ public class WadeController : BaseController
         if (Input.GetKey(KeyCode.LeftArrow)) horizontal = -1f;
         else if (Input.GetKey(KeyCode.RightArrow)) horizontal = 1f;
 
-        moveDirection = new Vector2(horizontal, 0f).normalized;
+        Vector2 dir = new Vector2(horizontal, 0f).normalized;
 
         // Wade 점프 : W키 입력
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Jump();
         }
+
+        if (moveDirection == dir)
+        {
+            return;
+        }
+
+        moveDirection = dir;
     }
 }

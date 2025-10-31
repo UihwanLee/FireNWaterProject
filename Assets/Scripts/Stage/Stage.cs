@@ -1,3 +1,15 @@
+public enum GameState
+{
+    None,
+    Start,
+    Play,
+    Stop,
+    Dead,
+    Clear,
+    End,
+    Next,
+}
+
 public enum StageScore
 {
     None, // Default
@@ -11,7 +23,7 @@ public class Stage
 {
     public int StageId { get; private set; }
     public float LimitTime { get; private set; }
-    public int ElementCount { get; set; }
+    public int ElementCount { get; private set; }
 
     public Stage(int id, float limitTime, int elementCount)
     {
@@ -19,12 +31,17 @@ public class Stage
         LimitTime = limitTime;
         ElementCount = elementCount;
     }
+
+    public override string ToString()
+    {
+        return "{ " + $"id: {StageId}, limit time: {LimitTime}, element count: {ElementCount}" + " }";
+    }
 }
 
 [System.Serializable]
 public class StageClearInfo
 {
-    public int StageId { get; set; }
+    public int StageId { get; private set; }
     public StageScore StageScore { get; set; }
     public float ClearTime { get; set; }
 
@@ -33,5 +50,10 @@ public class StageClearInfo
         StageId = stage.StageId;
         StageScore = StageScore.None;
         ClearTime = 0f;
+    }
+
+    public override string ToString()
+    {
+        return "{ " + $"id: {StageId}, stage score: {StageScore}, clear time: {ClearTime}" + " }";
     }
 }
