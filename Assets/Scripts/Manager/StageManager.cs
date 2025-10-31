@@ -3,9 +3,16 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    [Header("캐릭터")]
+    [SerializeField] private GameObject _ember;
+    [SerializeField] private GameObject _wade;
+
     private GameManager _gameManager;
     private Dictionary<int, StageController> _stages = new();
     private StageController _currentStage;
+
+    private EmberController _emeberController;
+    private WadeController _wadeController;
 
     // 측정할 정보
     private float _timer = 0f;
@@ -22,6 +29,36 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (_ember == null)
+        {
+            // 엠버 프리팹 원격으로 가져오기
+            Logger.Log("엠버 프리팹 가져오기");
+        }
+
+        if (_wade == null)
+        {
+            // 웨이드 프리팹 원격으로 가져오기
+            Logger.Log("웨이드 프리팹 가져오기");
+        }
+
+        if (!_ember.TryGetComponent<EmberController>(out _emeberController))
+        {
+            Logger.Log("Ember Controller 가져오기");
+            _emeberController = FindObjectOfType<EmberController>();
+        }
+
+        if (!_wade.TryGetComponent<WadeController>(out _wadeController))
+        {
+            Logger.Log("Wade Controller 가져오기");
+            _wadeController = FindObjectOfType<WadeController>();
+        }
+
+        SetPlayerActive(false);
+        Logger.Log("엠버, 웨이드 초기화 및 비활성화 완료");
+    }
+
     // 초기화
     public void Init(GameManager gameManager)
     {
@@ -36,7 +73,7 @@ public class StageManager : MonoBehaviour
 
             if (_stages.ContainsKey(id))
             {
-                Debug.Log($"[StageManager.Init] {id} 번째 스테이지 중복 할당");
+                Debug.LogError($"[StageManager.Init] {id} 번째 스테이지 중복 할당");
                 continue;
             }
 
@@ -45,9 +82,9 @@ public class StageManager : MonoBehaviour
         }
 
         _gameManager.OnGameStateChanged += HandleStateChanged;
+        _emeberController.OnPlayerDied += HandlePlayerDeath;
+        _wadeController.OnPlayerDied += HandlePlayerDeath;
         Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
-
-        SelectStage(1);
     }
 
     private void Update()
@@ -55,7 +92,17 @@ public class StageManager : MonoBehaviour
         if (_gameManager.CurrentGameState == GameState.Play)
         {
             // 타이머 돌아가는 로직 작성
+            Timer += Time.deltaTime;
         }
+        //Logger.Log($"시간: {Timer.ToString()}");
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("[StageManager] OnDisable 호출됨");
+        _gameManager.OnGameStateChanged -= HandleStateChanged;
+        _emeberController.OnPlayerDied -= HandlePlayerDeath;
+        _wadeController.OnPlayerDied -= HandlePlayerDeath;
     }
 
     // 스테이지 선택
@@ -67,8 +114,14 @@ public class StageManager : MonoBehaviour
             return;
         }
 
+        if (_currentStage != null)
+        {
+            _currentStage.gameObject.SetActive(false);          // 이전 스테이지 확인
+        }
+
         _currentStage = _stages[id];
         _currentStage.gameObject.SetActive(true);               // 활성화
+        Logger.Log($"{id} 번째 스테이지 활성화");
         _gameManager.ChangeGameState(GameState.Start);          // 자동 시작
     }
 
@@ -90,6 +143,7 @@ public class StageManager : MonoBehaviour
                 StartStage();
                 break;
             case GameState.Play:                    // 실제 플레이(조작, 점수/시간 측정)
+                Logger.Log("플레이 중");
                 break;
             case GameState.Stop:                    // 조작 불가, 시간 멈춤, 메뉴 표시
                 PauseStage();
@@ -106,8 +160,6 @@ public class StageManager : MonoBehaviour
             case GameState.Next:                    // 다음 스테이지
                 NextStage();
                 break;
-            case GameState.None:
-                break;
             default:
                 break;
         }
@@ -116,7 +168,9 @@ public class StageManager : MonoBehaviour
     private void StartStage()
     {
         ResetStageInfo();
-        _currentStage.StartStage();
+        SetPlayerActive(true);
+        _currentStage.SetSpawnPoint(_ember, _wade);
+        _gameManager.ChangeGameState(GameState.Play);
     }
 
     public void PauseStage()
@@ -126,33 +180,46 @@ public class StageManager : MonoBehaviour
 
     public void GameOver()
     {
+        ResetStageInfo();
         _currentStage.GameOver();
+    }
+
+    private void HandlePlayerDeath()
+    {
+        _gameManager.ChangeGameState(GameState.Dead);
     }
 
     public void ExitStage()
     {
         ResetStageInfo();
-        _currentStage.ExitStage();
+        SetPlayerActive(false);
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;
+
+        _gameManager.ChangeGameState(GameState.None);
     }
 
     public void ClearStage()
     {
         _currentStage.ClearStage();
         _currentStage.CheckScore();
-        _currentStage.gameObject.SetActive(false);  // 비활성화
     }
 
     public void NextStage()
     {
         int id = _currentStage.StageId;
-        ClearStage();
         SelectStage(id + 1);                        // 예외처리는 SelectStage에서 진행
     }
 
     private void ResetStageInfo()
     {
         Timer = 0f;
+    }
+
+    private void SetPlayerActive(bool active)
+    {
+        Logger.Log($"Ember, Wade {(active ? "활성화" : "비활성화")}");
+        _ember.SetActive(active);
+        _wade.SetActive(active);
     }
 }

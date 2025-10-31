@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public enum CharacterState
@@ -197,6 +195,8 @@ public class BaseController : MonoBehaviour
         animationHandler.FallDown((currentState == CharacterState.FallDown));
     }
 
+    public event Action OnPlayerDied;
+
     /// <summary>
     /// 캐릭터 Die
     /// </summary>
@@ -206,6 +206,8 @@ public class BaseController : MonoBehaviour
 
         // Death 로직 처리
         Debug.Log($"{gameObject.name}가 죽었습니다!");
+
+        OnPlayerDied?.Invoke();
     }
 
     #endregion

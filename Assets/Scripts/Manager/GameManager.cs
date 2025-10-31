@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,14 +33,30 @@ public class GameManager : MonoBehaviour
         {
             _scoreManager = GetComponentInChildren<ScoreManager>();
         }
+    }
 
+    private void Start()
+    {
         UpdateSceneToStage();
+        _stageManager.SelectStage(1);
     }
 
     public void UpdateSceneToStage()
     {
-        _stageManager = FindObjectOfType<StageManager>();
-        _stageManager.Init(this);
+        Scene activeScene = SceneManager.GetActiveScene();          // 현재 활성화된 씬
+        GameObject[] roots = activeScene.GetRootGameObjects();      // 루트 오브젝트 모든 게임 오브젝트들 가져오기
+
+        foreach (var root in roots)
+        {
+            _stageManager = root.GetComponentInChildren<StageManager>(true);
+            if (_stageManager != null)
+            {
+                Logger.Log("Stage Manager 찾음");
+                _stageManager.Init(this);
+                return;
+            }
+            Logger.Log("Stage Manager 못 찾음");
+        }
     }
 
     private void Update()
@@ -67,7 +84,7 @@ public class GameManager : MonoBehaviour
         { GameState.Play,  new[] { GameState.Stop, GameState.Clear, GameState.Dead } },
         { GameState.Stop,  new[] { GameState.Start, GameState.Play, GameState.End } },
         { GameState.Dead,  new[] { GameState.Start, GameState.End } },
-        { GameState.Clear, new[] { GameState.End } },
+        { GameState.Clear, new[] { GameState.End, GameState.Next } },
         { GameState.End,   new[] { GameState.None } }
     };
 
@@ -83,7 +100,7 @@ public class GameManager : MonoBehaviour
         }
 
         _currentGameState = gameState;
-        OnGameStateChanged?.Invoke(_currentGameState);
         Logger.Log($"상태 변경: {_currentGameState}");
+        OnGameStateChanged?.Invoke(_currentGameState);
     }
 }
