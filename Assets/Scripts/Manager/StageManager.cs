@@ -30,6 +30,8 @@ public class StageManager : MonoBehaviour
 
         _gameManager.OnGameStateChanged += HandleStateChanged;
         Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
+
+        SelectStage(1);
     }
 
     public void SelectStage(int id)

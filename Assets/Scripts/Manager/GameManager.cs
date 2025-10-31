@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
         {
             _scoreManager = GetComponentInChildren<ScoreManager>();
         }
+
+        UpdateSceneToStage();
     }
 
     public void UpdateSceneToStage()
