@@ -36,7 +36,7 @@ public class StageManager : MonoBehaviour
     {
         if (!_stages.TryGetValue(id, out var stage))
         {
-            Logger.Log($"{id} 번째 스테이지 존재하지 않음");
+            Logger.LogWarning($"{id} 번째 스테이지 존재하지 않음");
             return;
         }
 
@@ -54,7 +54,7 @@ public class StageManager : MonoBehaviour
     {
         if (_currentStage == null)
         {
-            Logger.Log($"현재 저장된 stage 없음");
+            Logger.LogWarning($"현재 저장된 stage 없음");
         }
 
         switch (state)

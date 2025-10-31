@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         if (!_allowedTransitions.TryGetValue(CurrentGameState, out var allowedStates) ||
             Array.IndexOf(allowedStates, gameState) == -1)
         {
-            Logger.Log($"상태 변경 불가: {CurrentGameState} → {gameState}");
+            Logger.LogWarning($"상태 변경 불가: {CurrentGameState} → {gameState}");
             return;
         }
 
