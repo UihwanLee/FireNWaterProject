@@ -40,7 +40,9 @@ public class StageManager : MonoBehaviour
             Logger.Log("웨이드 프리팹 가져오기");
         }
 
-        Logger.Log("엠버, 웨이드 초기화 완료");
+        _ember.SetActive(false);
+        _wade.SetActive(false);
+        Logger.Log("엠버, 웨이드 초기화 및 비활성화 완료");
     }
 
     // 초기화
