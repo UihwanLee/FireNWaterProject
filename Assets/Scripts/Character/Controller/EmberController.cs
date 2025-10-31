@@ -19,7 +19,6 @@ public class EmberController : BaseController
 
         Vector2 dir = new Vector2(horizontal, 0f).normalized;
 
-
         // Ember 점프 : W키 입력
         if (Input.GetKeyDown(KeyCode.W))
         {
