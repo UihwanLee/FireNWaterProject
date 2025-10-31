@@ -50,13 +50,12 @@ public class StageManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("[StageManager.Update] 실행중");
         if (_gameManager.CurrentGameState == GameState.Play)
         {
             // 타이머 돌아가는 로직 작성
             Timer += Time.deltaTime;
         }
-        Logger.Log($"시간: {Timer.ToString()}");
+        //Logger.Log($"시간: {Timer.ToString()}");
     }
 
     private void OnEnable()
