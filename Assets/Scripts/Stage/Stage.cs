@@ -23,7 +23,7 @@ public class Stage
 {
     public int StageId { get; private set; }
     public float LimitTime { get; private set; }
-    public int ElementCount { get; set; }
+    public int ElementCount { get; private set; }
 
     public Stage(int id, float limitTime, int elementCount)
     {
@@ -36,7 +36,7 @@ public class Stage
 [System.Serializable]
 public class StageClearInfo
 {
-    public int StageId { get; set; }
+    public int StageId { get; private set; }
     public StageScore StageScore { get; set; }
     public float ClearTime { get; set; }
 
