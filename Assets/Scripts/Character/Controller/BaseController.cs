@@ -9,6 +9,7 @@ public enum CharacterState
     Move,
     JumpUp,
     FallDown,
+    Pause,
     Die
 }
 
@@ -80,6 +81,8 @@ public class BaseController : MonoBehaviour
     /// </summary>
     protected virtual void Move()
     {
+        if (currentState == CharacterState.Pause || currentState == CharacterState.Die) return;
+
         bool isInput = moveDirection.x != 0f;             // 입력 체크
 
         if (isInput)
@@ -161,6 +164,8 @@ public class BaseController : MonoBehaviour
     /// </summary>
     private void CheckVelocityStateIsJumpingOrFall()
     {
+        if (currentState == CharacterState.Pause || currentState == CharacterState.Die) return;
+
         float currentVelocityX = _rigidbody.velocity.x;
         float currentVelocityY = _rigidbody.velocity.y;
 
