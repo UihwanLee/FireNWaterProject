@@ -53,7 +53,9 @@ public class GameManager : MonoBehaviour
             {
                 Logger.Log("Stage Manager 찾음");
                 _stageManager.Init(this);
+                return;
             }
+            Logger.Log("Stage Manager 못 찾음");
         }
     }
 
