@@ -28,7 +28,7 @@ public class StageManager : MonoBehaviour
             stage.gameObject.SetActive(false);                          // 모두 비활성화 하기
         }
 
-        _gameManager.OnStageChanged += HandleStateChanged;
+        _gameManager.OnGameStateChanged += HandleStateChanged;
         Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
     }
 

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     private GameState _currentGameState = GameState.None;
     public GameState CurrentGameState => _currentGameState;
-    public event Action<GameState> OnStageChanged;
+    public event Action<GameState> OnGameStateChanged;
 
     private void Awake()
     {
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
 
         _currentGameState = gameState;
-        OnStageChanged?.Invoke(_currentGameState);
+        OnGameStateChanged?.Invoke(_currentGameState);
         Logger.Log($"상태 변경: {_currentGameState}");
     }
 }
