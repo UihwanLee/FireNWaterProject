@@ -46,8 +46,6 @@ public class StageManager : MonoBehaviour
 
         _gameManager.OnGameStateChanged += HandleStateChanged;
         Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
-
-        SelectStage(1);
     }
 
     private void Update()
@@ -76,7 +74,7 @@ public class StageManager : MonoBehaviour
     {
         if (!_stages.TryGetValue(id, out var stage))
         {
-            Logger.LogError($"{id} 번째 스테이지 존재하지 않음");
+            Logger.LogWarning($"{id} 번째 스테이지 존재하지 않음");
             return;
         }
 
@@ -95,7 +93,7 @@ public class StageManager : MonoBehaviour
     {
         if (_currentStage == null)
         {
-            Logger.LogError($"현재 저장된 stage 없음");
+            Logger.LogWarning($"현재 저장된 stage 없음");
         }
 
         switch (state)
@@ -132,6 +130,7 @@ public class StageManager : MonoBehaviour
     {
         ResetStageInfo();
         _currentStage.StartStage();
+        _gameManager.ChangeGameState(GameState.Play);
     }
 
     public void PauseStage()
