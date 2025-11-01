@@ -234,10 +234,6 @@ public class StageManager : MonoBehaviour
         _currentStage.GameOver();
     }
 
-    private void HandlePlayerDeath()
-    {
-        ChangeGameState(GameState.Dead);
-    }
 
     public void OnExit()
     {
@@ -260,8 +256,9 @@ public class StageManager : MonoBehaviour
     }
 
     public void StartNextStage()
+    private void HandlePlayerDeath()
     {
-
+        ChangeGameState(GameState.Dead);
     }
 
     private void ResetStageInfo()
