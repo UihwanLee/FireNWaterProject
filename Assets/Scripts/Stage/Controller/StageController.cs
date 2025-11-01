@@ -18,6 +18,23 @@ public class StageController : MonoBehaviour
     private Stage _stage;
     private StageClearInfo _stageClearInfo;
 
+    private GameObject _ember;
+    private GameObject _wade;
+    private EmberController _emberController;
+    private WadeController _wadeController;
+
+    public void Init(
+        GameObject ember,
+        GameObject wade,
+        EmberController emberController,
+        WadeController wadeController)
+    {
+        _ember = ember;
+        _wade = wade;
+        _emberController = emberController;
+        _wadeController = wadeController;
+    }
+
     private void OnEnable()
     {
         if (_emberSpwanPoint == null)
@@ -35,16 +52,28 @@ public class StageController : MonoBehaviour
         Logger.Log($"stage: {_stage}\n stage info: {_stageClearInfo}");
     }
 
-    public void SetSpawnPoint(GameObject ember, GameObject wade)
+    private void SetSpawnPoint()
     {
         // 스폰 장소 지정
-        ember.transform.position = _emberSpwanPoint.position;
-        wade.transform.position = _wadeSpwanPoint.position;
+        _ember.transform.position = _emberSpwanPoint.position;
+        _wade.transform.position = _wadeSpwanPoint.position;
     }
 
-    public void PauseStage()
+    public void OnStart()
     {
-        Logger.NotImpl();
+        SetSpawnPoint();
+    }
+
+    public void OnPause()
+    {
+        _emberController.Pause();
+        _wadeController.Pause();
+    }
+
+    public void OnResume()
+    {
+        _emberController.CancelPause();
+        _wadeController.CancelPause();
     }
 
     public void ExitStage()
