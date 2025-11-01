@@ -7,17 +7,23 @@ using UnityEngine;
 public class Lever : MonoBehaviour, InteractWithController
 {
     [Header("각도 한계(참조각 기준)")]
-    [SerializeField] private float maxAngle = 45f;   
-    [SerializeField] private float minAngle = -45f;  
-    [SerializeField] private float neutralAngle = 0f;
-    
-    [Header("회전 속도(보간 강도)")]
-    [SerializeField] private float rotateSpeed = 6f; // 클수록 더 빨리 목표각으로 수렴
-    
-    [Header("노이즈 제어")]
-    [SerializeField] private float velDeadZone = 0.1f; // 이 속도 이하일 땐 "정지"로 간주
+    [SerializeField] private float maxAngle = 45f;    // 오른쪽(+)
+    [SerializeField] private float minAngle = -45f;   // 왼쪽(-)
+    [SerializeField] private float neutralAngle = 0f; // 중립
 
-    public float targetAngle;
+    [Header("회전/필터")]
+    [SerializeField] private float rotateSpeed = 6f;
+    [SerializeField] private float velDeadZone = 0.1f;
+    [SerializeField] private float limitEpsilon = 1.0f;     // 한계각 근처에서의 여유
+
+    public float targetAngle { get; private set; }
+
+    private BaseController _currentPusher; // 현재 밀고 있는 플레이어
+    private PushSide _latchedSide = PushSide.None;   // 트리거 진입 시 결정, Exit 전엔 불변
+    private bool _atLimit;                           // 한계각 잠금 여부
+
+    private enum PushSide { None, Left, Right }
+    
     
     public void Activate(BaseController bc)
     {

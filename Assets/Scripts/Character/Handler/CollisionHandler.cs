@@ -86,13 +86,10 @@ public class CollisionHandler : MonoBehaviour
         Button button = other.GetComponent<Button>();
         
         //레버 판정
-        if (lever != null) lever.OnPusherStay(controller);
+        if (lever != null) lever.Activate(controller);
         
         //버튼 누름 판정
-        if (button != null)
-        {
-            button.Interact();
-        }
+        if (button != null) button.Interact();
     }
 
     public void OnTriggerExit2D(Collider2D other)
@@ -100,11 +97,10 @@ public class CollisionHandler : MonoBehaviour
         Lever lever = other.GetComponent<Lever>();
         Button button = other.GetComponent<Button>();
         
+        //레버 판정
         if (lever != null) lever.OnPusherExit(controller);
         
-        if (button != null)
-        {
-            button.Recovery();
-        }
+        //버튼 판정
+        if (button != null) button.Recovery(); 
     }
 }
