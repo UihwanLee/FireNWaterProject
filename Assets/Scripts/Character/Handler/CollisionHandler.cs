@@ -65,16 +65,11 @@ public class CollisionHandler : MonoBehaviour
         //버튼 판정
         if (button != null)
         {
-            //버튼밟을 시 감속
-            Rigidbody2D rb2d = controller.GetComponent<Rigidbody2D>();
-            var currentVelocity = rb2d.velocity.magnitude;
-            currentVelocity *= 0.5f;
-            rb2d.velocity = rb2d.velocity.normalized * currentVelocity;
-            Debug.Log("Velocity: " + rb2d.velocity);
+            //버튼밟을 시 감속 구현 ------------------------------------
             button.Activate(controller);
         }
         
-        //래버 감지
+        //래버 감지------------------------------밀 때 캐릭터 감속 구현
         if (lever != null) lever.OnPusherEnter(controller);
             
         

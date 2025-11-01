@@ -7,7 +7,8 @@ public class Button : MonoBehaviour, InteractWithController
     [SerializeField] private Gate targetGate;
     public void Activate(BaseController bc)
     {
-        //애니메이션 작동하고
+        
+        //애니메이션 및 동작
     }
 
     public void Interact()
