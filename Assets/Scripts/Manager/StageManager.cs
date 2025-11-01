@@ -96,13 +96,13 @@ public class StageManager : MonoBehaviour
             Timer += Time.deltaTime;
         }
         //Logger.Log($"시간: {Timer.ToString()}");
-        if (Input.GetKeyDown(KeyCode.Alpha2)) OnStart();
-        if (Input.GetKeyDown(KeyCode.Alpha3)) OnPause();
-        if (Input.GetKeyDown(KeyCode.Alpha4)) OnResume();
+        if (Input.GetKeyDown(KeyCode.Alpha2)) HandleStageStart();
+        if (Input.GetKeyDown(KeyCode.Alpha3)) HandlePause();
+        if (Input.GetKeyDown(KeyCode.Alpha4)) HandleResume();
         if (Input.GetKeyDown(KeyCode.Alpha5)) GameOver();
-        if (Input.GetKeyDown(KeyCode.Alpha6)) OnClear();
-        if (Input.GetKeyDown(KeyCode.Alpha7)) OnExit();
-        if (Input.GetKeyDown(KeyCode.Alpha8)) OnNext();
+        if (Input.GetKeyDown(KeyCode.Alpha6)) HandleStageClear();
+        if (Input.GetKeyDown(KeyCode.Alpha7)) HandleStageExit();
+        if (Input.GetKeyDown(KeyCode.Alpha8)) HandleStageNext();
     }
 
     private void OnDisable()
@@ -187,48 +187,49 @@ public class StageManager : MonoBehaviour
         switch (state)
         {
             case GameState.Start:                   // 카운트 다운, 로딩 등
-                OnStart();
+                HandleStageStart();
                 break;
             case GameState.Play:                    // 실제 플레이(조작, 점수/시간 측정)
                 Logger.Log("플레이 중");
                 break;
             case GameState.Pause:                    // 조작 불가, 시간 멈춤
-                OnPause();
+                HandlePause();
                 break;
             case GameState.Resume:
-                OnResume();
+                HandleResume();
                 break;
             case GameState.Dead:                    // 실패, 재시작 대기
                 GameOver();
                 break;
             case GameState.Clear:                   // 성공, 점수 계산
-                OnClear();
+                HandleStageClear();
                 break;
             case GameState.End:                     // 맵으로 나가기
-                OnExit();
+                HandleStageExit();
                 break;
             case GameState.Next:                    // 다음 스테이지
-                OnNext();
+                HandleStageNext();
                 break;
             default:
                 break;
         }
     }
 
-    private void OnStart()
+    #region 스테이지 내부 로직
+    private void HandleStageStart()
     {
-        _currentStage.OnStart();
+        _currentStage.ExecuteStageStart();
         ChangeGameState(GameState.Play);
     }
 
-    private void OnPause()
+    private void HandlePause()
     {
-        _currentStage.OnPause();
+        _currentStage.ExecutePause();
     }
 
-    private void OnResume()
+    private void HandleResume()
     {
-        _currentStage.OnResume();
+        _currentStage.ExecuteResume();
         ChangeGameState(GameState.Play);
     }
 
@@ -237,25 +238,26 @@ public class StageManager : MonoBehaviour
         _currentStage.GameOver();
     }
 
-    public void OnExit()
+    public void HandleStageExit()
     {
-        _currentStage.OnExit();
+        _currentStage.ExecuteExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;
         ChangeGameState(GameState.None);
     }
 
-    public void OnClear()
+    public void HandleStageClear()
     {
-        _currentStage.OnClear();
+        _currentStage.ExecuteClear();
         _currentStage.CheckScore();
     }
 
-    public void OnNext()
+    public void HandleStageNext()
     {
         int id = _currentStage.StageId;
         SelectStage(id + 1);                        // 예외처리는 SelectStage에서 진행
     }
+    #endregion
 
     private void HandlePlayerDeath()
     {

@@ -66,25 +66,25 @@ public class StageController : MonoBehaviour
         _wade.transform.position = _wadeSpwanPoint.position;
     }
 
-    public void OnStart()
+    public void ExecuteStageStart()
     {
         SetPlayerActive(true);
         SetSpawnPoint();
     }
 
-    public void OnPause()
+    public void ExecutePause()
     {
         _emberController.Pause();
         _wadeController.Pause();
     }
 
-    public void OnResume()
+    public void ExecuteResume()
     {
         _emberController.CancelPause();
         _wadeController.CancelPause();
     }
 
-    public void OnExit()
+    public void ExecuteExit()
     {
         SetPlayerActive(false);
     }
@@ -94,7 +94,7 @@ public class StageController : MonoBehaviour
         Logger.NotImpl();
     }
 
-    public void OnClear()
+    public void ExecuteClear()
     {
         Logger.NotImpl();
     }
