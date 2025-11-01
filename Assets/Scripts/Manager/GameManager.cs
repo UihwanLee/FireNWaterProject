@@ -52,4 +52,24 @@ public class GameManager : MonoBehaviour
             Logger.Log("Stage Manager 못 찾음");
         }
     }
+
+    public void PauseStage()
+    {
+        _stageManager.ChangeGameState(GameState.Pause);
+    }
+
+    public void StartStage()
+    {
+        _stageManager.ChangeGameState(GameState.Start);
+    }
+
+    public void RetryStage()
+    {
+        _stageManager.ChangeGameState(GameState.Start);
+    }
+
+    public void ExitStage()
+    {
+        _stageManager.ChangeGameState(GameState.End);
+    }
 }
