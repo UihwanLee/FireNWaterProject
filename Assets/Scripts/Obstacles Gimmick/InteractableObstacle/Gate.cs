@@ -19,6 +19,6 @@ public class Gate : MonoBehaviour, InteractableObstacle
 
     public void Interact(bool on)
     {
-        throw new NotImplementedException();
+        Debug.Log("Interact with gate");
     }
 }
