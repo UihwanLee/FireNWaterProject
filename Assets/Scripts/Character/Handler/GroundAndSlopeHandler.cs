@@ -24,21 +24,20 @@ public class GroundAndSlopeHandler : MonoBehaviour
     /// </summary>
     public bool CheckGround()
     {
+        Vector2 center = boxCollider2D.bounds.center;
+        float halfHeight = boxCollider2D.bounds.extents.y;
+
+        // 지면 체크 박스 영역 외부에 얼마나 더 늘릴 것인지
+        // 값이 너무 크면 점프 시에도 땅에 있다고 판정을 내리므로 주의해야함
         float extraHeight = 0.1f;
-        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down, boxCollider2D.bounds.extents.y + extraHeight, Define.LayerMask.GROUND);
 
-        Color rayColor;
-        if (raycastHit.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
+        // 정해진 boxCollider 내에 아래로 RayCast를 쏜다.
+        // 만약 hit된 collider layer가 Ground면 지면에 있다고 판정
+        RaycastHit2D raycastHit = Physics2D.Raycast(center, Vector2.down, halfHeight + extraHeight, Define.LayerMask.GROUND);
 
-        //Debug.DrawRay(boxCollider2D.bounds.center, Vector2.down * (boxCollider2D.bounds.extents.y + extraHeight), rayColor);
-        
+        // 디버그 용 : Ground 체크 Ray Draw
+        //DrawRay(raycastHit, center, Vector2.down * (halfHeight + extraHeight));
+
         return (raycastHit.collider != null);
     }
 
@@ -49,26 +48,48 @@ public class GroundAndSlopeHandler : MonoBehaviour
     {
         // 현재 캐릭터가 어느 방향을 보고 있는지 체크
         Vector2 dir = (controller.MoveDirection.x > 0.0f) ? Vector2.right : Vector2.left;
+        Vector2 center = boxCollider2D.bounds.center;
+        float halfWidth = boxCollider2D.bounds.extents.x;
+        float height = boxCollider2D.bounds.extents.y * 2;
 
-        RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down, boxCollider2D.bounds.extents.x + slopeRayCastExtraWidth, Define.LayerMask.SLOPE);
+        // Ray를 나가는 위치를 x는 boxCollider 양끝으로 설정, y위치는 height 만큼
+        Vector2 origin = new Vector2(center.x + (dir.x * halfWidth), center.y + height);
+        Debug.DrawRay(origin, Vector2.down * 0.1f, Color.blue);
 
+        // 정한 위치(origin)에서 법선 벡터를 구하기 위해 아래로 RayCast
+        RaycastHit2D raycastHit = Physics2D.Raycast(origin, Vector2.down, 0.3f, Define.LayerMask.SLOPE);
+
+        // 법선 벡터는 raycatsHit.normal로 구할 수 있음
         Vector2 normal = raycastHit.normal;
         Debug.DrawRay(raycastHit.point, normal, Color.green);
 
+        // 평면 벡터 구하는 함수 Perpendicular를 이용하여 정규화하여 Controller에게 전달
         Vector2 slopeDir = Vector2.Perpendicular(normal).normalized;
+
+        // Slop 방향이 캐릭터 이동 방향과 반대라면 Slope 방향을 반대로 바꿔줌
+        if (controller.MoveDirection.x > 0 && slopeDir.x < 0)
+            slopeDir *= -1;
+        else if(controller.MoveDirection.x < 0 && slopeDir.x > 0)
+            slopeDir *= -1;
 
         Debug.DrawRay(raycastHit.point, slopeDir, Color.red);
 
         controller.slopeNormal = slopeDir;
 
+        // 디버그 용 : Slope 체크 Ray Draw
+        //DrawRay(raycastHit, center, dir * (halfWidth + slopeRayCastExtraWidth));
+
+        return (raycastHit.collider != null);
+    }
+
+    private void DrawRay(RaycastHit2D rayCastHit2D, Vector2 origin, Vector2 dir)
+    {
         Color rayColor;
-        if (raycastHit.collider != null)
+        if (rayCastHit2D.collider != null)
             rayColor = Color.green;
         else
             rayColor = Color.red;
 
-        //Debug.DrawRay(boxCollider2D.bounds.center, dir * (boxCollider2D.bounds.extents.x + slopeRayCastExtraWidth), rayColor);
-
-        return (raycastHit.collider != null);
+        Debug.DrawRay(origin, dir, rayColor);
     }
 }
