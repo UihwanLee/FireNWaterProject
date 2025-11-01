@@ -131,7 +131,8 @@ public class StageManager : MonoBehaviour
         _currentStage.gameObject.SetActive(true);               // 활성화
         _currentStage.Init(_ember, _wade, _emberController, _wadeController);
         Logger.Log($"{id} 번째 스테이지 활성화");
-        ChangeGameState(GameState.Start);          // 자동 시작
+
+        ChangeGameState(GameState.Start);                       // 자동 시작
     }
 
     // 전이 가능한 상태 지정
@@ -149,8 +150,10 @@ public class StageManager : MonoBehaviour
 
     public void ChangeGameState(GameState gameState)
     {
-        if (CurrentGameState == gameState) return;  // 동일한 상태일 경우 스킵
+        // 동일한 상태일 경우 스킵
+        if (CurrentGameState == gameState) return;
 
+        // FSM 유효한지 확인
         if (!_allowedTransitions.TryGetValue(CurrentGameState, out var allowedStates) ||
             Array.IndexOf(allowedStates, gameState) == -1)
         {
@@ -189,7 +192,7 @@ public class StageManager : MonoBehaviour
             case GameState.Play:                    // 실제 플레이(조작, 점수/시간 측정)
                 Logger.Log("플레이 중");
                 break;
-            case GameState.Pause:                    // 조작 불가, 시간 멈춤, 메뉴 표시
+            case GameState.Pause:                    // 조작 불가, 시간 멈춤
                 OnPause();
                 break;
             case GameState.Resume:
@@ -234,12 +237,11 @@ public class StageManager : MonoBehaviour
         _currentStage.GameOver();
     }
 
-
     public void OnExit()
     {
+        _currentStage.OnExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;
-
         ChangeGameState(GameState.None);
     }
 
@@ -255,7 +257,6 @@ public class StageManager : MonoBehaviour
         SelectStage(id + 1);                        // 예외처리는 SelectStage에서 진행
     }
 
-    public void StartNextStage()
     private void HandlePlayerDeath()
     {
         ChangeGameState(GameState.Dead);
