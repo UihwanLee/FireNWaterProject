@@ -101,9 +101,9 @@ public class StageManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3)) OnPause();
         if (Input.GetKeyDown(KeyCode.Alpha4)) OnResume();
         if (Input.GetKeyDown(KeyCode.Alpha5)) GameOver();
-        if (Input.GetKeyDown(KeyCode.Alpha6)) ClearStage();
-        if (Input.GetKeyDown(KeyCode.Alpha7)) ExitStage();
-        if (Input.GetKeyDown(KeyCode.Alpha8)) StartNextStage();
+        if (Input.GetKeyDown(KeyCode.Alpha6)) OnClear();
+        if (Input.GetKeyDown(KeyCode.Alpha7)) OnExit();
+        if (Input.GetKeyDown(KeyCode.Alpha8)) OnNext();
     }
 
     private void OnDisable()
@@ -194,13 +194,13 @@ public class StageManager : MonoBehaviour
                 GameOver();
                 break;
             case GameState.Clear:                   // 성공, 점수 계산
-                ClearStage();
+                OnClear();
                 break;
             case GameState.End:                     // 맵으로 나가기
-                ExitStage();
+                OnExit();
                 break;
             case GameState.Next:                    // 다음 스테이지
-                NextStage();
+                OnNext();
                 break;
             default:
                 break;
@@ -237,7 +237,7 @@ public class StageManager : MonoBehaviour
         ChangeGameState(GameState.Dead);
     }
 
-    public void ExitStage()
+    public void OnExit()
     {
         ResetStageInfo();
         SetPlayerActive(false);
@@ -247,13 +247,13 @@ public class StageManager : MonoBehaviour
         ChangeGameState(GameState.None);
     }
 
-    public void ClearStage()
+    public void OnClear()
     {
         _currentStage.OnClear();
         _currentStage.CheckScore();
     }
 
-    public void NextStage()
+    public void OnNext()
     {
         int id = _currentStage.StageId;
         SelectStage(id + 1);                        // 예외처리는 SelectStage에서 진행
