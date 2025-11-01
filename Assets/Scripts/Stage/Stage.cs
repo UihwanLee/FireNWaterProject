@@ -8,6 +8,7 @@ public enum GameState
     Clear,
     End,
     Next,
+    Resume,
 }
 
 public enum StageScore

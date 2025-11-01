@@ -148,6 +148,9 @@ public class StageManager : MonoBehaviour
             case GameState.Pause:                    // 조작 불가, 시간 멈춤, 메뉴 표시
                 PauseStage();
                 break;
+            case GameState.Resume:
+                ResumeStage();
+                break;
             case GameState.Dead:                    // 실패, 재시작 대기
                 GameOver();
                 break;
@@ -175,7 +178,15 @@ public class StageManager : MonoBehaviour
 
     public void PauseStage()
     {
-        _currentStage.PauseStage();
+        _emberController.Pause();
+        _wadeController.Pause();
+    }
+
+    public void ResumeStage()
+    {
+        _emberController.CancelPause();
+        _wadeController.CancelPause();
+        _gameManager.ChangeGameState(GameState.Play);
     }
 
     public void GameOver()
