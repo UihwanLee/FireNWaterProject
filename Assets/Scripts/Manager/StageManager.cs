@@ -252,10 +252,14 @@ public class StageManager : MonoBehaviour
         _currentStage.CheckScore();
     }
 
+    /// <summary>
+    /// 다음 스테이지 이동
+    /// stage 예외처리는 SelectStage에서 진행
+    /// </summary>
     public void HandleStageNext()
     {
         int id = _currentStage.StageId;
-        SelectStage(id + 1);                        // 예외처리는 SelectStage에서 진행
+        SelectStage(id + 1);
     }
     #endregion
 
