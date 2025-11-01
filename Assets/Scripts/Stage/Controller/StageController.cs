@@ -66,6 +66,11 @@ public class StageController : MonoBehaviour
         _wade.transform.position = _wadeSpwanPoint.position;
     }
 
+    public void RevivePlayer()
+    {
+        _emberController.Revive();
+        _wadeController.Revive();
+    }
     public void ExecuteStageStart()
     {
         SetPlayerActive(true);

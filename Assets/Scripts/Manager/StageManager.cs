@@ -271,5 +271,6 @@ public class StageManager : MonoBehaviour
     private void ResetStageInfo()
     {
         Timer = 0f;
+        _currentStage.RevivePlayer();
     }
 }

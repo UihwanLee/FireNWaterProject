@@ -227,6 +227,14 @@ public class BaseController : MonoBehaviour
         Logger.Log($"{gameObject.name} 일시 정지 취소");
     }
 
+    /// <summary>
+    /// 캐릭터 부활
+    /// </summary>
+    public virtual void Revive()
+    {
+        ChangeState(CharacterState.Idle);
+        Logger.Log($"{gameObject.name} 부활");
+    }
     #endregion
 
     #region 캐릭터 지면 충돌 처리: Ground / Climb Slope
