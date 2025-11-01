@@ -96,13 +96,13 @@ public class StageManager : MonoBehaviour
             Timer += Time.deltaTime;
         }
         //Logger.Log($"시간: {Timer.ToString()}");
-        if (Input.GetKeyDown(KeyCode.Alpha2)) HandleStageStart();
-        if (Input.GetKeyDown(KeyCode.Alpha3)) HandlePause();
-        if (Input.GetKeyDown(KeyCode.Alpha4)) HandleResume();
-        if (Input.GetKeyDown(KeyCode.Alpha5)) GameOver();
-        if (Input.GetKeyDown(KeyCode.Alpha6)) HandleStageClear();
-        if (Input.GetKeyDown(KeyCode.Alpha7)) HandleStageExit();
-        if (Input.GetKeyDown(KeyCode.Alpha8)) HandleStageNext();
+        if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeGameState(GameState.Start);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeGameState(GameState.Pause);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeGameState(GameState.Resume);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) ChangeGameState(GameState.Dead);
+        if (Input.GetKeyDown(KeyCode.Alpha7)) ChangeGameState(GameState.Exit);
+        if (Input.GetKeyDown(KeyCode.Alpha8)) ChangeGameState(GameState.Clear);
+        if (Input.GetKeyDown(KeyCode.Alpha9)) ChangeGameState(GameState.Next);
     }
 
     private void OnDisable()

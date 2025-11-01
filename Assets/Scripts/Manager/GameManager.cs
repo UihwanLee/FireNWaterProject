@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadScene("StageScene");
+        //SceneManager.LoadScene("StageScene");
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
