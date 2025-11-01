@@ -211,6 +211,22 @@ public class BaseController : MonoBehaviour
         ChangeState(CharacterState.Die);
     }
 
+    /// <summary>
+    /// 캐릭터 멈춤
+    /// </summary>
+    public virtual void Pause()
+    {
+        _rigidbody.velocity = Vector2.zero;
+        ChangeState(CharacterState.Pause);
+        Logger.Log($"{gameObject.name} 일시 정지");
+    }
+
+    public virtual void CancelPause()
+    {
+        ChangeState(CharacterState.Idle);
+        Logger.Log($"{gameObject.name} 일시 정지 취소");
+    }
+
     #endregion
 
     #region 캐릭터 지면 충돌 처리: Ground / Climb Slope
