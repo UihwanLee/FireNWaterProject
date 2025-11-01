@@ -31,12 +31,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateSceneToStage();
-        _stageManager.SelectStage(1);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene("StageScene");
     }
 
-    public void UpdateSceneToStage()
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         Scene activeScene = SceneManager.GetActiveScene();          // 현재 활성화된 씬
         GameObject[] roots = activeScene.GetRootGameObjects();      // 루트 오브젝트 모든 게임 오브젝트들 가져오기
 
@@ -47,10 +48,12 @@ public class GameManager : MonoBehaviour
             {
                 Logger.Log("Stage Manager 찾음");
                 _stageManager.Init();
-                return;
+                break;
             }
             Logger.Log("Stage Manager 못 찾음");
         }
+
+        _stageManager.SelectStage(1);
     }
 
     #region Stage 관련 메서드
