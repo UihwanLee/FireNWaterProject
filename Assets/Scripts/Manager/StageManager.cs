@@ -141,11 +141,11 @@ public class StageManager : MonoBehaviour
         { GameState.None,  new[] { GameState.Start } },
         { GameState.Start, new[] { GameState.Play } },
         { GameState.Play,  new[] { GameState.Pause, GameState.Clear, GameState.Dead } },
-        { GameState.Pause,  new[] { GameState.Start, GameState.Resume, GameState.End } },
+        { GameState.Pause,  new[] { GameState.Start, GameState.Resume, GameState.Exit } },
         { GameState.Resume, new[] { GameState.Play } },
-        { GameState.Dead,  new[] { GameState.Start, GameState.End } },
-        { GameState.Clear, new[] { GameState.End, GameState.Next } },
-        { GameState.End,   new[] { GameState.None } }
+        { GameState.Dead,  new[] { GameState.Start, GameState.Exit } },
+        { GameState.Clear, new[] { GameState.Exit, GameState.Next } },
+        { GameState.Exit,   new[] { GameState.None } }
     };
 
     public void ChangeGameState(GameState gameState)
@@ -204,7 +204,7 @@ public class StageManager : MonoBehaviour
             case GameState.Clear:                   // 성공, 점수 계산
                 HandleStageClear();
                 break;
-            case GameState.End:                     // 맵으로 나가기
+            case GameState.Exit:                     // 맵으로 나가기
                 HandleStageExit();
                 break;
             case GameState.Next:                    // 다음 스테이지

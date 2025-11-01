@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void ExitStage()
     {
-        _stageManager.ChangeGameState(GameState.End);
+        _stageManager.ChangeGameState(GameState.Exit);
     }
     #endregion
 }

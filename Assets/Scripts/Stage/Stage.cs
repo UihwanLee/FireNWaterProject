@@ -6,7 +6,7 @@ public enum GameState
     Pause,
     Dead,
     Clear,
-    End,
+    Exit,
     Next,
     Resume,
 }
