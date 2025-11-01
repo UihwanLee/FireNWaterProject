@@ -53,14 +53,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PauseStage()
+    #region Stage 관련 메서드
+    public void SelectStage(int id)
     {
-        _stageManager.ChangeGameState(GameState.Pause);
+        _stageManager.SelectStage(id);
     }
 
     public void StartStage()
     {
         _stageManager.ChangeGameState(GameState.Start);
+    }
+
+    public void PauseStage()
+    {
+        _stageManager.ChangeGameState(GameState.Pause);
+    }
+
+    public void ResumeStage()
+    {
+        _stageManager.ChangeGameState(GameState.Resume);
+    }
+
+    public void ClearStage()
+    {
+        _stageManager.ChangeGameState(GameState.Clear);
+    }
+
+    public void StartNextStage()
+    {
+        _stageManager.ChangeGameState(GameState.Next);
     }
 
     public void RetryStage()
@@ -72,4 +93,5 @@ public class GameManager : MonoBehaviour
     {
         _stageManager.ChangeGameState(GameState.End);
     }
+    #endregion
 }
