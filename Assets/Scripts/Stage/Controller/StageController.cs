@@ -52,6 +52,13 @@ public class StageController : MonoBehaviour
         Logger.Log($"stage: {_stage}\n stage info: {_stageClearInfo}");
     }
 
+    private void SetPlayerActive(bool active)
+    {
+        Logger.Log($"Ember, Wade {(active ? "활성화" : "비활성화")}");
+        _ember.SetActive(active);
+        _wade.SetActive(active);
+    }
+
     private void SetSpawnPoint()
     {
         // 스폰 장소 지정
@@ -61,6 +68,7 @@ public class StageController : MonoBehaviour
 
     public void OnStart()
     {
+        SetPlayerActive(true);
         SetSpawnPoint();
     }
 
@@ -78,7 +86,7 @@ public class StageController : MonoBehaviour
 
     public void OnExit()
     {
-        Logger.NotImpl();
+        SetPlayerActive(false);
     }
 
     public void GameOver()

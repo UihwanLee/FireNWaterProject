@@ -59,7 +59,6 @@ public class StageManager : MonoBehaviour
             _wadeController = FindObjectOfType<WadeController>();
         }
 
-        SetPlayerActive(false);
         Logger.Log("엠버, 웨이드 초기화 및 비활성화 완료");
     }
 
@@ -210,7 +209,6 @@ public class StageManager : MonoBehaviour
     private void OnStart()
     {
         ResetStageInfo();
-        SetPlayerActive(true);
         _currentStage.OnStart();
         ChangeGameState(GameState.Play);
     }
@@ -240,7 +238,6 @@ public class StageManager : MonoBehaviour
     public void OnExit()
     {
         ResetStageInfo();
-        SetPlayerActive(false);
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;
 
@@ -267,12 +264,5 @@ public class StageManager : MonoBehaviour
     private void ResetStageInfo()
     {
         Timer = 0f;
-    }
-
-    private void SetPlayerActive(bool active)
-    {
-        Logger.Log($"Ember, Wade {(active ? "활성화" : "비활성화")}");
-        _ember.SetActive(active);
-        _wade.SetActive(active);
     }
 }
