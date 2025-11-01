@@ -52,6 +52,7 @@ public class StageController : MonoBehaviour
         Logger.Log($"stage: {_stage}\n stage info: {_stageClearInfo}");
     }
 
+    #region 플레이어 상태 변경
     private void SetPlayerActive(bool active)
     {
         Logger.Log($"Ember, Wade {(active ? "활성화" : "비활성화")}");
@@ -71,6 +72,9 @@ public class StageController : MonoBehaviour
         _emberController.Revive();
         _wadeController.Revive();
     }
+    #endregion
+
+    #region 게임 로직 작성
     public void ExecuteStageStart()
     {
         SetPlayerActive(true);
@@ -103,6 +107,7 @@ public class StageController : MonoBehaviour
     {
         Logger.NotImpl();
     }
+    #endregion
 
     public void CheckScore()
     {

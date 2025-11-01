@@ -221,6 +221,9 @@ public class BaseController : MonoBehaviour
         Logger.Log($"{gameObject.name} 일시 정지");
     }
 
+    /// <summary>
+    /// 캐릭터 멈춤 취소
+    /// </summary>
     public virtual void CancelPause()
     {
         ChangeState(CharacterState.Idle);

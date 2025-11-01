@@ -157,7 +157,7 @@ public class StageManager : MonoBehaviour
         if (!_allowedTransitions.TryGetValue(CurrentGameState, out var allowedStates) ||
             Array.IndexOf(allowedStates, gameState) == -1)
         {
-            Logger.LogWarning($"상태 변경 불가: {CurrentGameState} → {gameState}");
+            Logger.Log($"상태 변경 불가: {CurrentGameState} → {gameState}");
             return;
         }
 
