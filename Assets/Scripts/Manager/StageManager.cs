@@ -145,7 +145,7 @@ public class StageManager : MonoBehaviour
             case GameState.Play:                    // 실제 플레이(조작, 점수/시간 측정)
                 Logger.Log("플레이 중");
                 break;
-            case GameState.Stop:                    // 조작 불가, 시간 멈춤, 메뉴 표시
+            case GameState.Pause:                    // 조작 불가, 시간 멈춤, 메뉴 표시
                 PauseStage();
                 break;
             case GameState.Dead:                    // 실패, 재시작 대기

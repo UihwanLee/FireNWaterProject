@@ -3,7 +3,7 @@ public enum GameState
     None,
     Start,
     Play,
-    Stop,
+    Pause,
     Dead,
     Clear,
     End,

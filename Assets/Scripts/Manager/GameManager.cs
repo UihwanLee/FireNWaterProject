@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeGameState(GameState.Start);
         if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeGameState(GameState.Play);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeGameState(GameState.Stop);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeGameState(GameState.Pause);
         if (Input.GetKeyDown(KeyCode.Alpha5)) ChangeGameState(GameState.Dead);
         if (Input.GetKeyDown(KeyCode.Alpha6)) ChangeGameState(GameState.Clear);
         if (Input.GetKeyDown(KeyCode.Alpha7)) ChangeGameState(GameState.End);
@@ -80,9 +80,9 @@ public class GameManager : MonoBehaviour
     private readonly Dictionary<GameState, GameState[]> _allowedTransitions = new()
     {
         { GameState.None,  new[] { GameState.Start } },
-        { GameState.Start, new[] { GameState.Play, GameState.Stop } },
-        { GameState.Play,  new[] { GameState.Stop, GameState.Clear, GameState.Dead } },
-        { GameState.Stop,  new[] { GameState.Start, GameState.Play, GameState.End } },
+        { GameState.Start, new[] { GameState.Play, GameState.Pause } },
+        { GameState.Play,  new[] { GameState.Pause, GameState.Clear, GameState.Dead } },
+        { GameState.Pause,  new[] { GameState.Start, GameState.Play, GameState.End } },
         { GameState.Dead,  new[] { GameState.Start, GameState.End } },
         { GameState.Clear, new[] { GameState.End, GameState.Next } },
         { GameState.End,   new[] { GameState.None } }
