@@ -76,7 +76,7 @@ public class StageController : MonoBehaviour
         _wadeController.CancelPause();
     }
 
-    public void ExitStage()
+    public void OnExit()
     {
         Logger.NotImpl();
     }
@@ -86,7 +86,7 @@ public class StageController : MonoBehaviour
         Logger.NotImpl();
     }
 
-    public void ClearStage()
+    public void OnClear()
     {
         Logger.NotImpl();
     }

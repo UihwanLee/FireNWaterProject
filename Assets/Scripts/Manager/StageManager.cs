@@ -249,7 +249,7 @@ public class StageManager : MonoBehaviour
 
     public void ClearStage()
     {
-        _currentStage.ClearStage();
+        _currentStage.OnClear();
         _currentStage.CheckScore();
     }
 
