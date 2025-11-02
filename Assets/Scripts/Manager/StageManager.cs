@@ -17,7 +17,6 @@ public class StageManager : MonoBehaviour
 
     // 게임 상태 정보
     private GameState _currentGameState = GameState.None;
-    public GameState CurrentGameState => _currentGameState;
     public event Action<GameState> OnGameStateChanged;
 
     // 측정할 정보
@@ -101,7 +100,7 @@ public class StageManager : MonoBehaviour
 
     private void Update()
     {
-        if (CurrentGameState == GameState.Play)
+        if (_currentGameState == GameState.Play)
         {
             // 타이머 돌아가는 로직 작성
             Timer += Time.deltaTime;
@@ -180,13 +179,13 @@ public class StageManager : MonoBehaviour
     private bool CanTransitionTo(GameState gameState)
     {
         // 동일한 상태일 경우 스킵
-        if (CurrentGameState == gameState) return false;
+        if (_currentGameState == gameState) return false;
 
         // FSM 유효한지 확인
-        if (!_allowedTransitions.TryGetValue(CurrentGameState, out var allowedStates) ||
+        if (!_allowedTransitions.TryGetValue(_currentGameState, out var allowedStates) ||
             Array.IndexOf(allowedStates, gameState) == -1)
         {
-            Logger.Log($"상태 변경 불가: {CurrentGameState} → {gameState}");
+            Logger.Log($"상태 변경 불가: {_currentGameState} → {gameState}");
             return false;
         }
 
@@ -258,7 +257,7 @@ public class StageManager : MonoBehaviour
         _currentStage.GameOver();
     }
 
-    public void HandleStageExit()
+    private void HandleStageExit()
     {
         _currentStage.ExecuteExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
@@ -266,7 +265,7 @@ public class StageManager : MonoBehaviour
         ChangeGameState(GameState.None);
     }
 
-    public void HandleStageClear()
+    private void HandleStageClear()
     {
         _currentStage.ExecuteClear();
         OnClearStage?.Invoke();
@@ -276,7 +275,7 @@ public class StageManager : MonoBehaviour
     /// 다음 스테이지 이동
     /// stage 예외처리는 SelectStage에서 진행
     /// </summary>
-    public void HandleStageNext()
+    private void HandleStageNext()
     {
         int id = _currentStage.StageId;
         SelectStage(id + 1);
