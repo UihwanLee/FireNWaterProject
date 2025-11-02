@@ -43,11 +43,7 @@ public class GameManager : MonoBehaviour
         {
             _scoreManager.ResetScoreFlags();
         };
-        _stageManager.OnClearStage -= () =>
-        {
-            _scoreManager.CheckStageScore();
-            _scoreManager.SaveStageClearInfo(_stageManager.GetStageClearInfo());
-        };
+        _stageManager.OnClearStage -= HandleStageClear;
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -74,11 +70,7 @@ public class GameManager : MonoBehaviour
         {
             _scoreManager.ResetScoreFlags();
         };
-        _stageManager.OnClearStage += () =>
-        {
-            _scoreManager.CheckStageScore();
-            _scoreManager.SaveStageClearInfo(_stageManager.GetStageClearInfo());
-        };
+        _stageManager.OnClearStage += HandleStageClear;
         SelectStage(1);
     }
 
@@ -129,6 +121,14 @@ public class GameManager : MonoBehaviour
         _stageManager.ChangeGameState(GameState.Exit);
         Logger.Log("젬 확인 델리게이트 제거");
         _scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
+    }
+
+    private void HandleStageClear()
+    {
+        _scoreManager.CheckStageScore();
+        StageClearInfo stageClearInfo = _stageManager.GetStageClearInfo();
+        stageClearInfo.StageScore = _scoreManager.CurrentStageScore;
+        _scoreManager.SaveStageClearInfo(stageClearInfo);
     }
     #endregion
 
