@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     public void SelectStage(int id)
     {
         _stageManager.SelectStage(id);
+        Logger.Log("시간 제한 델리게이트 추가");
         _stageManager.OnFailedToClearWithinTimeLimit += _scoreManager.HandleTimeLimitFailed;
     }
 
@@ -98,6 +99,7 @@ public class GameManager : MonoBehaviour
     public void ExitStage()
     {
         _stageManager.ChangeGameState(GameState.Exit);
+        Logger.Log("시간 제한 델리게이트 제거");
         _stageManager.OnFailedToClearWithinTimeLimit -= _scoreManager.HandleTimeLimitFailed;
     }
     #endregion
