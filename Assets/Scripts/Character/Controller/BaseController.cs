@@ -101,12 +101,15 @@ public class BaseController : MonoBehaviour
             }
             else
             {
+                // 지면 위에서는 좌우 방향 값에 가속도를 곱한다.
                 float movePosX = moveDirection.x * acceleration;
                 float movePosY = _rigidbody.velocity.y;
 
+                // 이동 방향 만큼 AddForce
                 Vector2 moveVector = new Vector2(movePosX, movePosY);
                 _rigidbody.AddForce(moveVector, ForceMode2D.Force);
 
+                // velocity.x가 maxSpeed를 넘지 않도록 예외처리
                 if (_rigidbody.velocity.x > maxSpeed)
                 {
                     _rigidbody.velocity = _rigidbody.velocity.normalized * maxSpeed;
@@ -115,6 +118,7 @@ public class BaseController : MonoBehaviour
         }
         else
         {
+            // 이동 입력을 멈출 시 천천히 멈추도록 Lerp
             _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
         }
     }
