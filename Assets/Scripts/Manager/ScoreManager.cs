@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     private bool _isAllGemsCollected = false;
 
     // Score
-    private StageScore _stageScore = StageScore.None;
+    private StageScore _currentStageScore = StageScore.None;
 
     // Current Stage Info
     private int _currentGemCount = 0;
@@ -29,19 +29,19 @@ public class ScoreManager : MonoBehaviour
         //  제한 시간 통과 & 모든 젬 획득
         if (_isWithinTimeLimit && _isAllGemsCollected)
         {
-            _stageScore = StageScore.A;
+            _currentStageScore = StageScore.A;
         }
         // 제한 시간 미통과 & 모든 젬 획득 || 재한 시간 통과 & 모든 젬 미획득
         else if (_isWithinTimeLimit && !_isAllGemsCollected ||
             !_isWithinTimeLimit && _isAllGemsCollected)
         {
-            _stageScore = StageScore.B;
+            _currentStageScore = StageScore.B;
         }
         else
         {
-            _stageScore = StageScore.C;
+            _currentStageScore = StageScore.C;
         }
-        Logger.Log($"클리어 등급: {_stageScore}");
+        Logger.Log($"클리어 등급: {_currentStageScore}");
     }
 
     public void ResetScoreFlags()
@@ -49,7 +49,7 @@ public class ScoreManager : MonoBehaviour
         _isStageCleared = false;
         _isWithinTimeLimit = true;
         _isAllGemsCollected = false;
-        _stageScore = StageScore.None;
+        _currentStageScore = StageScore.None;
         _currentGemCount = 0;
     }
 
