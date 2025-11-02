@@ -161,9 +161,18 @@ public class GameManager : MonoBehaviour
         return _scoreManager.GetSaveData();
     }
 
+    /// <summary>
+    /// 스테이지 클리어 정보 삭제
+    /// </summary>
     public void ResetData()
     {
         _scoreManager.ResetData();
     }
+
+    /// <summary>
+    /// 스테이지 타이머
+    /// </summary>
+    /// <returns></returns>
+    public float GetTimer() => _stageManager.Timer;
     #endregion
 }
