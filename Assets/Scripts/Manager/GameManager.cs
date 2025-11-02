@@ -133,5 +133,14 @@ public class GameManager : MonoBehaviour
     {
         _scoreManager.AddGem();
     }
+
+    /// <summary>
+    /// 현재 스테이지 클리어 점수 가져오기
+    /// </summary>
+    /// <returns></returns>
+    public StageScore GetCurrentStageScore()
+    {
+        return _scoreManager.CurrentStageScore;
+    }
     #endregion
 }

@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
 
     // Score
     private StageScore _currentStageScore = StageScore.None;
+    public StageScore CurrentStageScore => _currentStageScore;
 
     // Current Stage Info
     private int _currentGemCount = 0;
