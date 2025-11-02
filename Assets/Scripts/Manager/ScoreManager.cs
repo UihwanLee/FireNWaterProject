@@ -115,9 +115,17 @@ public class ScoreManager : MonoBehaviour
 
         // StageScore: A = 0 / B = 1 / C = 2 / None = 3
         // 점수가 더 낮거나, 클리어 시간이 길 경우 저장 x
-        if (newClearInfo.StageScore > stageClearInfo.StageScore) return;
+        if (newClearInfo.StageScore > stageClearInfo.StageScore)
+        {
+            Logger.Log("등급 갱신 실패");
+            return;
+        }
         if (newClearInfo.StageScore == stageClearInfo.StageScore
-            && newClearInfo.ClearTime >= stageClearInfo.ClearTime) return;
+            && newClearInfo.ClearTime >= stageClearInfo.ClearTime)
+        {
+            Logger.Log("클리어 시간 단축 실패");
+            return;
+        }
 
         Logger.Log("클리어 정보 저장\n " +
             $"[ id: {id}, " +
