@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public enum CharacterState
@@ -9,6 +7,7 @@ public enum CharacterState
     Move,
     JumpUp,
     FallDown,
+    Pause,
     Die
 }
 
@@ -21,26 +20,26 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D _rigidbody;
 
     [Header("Character Stat")]
-    [SerializeField] protected float minSpeed = 1f;                         // 캐릭터 최소 속도
-    [SerializeField] protected float maxSpeed = 5f;                         // 캐릭터 최대 속도
+    [SerializeField] protected float minSpeed = Define.MIN_SPEED;           // 캐릭터 최소 속도
+    [SerializeField] protected float maxSpeed = Define.MAX_SPEED;           // 캐릭터 최대 속도
 
-    [SerializeField] private float acceleration = 30f;                      // 캐릭터 가속도
-    [SerializeField] private float deceleration = 0.5f;                     // 캐릭터 감속도
+    [SerializeField] private float acceleration = Define.ACCELERATION;      // 캐릭터 가속도
+    [SerializeField] private float deceleration = Define.DECELERATION;      // 캐릭터 감속도
 
-    [SerializeField] protected float jumpForce = 50f;                       // 캐릭터 점프력
+    [SerializeField] protected float jumpForce = Define.JUMPFORCE;          // 캐릭터 점프력
     
     protected Vector2 moveDirection = Vector2.zero;                         // 캐릭터 이동 방향
+    public Vector2 slopeNormal = Vector2.zero;
 
     [SerializeField] private bool isGrounded = false;                       // 캐릭터 Ground 체크 변수
+    [SerializeField] private bool isClimbed = false;                        // 캐릭터 Climbed 체크 변수
     private CharacterState currentState;                                    // 캐릭터 상태 변수
 
     [Header("Character Component")]
     [SerializeField] protected SpriteRenderer characterRenderer;            // 캐릭터 Sprite Renderer
     [SerializeField] protected AnimationHandler animationHandler;           // 캐릭터 Animation 담당 클래스
-
-    [SerializeField] Transform groundCheckTransfrom;                        // 캐릭터 Ground Check Transform
-    [SerializeField] private LayerMask groundLayer;                         // Ground LayerMask
-    private float groundCheckRadius = 0.2f;                                 // Ground Check Radius
+    [SerializeField] private GroundAndSlopeHandler groundHandler;           // 캐릭터 Ground/Slope 충돌 처리 클래스
+    [SerializeField] private CapsuleCollider2D capsuleCollider;             // 캐릭터 CapsuleCollider;
 
     protected void Awake()
     {
@@ -59,7 +58,8 @@ public class BaseController : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         Move();
-        CheckGrounded();
+        CheckGroundedOrClimb();
+        SetFrictionIfClimb();
         CheckVelocityStateIsJumpingOrFall();
     }
 
@@ -79,18 +79,38 @@ public class BaseController : MonoBehaviour
     /// </summary>
     protected virtual void Move()
     {
+        if (currentState == CharacterState.Pause || currentState == CharacterState.Die) return;
+
         bool isInput = moveDirection.x != 0f;             // 입력 체크
 
         if (isInput)
         {
-            float movePosX = moveDirection.x * acceleration;
-
-            Vector2 moveVector = new Vector2(movePosX, _rigidbody.velocity.y);
-            _rigidbody.AddForce(moveVector, ForceMode2D.Force);
-
-            if (_rigidbody.velocity.x > maxSpeed)
+            if (isClimbed)
             {
-                _rigidbody.velocity = _rigidbody.velocity.normalized * maxSpeed;
+                
+
+                Vector2 moveVector =  slopeNormal * acceleration;
+
+                _rigidbody.velocity = moveVector * Time.fixedDeltaTime;
+                //_rigidbody.AddForce(moveVector, ForceMode2D.Force);
+
+                //if (_rigidbody.velocity.x > maxSpeed)
+                //{
+                //    _rigidbody.velocity = _rigidbody.velocity.normalized * maxSpeed;
+                //}
+            }
+            else
+            {
+                float movePosX = moveDirection.x * acceleration;
+                float movePosY = _rigidbody.velocity.y;
+
+                Vector2 moveVector = new Vector2(movePosX, movePosY);
+                _rigidbody.AddForce(moveVector, ForceMode2D.Force);
+
+                if (_rigidbody.velocity.x > maxSpeed)
+                {
+                    _rigidbody.velocity = _rigidbody.velocity.normalized * maxSpeed;
+                }
             }
         }
         else
@@ -130,14 +150,6 @@ public class BaseController : MonoBehaviour
     #region 캐릭터 상태 처리
 
     /// <summary>
-    /// 캐릭터 Grounded 체크
-    /// </summary>
-    private void CheckGrounded()
-    {
-        isGrounded = Physics2D.OverlapCircle(groundCheckTransfrom.position, groundCheckRadius, groundLayer);
-    }
-
-    /// <summary>
     /// 캐릭터 상태 변경
     /// </summary>
     private void ChangeState(CharacterState changeState)
@@ -150,6 +162,8 @@ public class BaseController : MonoBehaviour
     /// </summary>
     private void CheckVelocityStateIsJumpingOrFall()
     {
+        if (currentState == CharacterState.Pause || currentState == CharacterState.Die) return;
+
         float currentVelocityX = _rigidbody.velocity.x;
         float currentVelocityY = _rigidbody.velocity.y;
 
@@ -181,6 +195,8 @@ public class BaseController : MonoBehaviour
         animationHandler.FallDown((currentState == CharacterState.FallDown));
     }
 
+    public event Action OnPlayerDied;
+
     /// <summary>
     /// 캐릭터 Die
     /// </summary>
@@ -190,7 +206,71 @@ public class BaseController : MonoBehaviour
 
         // Death 로직 처리
         Debug.Log($"{gameObject.name}가 죽었습니다!");
+
+        OnPlayerDied?.Invoke();
+        ChangeState(CharacterState.Die);
+    }
+
+    /// <summary>
+    /// 캐릭터 멈춤
+    /// </summary>
+    public virtual void Pause()
+    {
+        _rigidbody.velocity = Vector2.zero;
+        ChangeState(CharacterState.Pause);
+        Logger.Log($"{gameObject.name} 일시 정지");
+    }
+
+    /// <summary>
+    /// 캐릭터 멈춤 취소
+    /// </summary>
+    public virtual void CancelPause()
+    {
+        ChangeState(CharacterState.Idle);
+        Logger.Log($"{gameObject.name} 일시 정지 취소");
+    }
+
+    /// <summary>
+    /// 캐릭터 부활
+    /// </summary>
+    public virtual void Revive()
+    {
+        ChangeState(CharacterState.Idle);
+        Logger.Log($"{gameObject.name} 부활");
+    }
+    #endregion
+
+    #region 캐릭터 지면 충돌 처리: Ground / Climb Slope
+
+    /// <summary>
+    /// 캐릭터가 현재 지면에 있는지 경사면에 있는지 체크
+    /// </summary>
+    private void CheckGroundedOrClimb()
+    {
+        isGrounded = groundHandler.CheckGround();
+        isClimbed = groundHandler.CheckSlope();
+    }
+
+    /// <summary>
+    /// 캐릭터가 현재 경사면에 있다면 마찰을 줄이고 maxSpeed를 줄이기
+    /// </summary>
+    private void SetFrictionIfClimb()
+    {
+        if (isClimbed)
+        {
+            //capsuleCollider.sharedMaterial.friction = Define.SLOPE_FIRCITON;
+            this.maxSpeed = Define.SLOPE_SPEED;
+        }
+        else
+        {
+            capsuleCollider.sharedMaterial.friction = Define.BASE_FIRCITON;
+            this.maxSpeed = Define.MAX_SPEED;
+        }
     }
 
     #endregion
+
+    // 프로퍼티
+    public bool IsGrounded { get { return isGrounded; } set { isGrounded = value; } }
+    public Vector2 MoveDirection { get { return moveDirection; } }
 }

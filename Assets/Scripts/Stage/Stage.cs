@@ -3,11 +3,12 @@ public enum GameState
     None,
     Start,
     Play,
-    Stop,
+    Pause,
     Dead,
     Clear,
-    End,
+    Exit,
     Next,
+    Resume,
 }
 
 public enum StageScore
