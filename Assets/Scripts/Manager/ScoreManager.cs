@@ -41,6 +41,7 @@ public class ScoreManager : MonoBehaviour
         {
             _stageScore = StageScore.C;
         }
+        Logger.Log($"클리어 등급: {_stageScore}");
     }
 
     public void ResetScoreFlags()

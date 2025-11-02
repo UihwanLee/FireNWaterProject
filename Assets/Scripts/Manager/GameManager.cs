@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         //SceneManager.LoadScene("StageScene");
     private void OnDisable()
     {
-        Logger.Log("시간 제한 델리게이트 제거");
+        Logger.Log("델리게이트 제거 (시간 제한, 스테이지 시작, 스테이지 클리어");
         _stageManager.OnFailedToClearWithinTimeLimit -= _scoreManager.HandleTimeLimitFailed;
         _stageManager.OnStartStage -= () =>
         {
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
             Logger.Log("Stage Manager 못 찾음");
         }
 
-        Logger.Log("시간 제한 델리게이트 추가");
+        Logger.Log("델리게이트 추가 (시간 제한, 스테이지 시작, 스테이지 클리어");
         _stageManager.OnFailedToClearWithinTimeLimit += _scoreManager.HandleTimeLimitFailed;
         _stageManager.OnStartStage += () =>
         {

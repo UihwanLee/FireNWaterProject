@@ -288,6 +288,7 @@ public class StageManager : MonoBehaviour
 
     private void ResetStageInfo()
     {
+        Logger.Log("시간 초기화");
         Timer = 0f;
         _currentStage.RevivePlayer();
     }
