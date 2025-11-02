@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Ember_Base
   m_EditorClassIdentifier: 
   type: 0
+  idx: 0
   color: {r: 1, g: 1, b: 1, a: 0}
   price: 0
   isPurchase: 1
+  isPick: 1
   material: {fileID: 2100000, guid: 5a4758d8cf159354891c700b567cb715, type: 2}

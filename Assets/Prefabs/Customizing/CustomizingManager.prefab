@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &812106949272004365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5205886059460874010}
+  - component: {fileID: 2396595673696314299}
+  m_Layer: 0
+  m_Name: CustomizingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5205886059460874010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812106949272004365}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2396595673696314299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812106949272004365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8d05566de76ad44b052bb12de5db42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorSlotPrefab: {fileID: 587091047893907419, guid: 3df8b51748d23af44b00a9f3ff716099, type: 3}
+  avatar_ember: {fileID: 0}
+  avatar_wade: {fileID: 0}
+  emberColorSlotParent: {fileID: 0}
+  wadeColorSlotParent: {fileID: 0}
+  emberColorDataList:
+  - {fileID: 11400000, guid: 9ae53785b50fce44eb57835718af1efa, type: 2}
+  - {fileID: 11400000, guid: bbd7542459d99b64099bb60cd0a31f89, type: 2}
+  - {fileID: 11400000, guid: adb7f6a768cc2904cbfe5cc323c6eddd, type: 2}
+  wadeColorDataList:
+  - {fileID: 11400000, guid: 4287ec9424248494e827ae727932f417, type: 2}
+  - {fileID: 11400000, guid: 695a3144a23a31544987d4c4234fe92a, type: 2}
+  - {fileID: 11400000, guid: d26a85730a6282e4d82916a43af6aef8, type: 2}
+  emberSlotList: []
+  wadeSlotList: []
+  ember: {fileID: 0}
+  wade: {fileID: 0}
+  JemCount: 10000
