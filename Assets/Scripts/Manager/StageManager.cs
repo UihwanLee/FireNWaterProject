@@ -173,16 +173,17 @@ public class StageManager : MonoBehaviour
             return;
         }
 
+        _currentGameState = gameState;
+        Logger.Log($"상태 변경: {_currentGameState}");
+        OnGameStateChanged?.Invoke(_currentGameState);
+
         if (gameState == GameState.Start)
         {
             OnStartStage?.Invoke();
             ResetStageInfo();
             Logger.Log("스테이지 정보 초기화");
+            ChangeGameState(GameState.Play);
         }
-
-        _currentGameState = gameState;
-        Logger.Log($"상태 변경: {_currentGameState}");
-        OnGameStateChanged?.Invoke(_currentGameState);
     }
 
     /// <summary>
@@ -232,7 +233,6 @@ public class StageManager : MonoBehaviour
     private void HandleStageStart()
     {
         _currentStage.ExecuteStageStart();
-        ChangeGameState(GameState.Play);
     }
 
     private void HandlePause()
