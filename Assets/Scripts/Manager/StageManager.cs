@@ -25,13 +25,16 @@ public class StageManager : MonoBehaviour
         get => _timer;
         private set
         {
-            if (_currentStage.LimitTime < value)
+            if (!_checkTimeLimit && _currentStage.LimitTime < value)
             {
-                // todo: limit time이랑 비교하기
+                OnFailedToClearWithinTimeLimit?.Invoke();
+                _checkTimeLimit = true;
             }
             _timer = value;
         }
     }
+    private bool _checkTimeLimit = false;
+    public event Action OnFailedToClearWithinTimeLimit;
 
     private void Awake()
     {
@@ -250,7 +253,6 @@ public class StageManager : MonoBehaviour
     public void HandleStageClear()
     {
         _currentStage.ExecuteClear();
-        _currentStage.CheckScore();
     }
 
     /// <summary>

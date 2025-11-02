@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     public void SelectStage(int id)
     {
         _stageManager.SelectStage(id);
+        _stageManager.OnFailedToClearWithinTimeLimit += _scoreManager.HandleTimeLimitFailed;
     }
 
     public void StartStage()
@@ -80,11 +81,13 @@ public class GameManager : MonoBehaviour
     public void ClearStage()
     {
         _stageManager.ChangeGameState(GameState.Clear);
+        _scoreManager.CheckStageScore();
     }
 
     public void StartNextStage()
     {
         _stageManager.ChangeGameState(GameState.Next);
+        _scoreManager.ResetScoreFlags();
     }
 
     public void RetryStage()
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour
     public void ExitStage()
     {
         _stageManager.ChangeGameState(GameState.Exit);
+        _stageManager.OnFailedToClearWithinTimeLimit -= _scoreManager.HandleTimeLimitFailed;
     }
     #endregion
 }
