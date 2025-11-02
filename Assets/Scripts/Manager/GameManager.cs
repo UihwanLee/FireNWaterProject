@@ -107,8 +107,8 @@ public class GameManager : MonoBehaviour
     {
         _stageManager.ChangeGameState(GameState.Next);
         _scoreManager.ResetScoreFlags();
-        Logger.Log("젬 확인 델리게이트 제거");
-        _scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
+        //Logger.Log("젬 확인 델리게이트 제거");
+        //_scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
     }
 
     public void RetryStage()
