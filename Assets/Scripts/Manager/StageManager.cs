@@ -162,16 +162,7 @@ public class StageManager : MonoBehaviour
 
     public void ChangeGameState(GameState gameState)
     {
-        // 동일한 상태일 경우 스킵
-        if (CurrentGameState == gameState) return;
-
-        // FSM 유효한지 확인
-        if (!_allowedTransitions.TryGetValue(CurrentGameState, out var allowedStates) ||
-            Array.IndexOf(allowedStates, gameState) == -1)
-        {
-            Logger.Log($"상태 변경 불가: {CurrentGameState} → {gameState}");
-            return;
-        }
+        if (!CanTransitionTo(gameState)) return;
 
         _currentGameState = gameState;
         Logger.Log($"상태 변경: {_currentGameState}");
@@ -184,6 +175,22 @@ public class StageManager : MonoBehaviour
             Logger.Log("스테이지 정보 초기화");
             ChangeGameState(GameState.Play);
         }
+    }
+
+    private bool CanTransitionTo(GameState gameState)
+    {
+        // 동일한 상태일 경우 스킵
+        if (CurrentGameState == gameState) return false;
+
+        // FSM 유효한지 확인
+        if (!_allowedTransitions.TryGetValue(CurrentGameState, out var allowedStates) ||
+            Array.IndexOf(allowedStates, gameState) == -1)
+        {
+            Logger.Log($"상태 변경 불가: {CurrentGameState} → {gameState}");
+            return false;
+        }
+
+        return true;
     }
 
     /// <summary>
