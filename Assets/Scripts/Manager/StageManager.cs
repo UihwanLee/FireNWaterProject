@@ -86,11 +86,14 @@ public class StageManager : MonoBehaviour
             _stages[id] = stage;                                        // dict 채우기
             stage.gameObject.SetActive(false);                          // 모두 비활성화 하기
         }
+    }
 
+    private void OnEnable()
+    {
+        Logger.Log("Stage Manager 엘리게이트 추가");
         OnGameStateChanged += HandleStateChanged;
         _emberController.OnPlayerDied += HandlePlayerDeath;
         _wadeController.OnPlayerDied += HandlePlayerDeath;
-        Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
     }
 
     private void Update()
@@ -112,7 +115,7 @@ public class StageManager : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("[StageManager] OnDisable 호출됨");
+        Logger.Log("Stage Manager 엘리게이트 제거");
         OnGameStateChanged -= HandleStateChanged;
         _emberController.OnPlayerDied -= HandlePlayerDeath;
         _wadeController.OnPlayerDied -= HandlePlayerDeath;

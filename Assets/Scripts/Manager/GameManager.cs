@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         //SceneManager.LoadScene("StageScene");
+    private void OnDisable()
+    {
+        Logger.Log("시간 제한 델리게이트 제거");
+        _stageManager.OnFailedToClearWithinTimeLimit -= _scoreManager.HandleTimeLimitFailed;
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -53,15 +57,15 @@ public class GameManager : MonoBehaviour
             Logger.Log("Stage Manager 못 찾음");
         }
 
-        _stageManager.SelectStage(1);
+        Logger.Log("시간 제한 델리게이트 추가");
+        _stageManager.OnFailedToClearWithinTimeLimit += _scoreManager.HandleTimeLimitFailed;
+        SelectStage(1);
     }
 
     #region Stage 상태 관리 메서드
     public void SelectStage(int id)
     {
         _stageManager.SelectStage(id);
-        Logger.Log("시간 제한 델리게이트 추가");
-        _stageManager.OnFailedToClearWithinTimeLimit += _scoreManager.HandleTimeLimitFailed;
     }
 
     public void StartStage()
@@ -99,8 +103,6 @@ public class GameManager : MonoBehaviour
     public void ExitStage()
     {
         _stageManager.ChangeGameState(GameState.Exit);
-        Logger.Log("시간 제한 델리게이트 제거");
-        _stageManager.OnFailedToClearWithinTimeLimit -= _scoreManager.HandleTimeLimitFailed;
     }
     #endregion
 }
