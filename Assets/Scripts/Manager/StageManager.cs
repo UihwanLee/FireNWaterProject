@@ -17,7 +17,6 @@ public class StageManager : MonoBehaviour
 
     // 게임 상태 정보
     private GameState _currentGameState = GameState.None;
-    public event Action<GameState> OnGameStateChanged;
 
     // 측정할 정보
     private float _timer = 0f;
@@ -93,7 +92,6 @@ public class StageManager : MonoBehaviour
     private void OnEnable()
     {
         Logger.Log("Stage Manager 엘리게이트 추가");
-        OnGameStateChanged += HandleStateChanged;
         _emberController.OnPlayerDied += HandlePlayerDeath;
         _wadeController.OnPlayerDied += HandlePlayerDeath;
     }
@@ -118,7 +116,6 @@ public class StageManager : MonoBehaviour
     private void OnDisable()
     {
         Logger.Log("Stage Manager 엘리게이트 제거");
-        OnGameStateChanged -= HandleStateChanged;
         _emberController.OnPlayerDied -= HandlePlayerDeath;
         _wadeController.OnPlayerDied -= HandlePlayerDeath;
     }
@@ -165,7 +162,7 @@ public class StageManager : MonoBehaviour
 
         _currentGameState = gameState;
         Logger.Log($"상태 변경: {_currentGameState}");
-        OnGameStateChanged?.Invoke(_currentGameState);
+        HandleStateChanged(gameState);
 
         if (gameState == GameState.Start)
         {
