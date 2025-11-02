@@ -28,8 +28,13 @@ public class Button : MonoBehaviour, InteractWithController
     {
         //애니메이션 작동하고
         if(animator != null)animator.SetTrigger("Recover");
-        //게이트에 신호보내고
         Debug.Log("recovery animation");
+        //게이트에 신호보내고
+        if (targetGate != null)
+        {
+            targetGate.Interact(false);
+        }
+        
     }
     
     

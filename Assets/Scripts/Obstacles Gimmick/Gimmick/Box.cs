@@ -17,4 +17,20 @@ public class Box : MonoBehaviour , InteractWithController
         
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        var bt = other.GetComponent<Button>();
+        if (bt != null)
+        {
+            bt.Interact();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        var bt = other.GetComponent<Button>();
+        if (bt != null)
+        {
+            bt.Recovery();
+        }    }
 }
