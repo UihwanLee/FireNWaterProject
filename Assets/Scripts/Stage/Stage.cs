@@ -53,6 +53,13 @@ public class StageClearInfo
         ClearTime = 0f;
     }
 
+    public StageClearInfo(int stageId)
+    {
+        StageId = stageId;
+        StageScore = StageScore.None;
+        ClearTime = 0f;
+    }
+
     public override string ToString()
     {
         return "{ " + $"id: {StageId}, stage score: {StageScore}, clear time: {ClearTime}" + " }";
