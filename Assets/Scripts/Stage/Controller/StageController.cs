@@ -8,11 +8,11 @@ public class StageController : MonoBehaviour
 
     [Header("스테이지 정보")]
     [SerializeField] private int _stageId;
-    [SerializeField] private int _elementCount;
+    [SerializeField] private int _gemCount;
     [SerializeField] private float _limitTime;
 
     public int StageId => _stageId;
-    public int ElementCount => _elementCount;
+    public int GemCount => _gemCount;
     public float LimitTime => _limitTime;
 
     private Stage _stage;
@@ -47,7 +47,7 @@ public class StageController : MonoBehaviour
             _wadeSpwanPoint.position = Vector3.zero;
         }
 
-        _stage = new(_stageId, _limitTime, _elementCount);
+        _stage = new(_stageId, _limitTime, _gemCount);
         _stageClearInfo = new(_stage);
         Logger.Log($"stage: {_stage}\n stage info: {_stageClearInfo}");
     }

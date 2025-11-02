@@ -24,18 +24,18 @@ public class Stage
 {
     public int StageId { get; private set; }
     public float LimitTime { get; private set; }
-    public int ElementCount { get; private set; }
+    public int GemCount { get; private set; }
 
-    public Stage(int id, float limitTime, int elementCount)
+    public Stage(int id, float limitTime, int gemCount)
     {
         StageId = id;
         LimitTime = limitTime;
-        ElementCount = elementCount;
+        GemCount = gemCount;
     }
 
     public override string ToString()
     {
-        return "{ " + $"id: {StageId}, limit time: {LimitTime}, element count: {ElementCount}" + " }";
+        return "{ " + $"id: {StageId}, limit time: {LimitTime}, gem count: {GemCount}" + " }";
     }
 }
 

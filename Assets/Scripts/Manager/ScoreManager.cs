@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     private bool _isStageCleared = false;
     private bool _isWithinTimeLimit = true;
-    private bool _isAllElementsCollected = false;
+    private bool _isAllGemsCollected = false;
     private StageScore _stageScore = StageScore.None;
 
     public void CheckStageScore()
@@ -18,13 +18,13 @@ public class ScoreManager : MonoBehaviour
         }
 
         //  제한 시간 통과 & 모든 젬 획득
-        if (!_isWithinTimeLimit && _isAllElementsCollected)
+        if (!_isWithinTimeLimit && _isAllGemsCollected)
         {
             _stageScore = StageScore.A;
         }
         // 제한 시간 미통과 & 모든 젬 획득 || 재한 시간 통과 & 모든 젬 미획득
-        else if (_isWithinTimeLimit && _isAllElementsCollected ||
-            !_isWithinTimeLimit && _isAllElementsCollected)
+        else if (_isWithinTimeLimit && _isAllGemsCollected ||
+            !_isWithinTimeLimit && _isAllGemsCollected)
         {
             _stageScore = StageScore.B;
         }
@@ -38,7 +38,7 @@ public class ScoreManager : MonoBehaviour
     {
         _isStageCleared = false;
         _isWithinTimeLimit = true;
-        _isAllElementsCollected = false;
+        _isAllGemsCollected = false;
         _stageScore = StageScore.None;
     }
 
@@ -48,9 +48,9 @@ public class ScoreManager : MonoBehaviour
         _isWithinTimeLimit = false;
     }
 
-    public void HandleAllElementsCollected()
+    public void HandleAllGemsCollected()
     {
         Logger.Log("모든 젬 획득");
-        _isAllElementsCollected = true;
+        _isAllGemsCollected = true;
     }
 }

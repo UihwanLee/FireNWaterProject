@@ -503,7 +503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1301359746054634791}
   m_Layer: 0
-  m_Name: Items
+  m_Name: Gems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
