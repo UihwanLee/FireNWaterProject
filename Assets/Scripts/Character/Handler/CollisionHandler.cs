@@ -62,6 +62,9 @@ public class CollisionHandler : MonoBehaviour
             watergem.Activate(controller);
         }
         
+        //래버 감지------------------------------밀 때 캐릭터 감속 구현
+        if (lever != null) lever.OnPusherEnter(controller);
+         
         //버튼 판정
         if (button != null)
         {
@@ -69,29 +72,21 @@ public class CollisionHandler : MonoBehaviour
             button.Activate(controller);
         }
         
-        //래버 감지------------------------------밀 때 캐릭터 감속 구현
-        if (lever != null) lever.OnPusherEnter(controller);
-            
-        
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         Lever lever = other.GetComponent<Lever>();
-        Button button = other.GetComponent<Button>();
         
         //레버 판정
-        if (lever != null) lever.Activate(controller);
+        lever.Activate(controller);
         
-        //버튼 누름 판정
-        if (button != null) button.Interact();
     }
 
     public void OnTriggerExit2D(Collider2D other)
     {
         Lever lever = other.GetComponent<Lever>();
-        Button button = other.GetComponent<Button>();
-        
+        Button button = other.GetComponent<Button>();        
         //레버 판정
         if (lever != null) lever.OnPusherExit(controller);
         
