@@ -108,9 +108,4 @@ public class StageController : MonoBehaviour
         Logger.NotImpl();
     }
     #endregion
-
-    public void CheckScore()
-    {
-        Logger.NotImpl();
-    }
 }

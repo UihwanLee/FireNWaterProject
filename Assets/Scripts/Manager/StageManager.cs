@@ -11,9 +11,11 @@ public class StageManager : MonoBehaviour
     private EmberController _emberController;
     private WadeController _wadeController;
 
+    // 스테이지 정보
     private Dictionary<int, StageController> _stages = new();
     private StageController _currentStage;
 
+    // 게임 상태 정보
     private GameState _currentGameState = GameState.None;
     public GameState CurrentGameState => _currentGameState;
     public event Action<GameState> OnGameStateChanged;
