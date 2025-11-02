@@ -97,10 +97,32 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void SaveStageClearInfo(StageClearInfo stageClearInfo)
+    #region 데이터 저장/로드
+    public void SaveStageClearInfo(StageClearInfo newClearInfo)
     {
         // todo: 가장 높은 등급 / 점수 비교 -> 저장
-        _saveData.StageClearInfos[stageClearInfo.StageId] = stageClearInfo;
+        int id = newClearInfo.StageId;
+        List<StageClearInfo> stageClearInfos = _saveData.StageClearInfos;
+
+        if (id >= stageClearInfos.Count)
+        {
+            Logger.Log("Stage id Index 벗어남");
+            return;
+        }
+
+        StageClearInfo stageClearInfo = stageClearInfos[id];
+
+        // StageScore: A = 0 / B = 1 / C = 2 / None = 3
+        // 점수가 더 낮거나, 클리어 시간이 길 경우 저장 x
+        if (newClearInfo.StageScore > stageClearInfo.StageScore) return;
+        if (newClearInfo.StageScore == stageClearInfo.StageScore
+            && newClearInfo.ClearTime >= stageClearInfo.ClearTime) return;
+
+        Logger.Log("클리어 정보 저장\n " +
+            $"[ id: {id}, " +
+            $"stage score: {newClearInfo.StageScore}, " +
+            $"clear time: {newClearInfo.ClearTime}");
+        stageClearInfos[id] = newClearInfo;
         Save();
     }
 
@@ -135,4 +157,5 @@ public class ScoreManager : MonoBehaviour
     {
         if (File.Exists(SavePath)) File.Delete(SavePath);
     }
+    #endregion
 }
