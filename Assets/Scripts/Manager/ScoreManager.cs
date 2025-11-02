@@ -36,11 +36,12 @@ public class ScoreManager : MonoBehaviour
     public event Func<int, bool> OnCheckGemCount;
 
     // Stage 정보 저장
-    private string SavePath = Path.Combine(Application.persistentDataPath, "SaveStageData.json");
+    private string SavePath;
     private StageClearInfoWrapper _saveData = new();
 
     private void Awake()
     {
+        SavePath = Path.Combine(Application.persistentDataPath, "SaveStageData.json");
         Load();
     }
 
