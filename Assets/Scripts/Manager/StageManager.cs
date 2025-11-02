@@ -37,6 +37,7 @@ public class StageManager : MonoBehaviour
     }
     private bool _checkTimeLimit = false;
     public event Action OnFailedToClearWithinTimeLimit;
+    public event Action OnClearStage;
     public event Action OnStartStage;
 
     private void Awake()
@@ -261,6 +262,7 @@ public class StageManager : MonoBehaviour
     public void HandleStageClear()
     {
         _currentStage.ExecuteClear();
+        OnClearStage?.Invoke();
     }
 
     /// <summary>

@@ -41,6 +41,10 @@ public class GameManager : MonoBehaviour
         {
             _scoreManager.ResetScoreFlags();
         };
+        _stageManager.OnClearStage -= () =>
+        {
+            _scoreManager.CheckStageScore();
+        };
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -66,6 +70,10 @@ public class GameManager : MonoBehaviour
         _stageManager.OnStartStage += () =>
         {
             _scoreManager.ResetScoreFlags();
+        };
+        _stageManager.OnClearStage += () =>
+        {
+            _scoreManager.CheckStageScore();
         };
         SelectStage(1);
     }
