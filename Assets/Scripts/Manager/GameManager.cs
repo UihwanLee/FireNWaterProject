@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
     public void SelectStage(int id)
     {
         _stageManager.SelectStage(id);
+        Logger.Log("젬 확인 델리게이트 추가");
+        _scoreManager.OnCheckGemCount += _stageManager.HandleCheckGemCount;
     }
 
     public void StartStage()
@@ -93,6 +95,8 @@ public class GameManager : MonoBehaviour
     {
         _stageManager.ChangeGameState(GameState.Next);
         _scoreManager.ResetScoreFlags();
+        Logger.Log("젬 확인 델리게이트 제거");
+        _scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
     }
 
     public void RetryStage()
@@ -103,6 +107,15 @@ public class GameManager : MonoBehaviour
     public void ExitStage()
     {
         _stageManager.ChangeGameState(GameState.Exit);
+        Logger.Log("젬 확인 델리게이트 제거");
+        _scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
+    }
+    #endregion
+
+    #region 점수 관련 메서드
+    public void AddGem()
+    {
+        _scoreManager.AddGem();
     }
     #endregion
 }

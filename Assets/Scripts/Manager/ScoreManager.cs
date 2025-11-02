@@ -1,13 +1,22 @@
+using System;
 using UnityEngine;
 
 
 
 public class ScoreManager : MonoBehaviour
 {
+    // Score Flags
     private bool _isStageCleared = false;
     private bool _isWithinTimeLimit = true;
     private bool _isAllGemsCollected = false;
+
+    // Score
     private StageScore _stageScore = StageScore.None;
+
+    // Current Stage Info
+    private int _currentGemCount = 0;
+
+    public event Func<int, bool> OnCheckGemCount;
 
     public void CheckStageScore()
     {
@@ -40,6 +49,7 @@ public class ScoreManager : MonoBehaviour
         _isWithinTimeLimit = true;
         _isAllGemsCollected = false;
         _stageScore = StageScore.None;
+        _currentGemCount = 0;
     }
 
     public void HandleTimeLimitFailed()
@@ -48,9 +58,15 @@ public class ScoreManager : MonoBehaviour
         _isWithinTimeLimit = false;
     }
 
-    public void HandleAllGemsCollected()
+    public void AddGem()
     {
-        Logger.Log("모든 젬 획득");
-        _isAllGemsCollected = true;
+        _currentGemCount++;
+        Logger.Log($"현재 젬 개수: {_currentGemCount}");
+
+        if (OnCheckGemCount?.Invoke(_currentGemCount) ?? false)
+        {
+            Logger.Log("모든 젬 획득");
+            _isAllGemsCollected = true;
+        }
     }
 }

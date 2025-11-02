@@ -108,4 +108,11 @@ public class StageController : MonoBehaviour
         Logger.NotImpl();
     }
     #endregion
+
+    public bool CheckGemCount(int currentGemCount)
+    {
+        Logger.Log($"스테이지 총 젬 개수: {_gemCount} 현재 획득 젬 개수: {currentGemCount}");
+        if (_gemCount == currentGemCount) return true;
+        return false;
+    }
 }

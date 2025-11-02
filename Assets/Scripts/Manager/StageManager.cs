@@ -86,6 +86,7 @@ public class StageManager : MonoBehaviour
             _stages[id] = stage;                                        // dict 채우기
             stage.gameObject.SetActive(false);                          // 모두 비활성화 하기
         }
+        Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
     }
 
     private void OnEnable()
@@ -270,6 +271,11 @@ public class StageManager : MonoBehaviour
         SelectStage(id + 1);
     }
     #endregion
+
+    public bool HandleCheckGemCount(int currentGemCount)
+    {
+        return _currentStage.CheckGemCount(currentGemCount);
+    }
 
     private void HandlePlayerDeath()
     {
