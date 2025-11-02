@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance => _instance;
+    public static readonly int STAGE_NUM = 5;
 
     // 추후 매니저 추가 예정
     [Header("Managers")]
@@ -143,6 +145,25 @@ public class GameManager : MonoBehaviour
     public StageScore GetCurrentStageScore()
     {
         return _scoreManager.CurrentStageScore;
+    }
+    #endregion
+
+    #region 데이터 저장/로드
+    /// <summary>
+    /// 스테이지 클리어 정보
+    /// List의 index: stage id
+    /// 클리어되지 않은 정보의 데이터 
+    /// => (id: 스테이지 번호, clear time: 0, stage score: StageScore.None)
+    /// </summary>
+    /// <returns></returns>
+    public List<StageClearInfo> GetStageClearData()
+    {
+        return _scoreManager.GetSaveData();
+    }
+
+    public void ResetData()
+    {
+        _scoreManager.ResetData();
     }
     #endregion
 }
