@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
 
-
-
 public class ScoreManager : MonoBehaviour
 {
     // Score Flags

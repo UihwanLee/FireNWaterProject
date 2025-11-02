@@ -142,7 +142,10 @@ public class StageManager : MonoBehaviour
         ChangeGameState(GameState.Start);                       // 자동 시작
     }
 
-    // 전이 가능한 상태 지정
+    #region 스테이지 상태 변경
+    /// <summary>
+    /// GameState FSM -> Figma FSM 참고
+    /// </summary>
     private readonly Dictionary<GameState, GameState[]> _allowedTransitions = new()
     {
         { GameState.None,  new[] { GameState.Start } },
@@ -173,6 +176,11 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 변경 가능한 상태인지 검증
+    /// </summary>
+    /// <param name="gameState"></param>
+    /// <returns></returns>
     private bool CanTransitionTo(GameState gameState)
     {
         // 동일한 상태일 경우 스킵
@@ -231,6 +239,7 @@ public class StageManager : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
     #region 스테이지 내부 로직
     private void HandleStageStart()
