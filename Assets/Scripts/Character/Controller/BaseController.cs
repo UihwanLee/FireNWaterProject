@@ -39,7 +39,6 @@ public class BaseController : MonoBehaviour
     [SerializeField] protected SpriteRenderer characterRenderer;            // 캐릭터 Sprite Renderer
     [SerializeField] protected AnimationHandler animationHandler;           // 캐릭터 Animation 담당 클래스
     [SerializeField] private GroundAndSlopeHandler groundHandler;           // 캐릭터 Ground/Slope 충돌 처리 클래스
-    [SerializeField] private CapsuleCollider2D capsuleCollider;             // 캐릭터 CapsuleCollider;
 
     protected void Awake()
     {
@@ -87,26 +86,30 @@ public class BaseController : MonoBehaviour
         {
             if (isClimbed)
             {
-                
-
+                // 이동 벡터는 경사면의 평면벡터에서 가속도를 곱한다
                 Vector2 moveVector =  slopeNormal * acceleration;
+                Debug.Log($"Slope Move Vector: {moveVector} = {slopeNormal} * {acceleration}");
+                
+                // 이동벡터 만큼 rigidbody AddForce
+                _rigidbody.AddForce(moveVector, ForceMode2D.Force);
 
-                _rigidbody.velocity = moveVector * Time.fixedDeltaTime;
-                //_rigidbody.AddForce(moveVector, ForceMode2D.Force);
-
-                //if (_rigidbody.velocity.x > maxSpeed)
-                //{
-                //    _rigidbody.velocity = _rigidbody.velocity.normalized * maxSpeed;
-                //}
+                // velocity.x가 maxSpeed를 넘지 않도록 예외처리
+                if (Mathf.Abs(_rigidbody.velocity.x) > maxSpeed)
+                {
+                    _rigidbody.velocity = _rigidbody.velocity.normalized * maxSpeed;
+                }
             }
             else
             {
+                // 지면 위에서는 좌우 방향 값에 가속도를 곱한다.
                 float movePosX = moveDirection.x * acceleration;
                 float movePosY = _rigidbody.velocity.y;
 
+                // 이동 방향 만큼 AddForce
                 Vector2 moveVector = new Vector2(movePosX, movePosY);
                 _rigidbody.AddForce(moveVector, ForceMode2D.Force);
 
+                // velocity.x가 maxSpeed를 넘지 않도록 예외처리
                 if (_rigidbody.velocity.x > maxSpeed)
                 {
                     _rigidbody.velocity = _rigidbody.velocity.normalized * maxSpeed;
@@ -115,6 +118,7 @@ public class BaseController : MonoBehaviour
         }
         else
         {
+            // 이동 입력을 멈출 시 천천히 멈추도록 Lerp
             _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
         }
     }
@@ -258,12 +262,12 @@ public class BaseController : MonoBehaviour
     {
         if (isClimbed)
         {
-            //capsuleCollider.sharedMaterial.friction = Define.SLOPE_FIRCITON;
+            _rigidbody.gravityScale = Define.SLOPE_GRAVITY_SCALE;
             this.maxSpeed = Define.SLOPE_SPEED;
         }
         else
         {
-            capsuleCollider.sharedMaterial.friction = Define.BASE_FIRCITON;
+            _rigidbody.gravityScale = Define.BASE_GRAVITY_SCALE;
             this.maxSpeed = Define.MAX_SPEED;
         }
     }

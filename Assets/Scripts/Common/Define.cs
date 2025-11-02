@@ -28,4 +28,7 @@ public static class Define
 
     public const float BASE_FIRCITON = 0.4f;
     public const float SLOPE_FIRCITON = 0.0f;
+
+    public const float BASE_GRAVITY_SCALE = 1.0f;
+    public const float SLOPE_GRAVITY_SCALE = 0.5f;
 }
