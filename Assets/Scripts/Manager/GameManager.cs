@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         _stageManager.OnClearStage -= () =>
         {
             _scoreManager.CheckStageScore();
+            _scoreManager.SaveStageClearInfo(_stageManager.GetStageClearInfo());
         };
     }
 
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
         _stageManager.OnClearStage += () =>
         {
             _scoreManager.CheckStageScore();
+            _scoreManager.SaveStageClearInfo(_stageManager.GetStageClearInfo());
         };
         SelectStage(1);
     }

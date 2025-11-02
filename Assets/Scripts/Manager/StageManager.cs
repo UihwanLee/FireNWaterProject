@@ -305,4 +305,9 @@ public class StageManager : MonoBehaviour
         _checkTimeLimit = false;
         _currentStage.RevivePlayer();
     }
+
+    public StageClearInfo GetStageClearInfo()
+    {
+        return _currentStage.GetStageClearInfo(Timer);
+    }
 }
