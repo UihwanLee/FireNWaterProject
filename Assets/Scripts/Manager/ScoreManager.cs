@@ -27,7 +27,7 @@ public class ScoreManager : MonoBehaviour
         }
 
         //  제한 시간 통과 & 모든 젬 획득
-        if (!_isWithinTimeLimit && _isAllGemsCollected)
+        if (_isWithinTimeLimit && _isAllGemsCollected)
         {
             _stageScore = StageScore.A;
         }
