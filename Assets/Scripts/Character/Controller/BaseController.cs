@@ -212,8 +212,36 @@ public class BaseController : MonoBehaviour
         Debug.Log($"{gameObject.name}가 죽었습니다!");
 
         OnPlayerDied?.Invoke();
+        ChangeState(CharacterState.Die);
     }
 
+    /// <summary>
+    /// 캐릭터 멈춤
+    /// </summary>
+    public virtual void Pause()
+    {
+        _rigidbody.velocity = Vector2.zero;
+        ChangeState(CharacterState.Pause);
+        Logger.Log($"{gameObject.name} 일시 정지");
+    }
+
+    /// <summary>
+    /// 캐릭터 멈춤 취소
+    /// </summary>
+    public virtual void CancelPause()
+    {
+        ChangeState(CharacterState.Idle);
+        Logger.Log($"{gameObject.name} 일시 정지 취소");
+    }
+
+    /// <summary>
+    /// 캐릭터 부활
+    /// </summary>
+    public virtual void Revive()
+    {
+        ChangeState(CharacterState.Idle);
+        Logger.Log($"{gameObject.name} 부활");
+    }
     #endregion
 
     #region 캐릭터 지면 충돌 처리: Ground / Climb Slope
