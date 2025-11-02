@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         _stageManager.SelectStage(1);
     }
 
-    #region Stage 관련 메서드
+    #region Stage 상태 관리 메서드
     public void SelectStage(int id)
     {
         _stageManager.SelectStage(id);
