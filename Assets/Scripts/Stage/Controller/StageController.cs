@@ -115,4 +115,10 @@ public class StageController : MonoBehaviour
         if (_gemCount == currentGemCount) return true;
         return false;
     }
+
+    public StageClearInfo GetStageClearInfo(float clearTime)
+    {
+        _stageClearInfo.ClearTime = clearTime;
+        return _stageClearInfo;
+    }
 }
