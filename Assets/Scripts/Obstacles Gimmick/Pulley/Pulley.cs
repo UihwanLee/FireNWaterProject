@@ -8,8 +8,8 @@ public class Pulley : MonoBehaviour, InteractWithController
     [SerializeField] private GameObject stoolPrefab;
 
     [SerializeField] private Transform anchor;
-    [SerializeField] private int chainCount = 4;
-    [SerializeField] private Vector2 stoolScale = new Vector2(1.6f, 1f);
+    [SerializeField] private int chainCount = Define.BASE_CHAIN_COUNT;
+    [SerializeField] private Vector2 stoolScale = Define.BASE_STOOL_SCALE;
 
     public void Activate(BaseController bc)
     {
@@ -23,8 +23,8 @@ public class Pulley : MonoBehaviour, InteractWithController
 
     private void GenerateChainAndStool()
     {
-        float posY = -0.65f;
-        float extraHeight = -0.45f;
+        float posY = Define.DISTANCE_ANCHOR;
+        float extraHeight = Define.CHAIN_PADDING_VALUE;
         float finalHeight = 0.0f;
 
         Rigidbody2D prevRb = anchor.GetComponent<Rigidbody2D>();
