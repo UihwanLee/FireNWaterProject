@@ -5,25 +5,21 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour, InteractableObstacle
 {
-    /*
-     * 길이는 1 or 2로 고정
-     * 수평,수직인지 결정
-     * 열리는 게이트 닫히는 게이트
-     * 시작점 / 종점
-     * 가동 거리
-     *
-     *일단 신호 주고받는 구조 완성
-     * 
-     */
-    
     [Range(1, 2)][SerializeField] private int moveRange = 2;
     [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] private bool isHorizontal = true; // 수직수평 여부
     [SerializeField] private bool openType = false; // 오픈형 폐쇄형 여부
     
+   
+    //종점,시점
     private Vector3 _closedDir;
     private Vector3 _openDir;
-    private bool acttivate = false;
+    
+    //코루틴 종점 시점
+    private Vector3 iPos;
+    private Vector3 tPos;
+    
+    bool _isOpen;   
     private Coroutine moveRoutine;
    
     private void Awake()
@@ -43,6 +39,9 @@ public class Gate : MonoBehaviour, InteractableObstacle
             _closedDir = new Vector3(initPos.x , initPos.y- moveRange, initPos.z);
         }
         
+        tPos = openType ? _closedDir: _openDir;
+        iPos = !openType ? _closedDir: _openDir;
+        
         //폐쇄형일 경우 시작점 보정
         if (isHorizontal&&!openType)
         {
@@ -57,14 +56,21 @@ public class Gate : MonoBehaviour, InteractableObstacle
         
     }
 
+    
+    
     public void Interact(bool on)
     {
-        //가동 방향 설정
-        Vector3 targetPos = openType ? _closedDir: _openDir;
-        Vector3 initPos = !openType ? _closedDir: _openDir;
+        
+        if (on == _isOpen) return;
+        _isOpen = on;
         
        //가동
-        moveRoutine = StartCoroutine(MoveGate(on?targetPos:initPos));
+       if (moveRoutine != null)
+       {
+           StopCoroutine(moveRoutine);
+       } 
+       moveRoutine = StartCoroutine(MoveGate(on? tPos :iPos));
+       
     }
 
     private IEnumerator MoveGate(Vector3 targetPos)
@@ -75,6 +81,7 @@ public class Gate : MonoBehaviour, InteractableObstacle
             yield return null;
         }
         transform.position = targetPos;
+        moveRoutine = null;
     }
     
 }

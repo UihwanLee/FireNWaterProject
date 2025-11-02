@@ -69,7 +69,8 @@ public class CollisionHandler : MonoBehaviour
         if (button != null)
         {
             //버튼밟을 시 감속 구현 ------------------------------------
-            button.Activate(controller);
+            //button.Activate(controller);
+            button.RegisterPusher(gameObject);
         }
         
     }
@@ -91,6 +92,7 @@ public class CollisionHandler : MonoBehaviour
         if (lever != null) lever.OnPusherExit(controller);
         
         //버튼 판정
-        if (button != null) button.Recovery(); 
+        //if (button != null) button.Recovery();
+        if (button != null) button.UnregisterPusher(gameObject);
     }
 }

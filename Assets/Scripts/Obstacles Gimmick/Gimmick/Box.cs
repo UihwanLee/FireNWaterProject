@@ -17,17 +17,20 @@ public class Box : MonoBehaviour , InteractWithController
     private void OnTriggerEnter2D(Collider2D other)
     {
         var bt = other.GetComponent<Button>();
+        
         if (bt != null)
         {
-           bt.Activate(_box);
+           bt.RegisterPusher(gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         var bt = other.GetComponent<Button>();
+        
         if (bt != null)
         {
-            bt.Recovery();
-        }    }
+            bt.UnregisterPusher(gameObject);
+        }
+    }
 }
