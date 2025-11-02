@@ -153,7 +153,7 @@ public class StageManager : MonoBehaviour
         { GameState.Pause,  new[] { GameState.Start, GameState.Resume, GameState.Exit } },
         { GameState.Resume, new[] { GameState.Play } },
         { GameState.Dead,  new[] { GameState.Start, GameState.Exit } },
-        { GameState.Clear, new[] { GameState.Exit, GameState.Next } },
+        { GameState.Clear, new[] { GameState.Exit, GameState.Next, GameState.Start } },
         { GameState.Exit,   new[] { GameState.None } },
         { GameState.Next,   new[] { GameState.Start } }
     };
