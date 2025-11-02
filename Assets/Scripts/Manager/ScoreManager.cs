@@ -1,5 +1,23 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+
+[System.Serializable]
+public class StageClearInfoWrapper
+{
+    public List<StageClearInfo> StageClearInfos;
+
+    public StageClearInfoWrapper()
+    {
+        StageClearInfos = new();
+    }
+
+    public StageClearInfoWrapper(int i)
+    {
+        StageClearInfos = new(i);
+    }
+}
 
 public class ScoreManager : MonoBehaviour
 {
@@ -17,8 +35,18 @@ public class ScoreManager : MonoBehaviour
 
     public event Func<int, bool> OnCheckGemCount;
 
+    // Stage 정보 저장
+    private string SavePath = Path.Combine(Application.persistentDataPath, "SaveStageData.json");
+    private StageClearInfoWrapper _saveData = new();
+
+    private void Awake()
+    {
+        Load();
+    }
+
     public void CheckStageScore()
     {
+        _isStageCleared = true;
         if (!_isStageCleared)
         {
             Logger.Log("클리어 실패");
@@ -67,5 +95,38 @@ public class ScoreManager : MonoBehaviour
             Logger.Log("모든 젬 획득");
             _isAllGemsCollected = true;
         }
+    }
+
+    public void SaveStageClearInfo(StageClearInfo stageClearInfo)
+    {
+        // todo: 가장 높은 등급 / 점수 비교 -> 저장
+        _saveData.StageClearInfos[stageClearInfo.StageId] = stageClearInfo;
+        Save();
+    }
+
+    private void Save()
+    {
+        string json = JsonUtility.ToJson(_saveData, true);
+        File.WriteAllText(SavePath, json);
+    }
+
+    private void Load()
+    {
+        if (File.Exists(SavePath))
+        {
+            string json = File.ReadAllText(SavePath);
+            _saveData = JsonUtility.FromJson<StageClearInfoWrapper>(json);
+        }
+        else
+        {
+            _saveData = new StageClearInfoWrapper(GameManager.STAGE_NUM);
+        }
+    }
+
+    public List<StageClearInfo> GetSaveData() => _saveData.StageClearInfos;
+
+    public void ResetData()
+    {
+        if (File.Exists(SavePath)) File.Delete(SavePath);
     }
 }
