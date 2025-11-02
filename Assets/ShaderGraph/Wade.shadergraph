@@ -594,7 +594,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "33b5f4cf66764a21b11ce20f198c71c4",
     "m_Id": 0,
-    "m_DisplayName": "_WadeColor",
+    "m_DisplayName": "_Color",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1946,10 +1946,10 @@
     "m_Guid": {
         "m_GuidSerialized": "f97a2772-5052-49aa-a285-eafabc6a2185"
     },
-    "m_Name": "_WadeColor",
+    "m_Name": "_Color",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "_WadeColor",
-    "m_DefaultReferenceName": "_WadeColor",
+    "m_RefNameGeneratedByDisplayName": "_Color",
+    "m_DefaultReferenceName": "_Color",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

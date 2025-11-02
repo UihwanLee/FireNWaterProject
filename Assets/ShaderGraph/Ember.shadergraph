@@ -895,7 +895,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "75cfe258b133491494df27c022b44df5",
     "m_Id": 0,
-    "m_DisplayName": "_EmberColor",
+    "m_DisplayName": "_Color",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1425,10 +1425,10 @@
     "m_Guid": {
         "m_GuidSerialized": "4fdb26aa-e861-4819-8191-28e65e994252"
     },
-    "m_Name": "_EmberColor",
+    "m_Name": "_Color",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "_EmberColor",
-    "m_DefaultReferenceName": "_EmberColor",
+    "m_RefNameGeneratedByDisplayName": "_Color",
+    "m_DefaultReferenceName": "_Color",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

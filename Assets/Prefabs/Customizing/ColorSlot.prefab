@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6442858134664645815}
+  - component: {fileID: 7695138568144172268}
   m_Layer: 5
   m_Name: ColorSlot
   m_TagString: Untagged
@@ -41,6 +42,25 @@ RectTransform:
   m_AnchoredPosition: {x: -80, y: 75}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7695138568144172268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587091047893907419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc51859035c73e4399be427572dbb57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn_slot: {fileID: 3989903610026879373}
+  img_highlight: {fileID: 8572918991282867273}
+  object_jem: {fileID: 1646772528255940317}
+  txt_price: {fileID: 8645859917340866014}
+  btn_purchase: {fileID: 692076000993667421}
+  img_purchase_icon: {fileID: 1734822341937156136}
+  data: {fileID: 0}
 --- !u!1 &692076000993667421
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,7 +732,7 @@ GameObject:
   - component: {fileID: 6434149233194439213}
   - component: {fileID: 8572918991282867273}
   m_Layer: 5
-  m_Name: btn_highlight
+  m_Name: img_highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
