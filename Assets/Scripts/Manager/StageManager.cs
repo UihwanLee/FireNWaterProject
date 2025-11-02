@@ -290,6 +290,7 @@ public class StageManager : MonoBehaviour
     {
         Logger.Log("시간 초기화");
         Timer = 0f;
+        _checkTimeLimit = false;
         _currentStage.RevivePlayer();
     }
 }
