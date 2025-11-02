@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour
     {
         Logger.Log("시간 제한 델리게이트 제거");
         _stageManager.OnFailedToClearWithinTimeLimit -= _scoreManager.HandleTimeLimitFailed;
+        _stageManager.OnStartStage -= () =>
+        {
+            _scoreManager.ResetScoreFlags();
+        };
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -59,6 +63,10 @@ public class GameManager : MonoBehaviour
 
         Logger.Log("시간 제한 델리게이트 추가");
         _stageManager.OnFailedToClearWithinTimeLimit += _scoreManager.HandleTimeLimitFailed;
+        _stageManager.OnStartStage += () =>
+        {
+            _scoreManager.ResetScoreFlags();
+        };
         SelectStage(1);
     }
 

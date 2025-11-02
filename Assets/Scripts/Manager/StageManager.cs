@@ -37,6 +37,7 @@ public class StageManager : MonoBehaviour
     }
     private bool _checkTimeLimit = false;
     public event Action OnFailedToClearWithinTimeLimit;
+    public event Action OnStartStage;
 
     private void Awake()
     {
@@ -173,6 +174,7 @@ public class StageManager : MonoBehaviour
 
         if (gameState == GameState.Start)
         {
+            OnStartStage?.Invoke();
             ResetStageInfo();
             Logger.Log("스테이지 정보 초기화");
         }
