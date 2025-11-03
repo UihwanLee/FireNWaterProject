@@ -322,4 +322,9 @@ public class StageManager : MonoBehaviour
     {
         return _currentStage.GetStageClearInfo(Timer);
     }
+
+    public bool CheckClear()
+    {
+        return _currentGameState == GameState.Clear;
+    }
 }
