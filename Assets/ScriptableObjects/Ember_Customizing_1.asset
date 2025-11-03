@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Ember_Customizing_1
   m_EditorClassIdentifier: 
   type: 0
-  idx: 0
+  idx: 1
   color: {r: 0, g: 0.0979166, b: 1, a: 0}
   price: 700
   isPurchase: 0
+  isPick: 0
+  jemSprite: {fileID: 21300000, guid: fcac4bb5197780a4c988fc20d4008f0a, type: 3}
   material: {fileID: 2100000, guid: 627ce89b17de9fd40a98e408935a46cd, type: 2}
