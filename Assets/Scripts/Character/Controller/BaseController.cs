@@ -127,7 +127,8 @@ public class BaseController : MonoBehaviour
     /// </summary>
     protected void Jump()
     {
-        if(isGrounded)
+        if (currentState == CharacterState.Pause || currentState == CharacterState.Die) return;
+        if (isGrounded)
         {
             // 캐릭터가 땅에 착지된 상태라면 점프
             _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -140,6 +141,7 @@ public class BaseController : MonoBehaviour
     /// </summary>
     protected virtual void Rotate()
     {
+        if (currentState == CharacterState.Pause || currentState == CharacterState.Die) return;
         if (moveDirection.x != 0.0f)
         {
             // 캐릭터 이동 방향에 따른 flip 변경
