@@ -34,6 +34,7 @@ public class StageManager : MonoBehaviour
                 _checkTimeLimit = true;
             }
             _timer = value;
+            _stageUI.UpdateTime(value);
         }
     }
 

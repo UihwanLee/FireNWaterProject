@@ -9,6 +9,7 @@ public class StageUI : MonoBehaviour
     [SerializeField] private GameObject _buttonParent;
     [SerializeField] private GameObject _customizingUI;
     [SerializeField] private GameObject _timerUI;
+    [SerializeField] private TextMeshProUGUI _timerText;
 
     [Header("스테이지 선택 버튼")]
     [SerializeField] private GameObject _buttonPrefab;
@@ -58,6 +59,12 @@ public class StageUI : MonoBehaviour
         _timerUI.SetActive(false);
     }
     #endregion
+
+    public void UpdateTime(float time)
+    {
+        if (!_timerUI.activeSelf) return;
+        _timerText.text = time.ToString("n2");
+    }
 
     private void CreateStageButtons()
     {
