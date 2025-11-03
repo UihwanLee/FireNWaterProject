@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5898521005378531855}
+  - component: {fileID: 5442581869582566478}
   m_Layer: 5
   m_Name: ColorSlot
   m_TagString: Untagged
@@ -42,6 +43,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5442581869582566478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329846357565997027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc51859035c73e4399be427572dbb57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn_slot: {fileID: 5205584886033655795}
+  img_highlight: {fileID: 9088708218694976756}
+  object_jem: {fileID: 1508777154938475846}
+  txt_price: {fileID: 3404828942675296314}
+  btn_purchase: {fileID: 7994049485666192563}
+  img_purchase_icon: {fileID: 7055946963611313397}
+  data: {fileID: 0}
 --- !u!1 &1508777154938475846
 GameObject:
   m_ObjectHideFlags: 0
