@@ -88,7 +88,6 @@ public class BaseController : MonoBehaviour
             {
                 // 이동 벡터는 경사면의 평면벡터에서 가속도를 곱한다
                 Vector2 moveVector =  slopeNormal * acceleration;
-                Debug.Log($"Slope Move Vector: {moveVector} = {slopeNormal} * {acceleration}");
                 
                 // 이동벡터 만큼 rigidbody AddForce
                 _rigidbody.AddForce(moveVector, ForceMode2D.Force);
