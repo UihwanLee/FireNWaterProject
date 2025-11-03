@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage_Tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 3606992651221784511, guid: 72be739f856439a418e489b377182af5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8835530788852041122, guid: 72be739f856439a418e489b377182af5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
