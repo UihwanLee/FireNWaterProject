@@ -50,7 +50,7 @@ public class GroundAndSlopeHandler : MonoBehaviour
         Vector2 dir = (controller.MoveDirection.x > 0.0f) ? Vector2.right : Vector2.left;
         Vector2 center = boxCollider2D.bounds.center;
         float halfWidth = boxCollider2D.bounds.extents.x;
-        float height = boxCollider2D.bounds.extents.y * 2;
+        float height = boxCollider2D.bounds.extents.y * 2 + 0.15f;
 
         // Ray를 나가는 위치를 x는 boxCollider 양끝으로 설정, y위치는 height 만큼
         Vector2 origin = new Vector2(center.x + (dir.x * halfWidth), center.y + height);
