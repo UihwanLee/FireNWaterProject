@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c058df137ccfd2944ae1f04412d30e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreManager: {fileID: 0}
+  _scoreManager: {fileID: 755497562948424922}
 --- !u!1001 &8692232622690074245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172,6 +172,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9c3fb5f14a26a74db08f98ddd786815, type: 3}
+--- !u!114 &755497562948424922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8276792046320495199, guid: f9c3fb5f14a26a74db08f98ddd786815, type: 3}
+  m_PrefabInstance: {fileID: 8692232622690074245}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b5519cd40b2288479414e33fcdd950f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8271993439972905327 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 751262969424424938, guid: f9c3fb5f14a26a74db08f98ddd786815, type: 3}
