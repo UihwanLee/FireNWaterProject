@@ -168,9 +168,24 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region 점수 관련 메서드
-    public void AddGem()
+    public void AddFireGem()
     {
-        _scoreManager.AddGem();
+        _scoreManager.AddFireGem();
+    }
+
+    public void AddWaterGem()
+    {
+        _scoreManager.AddWaterGem();
+    }
+
+    public int GetFireGemCount()
+    {
+        return _scoreManager.FireGemCount;
+    }
+
+    public int GetWaterGemCount()
+    {
+        return _scoreManager.WaterGemCount;
     }
 
     /// <summary>
