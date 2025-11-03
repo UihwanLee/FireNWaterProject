@@ -8,6 +8,10 @@ public class SceneButton : MonoBehaviour
 
     public void OnClickLoadScene()
     {
+        if (targetScene == SceneController.SceneType.StageScene)
+        {
+            GameManager.Instance.LoadStageScene();
+        }
         SceneController.Instance.LoadScene(targetScene);
     }
 }
