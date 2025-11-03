@@ -23,11 +23,13 @@ public class StageUI : MonoBehaviour
 
     public void ShowStageMapUI()
     {
+        _bgImg.SetActive(true);
         _buttonParent.SetActive(true);
     }
 
     public void CloseStageMapUI()
     {
+        _bgImg.SetActive(false);
         _buttonParent.SetActive(false);
     }
 
