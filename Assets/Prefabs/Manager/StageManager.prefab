@@ -369,6 +369,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2155341943621742917}
     m_Modifications:
+    - target: {fileID: 354073678761716108, guid: 76b56d9cb6421ae44bdaac896cac46c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272782291043319856, guid: 76b56d9cb6421ae44bdaac896cac46c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3267564382193709206, guid: 76b56d9cb6421ae44bdaac896cac46c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3440549103090257415, guid: 76b56d9cb6421ae44bdaac896cac46c1, type: 3}
+      propertyPath: _timerText
+      value: 
+      objectReference: {fileID: 5217403156768199020}
     - target: {fileID: 4112726557247106536, guid: 76b56d9cb6421ae44bdaac896cac46c1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -449,11 +465,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4118131132356481598, guid: 76b56d9cb6421ae44bdaac896cac46c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4324968252514801939, guid: 76b56d9cb6421ae44bdaac896cac46c1, type: 3}
       propertyPath: m_Name
       value: StageUI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8431136859421037357, guid: 76b56d9cb6421ae44bdaac896cac46c1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -510,6 +531,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb9ac84783f7c04f8bffe0b9196c704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5217403156768199020 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2635839741274121510, guid: 76b56d9cb6421ae44bdaac896cac46c1, type: 3}
+  m_PrefabInstance: {fileID: 7850779931833005130}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &6188163332699888034 stripped
