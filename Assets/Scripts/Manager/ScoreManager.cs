@@ -42,6 +42,8 @@ public class ScoreManager : MonoBehaviour
     private string SavePath;
     private StageClearInfoWrapper _saveData = new();
 
+    // todo: 누적 젬 개수
+
     private void Awake()
     {
         SavePath = Path.Combine(Application.persistentDataPath, "SaveStageData.json");

@@ -41,13 +41,11 @@ public class CollisionHandler : MonoBehaviour
         if(poison != null) poison.Activate(controller);
         if (lava != null)
         {
-            controller.gameObject.layer = LayerMask.NameToLayer("Wade");
-            lava.Activate(controller);
+            if(controller.gameObject.layer == LayerMask.NameToLayer("Wade")) lava.Activate(controller);
         }
         if (water != null)
         {
-            controller.gameObject.layer = LayerMask.NameToLayer("Ember");
-            water.Activate(controller);
+            if(controller.gameObject.layer == LayerMask.NameToLayer("Ember")) water.Activate(controller);
         }
 
         //보석 판정
