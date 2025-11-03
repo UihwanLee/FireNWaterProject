@@ -227,5 +227,15 @@ public class GameManager : MonoBehaviour
     {
         return _scoreManager.WaterGemCount;
     }
+
+    public void UseFireGem(int count)
+    {
+        _scoreManager.UseFireGem(count);
+    }
+
+    public void UseWaterGem(int count)
+    {
+        _scoreManager.UseWaterGem(count);
+    }
     #endregion
 }
