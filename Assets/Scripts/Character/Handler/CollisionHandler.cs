@@ -36,6 +36,7 @@ public class CollisionHandler : MonoBehaviour
         Watergem waterGem = other.GetComponent<Watergem>();
         Lever lever = other.GetComponent<Lever>();
         Button button = other.GetComponent<Button>();
+        ExitEmber  exitEmber = other.GetComponent<ExitEmber>();
         
         //장애물 판정
         if(poison != null) poison.Activate(controller);
@@ -58,16 +59,19 @@ public class CollisionHandler : MonoBehaviour
             if(controller.gameObject.layer == LayerMask.NameToLayer("Wade")) waterGem.Activate(controller);
         }
         
-        //래버 감지------------------------------밀 때 캐릭터 감속 구현
         if (lever != null) lever.OnPusherEnter(controller);
          
         //버튼 판정
         if (button != null)
         {
-            //버튼밟을 시 감속 구현 ------------------------------------
-            //button.Activate(controller);
             button.RegisterPusher(gameObject);
         }
+
+        if (exitEmber != null)
+        {
+            exitEmber.Activate(controller);
+        }
+        
         
     }
 
@@ -84,11 +88,17 @@ public class CollisionHandler : MonoBehaviour
     {
         Lever lever = other.GetComponent<Lever>();
         Button button = other.GetComponent<Button>();        
+        ExitEmber exitEmber = other.GetComponent<ExitEmber>();
         //레버 판정
         if (lever != null) lever.OnPusherExit(controller);
         
         //버튼 판정
         //if (button != null) button.Recovery();
         if (button != null) button.UnregisterPusher(gameObject);
+
+        if (exitEmber != null)
+        {
+            exitEmber.Deactivate();
+        }
     }
 }
