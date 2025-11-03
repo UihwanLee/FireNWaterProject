@@ -8,6 +8,8 @@ public class StageMapUI : MonoBehaviour
     [SerializeField] private Transform _buttonParent;
     [SerializeField] private float _spacing;
 
+    // todo: 이전 스테이지 클리어 되어야지만 다음 스테이지 가능
+
     private void Start()
     {
         int colums = 5;
