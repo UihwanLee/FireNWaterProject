@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +23,6 @@ public class CustomizingManager : MonoBehaviour
     [SerializeField] private GameObject colorSlotPrefab;
     [SerializeField] private Image avatar_ember;
     [SerializeField] private Image avatar_wade;
-    [SerializeField] private TextMeshProUGUI myJem;
 
     [Header("Transform Info")]
     [SerializeField] private Transform emberColorSlotParent;
@@ -48,29 +46,10 @@ public class CustomizingManager : MonoBehaviour
 
     private void Start()
     {
-        InitColorDataList();
         GenerateEmberNWadeSlots();
-        UpdateJem();
     }
 
     #region 커스터마이징 초기화
-
-    private void InitColorDataList()
-    {
-        // EmberColorData 초기화
-        for (int i = 0; i < emberColorDataList.Count; i++)
-        {
-            emberColorDataList[i].isPick = (i == 0);
-            emberColorDataList[i].isPurchase = (i == 0);
-        }
-
-        // WadeColorData 초기화
-        for (int i = 0; i < wadeColorDataList.Count; i++)
-        {
-            wadeColorDataList[i].isPick = (i == 0);
-            wadeColorDataList[i].isPurchase = (i == 0);
-        }
-    }
 
     private void GenerateEmberNWadeSlots()
     {
@@ -181,7 +160,6 @@ public class CustomizingManager : MonoBehaviour
     private void PurchaseColor(CustomizingData data)
     {
         JemCount -= data.price;
-        UpdateJem();
 
         // 데이터 구매 적용
         data.isPurchase = true;
@@ -244,7 +222,7 @@ public class CustomizingManager : MonoBehaviour
 
     private void UpdateJem()
     {
-        myJem.text = JemCount.ToString();
+
     }
 
     private void ResetPickSlot(CustomizingData data)
