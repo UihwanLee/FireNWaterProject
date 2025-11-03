@@ -29,15 +29,21 @@ public class StageMapUI : MonoBehaviour
             btnObj.name = $"StageButton_{i + 1}";
             UnityEngine.UI.Button btn = btnObj.GetComponent<UnityEngine.UI.Button>();
 
-            TextMeshProUGUI btnText = btnObj.GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI btnText = btn.GetComponentInChildren<TextMeshProUGUI>();
             btnText.text = (i + 1).ToString();
 
-            btn.onClick.AddListener(() => OnClickButtoon(i));
+            int stageNum = i;
+            btn.onClick.AddListener(() =>
+            {
+                Logger.Log($"{btn.name} 선택");
+                OnClickButtoon(stageNum);
+            });
         }
     }
 
     private void OnClickButtoon(int stageNum)
     {
+        gameObject.SetActive(false);
         Debug.Log($"{stageNum}번째 스테이지 선택");
         GameManager.Instance.SelectStage(stageNum);
     }
