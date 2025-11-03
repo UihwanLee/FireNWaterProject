@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class StageController : MonoBehaviour
@@ -13,6 +14,8 @@ public class StageController : MonoBehaviour
 
     [Header("젬 오브젝트")]
     [SerializeField] private GameObject _gems;
+    private BaseGem[] _baseGems;
+    public event Action OnResetJem;
 
     public int StageId => _stageId;
     public int GemCount => _gemCount;
@@ -38,6 +41,7 @@ public class StageController : MonoBehaviour
         _wade = wade;
         _emberController = emberController;
         _wadeController = wadeController;
+        _baseGems = _gems.GetComponents<BaseGem>();
     }
 
     private void OnEnable()
@@ -55,6 +59,21 @@ public class StageController : MonoBehaviour
         _stage = new(_stageId, _limitTime, _gemCount);
         _stageClearInfo = new(_stage);
         Logger.Log($"stage: {_stage}\n stage info: {_stageClearInfo}");
+
+        Logger.Log("젬 초기화 이벤트 구독하기");
+        foreach (var baseGem in _baseGems)
+        {
+            OnResetJem += baseGem.ResetObject;
+        }
+    }
+
+    private void OnDisable()
+    {
+        Logger.Log("젬 초기화 이벤트 구독 취소하기");
+        foreach (var baseGem in _baseGems)
+        {
+            OnResetJem -= baseGem.ResetObject;
+        }
     }
 
     #region 플레이어 상태 변경
@@ -130,5 +149,11 @@ public class StageController : MonoBehaviour
     {
         _stageClearInfo.ClearTime = clearTime;
         return _stageClearInfo;
+    }
+
+    public void ResetJemState()
+    {
+        Logger.Log("젬 상태 초기화");
+        OnResetJem?.Invoke();
     }
 }
