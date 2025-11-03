@@ -14399,6 +14399,7 @@ MonoBehaviour:
   _stageId: 1
   _gemCount: 9
   _limitTime: 10
+  _gems: {fileID: 2120031864348942407}
 --- !u!1 &6227262975742682388
 GameObject:
   m_ObjectHideFlags: 0

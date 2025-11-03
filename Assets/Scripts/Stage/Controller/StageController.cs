@@ -11,6 +11,9 @@ public class StageController : MonoBehaviour
     [SerializeField] private int _gemCount;
     [SerializeField] private float _limitTime;
 
+    [Header("젬 오브젝트")]
+    [SerializeField] private GameObject _gems;
+
     public int StageId => _stageId;
     public int GemCount => _gemCount;
     public float LimitTime => _limitTime;
