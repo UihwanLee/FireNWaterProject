@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7584404008168114208}
   - component: {fileID: 1215539765226163222}
   - component: {fileID: 878498684766879112}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Chain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.01840496, y: 0.21779692}
-  m_ConnectedAnchor: {x: 0.01840496, y: -0.36220312}
+  m_ConnectedAnchor: {x: 0.01840496, y: -0.36220306}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0

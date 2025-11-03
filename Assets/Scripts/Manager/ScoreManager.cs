@@ -43,6 +43,10 @@ public class ScoreManager : MonoBehaviour
     private StageClearInfoWrapper _saveData = new();
 
     // todo: 누적 젬 개수
+    private int _fireGemCount;
+    private int _waterGemCount;
+    public int FireGemCount => _fireGemCount;
+    public int WaterGemCount => _waterGemCount;
 
     private void Awake()
     {
@@ -89,6 +93,20 @@ public class ScoreManager : MonoBehaviour
     {
         Logger.Log("제한 시간 오버");
         _isWithinTimeLimit = false;
+    }
+
+    public void AddWaterGem()
+    {
+        _waterGemCount++;
+        Logger.Log($"현재 Water 젬 개수: {_waterGemCount}");
+        AddGem();
+    }
+
+    public void AddFireGem()
+    {
+        _fireGemCount++;
+        Logger.Log($"현재 Fire 젬 개수: {_fireGemCount}");
+        AddGem();
     }
 
     public void AddGem()

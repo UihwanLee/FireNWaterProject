@@ -35,8 +35,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        //SceneManager.LoadScene("StageScene");
+
     }
 
     private void OnDisable()
@@ -73,6 +72,12 @@ public class GameManager : MonoBehaviour
         ResumeStage();
     }
 
+    public void LoadStageScene()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.LoadScene("StageScene");
+    }
+
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -99,8 +104,8 @@ public class GameManager : MonoBehaviour
         };
         _stageManager.OnClearStage += HandleStageClear;
 
-        int stageId = 0;
-        Logger.Log($"{stageId}번째 스테이지 선택");
+        //int stageId = 0;
+        //Logger.Log($"{stageId}번째 스테이지 선택");
         //SelectStage(stageId);
     }
 
@@ -163,9 +168,24 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region 점수 관련 메서드
-    public void AddGem()
+    public void AddFireGem()
     {
-        _scoreManager.AddGem();
+        _scoreManager.AddFireGem();
+    }
+
+    public void AddWaterGem()
+    {
+        _scoreManager.AddWaterGem();
+    }
+
+    public int GetFireGemCount()
+    {
+        return _scoreManager.FireGemCount;
+    }
+
+    public int GetWaterGemCount()
+    {
+        return _scoreManager.WaterGemCount;
     }
 
     /// <summary>

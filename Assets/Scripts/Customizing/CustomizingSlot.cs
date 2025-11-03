@@ -43,6 +43,10 @@ public class CustomizingSlot : MonoBehaviour
         btn = btn_purchase.GetComponent<UnityEngine.UI.Button>();
         btn.onClick.AddListener(() => manager.TryPurchaseColor(data));
 
+        // Jem 이미지 적용
+        Image jem_img = object_jem.GetComponent<Image>();
+        jem_img.sprite = data.jemSprite;
+
         this.data = data;
 
         ResetSlot();
