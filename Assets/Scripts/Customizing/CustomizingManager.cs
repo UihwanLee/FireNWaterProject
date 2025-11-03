@@ -39,12 +39,32 @@ public class CustomizingManager : MonoBehaviour
     private CustomizingSlot currentEmberSlot;
     private CustomizingSlot currentWadeSlot;
 
+    [Header("Test")]
+    [SerializeField] private SpriteRenderer ember;
+    [SerializeField] private SpriteRenderer wade;
+    [SerializeField] private int JemCount = 10000; // Test 용
+
     private void Start()
     {
+        InitColorDataList();
         GenerateEmberNWadeSlots();
     }
 
     #region 커스터마이징 초기화
+
+    private void InitColorDataList()
+    {
+        for (int i = 0; i < emberColorDataList.Count; i++)
+        {
+            emberColorDataList[i].isPurchase = (i == 0);
+            emberColorDataList[i].isPick = (i == 0);
+        }
+        for (int i = 0; i < wadeColorDataList.Count; i++)
+        {
+            wadeColorDataList[i].isPurchase = (i == 0);
+            wadeColorDataList[i].isPick = (i == 0);
+        }
+    }
 
     private void GenerateEmberNWadeSlots()
     {
@@ -60,7 +80,7 @@ public class CustomizingManager : MonoBehaviour
         {
             int idx = i;
             CustomizingSlot slot = Instantiate(colorSlotPrefab, slotParent).GetComponent<CustomizingSlot>();
-            slot.Init(idx, dataList[idx]);
+            slot.Init(idx, dataList[idx], this);
 
             UnityEngine.UI.Button btn = slot.GetComponentInChildren<UnityEngine.UI.Button>();
             btn.onClick.AddListener(() => ChoiceColorSlot(slot));
@@ -94,6 +114,13 @@ public class CustomizingManager : MonoBehaviour
         // 이전에 선택된 슬롯이 없다면 초기화
         if (currentEmberSlot == null) currentEmberSlot = emberSlotList[slot.Data.idx];
 
+        // 이미 산 커스터마이징 슬롯이라면 적용
+        if (slot.Data.isPurchase)
+        {
+            currentEmberSlot.Data.isPick = false;
+            ApplyCustomizing(currentEmberSlot.Data);
+        }
+
         // 이전 슬롯 초기화
         currentEmberSlot.ResetSlot();
 
@@ -103,16 +130,19 @@ public class CustomizingManager : MonoBehaviour
 
         // 아바타 색상 적용
         ApplyCustomizingAvatar(slot.Data);
-
-        // 이미 산 커스터마이징 슬롯이라면 적용
-        if (currentEmberSlot.Data.isPurchase)
-            ApplyCustomizing(currentEmberSlot.Data);
     }
 
     private void ChoiceWadeColor(CustomizingSlot slot)
     {
         // 이전에 선택된 슬롯이 없다면 초기화
         if (currentWadeSlot == null) currentWadeSlot = wadeSlotList[slot.Data.idx];
+
+        // 이미 산 커스터마이징 슬롯이라면 적용
+        if (slot.Data.isPurchase)
+        {
+            currentWadeSlot.Data.isPick = false;
+            ApplyCustomizing(currentWadeSlot.Data);
+        }
 
         // 이전 슬롯 초기화
         currentWadeSlot.ResetSlot();
@@ -123,19 +153,34 @@ public class CustomizingManager : MonoBehaviour
 
         // 아바타 색상 적용
         ApplyCustomizingAvatar(slot.Data);
-
-        // 새로운 슬롯 선택
-        if (currentEmberSlot.Data.isPurchase)
-            ApplyCustomizing(currentEmberSlot.Data);
     }
 
     #endregion
 
     #region 커스터마이징 구매
 
-    public void PurchaseColor()
+    public void TryPurchaseColor(CustomizingData data)
     {
+        // 잼 체크
+        if (JemCount <= data.price)
+        {
+            // 돈이 없습니다 UI 띄우기
+            Debug.Log("잼이 부족합니다");
+            return;
+        }
 
+        PurchaseColor(data);
+    }
+
+    private void PurchaseColor(CustomizingData data)
+    {
+        JemCount -= data.price;
+
+        // 데이터 구매 적용
+        data.isPurchase = true;
+
+        // 색상 적용
+        ApplyCustomizing(data);
     }
 
     #endregion
@@ -162,7 +207,64 @@ public class CustomizingManager : MonoBehaviour
 
     private void ApplyCustomizing(CustomizingData data)
     {
+        // 커스터마이징 캐릭터 적용
+        switch (data.type)
+        {
+            case CustomizingType.Ember:
+                if (ember != null)
+                {
+                    ember.material = data.material;
+                    ember.material.SetColor("_Color", new Color(data.color.r, data.color.g, data.color.b));
+                }
+                ResetPickSlot(data);
+                break;
+            case CustomizingType.Wade:
+                if (wade != null)
+                {
+                    wade.material = data.material;
+                    wade.material.SetColor("_Color", new Color(data.color.r, data.color.g, data.color.b));
+                }
+                ResetPickSlot(data);
+                break;
+            default:
+                break;
+        }
+    }
 
+    #endregion
+
+    #region 커스터마이징 업데이트
+
+    private void UpdateJem()
+    {
+
+    }
+
+    private void ResetPickSlot(CustomizingData data)
+    {
+        switch (data.type)
+        {
+            case CustomizingType.Ember:
+                {
+                    for (int i = 0; i < emberSlotList.Count; i++)
+                    {
+                        bool isPick = (i == data.idx);
+                        emberSlotList[i].Data.isPick = isPick;
+                        emberSlotList[i].ResetSlot();
+                    }
+                }
+                break;
+            case CustomizingType.Wade:
+                for (int i = 0; i < wadeSlotList.Count; i++)
+                {
+                    bool isPick = (i == data.idx);
+                    wadeSlotList[i].Data.isPick = isPick;
+                    wadeSlotList[i].ResetSlot();
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     #endregion

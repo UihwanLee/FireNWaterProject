@@ -57,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btn_slot: {fileID: 5205584886033655795}
   img_highlight: {fileID: 9088708218694976756}
+  img_pick: {fileID: 162997586209282835}
   object_jem: {fileID: 1508777154938475846}
   txt_price: {fileID: 3404828942675296314}
   btn_purchase: {fileID: 7994049485666192563}

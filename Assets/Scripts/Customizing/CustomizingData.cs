@@ -12,5 +12,7 @@ public class CustomizingData : ScriptableObject
     public Color color;             // 변경 색상
     public int price;               // 가격
     public bool isPurchase;         // 구매 여부
+    public bool isPick;             // 착용 여부
+    public Sprite jemSprite;        // Jem 이미지
     public Material material;       // 적용 마테리얼
 }

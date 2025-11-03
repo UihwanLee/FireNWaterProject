@@ -9,6 +9,7 @@ public class CustomizingSlot : MonoBehaviour
     [Header("Slot Component")]
     [SerializeField] private GameObject btn_slot;
     [SerializeField] private Image img_highlight;
+    [SerializeField] private Image img_pick;
     [SerializeField] private GameObject object_jem;
     [SerializeField] private TextMeshProUGUI txt_price;
     [SerializeField] private GameObject btn_purchase;
@@ -18,7 +19,7 @@ public class CustomizingSlot : MonoBehaviour
 
     Image img_slot;
 
-    public void Init(int idx, CustomizingData data)
+    public void Init(int idx, CustomizingData data, CustomizingManager manager)
     {
         // Material 적용
         img_slot = btn_slot.GetComponent<Image>();
@@ -34,6 +35,14 @@ public class CustomizingSlot : MonoBehaviour
         // 가격 적용
         txt_price.text = data.price.ToString();
 
+        // 슬롯 버튼 적용
+        UnityEngine.UI.Button btn = btn_slot.GetComponent<UnityEngine.UI.Button>();
+        btn.onClick.AddListener(() => manager.ChoiceColorSlot(this));
+
+        // 구매 버튼 적용
+        btn = btn_purchase.GetComponent<UnityEngine.UI.Button>();
+        btn.onClick.AddListener(() => manager.TryPurchaseColor(data));
+
         this.data = data;
 
         ResetSlot();
@@ -41,12 +50,17 @@ public class CustomizingSlot : MonoBehaviour
 
     public void ResetSlot()
     {
-        // Slot 리셋
-        img_purchase_icon.SetActive(data.isPurchase);
+        // 선택 여부
         img_highlight.transform.gameObject.SetActive(false);
+
+        // 구매 여부
         object_jem.SetActive(!data.isPurchase);
+        img_purchase_icon.SetActive(data.isPurchase);
         txt_price.transform.gameObject.SetActive(!data.isPurchase);
         btn_purchase.transform.gameObject.SetActive(false);
+
+        // 착용 여부
+        img_pick.transform.gameObject.SetActive(data.isPick);
     }
 
     public void SelectSlot()
