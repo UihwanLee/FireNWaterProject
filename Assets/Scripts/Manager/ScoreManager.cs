@@ -232,11 +232,13 @@ public class ScoreManager : MonoBehaviour
 
     private void SaveWaterGemCount()
     {
+        Logger.Log($"Water 젬 개수 저장: {_totalWaterGemCount}");
         PlayerPrefs.SetInt(WaterGemKey, TotalWaterGemCount);
     }
 
     private void SaveFireGemCount()
     {
+        Logger.Log($"Fire 젬 개수 저장: {_totalFireGemCount}");
         PlayerPrefs.SetInt(FireGemKey, TotalFireGemCount);
     }
 
