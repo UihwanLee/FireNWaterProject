@@ -117,12 +117,12 @@ MonoBehaviour:
   acceleration: 30
   deceleration: 0.5
   jumpForce: 40
+  slopeNormal: {x: 0, y: 0}
   isGrounded: 0
   isClimbed: 0
   characterRenderer: {fileID: 1704713298053128444}
   animationHandler: {fileID: 104016049596306909}
   groundHandler: {fileID: 5094658167350088041}
-  capsuleCollider: {fileID: 4350352802757906588}
 --- !u!114 &2545992546454338787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5a4758d8cf159354891c700b567cb715, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -345,11 +345,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6777413383344226356}
   boxCollider2D: {fileID: 8644090859200524642}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
   groundRayCastExtraHeight: 0.1
-  slopeLayer:
-    serializedVersion: 2
-    m_Bits: 512
   slopeRayCastExtraWidth: 0.1
