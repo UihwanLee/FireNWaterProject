@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Wade_2
   m_EditorClassIdentifier: 
   type: 1
+  idx: 1
   color: {r: 1, g: 0, b: 0.63619757, a: 0}
   price: 500
   isPurchase: 0
+  isPick: 0
   material: {fileID: 2100000, guid: c772e002244ca57478be31f833e808a8, type: 2}
