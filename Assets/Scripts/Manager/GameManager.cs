@@ -165,12 +165,6 @@ public class GameManager : MonoBehaviour
         stageClearInfo.StageScore = _scoreManager.CurrentStageScore;
         _scoreManager.SaveStageClearInfo(stageClearInfo);
     }
-
-    public bool CheckClear()
-    {
-        return _stageManager.CheckClear();
-    }
-
     #endregion
 
     #region 점수 관련 메서드
