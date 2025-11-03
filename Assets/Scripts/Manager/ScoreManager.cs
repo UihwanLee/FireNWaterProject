@@ -35,6 +35,8 @@ public class ScoreManager : MonoBehaviour
 
     // Current Stage Info
     private int _currentGemCount = 0;
+    private int _currentFireGemCount;
+    private int _currentWaterGemCount;
 
     public event Func<int, bool> OnCheckGemCount;
 
@@ -43,23 +45,27 @@ public class ScoreManager : MonoBehaviour
     private StageClearInfoWrapper _saveData = new();
 
     // todo: 누적 젬 개수
-    private int _fireGemCount;
-    private int _waterGemCount;
-    public int FireGemCount
+    private readonly string WaterGemKey = "WaterGem";
+    private readonly string FireGemKey = "FireGem";
+
+    private int _totalFireGemCount;
+    private int _totalWaterGemCount;
+
+    public int TotalFireGemCount
     {
-        get { return GetFireGemCount(); }
+        get { return _totalFireGemCount; }
         private set
         {
-            _fireGemCount = value;
+            _totalFireGemCount = value;
             SaveFireGemCount();
         }
     }
-    public int WaterGemCount
+    public int TotalWaterGemCount
     {
-        get { return GetWaterGemCount(); }
+        get { return _totalWaterGemCount; }
         private set
         {
-            _waterGemCount = value;
+            _totalWaterGemCount = value;
             SaveWaterGemCount();
         }
     }
@@ -68,6 +74,7 @@ public class ScoreManager : MonoBehaviour
     {
         SavePath = Path.Combine(Application.persistentDataPath, "SaveStageData.json");
         Load();
+        LoadGemCount();
     }
 
     public void CheckStageScore()
@@ -183,15 +190,15 @@ public class ScoreManager : MonoBehaviour
     #region 젬 관련 메서드
     public void AddWaterGem()
     {
-        WaterGemCount++;
-        Logger.Log($"현재 Water 젬 개수: {WaterGemCount}");
+        _currentWaterGemCount++;
+        Logger.Log($"현재 Water 젬 개수: {_currentWaterGemCount}");
         AddGem();
     }
 
     public void AddFireGem()
     {
-        FireGemCount++;
-        Logger.Log($"현재 Fire 젬 개수: {FireGemCount}");
+        _currentFireGemCount++;
+        Logger.Log($"현재 Fire 젬 개수: {_currentFireGemCount}");
         AddGem();
     }
 
@@ -209,37 +216,31 @@ public class ScoreManager : MonoBehaviour
 
     public void UseWaterGem(int count)
     {
-        WaterGemCount -= count;
+        TotalWaterGemCount -= count;
     }
 
     public void UseFireGem(int count)
     {
-        FireGemCount -= count;
+        TotalFireGemCount -= count;
     }
-
-    private readonly string WaterGemKey = "WaterGem";
-    private readonly string FireGemKey = "FireGem";
 
     private void SaveWaterGemCount()
     {
-        PlayerPrefs.SetInt(WaterGemKey, WaterGemCount);
+        PlayerPrefs.SetInt(WaterGemKey, TotalWaterGemCount);
     }
 
     private void SaveFireGemCount()
     {
-        PlayerPrefs.SetInt(FireGemKey, FireGemCount);
+        PlayerPrefs.SetInt(FireGemKey, TotalFireGemCount);
     }
 
-    private int GetWaterGemCount()
+    private void LoadGemCount()
     {
-        PlayerPrefs.GetInt(WaterGemKey, _waterGemCount);
-        return _waterGemCount;
-    }
-
-    private int GetFireGemCount()
-    {
-        PlayerPrefs.GetInt(FireGemKey, _fireGemCount);
-        return _fireGemCount;
+        PlayerPrefs.GetInt(WaterGemKey, _totalWaterGemCount);
+        PlayerPrefs.GetInt(FireGemKey, _totalFireGemCount);
+        Logger.Log($"젬 개수 로드 완료: " +
+            $"FireGem({_totalFireGemCount}), " +
+            $"WateGem({_totalWaterGemCount})");
     }
     #endregion
 }

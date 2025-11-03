@@ -220,12 +220,12 @@ public class GameManager : MonoBehaviour
 
     public int GetFireGemCount()
     {
-        return _scoreManager.FireGemCount;
+        return _scoreManager.TotalFireGemCount;
     }
 
     public int GetWaterGemCount()
     {
-        return _scoreManager.WaterGemCount;
+        return _scoreManager.TotalWaterGemCount;
     }
 
     public void UseFireGem(int count)
