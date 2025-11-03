@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gate : MonoBehaviour, InteractableObstacle
+public class Gate : MonoBehaviour
 {
     [Header("종점 기준으로 배치해주세요 ")]
     [Range(1, 3)][SerializeField] private int moveRange = 3;
@@ -12,7 +12,9 @@ public class Gate : MonoBehaviour, InteractableObstacle
     [Header("이동방향: OpenType 체크 -> 왼쪽 / 해제 -> 오른족 ")]
     [SerializeField] private bool openType = false; // 오픈형 폐쇄형 여부
     
-   
+   // 데이터 입력 셋
+   private readonly HashSet<GameObject> _inside = new();
+    
     //종점,시점
     private Vector3 _closedDir;
     private Vector3 _openDir;
@@ -20,9 +22,12 @@ public class Gate : MonoBehaviour, InteractableObstacle
     //코루틴 종점 시점
     private Vector3 iPos;
     private Vector3 tPos;
-    
     bool _isOpen;   
     private Coroutine moveRoutine;
+    
+    private int activeCount = 0;  // 현재 Gate를 활성화 중인 버튼 수
+
+    private bool isPusing;
    
     private void Awake()
     {
@@ -57,13 +62,21 @@ public class Gate : MonoBehaviour, InteractableObstacle
         }
         
     }
-
     
     
-    public void Interact(bool on)
+    public void Interact( bool on) 
     {
+        //활성 객체 수 카운트
+        if (on) activeCount++;
+        else activeCount--;
         
-        if (on == _isOpen) return;
+        if (activeCount < 0) activeCount = 0;
+        
+        //활성자가 있으면 열어라 
+        bool shouldOpen = activeCount > 0;
+        //상태변화 없으면 리턴
+        if (shouldOpen == _isOpen) return;
+        
         _isOpen = on;
         
        //가동
@@ -72,7 +85,7 @@ public class Gate : MonoBehaviour, InteractableObstacle
            StopCoroutine(moveRoutine);
        } 
        moveRoutine = StartCoroutine(MoveGate(on? tPos :iPos));
-       
+
     }
 
     private IEnumerator MoveGate(Vector3 targetPos)
@@ -85,5 +98,6 @@ public class Gate : MonoBehaviour, InteractableObstacle
         transform.position = targetPos;
         moveRoutine = null;
     }
+    
     
 }
