@@ -184,7 +184,7 @@ public class BaseController : MonoBehaviour
         {
             ChangeState(CharacterState.JumpUp);
         }
-        else
+        else if(currentVelocityY == 0.0f)
         {
             ChangeState(CharacterState.Idle);
         }
