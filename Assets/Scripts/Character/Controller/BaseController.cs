@@ -184,7 +184,7 @@ public class BaseController : MonoBehaviour
         {
             ChangeState(CharacterState.JumpUp);
         }
-        else if(currentVelocityY == 0.0f)
+        else
         {
             ChangeState(CharacterState.Idle);
         }
@@ -195,6 +195,9 @@ public class BaseController : MonoBehaviour
     /// </summary>
     private void AnimationHandle()
     {
+        bool isAnimationStop = (currentState == CharacterState.Pause || currentState == CharacterState.Die);
+        animationHandler.AnimationStopOrPlay(isAnimationStop);
+
         animationHandler.Move((currentState == CharacterState.Move));
         animationHandler.JumpUp((currentState == CharacterState.JumpUp));
         animationHandler.FallDown((currentState == CharacterState.FallDown));
