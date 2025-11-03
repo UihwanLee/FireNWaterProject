@@ -5,7 +5,7 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private GameObject _stageUI;
+    [SerializeField] private StageUI _stageUI;
 
     [Header("캐릭터")]
     [SerializeField] private GameObject _ember;
@@ -270,7 +270,7 @@ public class StageManager : MonoBehaviour
 
     private void HandleStageExit()
     {
-        _stageUI.SetActive(true);
+        _stageUI.ShowStageMapUI();
         _currentStage.ExecuteExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;
