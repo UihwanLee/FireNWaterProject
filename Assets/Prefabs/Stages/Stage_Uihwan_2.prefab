@@ -2272,7 +2272,7 @@ MonoBehaviour:
   _emberSpwanPoint: {fileID: 1379186596345837160}
   _wadeSpwanPoint: {fileID: 6782133401891653880}
   _stageId: 0
-  _elementCount: 0
+  _gemCount: 0
   _limitTime: 0
 --- !u!1 &4395722650767263580
 GameObject:
