@@ -33,6 +33,26 @@ public class StageUI : MonoBehaviour
         _buttonParent.SetActive(false);
     }
 
+    public void ShowCustomizingUI()
+    {
+        _customizingUI.SetActive(true);
+    }
+
+    public void CloseCustomizingUI()
+    {
+        _customizingUI?.SetActive(false);
+    }
+
+    public void ShowTimerUI()
+    {
+        _timerUI.SetActive(true);
+    }
+
+    public void CloseTimeUI()
+    {
+        _timerUI.SetActive(false);
+    }
+
     private void CreateStageButtons()
     {
         int colums = 5;
