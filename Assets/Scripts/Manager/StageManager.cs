@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private GameObject _mapUI;
+    [SerializeField] private GameObject _stageUI;
 
     [Header("캐릭터")]
     [SerializeField] private GameObject _ember;
@@ -22,7 +21,7 @@ public class StageManager : MonoBehaviour
     // 게임 상태 정보
     private GameState _currentGameState = GameState.None;
 
-    // 측정할 정보
+    // 타이머
     private float _timer = 0f;
     public float Timer
     {
@@ -37,6 +36,8 @@ public class StageManager : MonoBehaviour
             _timer = value;
         }
     }
+
+    // 플래그 및 트리거
     private bool _checkTimeLimit = false;
     public event Action OnFailedToClearWithinTimeLimit;
     public event Action OnClearStage;
@@ -269,7 +270,7 @@ public class StageManager : MonoBehaviour
 
     private void HandleStageExit()
     {
-        _mapUI.SetActive(true);
+        _stageUI.SetActive(true);
         _currentStage.ExecuteExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;

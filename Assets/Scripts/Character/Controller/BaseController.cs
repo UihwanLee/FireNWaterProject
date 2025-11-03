@@ -128,7 +128,7 @@ public class BaseController : MonoBehaviour
     protected void Jump()
     {
         if (currentState == CharacterState.Pause || currentState == CharacterState.Die) return;
-        if (isGrounded)
+        if (isGrounded || isClimbed)
         {
             // 캐릭터가 땅에 착지된 상태라면 점프
             _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -184,7 +184,7 @@ public class BaseController : MonoBehaviour
         {
             ChangeState(CharacterState.JumpUp);
         }
-        else if(currentVelocityY == 0.0f)
+        else
         {
             ChangeState(CharacterState.Idle);
         }
@@ -195,6 +195,9 @@ public class BaseController : MonoBehaviour
     /// </summary>
     private void AnimationHandle()
     {
+        bool isAnimationStop = (currentState == CharacterState.Pause || currentState == CharacterState.Die);
+        animationHandler.AnimationStopOrPlay(isAnimationStop);
+
         animationHandler.Move((currentState == CharacterState.Move));
         animationHandler.JumpUp((currentState == CharacterState.JumpUp));
         animationHandler.FallDown((currentState == CharacterState.FallDown));

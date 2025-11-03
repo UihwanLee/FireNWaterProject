@@ -15,6 +15,11 @@ public class AnimationHandler : MonoBehaviour
         this.animator = GetComponentInChildren<Animator>();
     }
 
+    public void AnimationStopOrPlay(bool stop)
+    {
+        animator.speed = stop ? 0 : 1;
+    }
+
     public void Move(bool isMove)
     {
         animator.SetBool(IsMoving, isMove);
