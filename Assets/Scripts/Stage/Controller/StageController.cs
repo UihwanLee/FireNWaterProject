@@ -20,6 +20,8 @@ public class StageController : MonoBehaviour
 
     private GameObject _ember;
     private GameObject _wade;
+    public GameObject Ember => _ember;
+    public GameObject Wade => _wade;
     private EmberController _emberController;
     private WadeController _wadeController;
 
