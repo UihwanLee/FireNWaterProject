@@ -22,8 +22,7 @@ Fire&Water 게임을 레퍼런스하여 만든 2D 플랫포머 게임입니다.
 
 |Leader|Team1|Team2|Team3|Team4|
 |:-----:|:-----:|:-----:|:-----:|:-----:|
-|![team1](<img width="420" height="420" alt="leader1" src="https://github.com/user-attachments/assets/1def0df3-7a3c-4255-8ac0-7b33c597846d" />)|![team2](<img width="420" height="420" alt="team1" src="https://github.com/user-attachments/assets/125a18e6-2c15-4784-afef-b5d147c314d9" />)|![team3](<img width="460" height="460" alt="team2" src="https://github.com/user-attachments/assets/f0a446fd-e7e0-471f-a525-b72dffcb7f65" />)|![team4](![team3](https://github.com/user-attachments/assets/347814aa-0400-4a21-834c-057079182127)
-)|![team5](<img width="135" height="135" alt="team4" src="https://github.com/user-attachments/assets/53e44ada-3d29-4e16-b77c-06e9fa050f67" />)|
+|![team1](https://avatars.githubusercontent.com/u/229876104?v=4)|![team2](<img width="420" height="420" alt="team1" src="https://github.com/user-attachments/assets/125a18e6-2c15-4784-afef-b5d147c314d9" />)|![team3](<img width="460" height="460" alt="team2" src="https://github.com/user-attachments/assets/f0a446fd-e7e0-471f-a525-b72dffcb7f65" />)|![team4](https://github.com/user-attachments/assets/347814aa-0400-4a21-834c-057079182127)|![team5](<img width="135" height="135" alt="team4" src="https://github.com/user-attachments/assets/53e44ada-3d29-4e16-b77c-06e9fa050f67" />)|
 |차동욱(https://github.com/lachy75127873-oss)|박재아(https://github.com/jaeapark)|장현우(https://github.com/evanjn)|신주은(https://github.com/shin0112)|이의환(https://github.com/UihwanLee)|
 
 - 차동욱(리더): 장애물 및 퍼즐 기믹 구현
