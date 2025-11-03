@@ -8,11 +8,11 @@ public class StageController : MonoBehaviour
 
     [Header("스테이지 정보")]
     [SerializeField] private int _stageId;
-    [SerializeField] private int _elementCount;
+    [SerializeField] private int _gemCount;
     [SerializeField] private float _limitTime;
 
     public int StageId => _stageId;
-    public int ElementCount => _elementCount;
+    public int GemCount => _gemCount;
     public float LimitTime => _limitTime;
 
     private Stage _stage;
@@ -47,7 +47,7 @@ public class StageController : MonoBehaviour
             _wadeSpwanPoint.position = Vector3.zero;
         }
 
-        _stage = new(_stageId, _limitTime, _elementCount);
+        _stage = new(_stageId, _limitTime, _gemCount);
         _stageClearInfo = new(_stage);
         Logger.Log($"stage: {_stage}\n stage info: {_stageClearInfo}");
     }
@@ -109,8 +109,16 @@ public class StageController : MonoBehaviour
     }
     #endregion
 
-    public void CheckScore()
+    public bool CheckGemCount(int currentGemCount)
     {
-        Logger.NotImpl();
+        Logger.Log($"스테이지 총 젬 개수: {_gemCount} 현재 획득 젬 개수: {currentGemCount}");
+        if (_gemCount == currentGemCount) return true;
+        return false;
+    }
+
+    public StageClearInfo GetStageClearInfo(float clearTime)
+    {
+        _stageClearInfo.ClearTime = clearTime;
+        return _stageClearInfo;
     }
 }
