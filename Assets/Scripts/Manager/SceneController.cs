@@ -37,6 +37,10 @@ public class SceneController : MonoBehaviour
     //æ¿ ¿Ãµø
     public void LoadScene(SceneType type)
     {
+        if (type == SceneType.StageScene)
+        {
+            GameManager.Instance.LoadStageScene();
+        }
         string sceneName = sceneNames[type];
         SceneManager.LoadScene(sceneName);
     }

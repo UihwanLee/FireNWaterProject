@@ -2,22 +2,45 @@ using TMPro;
 using UnityEngine;
 
 
-public class StageMapUI : MonoBehaviour
+public class StageUI : MonoBehaviour
 {
+    [Header("자식 오브젝트")]
+    [SerializeField] private GameObject _bgImg;
+    [SerializeField] private GameObject _buttonParent;
+    [SerializeField] private GameObject _customizingUI;
+    [SerializeField] private GameObject _timerUI;
+
+    [Header("스테이지 선택 버튼")]
     [SerializeField] private GameObject _buttonPrefab;
-    [SerializeField] private Transform _buttonParent;
     [SerializeField] private float _spacing;
 
     // todo: 이전 스테이지 클리어 되어야지만 다음 스테이지 가능
 
     private void Start()
     {
+        CreateStageButtons();
+    }
+
+    public void ShowStageMapUI()
+    {
+        _buttonParent.SetActive(true);
+    }
+
+    public void CloseStageMapUI()
+    {
+        _buttonParent.SetActive(false);
+    }
+
+    private void CreateStageButtons()
+    {
         int colums = 5;
         Vector2 startPos = new Vector2(-700f, 0f);
 
+        Transform buttonParentTransform = _buttonParent.transform;
+
         for (int i = 0; i < GameManager.STAGE_NUM; i++)
         {
-            GameObject btnObj = Instantiate(_buttonPrefab, _buttonParent);
+            GameObject btnObj = Instantiate(_buttonPrefab, buttonParentTransform);
             RectTransform rect = btnObj.GetComponent<RectTransform>();
 
             int row = i / colums;
