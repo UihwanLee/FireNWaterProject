@@ -37,6 +37,7 @@ public class CollisionHandler : MonoBehaviour
         Lever lever = other.GetComponent<Lever>();
         Button button = other.GetComponent<Button>();
         ExitEmber  exitEmber = other.GetComponent<ExitEmber>();
+        ExitWade exitWade = other.GetComponent<ExitWade>();
         
         //장애물 판정
         if(poison != null) poison.Activate(controller);
@@ -67,11 +68,17 @@ public class CollisionHandler : MonoBehaviour
             button.RegisterPusher(gameObject);
         }
 
+        //엠버 출구 감지
         if (exitEmber != null)
         {
             exitEmber.Activate(controller);
         }
         
+        //웨이드 출구 감지
+        if (exitWade != null)
+        {
+            exitWade.Activate(controller);
+        }
         
     }
 
@@ -89,6 +96,8 @@ public class CollisionHandler : MonoBehaviour
         Lever lever = other.GetComponent<Lever>();
         Button button = other.GetComponent<Button>();        
         ExitEmber exitEmber = other.GetComponent<ExitEmber>();
+        ExitWade exitWade = other.GetComponent<ExitWade>();
+        
         //레버 판정
         if (lever != null) lever.OnPusherExit(controller);
         
@@ -96,9 +105,16 @@ public class CollisionHandler : MonoBehaviour
         //if (button != null) button.Recovery();
         if (button != null) button.UnregisterPusher(gameObject);
 
+        //엠버 출구 감지
         if (exitEmber != null)
         {
             exitEmber.Deactivate();
+        }
+        
+        //웨이드 출구 감지
+        if (exitWade != null)
+        {
+            exitWade.Deactivate();
         }
     }
 }

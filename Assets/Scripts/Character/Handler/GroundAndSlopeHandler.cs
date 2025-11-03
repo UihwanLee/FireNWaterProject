@@ -63,7 +63,7 @@ public class GroundAndSlopeHandler : MonoBehaviour
         Vector2 normal = raycastHit.normal;
         Debug.DrawRay(raycastHit.point, normal, Color.green);
 
-        if(raycastHit.collider != null) Debug.Log(normal);
+        //if(raycastHit.collider != null) Debug.Log(normal);
 
         // 평면 벡터 구하는 함수 Perpendicular를 이용하여 정규화하여 Controller에게 전달
         Vector2 slopeDir = Vector2.Perpendicular(normal).normalized;
