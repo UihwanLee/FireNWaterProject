@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     public static readonly int STAGE_NUM = 5;
 
+    public GameObject SettingWindow;
+
     // 추후 매니저 추가 예정
     [Header("Managers")]
     [SerializeField] private ScoreManager _scoreManager;
@@ -47,6 +49,19 @@ public class GameManager : MonoBehaviour
         };
         _stageManager.OnClearStage -= HandleStageClear;
     }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (SettingWindow.activeSelf)
+                SettingWindow.SetActive(false);
+            else
+                SettingWindow.SetActive(true);
+        }
+    }
+
+
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
