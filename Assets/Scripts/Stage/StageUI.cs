@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 
-public class StageMapUI : MonoBehaviour
+public class StageUI : MonoBehaviour
 {
     [SerializeField] private GameObject _buttonPrefab;
     [SerializeField] private Transform _buttonParent;
