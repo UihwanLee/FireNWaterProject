@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface InteractableObstacle
 {
-    void Interact();
+    void Interact(bool on);
     
 }
