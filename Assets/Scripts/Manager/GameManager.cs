@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         //SceneManager.LoadScene("StageScene");
+    }
+
     private void OnDisable()
     {
         Logger.Log("델리게이트 제거 (시간 제한, 스테이지 시작, 스테이지 클리어");
