@@ -73,7 +73,10 @@ public class GameManager : MonoBehaviour
             _scoreManager.ResetScoreFlags();
         };
         _stageManager.OnClearStage += HandleStageClear;
-        SelectStage(1);
+
+        int stageId = 0;
+        Logger.Log($"{stageId}번째 스테이지 선택");
+        //SelectStage(stageId);
     }
 
     #region Stage 상태 관리 메서드
