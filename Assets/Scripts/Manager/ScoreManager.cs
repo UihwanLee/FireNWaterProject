@@ -134,6 +134,10 @@ public class ScoreManager : MonoBehaviour
 
         StageClearInfo stageClearInfo = stageClearInfos[id];
 
+        // 젬 데이터 저장
+        TotalWaterGemCount += _currentWaterGemCount;
+        TotalFireGemCount += _currentFireGemCount;
+
         // StageScore: A = 0 / B = 1 / C = 2 / None = 3
         // 점수가 더 낮거나, 클리어 시간이 길 경우 저장 x
         if (newClearInfo.StageScore > stageClearInfo.StageScore)
@@ -154,10 +158,6 @@ public class ScoreManager : MonoBehaviour
             $"clear time: {newClearInfo.ClearTime}");
         stageClearInfos[id] = newClearInfo;
         Save();
-
-        // 젬 데이터 저장
-        TotalWaterGemCount += _currentWaterGemCount;
-        TotalFireGemCount += _currentFireGemCount;
     }
 
     private void Save()
@@ -232,11 +232,13 @@ public class ScoreManager : MonoBehaviour
 
     private void SaveWaterGemCount()
     {
+        Logger.Log($"Water 젬 개수 저장: {_totalWaterGemCount}");
         PlayerPrefs.SetInt(WaterGemKey, TotalWaterGemCount);
     }
 
     private void SaveFireGemCount()
     {
+        Logger.Log($"Fire 젬 개수 저장: {_totalFireGemCount}");
         PlayerPrefs.SetInt(FireGemKey, TotalFireGemCount);
     }
 

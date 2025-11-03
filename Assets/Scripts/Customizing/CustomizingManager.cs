@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -51,6 +50,7 @@ public class CustomizingManager : MonoBehaviour
     {
         InitColorDataList();
         GenerateEmberNWadeSlots();
+        UpdateJem();
     }
 
     #region 커스터마이징 초기화
@@ -168,17 +168,19 @@ public class CustomizingManager : MonoBehaviour
         if (data.type == CustomizingType.Ember)
         {
             // fire Jem Count 비교
-            if (JemCount <= data.price)
+            if (GameManager.Instance.GetFireGemCount() <= data.price)
             {
                 Debug.Log("Fire Jem이 부족합니다");
+                return;
             }
         }
         else
         {
             // fire Jem Count 비교
-            if (JemCount <= data.price)
+            if (GameManager.Instance.GetWaterGemCount() <= data.price)
             {
                 Debug.Log("Water Jem이 부족합니다");
+                return;
             }
         }
 
@@ -189,11 +191,11 @@ public class CustomizingManager : MonoBehaviour
     {
         if (data.type == CustomizingType.Ember)
         {
-            // fire Jem Count 줄이기
+            GameManager.Instance.UseFireGem(data.price);
         }
         else
         {
-            // Water Jem Count 줄이기
+            GameManager.Instance.UseWaterGem(data.price);
         }
         JemCount -= data.price;
 
@@ -261,8 +263,8 @@ public class CustomizingManager : MonoBehaviour
 
     private void UpdateJem()
     {
-        //fireJemCount.text = 
-        //waterJemCOunt.text =
+        fireJemCount.text = GameManager.Instance.GetFireGemCount().ToString();
+        waterJemCount.text = GameManager.Instance.GetWaterGemCount().ToString();
     }
 
     private void ResetPickSlot(CustomizingData data)
