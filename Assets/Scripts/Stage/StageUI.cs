@@ -6,6 +6,7 @@ public class StageUI : MonoBehaviour
 {
     [Header("자식 오브젝트")]
     [SerializeField] private GameObject _bgImg;
+    [SerializeField] private GameObject _logo;
     [SerializeField] private GameObject _buttonParent;
     [SerializeField] private GameObject _customizingUI;
     [SerializeField] private GameObject _timerUI;
@@ -25,13 +26,17 @@ public class StageUI : MonoBehaviour
     #region UI Show/Close
     public void ShowStageMapUI()
     {
+        if (_bgImg.activeSelf) return;
         _bgImg.SetActive(true);
+        _logo.SetActive(true);
         _buttonParent.SetActive(true);
     }
 
     public void CloseStageMapUI()
     {
+        if (!_bgImg.activeSelf) return;
         _bgImg.SetActive(false);
+        _logo.SetActive(false);
         _buttonParent.SetActive(false);
     }
 
