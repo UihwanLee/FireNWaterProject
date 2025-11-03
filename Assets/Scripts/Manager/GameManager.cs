@@ -35,8 +35,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        //SceneManager.LoadScene("StageScene");
+
     }
 
     private void OnDisable()
@@ -73,6 +72,12 @@ public class GameManager : MonoBehaviour
         ResumeStage();
     }
 
+    public void LoadStageScene()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.LoadScene("StageScene");
+    }
+
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -99,8 +104,8 @@ public class GameManager : MonoBehaviour
         };
         _stageManager.OnClearStage += HandleStageClear;
 
-        int stageId = 0;
-        Logger.Log($"{stageId}번째 스테이지 선택");
+        //int stageId = 0;
+        //Logger.Log($"{stageId}번째 스테이지 선택");
         //SelectStage(stageId);
     }
 
