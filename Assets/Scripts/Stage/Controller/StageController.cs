@@ -41,7 +41,7 @@ public class StageController : MonoBehaviour
         _wade = wade;
         _emberController = emberController;
         _wadeController = wadeController;
-        _baseGems = _gems.GetComponents<BaseGem>();
+        _baseGems = _gems.GetComponentsInChildren<BaseGem>(true);
     }
 
     private void OnEnable()
