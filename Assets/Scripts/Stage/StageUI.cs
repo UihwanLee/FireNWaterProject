@@ -12,6 +12,11 @@ public class StageUI : MonoBehaviour
 
     private void Start()
     {
+        CreateStageButtons();
+    }
+
+    private void CreateStageButtons()
+    {
         int colums = 5;
         Vector2 startPos = new Vector2(-700f, 0f);
 
