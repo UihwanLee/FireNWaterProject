@@ -8,7 +8,8 @@ public class Lava : MonoBehaviour , InteractWithController
         
         public void Activate(BaseController wade)
         {
-                //사망 함수
+                //사망
+                wade.Death();
         }
     
 }
