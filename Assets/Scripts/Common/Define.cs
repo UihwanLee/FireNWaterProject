@@ -24,6 +24,8 @@ public static class Define
     public static readonly float ACCELERATION = 30f;
     public static readonly float DECELERATION = 0.5f;
 
+    public static readonly float SLOPE_ACCELERATION = 60f;
+
     public static readonly float JUMPFORCE = 50f;
 
     public const float BASE_FIRCITON = 0.4f;
