@@ -45,8 +45,24 @@ public class ScoreManager : MonoBehaviour
     // todo: 누적 젬 개수
     private int _fireGemCount;
     private int _waterGemCount;
-    public int FireGemCount => _fireGemCount;
-    public int WaterGemCount => _waterGemCount;
+    public int FireGemCount
+    {
+        get { return _fireGemCount; }
+        private set
+        {
+            _fireGemCount = value;
+            SaveFireGemCount();
+        }
+    }
+    public int WaterGemCount
+    {
+        get { return _waterGemCount; }
+        private set
+        {
+            _waterGemCount = value;
+            SaveWaterGemCount();
+        }
+    }
 
     private void Awake()
     {
@@ -94,33 +110,6 @@ public class ScoreManager : MonoBehaviour
         Logger.Log("제한 시간 오버");
         _isWithinTimeLimit = false;
     }
-
-    public void AddWaterGem()
-    {
-        _waterGemCount++;
-        Logger.Log($"현재 Water 젬 개수: {_waterGemCount}");
-        AddGem();
-    }
-
-    public void AddFireGem()
-    {
-        _fireGemCount++;
-        Logger.Log($"현재 Fire 젬 개수: {_fireGemCount}");
-        AddGem();
-    }
-
-    public void AddGem()
-    {
-        _currentGemCount++;
-        Logger.Log($"현재 젬 개수: {_currentGemCount}");
-
-        if (OnCheckGemCount?.Invoke(_currentGemCount) ?? false)
-        {
-            Logger.Log("모든 젬 획득");
-            _isAllGemsCollected = true;
-        }
-    }
-
     #region 데이터 저장/로드
     public void SaveStageClearInfo(StageClearInfo newClearInfo)
     {
@@ -188,6 +177,57 @@ public class ScoreManager : MonoBehaviour
     public void ResetData()
     {
         if (File.Exists(SavePath)) File.Delete(SavePath);
+    }
+    #endregion
+
+    #region 젬 관련 메서드
+    public void AddWaterGem()
+    {
+        WaterGemCount++;
+        Logger.Log($"현재 Water 젬 개수: {WaterGemCount}");
+        AddGem();
+    }
+
+    public void AddFireGem()
+    {
+        FireGemCount++;
+        Logger.Log($"현재 Fire 젬 개수: {FireGemCount}");
+        AddGem();
+    }
+
+    public void AddGem()
+    {
+        _currentGemCount++;
+        Logger.Log($"현재 젬 개수: {_currentGemCount}");
+
+        if (OnCheckGemCount?.Invoke(_currentGemCount) ?? false)
+        {
+            Logger.Log("모든 젬 획득");
+            _isAllGemsCollected = true;
+        }
+    }
+
+    public void UseWaterGem(int count)
+    {
+        WaterGemCount -= count;
+    }
+
+    public void UseFireGem(int count)
+    {
+        FireGemCount -= count;
+    }
+
+    private readonly string WaterGemKey = "WaterGem";
+    private readonly string FireGemKey = "FireGem";
+
+    private void SaveWaterGemCount()
+    {
+        PlayerPrefs.SetInt(WaterGemKey, WaterGemCount);
+    }
+
+    private void SaveFireGemCount()
+    {
+        PlayerPrefs.SetInt(FireGemKey, FireGemCount);
     }
     #endregion
 }
