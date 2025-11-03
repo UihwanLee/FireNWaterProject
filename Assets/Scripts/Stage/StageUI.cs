@@ -21,6 +21,7 @@ public class StageUI : MonoBehaviour
         CreateStageButtons();
     }
 
+    #region UI Show/Close
     public void ShowStageMapUI()
     {
         _bgImg.SetActive(true);
@@ -35,23 +36,28 @@ public class StageUI : MonoBehaviour
 
     public void ShowCustomizingUI()
     {
+        if (_customizingUI.activeSelf) return;
         _customizingUI.SetActive(true);
     }
 
     public void CloseCustomizingUI()
     {
-        _customizingUI?.SetActive(false);
+        if (!_customizingUI.activeSelf) return;
+        _customizingUI.SetActive(false);
     }
 
     public void ShowTimerUI()
     {
+        if (_timerUI.activeSelf) return;
         _timerUI.SetActive(true);
     }
 
     public void CloseTimeUI()
     {
+        if (!_timerUI.activeSelf) return;
         _timerUI.SetActive(false);
     }
+    #endregion
 
     private void CreateStageButtons()
     {
