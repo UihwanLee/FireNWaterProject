@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,8 @@ public class CustomizingManager : MonoBehaviour
     [SerializeField] private GameObject colorSlotPrefab;
     [SerializeField] private Image avatar_ember;
     [SerializeField] private Image avatar_wade;
+    [SerializeField] private TextMeshProUGUI fireJemCount;
+    [SerializeField] private TextMeshProUGUI waterJemCount;
 
     [Header("Transform Info")]
     [SerializeField] private Transform emberColorSlotParent;
@@ -162,11 +165,21 @@ public class CustomizingManager : MonoBehaviour
     public void TryPurchaseColor(CustomizingData data)
     {
         // 잼 체크
-        if (JemCount <= data.price)
+        if (data.type == CustomizingType.Ember)
         {
-            // 돈이 없습니다 UI 띄우기
-            Debug.Log("잼이 부족합니다");
-            return;
+            // fire Jem Count 비교
+            if (JemCount <= data.price)
+            {
+                Debug.Log("Fire Jem이 부족합니다");
+            }
+        }
+        else
+        {
+            // fire Jem Count 비교
+            if (JemCount <= data.price)
+            {
+                Debug.Log("Water Jem이 부족합니다");
+            }
         }
 
         PurchaseColor(data);
@@ -174,7 +187,18 @@ public class CustomizingManager : MonoBehaviour
 
     private void PurchaseColor(CustomizingData data)
     {
+        if (data.type == CustomizingType.Ember)
+        {
+            // fire Jem Count 줄이기
+        }
+        else
+        {
+            // Water Jem Count 줄이기
+        }
         JemCount -= data.price;
+
+        // Jem 적용
+        UpdateJem();
 
         // 데이터 구매 적용
         data.isPurchase = true;
@@ -237,7 +261,8 @@ public class CustomizingManager : MonoBehaviour
 
     private void UpdateJem()
     {
-
+        //fireJemCount.text = 
+        //waterJemCOunt.text =
     }
 
     private void ResetPickSlot(CustomizingData data)

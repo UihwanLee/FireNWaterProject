@@ -50,18 +50,20 @@ public class GroundAndSlopeHandler : MonoBehaviour
         Vector2 dir = (controller.MoveDirection.x > 0.0f) ? Vector2.right : Vector2.left;
         Vector2 center = boxCollider2D.bounds.center;
         float halfWidth = boxCollider2D.bounds.extents.x;
-        float height = boxCollider2D.bounds.extents.y * 2;
+        float height = boxCollider2D.bounds.extents.y * 2 + 0.15f;
 
         // Ray를 나가는 위치를 x는 boxCollider 양끝으로 설정, y위치는 height 만큼
         Vector2 origin = new Vector2(center.x + (dir.x * halfWidth), center.y + height);
         Debug.DrawRay(origin, Vector2.down * 0.1f, Color.blue);
 
         // 정한 위치(origin)에서 법선 벡터를 구하기 위해 아래로 RayCast
-        RaycastHit2D raycastHit = Physics2D.Raycast(origin, Vector2.down, 0.3f, Define.LayerMask.SLOPE);
+        RaycastHit2D raycastHit = Physics2D.Raycast(origin, Vector2.down, 0.4f, Define.LayerMask.SLOPE);
 
         // 법선 벡터는 raycatsHit.normal로 구할 수 있음
         Vector2 normal = raycastHit.normal;
         Debug.DrawRay(raycastHit.point, normal, Color.green);
+
+        if(raycastHit.collider != null) Debug.Log(normal);
 
         // 평면 벡터 구하는 함수 Perpendicular를 이용하여 정규화하여 Controller에게 전달
         Vector2 slopeDir = Vector2.Perpendicular(normal).normalized;
@@ -72,12 +74,10 @@ public class GroundAndSlopeHandler : MonoBehaviour
         else if(controller.MoveDirection.x < 0 && slopeDir.x > 0)
             slopeDir *= -1;
 
-        Debug.DrawRay(raycastHit.point, slopeDir, Color.red);
-
         controller.slopeNormal = slopeDir;
 
         // 디버그 용 : Slope 체크 Ray Draw
-        //DrawRay(raycastHit, center, dir * (halfWidth + slopeRayCastExtraWidth));
+        //DrawRay(raycastHit, origin, Vector2.down * 0.4f);
 
         return (raycastHit.collider != null);
     }

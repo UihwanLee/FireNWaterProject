@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] private GameObject _mapUI;
+
     [Header("캐릭터")]
     [SerializeField] private GameObject _ember;
     [SerializeField] private GameObject _wade;
@@ -265,6 +269,7 @@ public class StageManager : MonoBehaviour
 
     private void HandleStageExit()
     {
+        _mapUI.SetActive(true);
         _currentStage.ExecuteExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;
