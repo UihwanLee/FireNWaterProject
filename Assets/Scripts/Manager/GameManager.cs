@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         //SceneManager.LoadScene("StageScene");
+    }
+
     private void OnDisable()
     {
         Logger.Log("델리게이트 제거 (시간 제한, 스테이지 시작, 스테이지 클리어");
@@ -71,7 +73,10 @@ public class GameManager : MonoBehaviour
             _scoreManager.ResetScoreFlags();
         };
         _stageManager.OnClearStage += HandleStageClear;
-        SelectStage(1);
+
+        int stageId = 0;
+        Logger.Log($"{stageId}번째 스테이지 선택");
+        //SelectStage(stageId);
     }
 
     #region Stage 상태 관리 메서드
