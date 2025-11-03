@@ -11,12 +11,12 @@ public class StageManager : MonoBehaviour
     private EmberController _emberController;
     private WadeController _wadeController;
 
+    // 스테이지 정보
     private Dictionary<int, StageController> _stages = new();
     private StageController _currentStage;
 
+    // 게임 상태 정보
     private GameState _currentGameState = GameState.None;
-    public GameState CurrentGameState => _currentGameState;
-    public event Action<GameState> OnGameStateChanged;
 
     // 측정할 정보
     private float _timer = 0f;
@@ -25,13 +25,18 @@ public class StageManager : MonoBehaviour
         get => _timer;
         private set
         {
-            if (_currentStage.LimitTime < value)
+            if (!_checkTimeLimit && _currentStage.LimitTime < value)
             {
-                // todo: limit time이랑 비교하기
+                OnFailedToClearWithinTimeLimit?.Invoke();
+                _checkTimeLimit = true;
             }
             _timer = value;
         }
     }
+    private bool _checkTimeLimit = false;
+    public event Action OnFailedToClearWithinTimeLimit;
+    public event Action OnClearStage;
+    public event Action OnStartStage;
 
     private void Awake()
     {
@@ -81,16 +86,19 @@ public class StageManager : MonoBehaviour
             _stages[id] = stage;                                        // dict 채우기
             stage.gameObject.SetActive(false);                          // 모두 비활성화 하기
         }
+        Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
+    }
 
-        OnGameStateChanged += HandleStateChanged;
+    private void OnEnable()
+    {
+        Logger.Log("Stage Manager 엘리게이트 추가");
         _emberController.OnPlayerDied += HandlePlayerDeath;
         _wadeController.OnPlayerDied += HandlePlayerDeath;
-        Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
     }
 
     private void Update()
     {
-        if (CurrentGameState == GameState.Play)
+        if (_currentGameState == GameState.Play)
         {
             // 타이머 돌아가는 로직 작성
             Timer += Time.deltaTime;
@@ -107,8 +115,7 @@ public class StageManager : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("[StageManager] OnDisable 호출됨");
-        OnGameStateChanged -= HandleStateChanged;
+        Logger.Log("Stage Manager 엘리게이트 제거");
         _emberController.OnPlayerDied -= HandlePlayerDeath;
         _wadeController.OnPlayerDied -= HandlePlayerDeath;
     }
@@ -135,7 +142,10 @@ public class StageManager : MonoBehaviour
         ChangeGameState(GameState.Start);                       // 자동 시작
     }
 
-    // 전이 가능한 상태 지정
+    #region 스테이지 상태 변경
+    /// <summary>
+    /// GameState FSM -> Figma FSM 참고
+    /// </summary>
     private readonly Dictionary<GameState, GameState[]> _allowedTransitions = new()
     {
         { GameState.None,  new[] { GameState.Start } },
@@ -144,33 +154,47 @@ public class StageManager : MonoBehaviour
         { GameState.Pause,  new[] { GameState.Start, GameState.Resume, GameState.Exit } },
         { GameState.Resume, new[] { GameState.Play } },
         { GameState.Dead,  new[] { GameState.Start, GameState.Exit } },
-        { GameState.Clear, new[] { GameState.Exit, GameState.Next } },
+        { GameState.Clear, new[] { GameState.Exit, GameState.Next, GameState.Start } },
         { GameState.Exit,   new[] { GameState.None } },
         { GameState.Next,   new[] { GameState.Start } }
     };
 
     public void ChangeGameState(GameState gameState)
     {
-        // 동일한 상태일 경우 스킵
-        if (CurrentGameState == gameState) return;
-
-        // FSM 유효한지 확인
-        if (!_allowedTransitions.TryGetValue(CurrentGameState, out var allowedStates) ||
-            Array.IndexOf(allowedStates, gameState) == -1)
-        {
-            Logger.Log($"상태 변경 불가: {CurrentGameState} → {gameState}");
-            return;
-        }
-
-        if (gameState == GameState.Start)
-        {
-            ResetStageInfo();
-            Logger.Log("스테이지 정보 초기화");
-        }
+        if (!CanTransitionTo(gameState)) return;
 
         _currentGameState = gameState;
         Logger.Log($"상태 변경: {_currentGameState}");
-        OnGameStateChanged?.Invoke(_currentGameState);
+        HandleStateChanged(gameState);
+
+        if (gameState == GameState.Start)
+        {
+            OnStartStage?.Invoke();
+            ResetStageInfo();
+            Logger.Log("스테이지 정보 초기화");
+            ChangeGameState(GameState.Play);
+        }
+    }
+
+    /// <summary>
+    /// 변경 가능한 상태인지 검증
+    /// </summary>
+    /// <param name="gameState"></param>
+    /// <returns></returns>
+    private bool CanTransitionTo(GameState gameState)
+    {
+        // 동일한 상태일 경우 스킵
+        if (_currentGameState == gameState) return false;
+
+        // FSM 유효한지 확인
+        if (!_allowedTransitions.TryGetValue(_currentGameState, out var allowedStates) ||
+            Array.IndexOf(allowedStates, gameState) == -1)
+        {
+            Logger.Log($"상태 변경 불가: {_currentGameState} → {gameState}");
+            return false;
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -215,12 +239,12 @@ public class StageManager : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
     #region 스테이지 내부 로직
     private void HandleStageStart()
     {
         _currentStage.ExecuteStageStart();
-        ChangeGameState(GameState.Play);
     }
 
     private void HandlePause()
@@ -239,7 +263,7 @@ public class StageManager : MonoBehaviour
         _currentStage.GameOver();
     }
 
-    public void HandleStageExit()
+    private void HandleStageExit()
     {
         _currentStage.ExecuteExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
@@ -247,22 +271,27 @@ public class StageManager : MonoBehaviour
         ChangeGameState(GameState.None);
     }
 
-    public void HandleStageClear()
+    private void HandleStageClear()
     {
         _currentStage.ExecuteClear();
-        _currentStage.CheckScore();
+        OnClearStage?.Invoke();
     }
 
     /// <summary>
     /// 다음 스테이지 이동
     /// stage 예외처리는 SelectStage에서 진행
     /// </summary>
-    public void HandleStageNext()
+    private void HandleStageNext()
     {
         int id = _currentStage.StageId;
         SelectStage(id + 1);
     }
     #endregion
+
+    public bool HandleCheckGemCount(int currentGemCount)
+    {
+        return _currentStage.CheckGemCount(currentGemCount);
+    }
 
     private void HandlePlayerDeath()
     {
@@ -271,7 +300,14 @@ public class StageManager : MonoBehaviour
 
     private void ResetStageInfo()
     {
+        Logger.Log("시간 초기화");
         Timer = 0f;
+        _checkTimeLimit = false;
         _currentStage.RevivePlayer();
+    }
+
+    public StageClearInfo GetStageClearInfo()
+    {
+        return _currentStage.GetStageClearInfo(Timer);
     }
 }

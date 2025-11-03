@@ -19,7 +19,7 @@ public class Lever : MonoBehaviour, InteractWithController
     private BaseController _currentPusher; // 현재 밀고 있는 플레이어
     private PushSide _pushSide = PushSide.None;   // 트리거 진입 시 결정, Exit 전엔 불변
     private float _currentAngle;
-    public float targetAngle;
+    private float targetAngle;
     
     private bool _gateOn; // 게이트 신호
     

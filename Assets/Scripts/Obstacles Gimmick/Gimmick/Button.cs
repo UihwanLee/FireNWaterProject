@@ -15,6 +15,7 @@ public class Button : MonoBehaviour
     private SpriteRenderer _sprite;
     
     private readonly HashSet<GameObject> _inside = new(); // 현재 트리거 안에 있는 오브젝트
+    
     private bool _pressed;
 
     private Coroutine moveRoutine;

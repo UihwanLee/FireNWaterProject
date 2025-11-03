@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance => _instance;
+    public static readonly int STAGE_NUM = 5;
+
+    public GameObject SettingWindow;
 
     // 추후 매니저 추가 예정
     [Header("Managers")]
@@ -35,6 +39,30 @@ public class GameManager : MonoBehaviour
         //SceneManager.LoadScene("StageScene");
     }
 
+    private void OnDisable()
+    {
+        Logger.Log("델리게이트 제거 (시간 제한, 스테이지 시작, 스테이지 클리어");
+        _stageManager.OnFailedToClearWithinTimeLimit -= _scoreManager.HandleTimeLimitFailed;
+        _stageManager.OnStartStage -= () =>
+        {
+            _scoreManager.ResetScoreFlags();
+        };
+        _stageManager.OnClearStage -= HandleStageClear;
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (SettingWindow.activeSelf)
+                SettingWindow.SetActive(false);
+            else
+                SettingWindow.SetActive(true);
+        }
+    }
+
+
+
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -53,13 +81,25 @@ public class GameManager : MonoBehaviour
             Logger.Log("Stage Manager 못 찾음");
         }
 
-        _stageManager.SelectStage(1);
+        Logger.Log("델리게이트 추가 (시간 제한, 스테이지 시작, 스테이지 클리어");
+        _stageManager.OnFailedToClearWithinTimeLimit += _scoreManager.HandleTimeLimitFailed;
+        _stageManager.OnStartStage += () =>
+        {
+            _scoreManager.ResetScoreFlags();
+        };
+        _stageManager.OnClearStage += HandleStageClear;
+
+        int stageId = 0;
+        Logger.Log($"{stageId}번째 스테이지 선택");
+        //SelectStage(stageId);
     }
 
-    #region Stage 관련 메서드
+    #region Stage 상태 관리 메서드
     public void SelectStage(int id)
     {
         _stageManager.SelectStage(id);
+        Logger.Log("젬 확인 델리게이트 추가");
+        _scoreManager.OnCheckGemCount += _stageManager.HandleCheckGemCount;
     }
 
     public void StartStage()
@@ -80,11 +120,15 @@ public class GameManager : MonoBehaviour
     public void ClearStage()
     {
         _stageManager.ChangeGameState(GameState.Clear);
+        _scoreManager.CheckStageScore();
     }
 
     public void StartNextStage()
     {
         _stageManager.ChangeGameState(GameState.Next);
+        _scoreManager.ResetScoreFlags();
+        //Logger.Log("젬 확인 델리게이트 제거");
+        //_scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
     }
 
     public void RetryStage()
@@ -95,6 +139,60 @@ public class GameManager : MonoBehaviour
     public void ExitStage()
     {
         _stageManager.ChangeGameState(GameState.Exit);
+        Logger.Log("젬 확인 델리게이트 제거");
+        _scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
     }
+
+    private void HandleStageClear()
+    {
+        _scoreManager.CheckStageScore();
+        StageClearInfo stageClearInfo = _stageManager.GetStageClearInfo();
+        stageClearInfo.StageScore = _scoreManager.CurrentStageScore;
+        _scoreManager.SaveStageClearInfo(stageClearInfo);
+    }
+    #endregion
+
+    #region 점수 관련 메서드
+    public void AddGem()
+    {
+        _scoreManager.AddGem();
+    }
+
+    /// <summary>
+    /// 현재 스테이지 클리어 점수 가져오기
+    /// </summary>
+    /// <returns></returns>
+    public StageScore GetCurrentStageScore()
+    {
+        return _scoreManager.CurrentStageScore;
+    }
+    #endregion
+
+    #region 데이터 저장/로드
+    /// <summary>
+    /// 스테이지 클리어 정보
+    /// List의 index: stage id
+    /// 클리어되지 않은 정보의 데이터 
+    /// => (id: 스테이지 번호, clear time: 0, stage score: StageScore.None)
+    /// </summary>
+    /// <returns></returns>
+    public List<StageClearInfo> GetStageClearData()
+    {
+        return _scoreManager.GetSaveData();
+    }
+
+    /// <summary>
+    /// 스테이지 클리어 정보 삭제
+    /// </summary>
+    public void ResetData()
+    {
+        _scoreManager.ResetData();
+    }
+
+    /// <summary>
+    /// 스테이지 타이머
+    /// </summary>
+    /// <returns></returns>
+    public float GetTimer() => _stageManager.Timer;
     #endregion
 }

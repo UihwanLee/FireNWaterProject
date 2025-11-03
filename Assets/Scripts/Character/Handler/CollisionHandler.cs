@@ -33,7 +33,7 @@ public class CollisionHandler : MonoBehaviour
         Water water = other.GetComponent<Water>();
         Poison poison = other.GetComponent<Poison>();
         FireGem fireGem = other.GetComponent<FireGem>();
-        Watergem watergem = other.GetComponent<Watergem>();
+        Watergem waterGem = other.GetComponent<Watergem>();
         Lever lever = other.GetComponent<Lever>();
         Button button = other.GetComponent<Button>();
         
@@ -53,13 +53,11 @@ public class CollisionHandler : MonoBehaviour
         //보석 판정
         if (fireGem != null)
         {
-            controller.gameObject.layer = LayerMask.NameToLayer("Fire");
-            fireGem.Activate(controller);
+            if(controller.gameObject.layer == LayerMask.NameToLayer("Ember")) fireGem.Activate(controller);
         }
-        if (watergem != null)
+        if (waterGem != null)
         {
-            controller.gameObject.layer = LayerMask.NameToLayer("Water");
-            watergem.Activate(controller);
+            if(controller.gameObject.layer == LayerMask.NameToLayer("Wade")) waterGem.Activate(controller);
         }
         
         //래버 감지------------------------------밀 때 캐릭터 감속 구현
@@ -78,9 +76,9 @@ public class CollisionHandler : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         Lever lever = other.GetComponent<Lever>();
-        
+
         //레버 판정
-        lever.Activate(controller);
+        if (lever != null) lever.Activate(controller);
         
     }
 
