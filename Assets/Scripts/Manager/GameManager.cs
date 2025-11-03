@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance => _instance;
-    public static readonly int STAGE_NUM = 5;
+    // 튜토리얼[0] + 개인 제작[1 ~ 5] + 엔딩[6] => 총 7개
+    public static readonly int STAGE_NUM = 7;
 
     public GameObject SettingWindow;
 
@@ -168,26 +169,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region 점수 관련 메서드
-    public void AddFireGem()
-    {
-        _scoreManager.AddFireGem();
-    }
-
-    public void AddWaterGem()
-    {
-        _scoreManager.AddWaterGem();
-    }
-
-    public int GetFireGemCount()
-    {
-        return _scoreManager.FireGemCount;
-    }
-
-    public int GetWaterGemCount()
-    {
-        return _scoreManager.WaterGemCount;
-    }
-
     /// <summary>
     /// 현재 스테이지 클리어 점수 가져오기
     /// </summary>
@@ -224,5 +205,37 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public float GetTimer() => _stageManager.Timer;
+    #endregion
+
+    #region 젬 관련 메서드
+    public void AddFireGem()
+    {
+        _scoreManager.AddFireGem();
+    }
+
+    public void AddWaterGem()
+    {
+        _scoreManager.AddWaterGem();
+    }
+
+    public int GetFireGemCount()
+    {
+        return _scoreManager.TotalFireGemCount;
+    }
+
+    public int GetWaterGemCount()
+    {
+        return _scoreManager.TotalWaterGemCount;
+    }
+
+    public void UseFireGem(int count)
+    {
+        _scoreManager.UseFireGem(count);
+    }
+
+    public void UseWaterGem(int count)
+    {
+        _scoreManager.UseWaterGem(count);
+    }
     #endregion
 }
