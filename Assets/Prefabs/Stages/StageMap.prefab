@@ -224,3 +224,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonPrefab: {fileID: 987555060623251078, guid: 2a2c57ec08e4dd64a8a8606fb16f0962, type: 3}
   _buttonParent: {fileID: 8379970471253869643}
+  _spacing: 350
