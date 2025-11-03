@@ -108,13 +108,13 @@ public class CollisionHandler : MonoBehaviour
         //엠버 출구 감지
         if (exitEmber != null)
         {
-            exitEmber.Deactivate();
+            exitEmber.Deactivate(controller);
         }
         
         //웨이드 출구 감지
         if (exitWade != null)
         {
-            exitWade.Deactivate();
+            exitWade.Deactivate(controller);
         }
     }
 }
