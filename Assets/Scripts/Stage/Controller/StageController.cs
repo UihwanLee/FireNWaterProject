@@ -74,6 +74,12 @@ public class StageController : MonoBehaviour
         _emberController.Revive();
         _wadeController.Revive();
     }
+
+    private void PausePlayers()
+    {
+        _emberController.Pause();
+        _wadeController.Pause();
+    }
     #endregion
 
     #region 게임 로직 작성
@@ -85,8 +91,7 @@ public class StageController : MonoBehaviour
 
     public void ExecutePause()
     {
-        _emberController.Pause();
-        _wadeController.Pause();
+        PausePlayers();
     }
 
     public void ExecuteResume()
@@ -107,7 +112,7 @@ public class StageController : MonoBehaviour
 
     public void ExecuteClear()
     {
-        Logger.NotImpl();
+        PausePlayers();
     }
     #endregion
 
