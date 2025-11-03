@@ -35,9 +35,11 @@ public class Button : MonoBehaviour
         if (!IsPusher(pusher)) return;
         if (_inside.Add(pusher))
         {
-            // 들어올 때는 즉시 평가(바로 눌려야 자연스러움)
+            // 들어올 때는 즉시 평가
             EvaluateNow();
+            
         }
+        
     }
 
     public void UnregisterPusher(GameObject pusher)
@@ -55,6 +57,7 @@ public class Button : MonoBehaviour
     private bool IsPusher(GameObject go)
         => ((1 << go.layer) & pusherLayers) != 0;
     
+    
     private void EvaluateNow()
     {
         bool nextPressed = (_inside.Count > 0);
@@ -62,8 +65,11 @@ public class Button : MonoBehaviour
 
         _pressed = nextPressed;
 
-        // 1) 게이트 신호(또는 IActivatable 호출) — 단 한 번
-        if (targetGate != null) targetGate.Interact(_pressed);
+        // 1) 게이트 신호 — 단 한 번
+        if (targetGate != null)
+        {
+            targetGate.Interact(_pressed);
+        }
 
         // 2) 캡 애니 — 코루틴 1개만 유지
         if (moveRoutine != null) StopCoroutine(moveRoutine);
