@@ -223,11 +223,19 @@ public class ScoreManager : MonoBehaviour
 
     public void UseWaterGem(int count)
     {
+        if (_totalWaterGemCount < count)
+        {
+            Logger.Log("Water Gem 개수 부족");
+        }
         TotalWaterGemCount -= count;
     }
 
     public void UseFireGem(int count)
     {
+        if (_totalFireGemCount < count)
+        {
+            Logger.Log("Fire Gem 개수 부족");
+        }
         TotalFireGemCount -= count;
     }
 
