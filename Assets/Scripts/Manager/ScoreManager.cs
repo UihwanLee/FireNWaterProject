@@ -47,7 +47,7 @@ public class ScoreManager : MonoBehaviour
     private int _waterGemCount;
     public int FireGemCount
     {
-        get { return _fireGemCount; }
+        get { return GetFireGemCount(); }
         private set
         {
             _fireGemCount = value;
@@ -56,7 +56,7 @@ public class ScoreManager : MonoBehaviour
     }
     public int WaterGemCount
     {
-        get { return _waterGemCount; }
+        get { return GetWaterGemCount(); }
         private set
         {
             _waterGemCount = value;
@@ -228,6 +228,18 @@ public class ScoreManager : MonoBehaviour
     private void SaveFireGemCount()
     {
         PlayerPrefs.SetInt(FireGemKey, FireGemCount);
+    }
+
+    private int GetWaterGemCount()
+    {
+        PlayerPrefs.GetInt(WaterGemKey, _waterGemCount);
+        return _waterGemCount;
+    }
+
+    private int GetFireGemCount()
+    {
+        PlayerPrefs.GetInt(FireGemKey, _fireGemCount);
+        return _fireGemCount;
     }
     #endregion
 }
