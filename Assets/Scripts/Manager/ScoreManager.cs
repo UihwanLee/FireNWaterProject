@@ -25,6 +25,9 @@ public class ScoreManager : MonoBehaviour
     private bool _isStageCleared = false;
     private bool _isWithinTimeLimit = true;
     private bool _isAllGemsCollected = false;
+    public bool IsStageCleared => _isStageCleared;
+    public bool IsWithinTimeLimit => _isWithinTimeLimit;
+    public bool IsAllGemsCollected => _isAllGemsCollected;
 
     // Score
     private StageScore _currentStageScore = StageScore.None;
