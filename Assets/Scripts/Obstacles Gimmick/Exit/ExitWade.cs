@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class ExitWade : MonoBehaviour, InteractWithController
 {
+    ExitCalculator exitCalculator;
+
+    private void Awake()
+    {
+        exitCalculator = GetComponentInParent<ExitCalculator>();
+    }
+
     public void Activate(BaseController bc)
     {
         if (bc.gameObject.layer == LayerMask.NameToLayer("Wade"))
         {
-            //게임 매니저에 "웨이드 진입" 신호
+            exitCalculator.AddPlayer(bc);
+            exitCalculator.IsStageOver();
         }
     }
 
-    public void Deactivate()
+    public void Deactivate(BaseController bc)
     {
-        // 게임 매니저에 "웨이드 탈주" 신호
+        if (bc.gameObject.layer == LayerMask.NameToLayer("Wade"))
+        {
+            exitCalculator.RemovePlayer(bc);
+        }
     }
 }
-//트리거 동시에 플레이어가 존재하면 게임매니저에 게임종료 로직 호출
