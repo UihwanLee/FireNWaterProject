@@ -224,8 +224,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb9ac84783f7c04f8bffe0b9196c704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bgImg: {fileID: 354073678761716108}
+  _buttonParent: {fileID: 4118131132356481598}
+  _customizingUI: {fileID: 3267564382193709206}
+  _timerUI: {fileID: 1272782291043319856}
   _buttonPrefab: {fileID: 987555060623251078, guid: 2a2c57ec08e4dd64a8a8606fb16f0962, type: 3}
-  _buttonParent: {fileID: 8379970471253869643}
   _spacing: 350
 --- !u!1001 &439228688723751584
 PrefabInstance:
@@ -432,6 +435,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69c8d3254b5df974b98a15b538c54e3f, type: 3}
+--- !u!1 &3267564382193709206 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3116715603421151798, guid: 69c8d3254b5df974b98a15b538c54e3f, type: 3}
+  m_PrefabInstance: {fileID: 439228688723751584}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9004876925743915136 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8858523227666371104, guid: 69c8d3254b5df974b98a15b538c54e3f, type: 3}
@@ -534,6 +542,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa545c5bf51a118438e8a1d26e0b9ae2, type: 3}
+--- !u!1 &1272782291043319856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2763547196892446732, guid: fa545c5bf51a118438e8a1d26e0b9ae2, type: 3}
+  m_PrefabInstance: {fileID: 4031780807860715580}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1391939085694238422 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2639930105581797098, guid: fa545c5bf51a118438e8a1d26e0b9ae2, type: 3}
