@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance => _instance;
-    public static readonly int STAGE_NUM = 5;
+    // 튜토리얼[0] + 개인 제작[1 ~ 5] + 엔딩[6] => 총 7개
+    public static readonly int STAGE_NUM = 7;
 
     public GameObject SettingWindow;
 
