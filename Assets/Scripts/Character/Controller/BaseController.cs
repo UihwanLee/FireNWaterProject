@@ -265,11 +265,13 @@ public class BaseController : MonoBehaviour
         {
             _rigidbody.gravityScale = Define.SLOPE_GRAVITY_SCALE;
             this.maxSpeed = Define.SLOPE_SPEED;
+            this.acceleration = Define.SLOPE_ACCELERATION;
         }
         else
         {
             _rigidbody.gravityScale = Define.BASE_GRAVITY_SCALE;
             this.maxSpeed = Define.MAX_SPEED;
+            this.acceleration = Define.ACCELERATION;
         }
     }
 
