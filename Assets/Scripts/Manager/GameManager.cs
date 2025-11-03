@@ -169,26 +169,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region 점수 관련 메서드
-    public void AddFireGem()
-    {
-        _scoreManager.AddFireGem();
-    }
-
-    public void AddWaterGem()
-    {
-        _scoreManager.AddWaterGem();
-    }
-
-    public int GetFireGemCount()
-    {
-        return _scoreManager.FireGemCount;
-    }
-
-    public int GetWaterGemCount()
-    {
-        return _scoreManager.WaterGemCount;
-    }
-
     /// <summary>
     /// 현재 스테이지 클리어 점수 가져오기
     /// </summary>
@@ -225,5 +205,27 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public float GetTimer() => _stageManager.Timer;
+    #endregion
+
+    #region 젬 관련 메서드
+    public void AddFireGem()
+    {
+        _scoreManager.AddFireGem();
+    }
+
+    public void AddWaterGem()
+    {
+        _scoreManager.AddWaterGem();
+    }
+
+    public int GetFireGemCount()
+    {
+        return _scoreManager.FireGemCount;
+    }
+
+    public int GetWaterGemCount()
+    {
+        return _scoreManager.WaterGemCount;
+    }
     #endregion
 }
