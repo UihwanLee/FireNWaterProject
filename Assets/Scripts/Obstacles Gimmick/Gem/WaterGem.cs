@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Watergem : MonoBehaviour , InteractWithController
+public class Watergem : BaseGem, InteractWithController
 {
     SpriteRenderer spriteRenderer;
     private Color currentColor;

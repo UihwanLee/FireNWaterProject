@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireGem : MonoBehaviour , InteractWithController
+public class FireGem : BaseGem, InteractWithController
 {
     SpriteRenderer spriteRenderer;
     private Color currentColor;
