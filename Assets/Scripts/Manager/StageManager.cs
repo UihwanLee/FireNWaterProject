@@ -252,6 +252,7 @@ public class StageManager : MonoBehaviour
     private void HandleStageStart()
     {
         _currentStage.ExecuteStageStart();
+        _stageUI.ShowTimerUI();
     }
 
     private void HandlePause()
@@ -273,6 +274,8 @@ public class StageManager : MonoBehaviour
     private void HandleStageExit()
     {
         _stageUI.ShowStageMapUI();
+        _stageUI.CloseTimeUI();
+
         _currentStage.ExecuteExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;
