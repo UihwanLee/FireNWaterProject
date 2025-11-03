@@ -179,6 +179,7 @@ public class StageManager : MonoBehaviour
         {
             OnStartStage?.Invoke();
             ResetStageInfo();
+            _currentStage.ResetJemState();
             Logger.Log("스테이지 정보 초기화");
             ChangeGameState(GameState.Play);
         }
