@@ -20,5 +20,8 @@ public class FireGem : MonoBehaviour , InteractWithController
         currentColor.a = 0f;
         spriteRenderer.color =  currentColor;
         //점수 체크
+        GameManager.Instance.AddFireGem();
+        //비활성화
+        gameObject.SetActive(false);
     }
 }
