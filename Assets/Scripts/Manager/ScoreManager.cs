@@ -119,6 +119,7 @@ public class ScoreManager : MonoBehaviour
         Logger.Log("제한 시간 오버");
         _isWithinTimeLimit = false;
     }
+
     #region 데이터 저장/로드
     public void SaveStageClearInfo(StageClearInfo newClearInfo)
     {
