@@ -55,13 +55,23 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Cancel"))
         {
             if (SettingWindow.activeSelf)
-                SettingWindow.SetActive(false);
+                CloseSettingWindow();
             else
-                SettingWindow.SetActive(true);
+                OpenSettingWindow();
         }
     }
 
+    private void OpenSettingWindow()
+    {
+        SettingWindow.SetActive(true);
+        PauseStage();
+    }
 
+    private void CloseSettingWindow()
+    {
+        SettingWindow.SetActive(false);
+        ResumeStage();
+    }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
