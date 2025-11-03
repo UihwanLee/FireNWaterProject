@@ -20,7 +20,7 @@ public class Watergem : MonoBehaviour , InteractWithController
         currentColor.a = 0f;
         spriteRenderer.color =  currentColor;
         //점수 체크 
-        GameManager.Instance.AddGem();
+        GameManager.Instance.AddWaterGem();
         //비활성화
         gameObject.SetActive(false);
     }
