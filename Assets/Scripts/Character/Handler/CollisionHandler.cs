@@ -76,9 +76,9 @@ public class CollisionHandler : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         Lever lever = other.GetComponent<Lever>();
-        
+
         //레버 판정
-        lever.Activate(controller);
+        if (lever != null) lever.Activate(controller);
         
     }
 
