@@ -110,6 +110,8 @@ public class ScoreManager : MonoBehaviour
         _isAllGemsCollected = false;
         _currentStageScore = StageScore.None;
         _currentGemCount = 0;
+        _currentFireGemCount = 0;
+        _currentWaterGemCount = 0;
     }
 
     public void HandleTimeLimitFailed()
@@ -152,6 +154,10 @@ public class ScoreManager : MonoBehaviour
             $"clear time: {newClearInfo.ClearTime}");
         stageClearInfos[id] = newClearInfo;
         Save();
+
+        // 젬 데이터 저장
+        TotalWaterGemCount += _currentWaterGemCount;
+        TotalFireGemCount += _currentFireGemCount;
     }
 
     private void Save()
