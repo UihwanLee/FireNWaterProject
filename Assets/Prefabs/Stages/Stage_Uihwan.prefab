@@ -7575,6 +7575,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b308fadfe4ee74d669af6c4cb691ba4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitDurationTime: 1.5
+  exitEmber: {fileID: 4985835733171710312}
+  exitWade: {fileID: 7783280210006635535}
 --- !u!1 &5231195003679425816
 GameObject:
   m_ObjectHideFlags: 0
