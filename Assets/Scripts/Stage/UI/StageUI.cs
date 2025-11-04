@@ -118,6 +118,7 @@ public class StageUI : MonoBehaviour
     {
         Debug.Log("End 크레딧 보기");
         // todo: 엔딩 씬으로 넘어가기
+        SceneController.Instance.LoadScene(SceneType.EndScene);
     }
     #endregion
 

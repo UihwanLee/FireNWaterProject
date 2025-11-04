@@ -1,18 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum SceneType
+{
+    StartScene,
+    StageScene,
+    EndScene
+}
+
 public class SceneController : MonoBehaviour
 {
     public static SceneController Instance { get; private set; }
-
-    public enum SceneType
-    {
-        StartScene,
-        StageScene,
-        EndScene
-    }
 
     private Dictionary<SceneType, string> sceneNames = new Dictionary<SceneType, string>()
     {
@@ -26,7 +25,7 @@ public class SceneController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); 
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -34,7 +33,7 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    //¾À ÀÌµ¿
+    //ï¿½ï¿½ ï¿½Ìµï¿½
     public void LoadScene(SceneType type)
     {
         if (type == SceneType.StageScene)
@@ -45,10 +44,10 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    //°ÔÀÓ Á¾·á ±â´É
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     public void ExitGame()
     {
-        Debug.Log("°ÔÀÓ Á¾·á");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

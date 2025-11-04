@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SceneButton : MonoBehaviour
 {
     public enum ButtonType { LoadScene, ExitGame }
 
     public ButtonType buttonType;
-    public SceneController.SceneType targetScene;
+    public SceneType targetScene;
 
     private UnityEngine.UI.Button btn;
 
