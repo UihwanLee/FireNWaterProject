@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Watergem : BaseGem, InteractWithController
 {
     public void Activate(BaseController wade)
     {
-        AudioManager.instance.PlayClip(Define.SFX_EARN);
+        AudioManager.instance.PlayClip(Define.SFX_JEM);
 
         //잼 먹고 
         currentColor.a = 0f;
