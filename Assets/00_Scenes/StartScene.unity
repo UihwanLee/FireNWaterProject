@@ -288,6 +288,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3385321170095776631, guid: c15cbac019c83424e83c98a4c7851faa, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5600701083373683411, guid: c15cbac019c83424e83c98a4c7851faa, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

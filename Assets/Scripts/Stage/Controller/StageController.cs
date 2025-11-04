@@ -76,7 +76,7 @@ public class StageController : MonoBehaviour
 
     private void OnDestroy()
     {
-        Logger.Log("젬 초기화 이벤트 구독 취소하기");
+        //Logger.Log("젬 초기화 이벤트 구독 취소하기");
         foreach (var baseGem in _baseGems)
         {
             OnResetJem -= baseGem.ResetObject;
