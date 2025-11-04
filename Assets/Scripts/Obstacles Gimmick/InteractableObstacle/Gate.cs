@@ -37,6 +37,7 @@ public class Gate : MonoBehaviour, IObstacle
     {
         Logger.Log("gate transfrom 초기화");
         gameObject.transform.position = _originPosition;
+        gameObject.GetComponentInChildren<Transform>().localPosition =  Vector3.zero;
     }
     
     private void Awake()
