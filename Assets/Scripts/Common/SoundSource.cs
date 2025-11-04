@@ -6,7 +6,7 @@ public class SoundSource : MonoBehaviour
 {
     private AudioSource audioSource;
 
-    public void Play(AudioClip clip, float soundEffectVolume, float soundEffectPitchVariance)
+    public void Play(AudioClip clip, float soundEffectVolume)
     {
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
@@ -16,7 +16,6 @@ public class SoundSource : MonoBehaviour
         audioSource.clip = clip;
         audioSource.volume = soundEffectVolume;
         audioSource.Play();
-        audioSource.pitch = 1f + Random.Range(-soundEffectPitchVariance, soundEffectPitchVariance);
 
         Invoke("Disable", clip.length + 2);
     }

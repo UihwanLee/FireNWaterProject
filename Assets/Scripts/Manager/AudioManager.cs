@@ -26,7 +26,6 @@ public class AudioManager : MonoBehaviour
     [Header("Setting")]
     [SerializeField][Range(0f, 1f)] private float musicVolume;
     [SerializeField][Range(0f, 1f)] private float soundEffectVolume;
-    [SerializeField][Range(0f, 1f)] private float soundEffectPitchVariance;
 
     [Header("SoundSourceList")]
     [SerializeField] private Transform soundSourceParent;
@@ -141,7 +140,7 @@ public class AudioManager : MonoBehaviour
         }
 
         // 효과음 재생
-        availableSoundSource.Play(clip, instance.soundEffectVolume, instance.soundEffectPitchVariance);
+        availableSoundSource.Play(clip, instance.soundEffectVolume);
     }
 
     public AudioClip FindSFXByName(string soundName)
@@ -168,7 +167,7 @@ public class AudioManager : MonoBehaviour
         }
 
         // 효과음 재생
-        availableSoundSource.Play(clip, instance.soundEffectVolume, instance.soundEffectPitchVariance);
+        availableSoundSource.Play(clip, instance.soundEffectVolume);
     }
 
     public static SoundSource GetAvailableSoundSource()
