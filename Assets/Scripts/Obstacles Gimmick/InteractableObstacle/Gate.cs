@@ -20,7 +20,7 @@ public class Gate : MonoBehaviour, IObstacle
     private Vector3 _openDir;
     
     //초기화 좌표
-    private Vector3 _originPosition;
+    [SerializeField] private Vector3 _originPosition;
     
     //코루틴 종점 시점
     private Vector3 iPos;
@@ -35,15 +35,15 @@ public class Gate : MonoBehaviour, IObstacle
     
     public void Init()
     {
-        Logger.Log("gate transfrom 초기화");
-        gameObject.transform.position = _originPosition;
         gameObject.GetComponentInChildren<Transform>().localPosition =  Vector3.zero;
+        gameObject.transform.position = _originPosition;
     }
     
     private void Awake()
     {
         //초기화: 게이트가 닫혀있을 때 기준
-        
+        _originPosition = gameObject.transform.localPosition;       
+       
         //종점 시점 설정
         Vector3 initPos = transform.position;
         if (isHorizontal)

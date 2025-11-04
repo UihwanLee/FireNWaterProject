@@ -35,8 +35,6 @@ public class Pulley : MonoBehaviour, InteractWithController, IObstacle
 
             pulleyObjects[i].transform.localPosition = originTransforms[i].position;
             pulleyObjects[i].transform.localRotation = originTransforms[i].rotation;
-
-            Debug.Log("초기화" + originTransforms[i].position);
         }
     }
 
