@@ -231,9 +231,6 @@ public class BaseController : MonoBehaviour
                 DieEffect.gameObject.SetActive(true);
 
             DieEffect.Play();
-
-            // 1초 뒤에 이펙트만 없애고 싶으면
-            Destroy(DieEffect.gameObject, 1f);
         }
 
         Invoke("SendPlayerDieToManager", 0.5f);
@@ -242,6 +239,7 @@ public class BaseController : MonoBehaviour
     public void SendPlayerDieToManager()
     {
         OnPlayerDied?.Invoke();
+        DieEffect.gameObject.SetActive(false);
     }
 
     /// <summary>
