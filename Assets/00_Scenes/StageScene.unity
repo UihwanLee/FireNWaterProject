@@ -360,6 +360,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7678257995557505642, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 9123327401812275478, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
       propertyPath: _stageId
       value: 4
