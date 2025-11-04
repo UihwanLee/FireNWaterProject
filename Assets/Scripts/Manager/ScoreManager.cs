@@ -88,7 +88,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-        ResetPP();
+        //ResetPP();
         SavePath = Path.Combine(Application.persistentDataPath, "SaveStageData.json");
         Load();
         LoadGemCount();

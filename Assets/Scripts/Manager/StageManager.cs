@@ -35,6 +35,10 @@ public class StageManager : MonoBehaviour
                 OnFailedToClearWithinTimeLimit?.Invoke();
                 _checkTimeLimit = true;
             }
+            if (value > 240f)
+            {
+                ChangeGameState(GameState.Dead);
+            }
             _timer = value;
             _stageUI.UpdateTime(value);
         }
