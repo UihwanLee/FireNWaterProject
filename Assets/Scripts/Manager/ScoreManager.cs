@@ -88,11 +88,18 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
+        ResetPP();
         SavePath = Path.Combine(Application.persistentDataPath, "SaveStageData.json");
         Load();
         LoadGemCount();
         _maxClearStageId = PlayerPrefs.GetInt(StageIdKey, 0);
         Logger.Log($"초기화 - 최대 스테이지 클리어 ID: {_maxClearStageId}");
+    }
+
+    private void ResetPP()
+    {
+        Logger.Log("Player prefs 초기화");
+        PlayerPrefs.DeleteAll();
     }
 
     public void CheckStageScore()
