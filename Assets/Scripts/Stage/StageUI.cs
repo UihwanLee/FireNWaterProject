@@ -6,9 +6,11 @@ public class StageUI : MonoBehaviour
 {
     [Header("자식 오브젝트")]
     [SerializeField] private GameObject _bgImg;
+    [SerializeField] private GameObject _logo;
     [SerializeField] private GameObject _buttonParent;
     [SerializeField] private GameObject _customizingUI;
     [SerializeField] private GameObject _timerUI;
+    [SerializeField] private TextMeshProUGUI _timerText;
 
     [Header("스테이지 선택 버튼")]
     [SerializeField] private GameObject _buttonPrefab;
@@ -21,14 +23,52 @@ public class StageUI : MonoBehaviour
         CreateStageButtons();
     }
 
+    #region UI Show/Close
     public void ShowStageMapUI()
     {
+        if (_bgImg.activeSelf) return;
+        _bgImg.SetActive(true);
+        _logo.SetActive(true);
         _buttonParent.SetActive(true);
     }
 
     public void CloseStageMapUI()
     {
+        if (!_bgImg.activeSelf) return;
+        _bgImg.SetActive(false);
+        _logo.SetActive(false);
         _buttonParent.SetActive(false);
+    }
+
+    public void ShowCustomizingUI()
+    {
+        if (_customizingUI.activeSelf) return;
+        _customizingUI.SetActive(true);
+    }
+
+    public void CloseCustomizingUI()
+    {
+        if (!_customizingUI.activeSelf) return;
+        _customizingUI.SetActive(false);
+    }
+
+    public void ShowTimerUI()
+    {
+        if (_timerUI.activeSelf) return;
+        _timerUI.SetActive(true);
+    }
+
+    public void CloseTimeUI()
+    {
+        if (!_timerUI.activeSelf) return;
+        _timerUI.SetActive(false);
+    }
+    #endregion
+
+    public void UpdateTime(float time)
+    {
+        if (!_timerUI.activeSelf) return;
+        _timerText.text = time.ToString("n2");
     }
 
     private void CreateStageButtons()
@@ -68,7 +108,7 @@ public class StageUI : MonoBehaviour
 
     private void OnClickButtoon(int stageNum)
     {
-        gameObject.SetActive(false);
+        CloseStageMapUI();
         Debug.Log($"{stageNum}번째 스테이지 선택");
         GameManager.Instance.SelectStage(stageNum);
     }

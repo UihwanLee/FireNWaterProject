@@ -5,7 +5,7 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private GameObject _stageUI;
+    [SerializeField] private StageUI _stageUI;
 
     [Header("캐릭터")]
     [SerializeField] private GameObject _ember;
@@ -34,6 +34,7 @@ public class StageManager : MonoBehaviour
                 _checkTimeLimit = true;
             }
             _timer = value;
+            _stageUI.UpdateTime(value);
         }
     }
 
@@ -92,6 +93,8 @@ public class StageManager : MonoBehaviour
             stage.gameObject.SetActive(false);                          // 모두 비활성화 하기
         }
         Debug.Log($"[StageManager.Init] 등록된 Stage 수: {_stages.Count}");
+
+        _stageUI.ShowStageMapUI();
     }
 
     private void OnEnable()
@@ -176,6 +179,7 @@ public class StageManager : MonoBehaviour
         {
             OnStartStage?.Invoke();
             ResetStageInfo();
+            _currentStage.ResetJemState();
             Logger.Log("스테이지 정보 초기화");
             ChangeGameState(GameState.Play);
         }
@@ -250,6 +254,7 @@ public class StageManager : MonoBehaviour
     private void HandleStageStart()
     {
         _currentStage.ExecuteStageStart();
+        _stageUI.ShowTimerUI();
     }
 
     private void HandlePause()
@@ -270,7 +275,9 @@ public class StageManager : MonoBehaviour
 
     private void HandleStageExit()
     {
-        _stageUI.SetActive(true);
+        _stageUI.ShowStageMapUI();
+        _stageUI.CloseTimeUI();
+
         _currentStage.ExecuteExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
         _currentStage = null;

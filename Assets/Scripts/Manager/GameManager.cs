@@ -161,7 +161,6 @@ public class GameManager : MonoBehaviour
 
     private void HandleStageClear()
     {
-        _scoreManager.CheckStageScore();
         StageClearInfo stageClearInfo = _stageManager.GetStageClearInfo();
         stageClearInfo.StageScore = _scoreManager.CurrentStageScore;
         _scoreManager.SaveStageClearInfo(stageClearInfo);
