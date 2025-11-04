@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
         {
             _scoreManager = GetComponentInChildren<ScoreManager>();
         }
+
+        SettingWindow.SetActive(false);
     }
 
     private void Start()
