@@ -48,7 +48,15 @@ public class StageUI : MonoBehaviour
         foreach (var btnObj in btnObjs)
         {
             btnObj.TryGetComponent(out StageSelectButton btn);
-            btnObj.onClick.AddListener(() => OnClickButtoon(btn.buttonId));
+            int buttonId = btn.buttonId;
+
+            // todo: 6번은 엔딩 크레딧과 연결
+            if (buttonId == 6)
+            {
+                return;
+            }
+
+            btnObj.onClick.AddListener(() => OnClickButtoon(buttonId));
         }
     }
 
