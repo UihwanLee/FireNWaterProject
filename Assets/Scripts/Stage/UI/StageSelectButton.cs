@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class StageSelectButton : MonoBehaviour
 {
     public int buttonId;
-    public float alpha = 0.5f;
+    public float alpha = 0.3f;
 
     private void OnEnable()
     {
@@ -17,7 +17,7 @@ public class StageSelectButton : MonoBehaviour
         Color tempColor = img.color;
 
         if (buttonId <= GameManager.Instance.MaxClearStageId + 1) alpha = 1f;
-        tempColor.a = tempColor.a * alpha;
+        tempColor.a = (1f * alpha);
         img.color = tempColor;
     }
 }
