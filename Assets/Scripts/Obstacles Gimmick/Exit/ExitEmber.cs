@@ -10,7 +10,6 @@ public class ExitEmber : MonoBehaviour, InteractWithController
     private void Awake()
     {
         exitCalculator = GetComponentInParent<ExitCalculator>();
-        
     }
 
     public void Activate(BaseController bc)

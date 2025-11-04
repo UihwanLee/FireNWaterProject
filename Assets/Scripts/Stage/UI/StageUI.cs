@@ -11,6 +11,7 @@ public class StageUI : MonoBehaviour
     [SerializeField] private GameObject _customizingUI;
     [SerializeField] private GameObject _timerUI;
     [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private ResultUI _resultUI;
 
     [Header("스테이지 선택 버튼")]
     [SerializeField] private GameObject _buttonPrefab;
@@ -20,10 +21,10 @@ public class StageUI : MonoBehaviour
 
     private void Start()
     {
-        CreateStageButtons();
+        ConnectButtonAndStage();
     }
 
-    #region UI Show/Close
+    #region Stage Map UI
     public void ShowStageMapUI()
     {
         if (_bgImg.activeSelf) return;
@@ -40,35 +41,23 @@ public class StageUI : MonoBehaviour
         _buttonParent.SetActive(false);
     }
 
-    public void ShowCustomizingUI()
+    private void ConnectButtonAndStage()
     {
-        if (_customizingUI.activeSelf) return;
-        _customizingUI.SetActive(true);
-    }
+        var btnObjs = _buttonParent.GetComponentsInChildren<UnityEngine.UI.Button>();
 
-    public void CloseCustomizingUI()
-    {
-        if (!_customizingUI.activeSelf) return;
-        _customizingUI.SetActive(false);
-    }
+        foreach (var btnObj in btnObjs)
+        {
+            btnObj.TryGetComponent(out StageSelectButton btn);
+            int buttonId = btn.buttonId;
 
-    public void ShowTimerUI()
-    {
-        if (_timerUI.activeSelf) return;
-        _timerUI.SetActive(true);
-    }
+            // todo: 6번은 엔딩 크레딧과 연결
+            if (buttonId == 6)
+            {
+                return;
+            }
 
-    public void CloseTimeUI()
-    {
-        if (!_timerUI.activeSelf) return;
-        _timerUI.SetActive(false);
-    }
-    #endregion
-
-    public void UpdateTime(float time)
-    {
-        if (!_timerUI.activeSelf) return;
-        _timerText.text = time.ToString("n2");
+            btnObj.onClick.AddListener(() => OnClickButtoon(buttonId));
+        }
     }
 
     private void CreateStageButtons()
@@ -112,4 +101,51 @@ public class StageUI : MonoBehaviour
         Debug.Log($"{stageNum}번째 스테이지 선택");
         GameManager.Instance.SelectStage(stageNum);
     }
+    #endregion
+
+    #region Customizing UI
+    public void ShowCustomizingUI()
+    {
+        if (_customizingUI.activeSelf) return;
+        _customizingUI.SetActive(true);
+    }
+
+    public void CloseCustomizingUI()
+    {
+        if (!_customizingUI.activeSelf) return;
+        _customizingUI.SetActive(false);
+    }
+    #endregion
+
+    #region Timer UI 
+    public void ShowTimerUI()
+    {
+        if (_timerUI.activeSelf) return;
+        _timerUI.SetActive(true);
+    }
+
+    public void CloseTimeUI()
+    {
+        if (!_timerUI.activeSelf) return;
+        _timerUI.SetActive(false);
+    }
+
+    public void UpdateTime(float time)
+    {
+        if (!_timerUI.activeSelf) return;
+        _timerText.text = time.ToString("n2");
+    }
+    #endregion
+
+    #region Result UI
+    public void ShowResultUI(StageScore score)
+    {
+        _resultUI.Activate(score);
+    }
+
+    public void CloseResultUI()
+    {
+        _resultUI.DeactivateAll();
+    }
+    #endregion
 }
