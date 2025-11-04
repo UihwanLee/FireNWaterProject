@@ -62,7 +62,7 @@ public class StageUI : MonoBehaviour
                 return;
             }
 
-            btnObj.onClick.AddListener(() => OnClickButtoon(buttonId));
+            btnObj.onClick.AddListener(() => OnClickStageSelectButton(buttonId));
         }
     }
 
@@ -96,12 +96,12 @@ public class StageUI : MonoBehaviour
             btn.onClick.AddListener(() =>
             {
                 Logger.Log($"{btn.name} 선택");
-                OnClickButtoon(stageNum);
+                OnClickStageSelectButton(stageNum);
             });
         }
     }
 
-    private void OnClickButtoon(int stageNum)
+    private void OnClickStageSelectButton(int stageNum)
     {
         Debug.Log($"{stageNum}번째 스테이지 선택");
         GameManager.Instance.SelectStage(stageNum);
