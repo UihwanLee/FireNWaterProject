@@ -17,13 +17,7 @@ public class ResultUI : MonoBehaviour
     private void Awake()
     {
         // StageScore: [0]A, [1]B, [2]C, [3]None
-        _results = new(4)
-        {
-            [0] = _star3,
-            [1] = _star2,
-            [2] = _star1,
-            [3] = _lose,
-        };
+        _results = new List<GameObject> { _star3, _star2, _star1, _lose };
     }
 
     private void OnEnable()
@@ -37,12 +31,9 @@ public class ResultUI : MonoBehaviour
         DeactivateAll();
 
         _results[(int)stageScore].SetActive(true);
-        if (StageScore.None != stageScore)
-        {
-            _nextButton.gameObject.SetActive(true);
-            return;
-        }
         _restartButton.gameObject.SetActive(true);
+        if (StageScore.None == stageScore) return;
+        _nextButton.gameObject.SetActive(true);
     }
 
     public void DeactivateAll()
