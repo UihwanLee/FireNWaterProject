@@ -116,6 +116,12 @@ public class GameManager : MonoBehaviour
     #region Stage 상태 관리 메서드
     public void SelectStage(int id)
     {
+        if (id > MaxClearStageId + 1)
+        {
+            Logger.Log("스테이지 입장 불가");
+            return;
+        }
+
         _stageManager.SelectStage(id);
         Logger.Log("젬 확인 델리게이트 추가");
         _scoreManager.OnCheckGemCount += _stageManager.HandleCheckGemCount;
