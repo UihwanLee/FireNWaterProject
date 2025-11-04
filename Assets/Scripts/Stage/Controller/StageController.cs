@@ -17,6 +17,8 @@ public class StageController : MonoBehaviour
     private BaseGem[] _baseGems;
     public event Action OnResetJem;
 
+    private IObstacle[] _obstacles;
+
     public int StageId => _stageId;
     public int GemCount => _gemCount;
     public float LimitTime => _limitTime;
@@ -45,6 +47,7 @@ public class StageController : MonoBehaviour
 
     private void Awake()
     {
+        _obstacles = GetComponentsInChildren<IObstacle>(true);
         _baseGems = _gems.GetComponentsInChildren<BaseGem>(true);
 
         Logger.Log("젬 초기화 이벤트 구독하기");
@@ -159,5 +162,13 @@ public class StageController : MonoBehaviour
     {
         Logger.Log("젬 상태 초기화");
         OnResetJem?.Invoke();
+    }
+
+    public void ReseetObstacles()
+    {
+        foreach (var obstacle in _obstacles)
+        {
+            obstacle.Init();
+        }
     }
 }
