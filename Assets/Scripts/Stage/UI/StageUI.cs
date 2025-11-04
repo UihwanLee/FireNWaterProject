@@ -116,7 +116,7 @@ public class StageUI : MonoBehaviour
 
     private void OnClickEndButton()
     {
-        if (GameManager.Instance.MaxClearStageId != Define.STAGE_NUM)
+        if (GameManager.Instance.MaxClearStageId + 1 < Define.STAGE_NUM)
         {
             Logger.Log("모든 스테이지 클리어 후 엔딩 입장 가능");
             return;
