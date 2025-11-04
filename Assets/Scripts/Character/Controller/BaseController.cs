@@ -195,8 +195,8 @@ public class BaseController : MonoBehaviour
     /// </summary>
     private void AnimationHandle()
     {
-        bool isAnimationStop = (currentState == CharacterState.Pause || currentState == CharacterState.Die);
-        animationHandler.AnimationStopOrPlay(isAnimationStop);
+        bool isAnimationStop = (currentState == CharacterState.Pause);
+        //animationHandler.AnimationStopOrPlay(isAnimationStop);
 
         animationHandler.Move((currentState == CharacterState.Move));
         animationHandler.JumpUp((currentState == CharacterState.JumpUp));
@@ -210,13 +210,22 @@ public class BaseController : MonoBehaviour
     /// </summary>
     public virtual void Death()
     {
+        if (currentState == CharacterState.Die) return;
+
         _rigidbody.velocity = Vector2.zero;
 
         // Death 로직 처리
         Debug.Log($"{gameObject.name}가 죽었습니다!");
 
-        OnPlayerDied?.Invoke();
         ChangeState(CharacterState.Die);
+        animationHandler.Die((currentState == CharacterState.Die));
+
+        Invoke("SendPlayerDieToManager", 0.5f);
+    }
+
+    public void SendPlayerDieToManager()
+    {
+        OnPlayerDied?.Invoke();
     }
 
     /// <summary>
