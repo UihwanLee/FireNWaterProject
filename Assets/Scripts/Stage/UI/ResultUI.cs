@@ -10,6 +10,7 @@ public class ResultUI : MonoBehaviour
 
     [Header("버튼")]
     [SerializeField] private UnityEngine.UI.Button _restartButton;
+    [SerializeField] private UnityEngine.UI.Button _homeButton;
     [SerializeField] private UnityEngine.UI.Button _nextButton;
 
     private List<GameObject> _results;
@@ -23,6 +24,7 @@ public class ResultUI : MonoBehaviour
     private void OnEnable()
     {
         _restartButton.onClick.AddListener(() => GameManager.Instance.StartStage());
+        _homeButton.onClick.AddListener(() => GameManager.Instance.ExitStage());
         _nextButton.onClick.AddListener(() => GameManager.Instance.StartNextStage());
     }
 
@@ -32,6 +34,7 @@ public class ResultUI : MonoBehaviour
 
         _results[(int)stageScore].SetActive(true);
         _restartButton.gameObject.SetActive(true);
+        _homeButton.gameObject.SetActive(true);
         if (StageScore.None == stageScore) return;
         _nextButton.gameObject.SetActive(true);
     }
@@ -43,6 +46,7 @@ public class ResultUI : MonoBehaviour
         _star1.SetActive(false);
         _lose.SetActive(false);
         _restartButton.gameObject.SetActive(false);
+        _homeButton.gameObject.SetActive(false);
         _nextButton.gameObject.SetActive(false);
     }
 }
