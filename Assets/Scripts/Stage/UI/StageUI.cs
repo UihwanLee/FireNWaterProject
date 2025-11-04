@@ -48,7 +48,7 @@ public class StageUI : MonoBehaviour
 
     public void CloseStageMapUI()
     {
-        _bgEndAnim.SetActive(true);
+        _bgEndAnim.SetActive(false);
         _bgImg.SetActive(false);
         _logo.SetActive(false);
         _buttonParent.SetActive(false);
