@@ -6,7 +6,7 @@ using UnityEngine;
 public class Gate : MonoBehaviour, IObstacle
 {
     [Header("종점 기준으로 배치해주세요 ")]
-    [Range(1, 20)][SerializeField] private int moveRange = 3;
+    [SerializeField] private int moveRange = 3;
     [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] private bool isHorizontal = true; // 수직수평 여부
     [Header("이동방향: OpenType 체크 -> 왼쪽 / 해제 -> 오른족 ")]
