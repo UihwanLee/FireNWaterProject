@@ -233,6 +233,7 @@ MonoBehaviour:
   _customizingUI: {fileID: 3267564382193709206}
   _timerUI: {fileID: 1272782291043319856}
   _timerText: {fileID: 2635839741274121510}
+  _resultUI: {fileID: 1762022708770444662}
   _buttonPrefab: {fileID: 987555060623251078, guid: 2a2c57ec08e4dd64a8a8606fb16f0962, type: 3}
   _spacing: 350
 --- !u!1 &7474989246696026381
@@ -683,6 +684,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
+--- !u!114 &1762022708770444662 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1164577501384459829, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
+  m_PrefabInstance: {fileID: 601968598793179971}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebebe5807961c174fbe7830af784eef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5163437301473923850 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5760853369687834697, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}

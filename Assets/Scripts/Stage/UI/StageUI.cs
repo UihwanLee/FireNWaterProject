@@ -11,6 +11,7 @@ public class StageUI : MonoBehaviour
     [SerializeField] private GameObject _customizingUI;
     [SerializeField] private GameObject _timerUI;
     [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private ResultUI _resultUI;
 
     [Header("스테이지 선택 버튼")]
     [SerializeField] private GameObject _buttonPrefab;
