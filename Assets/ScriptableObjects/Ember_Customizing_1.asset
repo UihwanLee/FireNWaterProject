@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   idx: 1
   color: {r: 0, g: 0.0979166, b: 1, a: 0}
-  price: 700
+  price: 5
   isPurchase: 0
   isPick: 0
   jemSprite: {fileID: 21300000, guid: fcac4bb5197780a4c988fc20d4008f0a, type: 3}
