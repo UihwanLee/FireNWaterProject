@@ -6,8 +6,6 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance => _instance;
-    // 튜토리얼[0] + 개인 제작[1 ~ 5] + 엔딩[6] => 총 7개
-    public static readonly int STAGE_NUM = 7;
 
     public GameObject SettingWindow;
 
@@ -16,6 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ScoreManager _scoreManager;
     [SerializeField] private AudioManager _audioManager;
     private StageManager _stageManager;
+
+    // 튜토리얼[0] + 개인 제작[1 ~ 5] + 엔딩[6] => 총 7개
+    public static readonly int STAGE_NUM = 7;
+    public int MaxClearStageId => _scoreManager.MaxClearStageId;
 
     private void Awake()
     {
