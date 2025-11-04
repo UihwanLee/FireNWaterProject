@@ -6,6 +6,7 @@ public class StageManager : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private StageUI _stageUI;
+    [SerializeField] private TutorialUI _tutorialUI;
 
     [Header("캐릭터")]
     [SerializeField] private GameObject _ember;
@@ -248,6 +249,11 @@ public class StageManager : MonoBehaviour
     {
         _currentStage.ExecuteStageStart();
         _stageUI.ShowTimerUI();
+
+        if (_tutorialUI != null)
+        {
+            _tutorialUI.StartTutorial();
+        }
     }
 
     private void HandlePause()
