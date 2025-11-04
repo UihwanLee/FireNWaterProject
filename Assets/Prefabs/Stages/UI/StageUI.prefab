@@ -604,30 +604,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4112726557247106536}
     m_Modifications:
-    - target: {fileID: 428244519265944992, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -120
-      objectReference: {fileID: 0}
-    - target: {fileID: 3145209727784406397, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -120
-      objectReference: {fileID: 0}
-    - target: {fileID: 3759261483573266738, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -120
-      objectReference: {fileID: 0}
-    - target: {fileID: 4575049529395713377, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
-      propertyPath: m_Name
-      value: ScoreSprite
-      objectReference: {fileID: 0}
-    - target: {fileID: 4621651940501662927, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
-      propertyPath: m_Name
-      value: ScoreSprite
-      objectReference: {fileID: 0}
-    - target: {fileID: 5212393171985733696, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -120
-      objectReference: {fileID: 0}
     - target: {fileID: 5760853369687834697, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -671,14 +647,6 @@ PrefabInstance:
     - target: {fileID: 7426422247693876459, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
       propertyPath: m_Name
       value: ResultUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8620770040001688296, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
-      propertyPath: m_Name
-      value: ScoreSprite
-      objectReference: {fileID: 0}
-    - target: {fileID: 9112921236064033618, guid: c27012c2ea4f0b84badcd7ad8be927bf, type: 3}
-      propertyPath: m_Name
-      value: ScoreSprite
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

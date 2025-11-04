@@ -268,6 +268,7 @@ public class BaseController : MonoBehaviour
     /// </summary>
     public virtual void Revive()
     {
+        if (currentState == CharacterState.Die) animationHandler.Die(false);
         ChangeState(CharacterState.Idle);
         Logger.Log($"{gameObject.name} 부활");
     }
