@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float soundEffectPitchVariance;
 
     [Header("SoundSourceList")]
+    [SerializeField] private Transform soundSourceParent;
     [SerializeField] private SoundSource soundSourcePrefab;
     [SerializeField] private SoundSource[] soundSources;
 
@@ -52,7 +53,7 @@ public class AudioManager : MonoBehaviour
         // 게임 내에서 사용할 SoundSource 오브젝트 생성
         for(int i=0; i<soundSources.Length; i++)
         {
-            SoundSource soundSource = Instantiate(instance.soundSourcePrefab).GetComponent<SoundSource>();
+            SoundSource soundSource = Instantiate(instance.soundSourcePrefab, soundSourceParent).GetComponent<SoundSource>();
 
             // 비활성화 된 상태로 초기화
             soundSource.gameObject.SetActive(false);
