@@ -56,14 +56,13 @@ public class StageManager : MonoBehaviour
     {
         if (obj == null)
         {
-            Logger.Log($"{name} 프리팹 가져오기");
-            return FindObjectOfType<T>();
+            Logger.Log($"{name} 프리팹 비어 있음");
         }
 
         if (!obj.TryGetComponent(out T controller))
         {
             Logger.Log($"{name} Controller 가져오기");
-            controller = FindObjectOfType<T>();
+            controller = FindObjectOfType<T>(true);
         }
 
         return controller;
