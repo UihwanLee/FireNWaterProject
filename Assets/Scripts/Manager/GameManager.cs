@@ -1,20 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance => _instance;
 
-    public GameObject SettingWindow;
-
     // 추후 매니저 추가 예정
     [Header("Managers")]
     [SerializeField] private ScoreManager _scoreManager;
     [SerializeField] private AudioManager _audioManager;
     private StageManager _stageManager;
+
+    [Header("Setting Window")]
+    public GameObject SettingWindow;
+    [SerializeField] private UnityEngine.UI.Button _homeButton;
+    [SerializeField] private UnityEngine.UI.Button _retryButton;
 
     public int MaxClearStageId => _scoreManager.MaxClearStageId;
 
