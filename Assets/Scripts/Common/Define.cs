@@ -19,7 +19,7 @@ public static class Define
     [Header("Character Stat")]
     public static readonly float MIN_SPEED = 1f;
     public static readonly float MAX_SPEED = 5f;
-    public static readonly float SLOPE_SPEED = 3f;
+    public static readonly float SLOPE_SPEED = 5f;
 
     public static readonly float ACCELERATION = 30f;
     public static readonly float DECELERATION = 0.5f;
