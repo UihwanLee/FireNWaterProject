@@ -309,6 +309,7 @@ public class StageManager : MonoBehaviour
         ResetTimer();
         _currentStage.RevivePlayer();
         _currentStage.ResetJemState();
+        _currentStage.ReseetObstacles();
         Logger.Log("스테이지 정보 초기화");
     }
 
