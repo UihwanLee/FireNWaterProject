@@ -343,11 +343,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bgImg: {fileID: 354073678761716108}
   _logo: {fileID: 8231005166583685626}
-  _buttonParent: {fileID: 4118131132356481598}
+  _bgEndAnim: {fileID: 7474989246696026381}
   _customizingUI: {fileID: 3267564382193709206}
   _timerUI: {fileID: 1272782291043319856}
   _timerText: {fileID: 2635839741274121510}
   _resultUI: {fileID: 1762022708770444662}
+  _buttonParent: {fileID: 4118131132356481598}
   _buttonPrefab: {fileID: 987555060623251078, guid: 2a2c57ec08e4dd64a8a8606fb16f0962, type: 3}
   _spacing: 350
 --- !u!1 &4651429088816612129
