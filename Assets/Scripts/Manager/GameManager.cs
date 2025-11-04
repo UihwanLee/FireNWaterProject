@@ -256,16 +256,4 @@ public class GameManager : MonoBehaviour
         _scoreManager.UseWaterGem(count);
     }
     #endregion
-
-    #region Audio 외부 참조
-    public void UseLoseClip()
-    {
-        _audioManager.PlayClip(Define.SFX_LOSE);
-    }
-
-    public void UseEndBgm()
-    {
-        _audioManager.ChangeBackGroundMusic(Define.BGM_OUTRO);
-    }
-    #endregion
 }
