@@ -45,7 +45,7 @@ public class StageManager : MonoBehaviour
     public event Action OnClearStage;
     public event Action OnStartStage;
 
-    #region 스테이지 매니저 Awake 
+    #region Awake State Manager
     private void Awake()
     {
         InitCharacters();
@@ -76,7 +76,6 @@ public class StageManager : MonoBehaviour
 
         Logger.Log("엠버, 웨이드 초기화 및 비활성화 완료");
     }
-
 
     private void InitStateHandlers()
     {
@@ -223,7 +222,7 @@ public class StageManager : MonoBehaviour
 
     /// <summary>
     /// 게임 상태에 따라 다른 로직을 처리하기 위한 메서드
-    /// 유효성 검사를 위해 GameManager의 ChangeGameState 사용을 권장
+    /// 유효성 검사를 위해 ChangeGameState 사용을 권장
     /// </summary>
     /// <param name="state"></param>
     private void HandleStateChanged(GameState state)
