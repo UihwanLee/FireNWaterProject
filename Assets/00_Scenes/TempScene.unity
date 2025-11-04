@@ -18659,6 +18659,7 @@ MonoBehaviour:
   _stageId: 0
   _gemCount: 0
   _limitTime: 0
+  _gems: {fileID: 0}
 --- !u!4 &9103284927302549085
 Transform:
   m_ObjectHideFlags: 0
