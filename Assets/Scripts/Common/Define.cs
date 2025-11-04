@@ -50,5 +50,5 @@ public static class Define
 
     [Header("Stage Setting")]
     // 튜토리얼[0] + 개인 제작[1 ~ 5] 
-    public const int STAGE_NUM = 4;
+    public const int STAGE_NUM = 6;
 }
