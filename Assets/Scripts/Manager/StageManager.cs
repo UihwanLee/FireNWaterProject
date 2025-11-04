@@ -279,10 +279,10 @@ public class StageManager : MonoBehaviour
     {
         _stageUI.ShowStageMapUI();
         _stageUI.CloseTimeUI();
+        _stageUI.CloseResultUI();
 
         _currentStage.ExecuteExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
-        _currentStage = null;
         ChangeGameState(GameState.None);
     }
 
