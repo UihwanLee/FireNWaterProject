@@ -23,7 +23,7 @@ public class StageUI : MonoBehaviour
         CreateStageButtons();
     }
 
-    #region UI Show/Close
+    #region Stage Map UI
     public void ShowStageMapUI()
     {
         if (_bgImg.activeSelf) return;
@@ -38,37 +38,6 @@ public class StageUI : MonoBehaviour
         _bgImg.SetActive(false);
         _logo.SetActive(false);
         _buttonParent.SetActive(false);
-    }
-
-    public void ShowCustomizingUI()
-    {
-        if (_customizingUI.activeSelf) return;
-        _customizingUI.SetActive(true);
-    }
-
-    public void CloseCustomizingUI()
-    {
-        if (!_customizingUI.activeSelf) return;
-        _customizingUI.SetActive(false);
-    }
-
-    public void ShowTimerUI()
-    {
-        if (_timerUI.activeSelf) return;
-        _timerUI.SetActive(true);
-    }
-
-    public void CloseTimeUI()
-    {
-        if (!_timerUI.activeSelf) return;
-        _timerUI.SetActive(false);
-    }
-    #endregion
-
-    public void UpdateTime(float time)
-    {
-        if (!_timerUI.activeSelf) return;
-        _timerText.text = time.ToString("n2");
     }
 
     private void CreateStageButtons()
@@ -112,4 +81,39 @@ public class StageUI : MonoBehaviour
         Debug.Log($"{stageNum}번째 스테이지 선택");
         GameManager.Instance.SelectStage(stageNum);
     }
+    #endregion
+
+    #region Customizing UI
+    public void ShowCustomizingUI()
+    {
+        if (_customizingUI.activeSelf) return;
+        _customizingUI.SetActive(true);
+    }
+
+    public void CloseCustomizingUI()
+    {
+        if (!_customizingUI.activeSelf) return;
+        _customizingUI.SetActive(false);
+    }
+    #endregion
+
+    #region Timer UI 
+    public void ShowTimerUI()
+    {
+        if (_timerUI.activeSelf) return;
+        _timerUI.SetActive(true);
+    }
+
+    public void CloseTimeUI()
+    {
+        if (!_timerUI.activeSelf) return;
+        _timerUI.SetActive(false);
+    }
+
+    public void UpdateTime(float time)
+    {
+        if (!_timerUI.activeSelf) return;
+        _timerText.text = time.ToString("n2");
+    }
+    #endregion
 }
