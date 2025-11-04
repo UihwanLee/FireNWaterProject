@@ -47,7 +47,7 @@ public static class Define
     public const string SFX_LOSE = "SFX_LOSE";
     public const string SFX_SELECT = "SFX_SELECT";
     public const string SFX_WIN = "SFX_WIN";
-    public const string SFX_EARN = "SFX_EARN";
+    public const string SFX_JEM = "SFX_JEM";
 
     [Header("Stage Setting")]
     // 튜토리얼[0] + 개인 제작[1 ~ 5] 
