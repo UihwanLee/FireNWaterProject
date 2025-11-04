@@ -7,6 +7,10 @@ public class ResultUI : MonoBehaviour
     [SerializeField] private GameObject _star1;
     [SerializeField] private GameObject _lose;
 
+    [Header("버튼")]
+    [SerializeField] private UnityEngine.UI.Button _restartButton;
+    [SerializeField] private UnityEngine.UI.Button _nextButton;
+
     public void Activate(StageScore stageScore)
     {
         DeactivateAll();
