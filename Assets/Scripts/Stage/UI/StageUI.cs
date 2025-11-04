@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class StageUI : MonoBehaviour
 {
-    [Header("자식 오브젝트")]
+    [Header("배경")]
     [SerializeField] private GameObject _bgImg;
     [SerializeField] private GameObject _logo;
-    [SerializeField] private GameObject _buttonParent;
+
+    [Header("커스터마이징")]
     [SerializeField] private GameObject _customizingUI;
+
+    [Header("타이머")]
     [SerializeField] private GameObject _timerUI;
     [SerializeField] private TextMeshProUGUI _timerText;
+
+    [Header("스테이지 결과")]
     [SerializeField] private ResultUI _resultUI;
 
     [Header("스테이지 선택 버튼")]
+    [SerializeField] private GameObject _buttonParent;
     [SerializeField] private GameObject _buttonPrefab;
     [SerializeField] private float _spacing;
 
