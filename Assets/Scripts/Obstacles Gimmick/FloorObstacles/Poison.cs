@@ -6,8 +6,7 @@ public class Poison : MonoBehaviour, InteractWithController
 {
     public void Activate(BaseController bc)
     {
-        
-        //사망
+        //캐릭터 사망
         bc.Death();
         
     }

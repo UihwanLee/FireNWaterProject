@@ -19,7 +19,7 @@ public static class Define
     [Header("Character Stat")]
     public static readonly float MIN_SPEED = 1f;
     public static readonly float MAX_SPEED = 5f;
-    public static readonly float SLOPE_SPEED = 3f;
+    public static readonly float SLOPE_SPEED = 5f;
 
     public static readonly float ACCELERATION = 30f;
     public static readonly float DECELERATION = 0.5f;
@@ -33,4 +33,7 @@ public static class Define
 
     public const float BASE_GRAVITY_SCALE = 1.0f;
     public const float SLOPE_GRAVITY_SCALE = 0.1f;
+
+    [Header("AudioSetting")]
+    public const int AVAILABLE_SOUNDSORUCE_COUNT = 10;
 }

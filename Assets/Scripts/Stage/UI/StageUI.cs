@@ -1,0 +1,151 @@
+using TMPro;
+using UnityEngine;
+
+
+public class StageUI : MonoBehaviour
+{
+    [Header("자식 오브젝트")]
+    [SerializeField] private GameObject _bgImg;
+    [SerializeField] private GameObject _logo;
+    [SerializeField] private GameObject _buttonParent;
+    [SerializeField] private GameObject _customizingUI;
+    [SerializeField] private GameObject _timerUI;
+    [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private ResultUI _resultUI;
+
+    [Header("스테이지 선택 버튼")]
+    [SerializeField] private GameObject _buttonPrefab;
+    [SerializeField] private float _spacing;
+
+    // todo: 이전 스테이지 클리어 되어야지만 다음 스테이지 가능
+
+    private void Start()
+    {
+        ConnectButtonAndStage();
+    }
+
+    #region Stage Map UI
+    public void ShowStageMapUI()
+    {
+        if (_bgImg.activeSelf) return;
+        _bgImg.SetActive(true);
+        _logo.SetActive(true);
+        _buttonParent.SetActive(true);
+    }
+
+    public void CloseStageMapUI()
+    {
+        if (!_bgImg.activeSelf) return;
+        _bgImg.SetActive(false);
+        _logo.SetActive(false);
+        _buttonParent.SetActive(false);
+    }
+
+    private void ConnectButtonAndStage()
+    {
+        var btnObjs = _buttonParent.GetComponentsInChildren<UnityEngine.UI.Button>();
+
+        foreach (var btnObj in btnObjs)
+        {
+            btnObj.TryGetComponent(out StageSelectButton btn);
+            int buttonId = btn.buttonId;
+
+            // todo: 6번은 엔딩 크레딧과 연결
+            if (buttonId == 6)
+            {
+                return;
+            }
+
+            btnObj.onClick.AddListener(() => OnClickButtoon(buttonId));
+        }
+    }
+
+    private void CreateStageButtons()
+    {
+        int colums = 5;
+        Vector2 startPos = new Vector2(-700f, 0f);
+
+        Transform buttonParentTransform = _buttonParent.transform;
+
+        for (int i = 0; i < GameManager.STAGE_NUM; i++)
+        {
+            GameObject btnObj = Instantiate(_buttonPrefab, buttonParentTransform);
+            RectTransform rect = btnObj.GetComponent<RectTransform>();
+
+            int row = i / colums;
+            int col = i % colums;
+
+            rect.anchoredPosition = new Vector2(
+                startPos.x + (col * _spacing),
+                startPos.y - (row * _spacing)
+             );
+
+            btnObj.name = $"StageButton_{i + 1}";
+            UnityEngine.UI.Button btn = btnObj.GetComponent<UnityEngine.UI.Button>();
+
+            TextMeshProUGUI btnText = btn.GetComponentInChildren<TextMeshProUGUI>();
+            btnText.text = (i + 1).ToString();
+
+            int stageNum = i;
+            btn.onClick.AddListener(() =>
+            {
+                Logger.Log($"{btn.name} 선택");
+                OnClickButtoon(stageNum);
+            });
+        }
+    }
+
+    private void OnClickButtoon(int stageNum)
+    {
+        CloseStageMapUI();
+        Debug.Log($"{stageNum}번째 스테이지 선택");
+        GameManager.Instance.SelectStage(stageNum);
+    }
+    #endregion
+
+    #region Customizing UI
+    public void ShowCustomizingUI()
+    {
+        if (_customizingUI.activeSelf) return;
+        _customizingUI.SetActive(true);
+    }
+
+    public void CloseCustomizingUI()
+    {
+        if (!_customizingUI.activeSelf) return;
+        _customizingUI.SetActive(false);
+    }
+    #endregion
+
+    #region Timer UI 
+    public void ShowTimerUI()
+    {
+        if (_timerUI.activeSelf) return;
+        _timerUI.SetActive(true);
+    }
+
+    public void CloseTimeUI()
+    {
+        if (!_timerUI.activeSelf) return;
+        _timerUI.SetActive(false);
+    }
+
+    public void UpdateTime(float time)
+    {
+        if (!_timerUI.activeSelf) return;
+        _timerText.text = time.ToString("n2");
+    }
+    #endregion
+
+    #region Result UI
+    public void ShowResultUI(StageScore score)
+    {
+        _resultUI.Activate(score);
+    }
+
+    public void CloseResultUI()
+    {
+        _resultUI.DeactivateAll();
+    }
+    #endregion
+}

@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gate : MonoBehaviour
+public class Gate : MonoBehaviour, IObstacle
 {
     [Header("종점 기준으로 배치해주세요 ")]
-    [Range(1, 3)][SerializeField] private int moveRange = 3;
+    [Range(1, 20)][SerializeField] private int moveRange = 3;
     [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] private bool isHorizontal = true; // 수직수평 여부
     [Header("이동방향: OpenType 체크 -> 왼쪽 / 해제 -> 오른족 ")]
@@ -19,6 +19,9 @@ public class Gate : MonoBehaviour
     private Vector3 _closedDir;
     private Vector3 _openDir;
     
+    //초기화 좌표
+    private Vector3 _originPosition;
+    
     //코루틴 종점 시점
     private Vector3 iPos;
     private Vector3 tPos;
@@ -29,6 +32,13 @@ public class Gate : MonoBehaviour
 
     private bool isPusing;
    
+    
+    public void Init()
+    {
+        Logger.Log("gate transfrom 초기화");
+        gameObject.transform.position = _originPosition;
+    }
+    
     private void Awake()
     {
         //초기화: 게이트가 닫혀있을 때 기준

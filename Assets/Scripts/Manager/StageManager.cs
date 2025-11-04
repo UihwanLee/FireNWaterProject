@@ -6,6 +6,7 @@ public class StageManager : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private StageUI _stageUI;
+    [SerializeField] private TutorialUI _tutorialUI;
 
     [Header("캐릭터")]
     [SerializeField] private GameObject _ember;
@@ -17,6 +18,7 @@ public class StageManager : MonoBehaviour
     // 스테이지 정보
     private Dictionary<int, StageController> _stages = new();
     private StageController _currentStage;
+    private readonly Dictionary<GameState, Action> _stateHandlers = new();
 
     // 게임 상태 정보
     private GameState _currentGameState = GameState.None;
@@ -44,36 +46,51 @@ public class StageManager : MonoBehaviour
     public event Action OnClearStage;
     public event Action OnStartStage;
 
+    #region Awake State Manager
     private void Awake()
     {
-        if (_ember == null)
+        InitCharacters();
+        InitStateHandlers();
+    }
+
+    private T GetOrFindController<T>(GameObject obj, string name) where T : Component
+    {
+        if (obj == null)
         {
-            // 엠버 프리팹 원격으로 가져오기
-            Logger.Log("엠버 프리팹 가져오기");
+            Logger.Log($"{name} 프리팹 비어 있음");
         }
 
-        if (_wade == null)
+        if (!obj.TryGetComponent(out T controller))
         {
-            // 웨이드 프리팹 원격으로 가져오기
-            Logger.Log("웨이드 프리팹 가져오기");
+            Logger.Log($"{name} Controller 가져오기");
+            controller = FindObjectOfType<T>(true);
         }
 
-        if (!_ember.TryGetComponent<EmberController>(out _emberController))
-        {
-            Logger.Log("Ember Controller 가져오기");
-            _emberController = FindObjectOfType<EmberController>();
-        }
+        return controller;
+    }
 
-        if (!_wade.TryGetComponent<WadeController>(out _wadeController))
-        {
-            Logger.Log("Wade Controller 가져오기");
-            _wadeController = FindObjectOfType<WadeController>();
-        }
+    private void InitCharacters()
+    {
+        _emberController = GetOrFindController<EmberController>(_ember, "엠버");
+        _wadeController = GetOrFindController<WadeController>(_wade, "웨이드");
 
         Logger.Log("엠버, 웨이드 초기화 및 비활성화 완료");
     }
 
-    // 초기화
+    private void InitStateHandlers()
+    {
+        _stateHandlers.Clear();
+        _stateHandlers[GameState.Start] = HandleStageStart;
+        _stateHandlers[GameState.Play] = () => Logger.Log("플레이 중");
+        _stateHandlers[GameState.Pause] = HandlePause;
+        _stateHandlers[GameState.Resume] = HandleResume;
+        _stateHandlers[GameState.Dead] = GameOver;
+        _stateHandlers[GameState.Clear] = HandleStageClear;
+        _stateHandlers[GameState.Exit] = HandleStageExit;
+        _stateHandlers[GameState.Next] = HandleStageNext;
+    }
+    #endregion
+
     public void Init()
     {
         var stages = GetComponentsInChildren<StageController>(true);    // 비활성화된 object도 탐색
@@ -177,10 +194,7 @@ public class StageManager : MonoBehaviour
 
         if (gameState == GameState.Start)
         {
-            OnStartStage?.Invoke();
-            ResetStageInfo();
-            _currentStage.ResetJemState();
-            Logger.Log("스테이지 정보 초기화");
+            ResetStage();
             ChangeGameState(GameState.Play);
         }
     }
@@ -208,7 +222,7 @@ public class StageManager : MonoBehaviour
 
     /// <summary>
     /// 게임 상태에 따라 다른 로직을 처리하기 위한 메서드
-    /// 유효성 검사를 위해 GameManager의 ChangeGameState 사용을 권장
+    /// 유효성 검사를 위해 ChangeGameState 사용을 권장
     /// </summary>
     /// <param name="state"></param>
     private void HandleStateChanged(GameState state)
@@ -216,36 +230,16 @@ public class StageManager : MonoBehaviour
         if (_currentStage == null)
         {
             Logger.LogWarning($"현재 저장된 stage 없음");
+            return;
         }
 
-        switch (state)
+        if (_stateHandlers.TryGetValue(state, out var handler))
         {
-            case GameState.Start:                   // 카운트 다운, 로딩 등
-                HandleStageStart();
-                break;
-            case GameState.Play:                    // 실제 플레이(조작, 점수/시간 측정)
-                Logger.Log("플레이 중");
-                break;
-            case GameState.Pause:                    // 조작 불가, 시간 멈춤
-                HandlePause();
-                break;
-            case GameState.Resume:
-                HandleResume();
-                break;
-            case GameState.Dead:                    // 실패, 재시작 대기
-                GameOver();
-                break;
-            case GameState.Clear:                   // 성공, 점수 계산
-                HandleStageClear();
-                break;
-            case GameState.Exit:                     // 맵으로 나가기
-                HandleStageExit();
-                break;
-            case GameState.Next:                    // 다음 스테이지
-                HandleStageNext();
-                break;
-            default:
-                break;
+            handler?.Invoke();
+        }
+        else
+        {
+            Logger.Log($"{state} 할당 함수 없음");
         }
     }
     #endregion
@@ -255,6 +249,11 @@ public class StageManager : MonoBehaviour
     {
         _currentStage.ExecuteStageStart();
         _stageUI.ShowTimerUI();
+
+        if (_tutorialUI != null)
+        {
+            _tutorialUI.StartTutorial();
+        }
     }
 
     private void HandlePause()
@@ -271,6 +270,7 @@ public class StageManager : MonoBehaviour
     private void GameOver()
     {
         _currentStage.GameOver();
+        _stageUI.ShowResultUI(StageScore.None);
     }
 
     private void HandleStageExit()
@@ -288,6 +288,7 @@ public class StageManager : MonoBehaviour
     {
         _currentStage.ExecuteClear();
         OnClearStage?.Invoke();
+        _stageUI.ShowResultUI(GameManager.Instance.GetCurrentStageScore());
     }
 
     /// <summary>
@@ -306,17 +307,28 @@ public class StageManager : MonoBehaviour
         return _currentStage.CheckGemCount(currentGemCount);
     }
 
-    private void HandlePlayerDeath()
+    private void ResetStage()
     {
-        ChangeGameState(GameState.Dead);
+        _stageUI.CloseResultUI();
+
+        OnStartStage?.Invoke();
+        ResetTimer();
+        _currentStage.RevivePlayer();
+        _currentStage.ResetJemState();
+        _currentStage.ReseetObstacles();
+        Logger.Log("스테이지 정보 초기화");
     }
 
-    private void ResetStageInfo()
+    private void ResetTimer()
     {
         Logger.Log("시간 초기화");
         Timer = 0f;
         _checkTimeLimit = false;
-        _currentStage.RevivePlayer();
+    }
+
+    private void HandlePlayerDeath()
+    {
+        ChangeGameState(GameState.Dead);
     }
 
     public StageClearInfo GetStageClearInfo()

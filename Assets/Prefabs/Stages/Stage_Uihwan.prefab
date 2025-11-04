@@ -4140,6 +4140,7 @@ MonoBehaviour:
   _stageId: 0
   _gemCount: 0
   _limitTime: 0
+  _gems: {fileID: 0}
 --- !u!1 &3622721972191352358
 GameObject:
   m_ObjectHideFlags: 0
@@ -7280,7 +7281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9028361402192243431}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lever2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7296,7 +7297,7 @@ Transform:
   m_GameObject: {fileID: 4980502970376178231}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.09, y: 4.83, z: 0}
+  m_LocalPosition: {x: 8.61, y: 4.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7874,7 +7875,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1938125881325027943}
   - component: {fileID: 3863198592921489083}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9240,7 +9241,7 @@ GameObject:
   - component: {fileID: 5314512808957480691}
   - component: {fileID: 2474358180657095380}
   - component: {fileID: 1767732247492089576}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17129,7 +17130,7 @@ GameObject:
   - component: {fileID: 5543653798380062753}
   - component: {fileID: 8027424877516891999}
   - component: {fileID: 3055773080744811073}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17234,7 +17235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2362496610373147564}
   - component: {fileID: 3835151302375610499}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18025,11 +18026,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6345130917737343116, guid: bb98513017bda8b439221c2d56549d91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.86
+      value: 10.77
       objectReference: {fileID: 0}
     - target: {fileID: 6345130917737343116, guid: bb98513017bda8b439221c2d56549d91, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.16
+      value: 7.08
       objectReference: {fileID: 0}
     - target: {fileID: 6345130917737343116, guid: bb98513017bda8b439221c2d56549d91, type: 3}
       propertyPath: m_LocalPosition.z

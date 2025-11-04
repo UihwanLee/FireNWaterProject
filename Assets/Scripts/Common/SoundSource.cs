@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class SoundSource : MonoBehaviour
 {
-    private AudioSource _audioSource;
+    private AudioSource audioSource;
 
     public void Play(AudioClip clip, float soundEffectVolume, float soundEffectPitchVariance)
     {
-        if (_audioSource == null)
-            _audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
 
         CancelInvoke();
 
-        _audioSource.clip = clip;
-        _audioSource.volume = soundEffectVolume;
-        _audioSource.Play();
-        _audioSource.pitch = 1f + Random.Range(-soundEffectPitchVariance, soundEffectPitchVariance);
+        audioSource.clip = clip;
+        audioSource.volume = soundEffectVolume;
+        audioSource.Play();
+        audioSource.pitch = 1f + Random.Range(-soundEffectPitchVariance, soundEffectPitchVariance);
 
         Invoke("Disable", clip.length + 2);
     }
 
     public void Disable()
     {
-        _audioSource?.Stop();
-        Destroy(this.gameObject);
+        audioSource?.Stop();
+        this.gameObject.SetActive(false);
     }
 }

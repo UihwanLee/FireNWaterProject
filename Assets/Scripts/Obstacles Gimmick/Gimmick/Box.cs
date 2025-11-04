@@ -5,9 +5,26 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Box : MonoBehaviour , InteractWithController
+public class Box : MonoBehaviour, InteractWithController, IObstacle
 {
     private Box _box;
+
+    private Vector3 _originPosition;
+    private Quaternion _originRotation;
+
+    public void Init()
+    {
+        Logger.Log("box transfrom 초기화");
+        gameObject.transform.position = _originPosition;
+        gameObject.transform.rotation = _originRotation;
+    }
+
+    private void Awake()
+    {
+        _originPosition = gameObject.transform.position;
+        _originRotation = gameObject.transform.rotation;
+    }
+
     //검수
     public void Activate(BaseController bc)
     {

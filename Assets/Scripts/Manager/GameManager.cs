@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     // 추후 매니저 추가 예정
     [Header("Managers")]
     [SerializeField] private ScoreManager _scoreManager;
+    [SerializeField] private AudioManager _audioManager;
     private StageManager _stageManager;
 
     private void Awake()
@@ -135,8 +136,8 @@ public class GameManager : MonoBehaviour
 
     public void ClearStage()
     {
-        _stageManager.ChangeGameState(GameState.Clear);
         _scoreManager.CheckStageScore();
+        _stageManager.ChangeGameState(GameState.Clear);
     }
 
     public void StartNextStage()

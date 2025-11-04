@@ -7,6 +7,7 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int IsMoving = Animator.StringToHash("IsMove");
     private static readonly int IsJumpingUp = Animator.StringToHash("IsJumpUp");
     private static readonly int IsFallingDown = Animator.StringToHash("IsFallDown");
+    private static readonly int IsDie = Animator.StringToHash("IsDie");
 
     private Animator animator;
 
@@ -35,8 +36,8 @@ public class AnimationHandler : MonoBehaviour
         animator.SetBool(IsFallingDown, isFallDown);
     }
 
-    public void Die()
+    public void Die(bool isDie)
     {
-
+        animator.SetBool(IsDie, isDie);
     }
 }
