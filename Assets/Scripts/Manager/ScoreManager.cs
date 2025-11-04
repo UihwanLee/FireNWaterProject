@@ -275,8 +275,8 @@ public class ScoreManager : MonoBehaviour
 
     private void LoadGemCount()
     {
-        PlayerPrefs.GetInt(WaterGemKey, _totalWaterGemCount);
-        PlayerPrefs.GetInt(FireGemKey, _totalFireGemCount);
+        _totalWaterGemCount = PlayerPrefs.GetInt(WaterGemKey, 0);
+        _totalFireGemCount = PlayerPrefs.GetInt(FireGemKey, 0);
         Logger.Log($"젬 개수 로드 완료: " +
             $"FireGem({_totalFireGemCount}), " +
             $"WateGem({_totalWaterGemCount})");
