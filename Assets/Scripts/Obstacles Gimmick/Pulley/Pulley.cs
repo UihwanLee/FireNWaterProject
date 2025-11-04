@@ -76,8 +76,6 @@ public class Pulley : MonoBehaviour, InteractWithController, IObstacle
             originPos = chain.transform.localPosition;
             originRot = chain.transform.localRotation;
             originTransforms.Add(new OriginTransform(originPos, originRot));
-
-            Debug.Log("초기 생성" + originPos);
         }
 
         HingeJoint2D stool = Instantiate(stoolPrefab, anchor).GetComponent<HingeJoint2D>();
