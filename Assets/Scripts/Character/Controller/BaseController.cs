@@ -270,6 +270,13 @@ public class BaseController : MonoBehaviour
         ChangeState(CharacterState.Idle);
         Logger.Log($"{gameObject.name} 부활");
     }
+
+    public virtual void ResetRenderer()
+    {
+        Color temp = characterRenderer.color;
+        temp.a = 1f;
+        characterRenderer.color = temp;
+    }
     #endregion
 
     #region 캐릭터 지면 충돌 처리: Ground / Climb Slope

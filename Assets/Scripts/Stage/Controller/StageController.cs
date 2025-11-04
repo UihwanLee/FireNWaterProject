@@ -102,6 +102,8 @@ public class StageController : MonoBehaviour
     {
         _emberController.Revive();
         _wadeController.Revive();
+        _emberController.ResetRenderer();
+        _wadeController.ResetRenderer();
     }
 
     private void PausePlayers()
