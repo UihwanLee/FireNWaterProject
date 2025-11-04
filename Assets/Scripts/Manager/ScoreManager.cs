@@ -43,6 +43,7 @@ public class ScoreManager : MonoBehaviour
     // Stage 정보 저장
     private string SavePath;
     private StageClearInfoWrapper _saveData = new();
+    private int _maxClearStageId;
 
     // todo: 누적 젬 개수
     private readonly string WaterGemKey = "WaterGem";
@@ -138,6 +139,12 @@ public class ScoreManager : MonoBehaviour
         // 젬 데이터 저장
         TotalWaterGemCount += _currentWaterGemCount;
         TotalFireGemCount += _currentFireGemCount;
+
+        // 최대 스테이지 정보 저장
+        if (id > _maxClearStageId)
+        {
+            _maxClearStageId = id;
+        }
 
         // StageScore: A = 0 / B = 1 / C = 2 / None = 3
         // 점수가 더 낮거나, 클리어 시간이 길 경우 저장 x
