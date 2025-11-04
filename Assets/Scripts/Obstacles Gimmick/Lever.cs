@@ -34,9 +34,10 @@ public class Lever : MonoBehaviour, InteractWithController,IObstacle
     }
 
 
-    //플레이어의 Push 방향을 확정.
+   
     private PushSide GetSide(BaseController bc)
     {
+        //플레이어의 Push 방향을 확정.
         var rb2d = bc.GetComponent<Rigidbody2D>();
         
         float pos = bc.transform.position.x - transform.position.x;
@@ -59,7 +60,6 @@ public class Lever : MonoBehaviour, InteractWithController,IObstacle
     
     public void Activate(BaseController bc)
     {
-        
         //플레이어가 움직임 여부 검사
         var rb2d = bc.GetComponent<Rigidbody2D>();
         float vx = rb2d.velocity.x;
