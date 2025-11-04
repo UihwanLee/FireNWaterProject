@@ -21,7 +21,7 @@ public class StageUI : MonoBehaviour
 
     private void Start()
     {
-        CreateStageButtons();
+        ConnectButtonAndStage();
     }
 
     #region Stage Map UI
@@ -39,6 +39,17 @@ public class StageUI : MonoBehaviour
         _bgImg.SetActive(false);
         _logo.SetActive(false);
         _buttonParent.SetActive(false);
+    }
+
+    private void ConnectButtonAndStage()
+    {
+        var btnObjs = _buttonParent.GetComponentsInChildren<UnityEngine.UI.Button>();
+
+        foreach (var btnObj in btnObjs)
+        {
+            btnObj.TryGetComponent(out StageSelectButton btn);
+            btnObj.onClick.AddListener(() => OnClickButtoon(btn.buttonId));
+        }
     }
 
     private void CreateStageButtons()
