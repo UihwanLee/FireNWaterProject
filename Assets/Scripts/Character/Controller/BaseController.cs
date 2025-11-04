@@ -40,11 +40,15 @@ public class BaseController : MonoBehaviour
     [SerializeField] protected AnimationHandler animationHandler;           // 캐릭터 Animation 담당 클래스
     [SerializeField] private GroundAndSlopeHandler groundHandler;           // 캐릭터 Ground/Slope 충돌 처리 클래스
 
+    public ParticleSystem DieEffect;
     protected void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         isGrounded = false;
         currentState = CharacterState.Idle;
+
+        if (DieEffect != null && DieEffect.gameObject.activeSelf) // Die 이펙트 켜져있다면 끄기
+            DieEffect.gameObject.SetActive(false); 
     }
 
     protected virtual void Update()
@@ -219,6 +223,18 @@ public class BaseController : MonoBehaviour
 
         ChangeState(CharacterState.Die);
         animationHandler.Die((currentState == CharacterState.Die));
+
+        if (DieEffect != null)
+        {
+            // 오브젝트가 꺼져 있었다면 우선 켠다
+            if (!DieEffect.gameObject.activeSelf)
+                DieEffect.gameObject.SetActive(true);
+
+            DieEffect.Play();
+
+            // 1초 뒤에 이펙트만 없애고 싶으면
+            Destroy(DieEffect.gameObject, 1f);
+        }
 
         Invoke("SendPlayerDieToManager", 0.5f);
     }
