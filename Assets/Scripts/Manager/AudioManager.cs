@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Sound
@@ -36,6 +37,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] List<Sound> backGroundList;
     [SerializeField] List<Sound> soundEffectList;
 
+    [Header("Sound Setting UI")]
+    [SerializeField] private Slider backGroundSlider;
+    [SerializeField] private Slider soundEffectSlider;
+
     private AudioSource musicAudiosource;
 
 
@@ -52,11 +57,25 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        InitSlider();
         ChangeBackGroundMusic(Define.BGM_INTRO);
         GenerateAvailableSoundSource();
     }
 
     #region AudioManager 초기화
+
+    private void InitSlider()
+    {
+        if(backGroundSlider != null)
+        {
+            backGroundSlider.value = musicVolume;
+        }
+
+        if(soundEffectSlider != null)
+        {
+            soundEffectSlider.value = soundEffectVolume;
+        }
+    }
 
     private void GenerateAvailableSoundSource()
     {

@@ -1732,6 +1732,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8617389863679549785}
     m_Modifications:
+    - target: {fileID: 2647132618304366864, guid: d418186eb284546408135bbc6ed3fa05, type: 3}
+      propertyPath: backGroundSlider
+      value: 
+      objectReference: {fileID: 1574765559994564136}
+    - target: {fileID: 2647132618304366864, guid: d418186eb284546408135bbc6ed3fa05, type: 3}
+      propertyPath: soundEffectSlider
+      value: 
+      objectReference: {fileID: 8270021477294232151}
     - target: {fileID: 5085697130108051996, guid: d418186eb284546408135bbc6ed3fa05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
