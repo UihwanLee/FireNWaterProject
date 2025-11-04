@@ -39,23 +39,6 @@ public class GameManager : MonoBehaviour
 
         SettingWindow.SetActive(false);
     }
-
-    private void Start()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-        Logger.Log("델리게이트 제거 (시간 제한, 스테이지 시작, 스테이지 클리어");
-        _stageManager.OnFailedToClearWithinTimeLimit -= _scoreManager.HandleTimeLimitFailed;
-        _stageManager.OnStartStage -= () =>
-        {
-            _scoreManager.ResetScoreFlags();
-        };
-        _stageManager.OnClearStage -= HandleStageClear;
-    }
-
     private void Update()
     {
         if (Input.GetButtonDown("Cancel"))
