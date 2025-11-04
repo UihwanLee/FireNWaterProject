@@ -173,6 +173,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Btn_Retry
       objectReference: {fileID: 0}
+    - target: {fileID: 7753305461705736036, guid: cb8eb971ef5a1cc4c986ea510842d203, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4684499996445672310, guid: cb8eb971ef5a1cc4c986ea510842d203, type: 3}
     m_RemovedGameObjects:
@@ -644,7 +648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4959216073625134181, guid: 42269568d6d974f4ba7a8744200783af, type: 3}
       propertyPath: m_Size
-      value: 0.33333337
+      value: 0.33333334
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
