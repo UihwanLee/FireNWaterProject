@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class Lava : MonoBehaviour , InteractWithController
 { 
-        
         public void Activate(BaseController wade)
         {
-                //사망
+                //캐릭터 사망
                 wade.Death();
         }
     

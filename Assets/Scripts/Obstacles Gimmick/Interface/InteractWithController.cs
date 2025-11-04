@@ -4,6 +4,5 @@ using UnityEngine;
 public interface InteractWithController
 {
    void Activate(BaseController bc);
-
 }
 
