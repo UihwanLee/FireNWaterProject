@@ -139,8 +139,8 @@ Vector2 slopeDir = Vector2.Perpendicular(normal).normalized;
 > 와이드 프레임
   <img width="989" height="828" alt="1" src="https://github.com/user-attachments/assets/52bb5c2a-eef0-4eeb-9ee4-7cb51da3ddda" />
 
-> Stage 상태 머신(State Machine)
-  <img width="916" height="625" alt="2" src="https://github.com/user-attachments/assets/27dec39c-33b0-43fa-b8e7-7a9e7de48e96" />
+> 디자인 관리
+<img width="1121" height="846" alt="16" src="https://github.com/user-attachments/assets/57b749b8-73fb-4a70-8eb2-d9fc377012c4" />
 
 > 리소스 관리
 <img width="523" height="744" alt="3" src="https://github.com/user-attachments/assets/fc3fcbbe-8899-40ad-9f4b-57eccbb17fcf" />
