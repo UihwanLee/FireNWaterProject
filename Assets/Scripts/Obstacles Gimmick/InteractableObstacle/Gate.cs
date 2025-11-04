@@ -37,13 +37,19 @@ public class Gate : MonoBehaviour, IObstacle
     {
         gameObject.GetComponentInChildren<Transform>().localPosition =  Vector3.zero;
         gameObject.transform.position = _originPosition;
+        InitOpenType();
     }
     
     private void Awake()
     {
+        InitOpenType();
+    }
+
+    public void InitOpenType()
+    {
         //초기화: 게이트가 닫혀있을 때 기준
-        _originPosition = gameObject.transform.localPosition;       
-       
+        _originPosition = gameObject.transform.localPosition;
+
         //종점 시점 설정
         Vector3 initPos = transform.position;
         if (isHorizontal)
@@ -54,14 +60,13 @@ public class Gate : MonoBehaviour, IObstacle
         else
         {
             _openDir = initPos;
-            _closedDir = new Vector3(initPos.x , initPos.y- moveRange, initPos.z);
+            _closedDir = new Vector3(initPos.x, initPos.y - moveRange, initPos.z);
         }
-        
-        tPos = openType ? _closedDir: _openDir;
-        iPos = !openType ? _closedDir: _openDir;
-        
-        //폐쇄형일 경우 시작점 보정
-        if (isHorizontal&&!openType)
+
+        tPos = openType ? _closedDir : _openDir;
+        iPos = !openType ? _closedDir : _openDir;
+
+        if (isHorizontal && !openType)
         {
             initPos.x -= moveRange;
             transform.position = initPos;
@@ -71,7 +76,6 @@ public class Gate : MonoBehaviour, IObstacle
             initPos.y -= moveRange;
             transform.position = initPos;
         }
-        
     }
     
     
