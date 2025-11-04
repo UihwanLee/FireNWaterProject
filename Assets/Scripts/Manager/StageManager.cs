@@ -163,6 +163,7 @@ public class StageManager : MonoBehaviour
         _currentStage.gameObject.SetActive(true);               // 활성화
         _currentStage.Init(_ember, _wade, _emberController, _wadeController);
         Logger.Log($"{id} 번째 스테이지 활성화");
+        _stageUI.CloseStageMapUI();
 
         ChangeGameState(GameState.Start);                       // 자동 시작
     }

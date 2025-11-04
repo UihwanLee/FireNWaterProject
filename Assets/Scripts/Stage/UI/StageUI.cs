@@ -97,7 +97,6 @@ public class StageUI : MonoBehaviour
 
     private void OnClickButtoon(int stageNum)
     {
-        CloseStageMapUI();
         Debug.Log($"{stageNum}번째 스테이지 선택");
         GameManager.Instance.SelectStage(stageNum);
     }
