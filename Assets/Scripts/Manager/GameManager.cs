@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     // 추후 매니저 추가 예정
     [Header("Managers")]
     [SerializeField] private ScoreManager _scoreManager;
+    [SerializeField] private AudioManager _audioManager;
     private StageManager _stageManager;
 
     private void Awake()
