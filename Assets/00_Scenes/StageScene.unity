@@ -402,6 +402,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5796881852452425336, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6696818444377896916, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -440,6 +444,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6696818444377896916, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718455590955074001, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8814011286559921806, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
@@ -56033,8 +56041,8 @@ MonoBehaviour:
   _emberSpwanPoint: {fileID: 3718518364066309038}
   _wadeSpwanPoint: {fileID: 9126531741069892926}
   _stageId: 0
-  _gemCount: 0
-  _limitTime: 0
+  _gemCount: 8
+  _limitTime: 50
   _gems: {fileID: 650114530532140897}
 --- !u!212 &8190213084204272606
 SpriteRenderer:
