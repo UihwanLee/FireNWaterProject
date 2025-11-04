@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageUI: {fileID: 4849492716290062925}
+  _tutorialUI: {fileID: 5974617241484509912, guid: 106e6ec5f4b3ebc459335cce83ad6f5e, type: 3}
   _ember: {fileID: 4655628326618754745}
   _wade: {fileID: 451661467917283414}
 --- !u!1 &7009526465909196979
