@@ -67,18 +67,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region setting UI
     private void OpenSettingWindow()
     {
         SettingWindow.SetActive(true);
-        PauseStage();
+        if (_stageManager != null) PauseStage();
     }
 
     private void CloseSettingWindow()
     {
         SettingWindow.SetActive(false);
-        ResumeStage();
+        if (_stageManager != null) ResumeStage();
     }
 
+    private void SetActiveSettingUIButtons(bool active)
+    {
+        _homeButton.gameObject.SetActive(active);
+        _retryButton.gameObject.SetActive(active);
+    }
+    #endregion
+
+    #region stage scene 로드
     public void LoadStageScene()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -111,13 +120,15 @@ public class GameManager : MonoBehaviour
         };
         _stageManager.OnClearStage += HandleStageClear;
 
-        UnityEngine.UI.Button btnHome = this.transform.GetComponentInChildren<UnityEngine.UI.Button>(true);
-        btnHome.onClick.AddListener(ExitStage);
+        // button 초기화
+        _homeButton.onClick.AddListener(ExitStage);
+        _retryButton.onClick.AddListener(StartStage);
 
         //int stageId = 0;
         //Logger.Log($"{stageId}번째 스테이지 선택");
         //SelectStage(stageId);
     }
+    #endregion
 
     #region Stage 상태 관리 메서드
     public void SelectStage(int id)
@@ -134,6 +145,7 @@ public class GameManager : MonoBehaviour
 
         _audioManager.PlayClip(Define.SFX_SELECT);
         _audioManager.ChangeBackGroundMusic(Define.BGM_INPLAY);
+        SetActiveSettingUIButtons(true);
     }
 
     public void StartStage()
@@ -178,6 +190,7 @@ public class GameManager : MonoBehaviour
         _scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
 
         _audioManager.ChangeBackGroundMusic(Define.BGM_INTRO);
+        SetActiveSettingUIButtons(false);
     }
 
     private void HandleStageClear()
