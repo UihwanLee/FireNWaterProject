@@ -31,6 +31,7 @@ public class ExitCalculator : MonoBehaviour , IObstacle
         cEw.a = 1;
         eE.color = cEe;
         eW.color = cEw;
+        players.Clear();
     }
     
     public void AddPlayer(BaseController player)
