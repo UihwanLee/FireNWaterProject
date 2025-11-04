@@ -30,7 +30,7 @@ public class Lever : MonoBehaviour, InteractWithController,IObstacle
     public void Init()
     {
         Logger.Log("lever transfrom 초기화");
-        gameObject.transform.rotation = _originRotation;
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, neutralAngle);
     }
 
 
