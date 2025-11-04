@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class StageController : MonoBehaviour
@@ -10,6 +11,11 @@ public class StageController : MonoBehaviour
     [SerializeField] private int _stageId;
     [SerializeField] private int _gemCount;
     [SerializeField] private float _limitTime;
+
+    [Header("젬 오브젝트")]
+    [SerializeField] private GameObject _gems;
+    private BaseGem[] _baseGems;
+    public event Action OnResetJem;
 
     public int StageId => _stageId;
     public int GemCount => _gemCount;
@@ -37,6 +43,17 @@ public class StageController : MonoBehaviour
         _wadeController = wadeController;
     }
 
+    private void Awake()
+    {
+        _baseGems = _gems.GetComponentsInChildren<BaseGem>(true);
+
+        Logger.Log("젬 초기화 이벤트 구독하기");
+        foreach (var baseGem in _baseGems)
+        {
+            OnResetJem += baseGem.ResetObject;
+        }
+    }
+
     private void OnEnable()
     {
         if (_emberSpwanPoint == null)
@@ -52,6 +69,15 @@ public class StageController : MonoBehaviour
         _stage = new(_stageId, _limitTime, _gemCount);
         _stageClearInfo = new(_stage);
         Logger.Log($"stage: {_stage}\n stage info: {_stageClearInfo}");
+    }
+
+    private void OnDestroy()
+    {
+        Logger.Log("젬 초기화 이벤트 구독 취소하기");
+        foreach (var baseGem in _baseGems)
+        {
+            OnResetJem -= baseGem.ResetObject;
+        }
     }
 
     #region 플레이어 상태 변경
@@ -74,6 +100,12 @@ public class StageController : MonoBehaviour
         _emberController.Revive();
         _wadeController.Revive();
     }
+
+    private void PausePlayers()
+    {
+        _emberController.Pause();
+        _wadeController.Pause();
+    }
     #endregion
 
     #region 게임 로직 작성
@@ -85,8 +117,7 @@ public class StageController : MonoBehaviour
 
     public void ExecutePause()
     {
-        _emberController.Pause();
-        _wadeController.Pause();
+        PausePlayers();
     }
 
     public void ExecuteResume()
@@ -107,7 +138,7 @@ public class StageController : MonoBehaviour
 
     public void ExecuteClear()
     {
-        Logger.NotImpl();
+        PausePlayers();
     }
     #endregion
 
@@ -122,5 +153,11 @@ public class StageController : MonoBehaviour
     {
         _stageClearInfo.ClearTime = clearTime;
         return _stageClearInfo;
+    }
+
+    public void ResetJemState()
+    {
+        Logger.Log("젬 상태 초기화");
+        OnResetJem?.Invoke();
     }
 }
