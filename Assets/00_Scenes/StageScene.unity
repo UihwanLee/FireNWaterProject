@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: _stageId
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4679537083028946985, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: _stageId
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5725779723632196838, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: m_Name
       value: Stage_DongWook
@@ -446,12 +450,14 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8439444782057915232, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
     - {fileID: 6348210204407744267, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+    - {fileID: 387046370735034400, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+    - {fileID: 2821739156483273922, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
 --- !u!4 &1755313252 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6696818444377896916, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+  m_CorrespondingSourceObject: {fileID: 55930362288629405, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
   m_PrefabInstance: {fileID: 1755313251}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2077010011
