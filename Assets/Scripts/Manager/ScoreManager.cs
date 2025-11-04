@@ -56,6 +56,7 @@ public class ScoreManager : MonoBehaviour
                 _maxClearStageId = value;
             }
             PlayerPrefs.SetInt(StageIdKey, _maxClearStageId);
+            Logger.Log($"최대 스테이지 클리어 ID: {_maxClearStageId}");
         }
     }
 
@@ -91,6 +92,7 @@ public class ScoreManager : MonoBehaviour
         Load();
         LoadGemCount();
         _maxClearStageId = PlayerPrefs.GetInt(StageIdKey, 0);
+        Logger.Log($"초기화 - 최대 스테이지 클리어 ID: {_maxClearStageId}");
     }
 
     public void CheckStageScore()
@@ -158,7 +160,7 @@ public class ScoreManager : MonoBehaviour
         // 최대 스테이지 정보 저장
         if (id > _maxClearStageId)
         {
-            _maxClearStageId = id;
+            MaxClearStageId = id;
         }
 
         // StageScore: A = 0 / B = 1 / C = 2 / None = 3
