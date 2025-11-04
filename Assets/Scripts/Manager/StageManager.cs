@@ -177,10 +177,7 @@ public class StageManager : MonoBehaviour
 
         if (gameState == GameState.Start)
         {
-            OnStartStage?.Invoke();
-            ResetStageInfo();
-            _currentStage.ResetJemState();
-            Logger.Log("스테이지 정보 초기화");
+            ResetStage();
             ChangeGameState(GameState.Play);
         }
     }
@@ -306,17 +303,25 @@ public class StageManager : MonoBehaviour
         return _currentStage.CheckGemCount(currentGemCount);
     }
 
-    private void HandlePlayerDeath()
+    private void ResetStage()
     {
-        ChangeGameState(GameState.Dead);
+        OnStartStage?.Invoke();
+        ResetTimer();
+        _currentStage.RevivePlayer();
+        _currentStage.ResetJemState();
+        Logger.Log("스테이지 정보 초기화");
     }
 
-    private void ResetStageInfo()
+    private void ResetTimer()
     {
         Logger.Log("시간 초기화");
         Timer = 0f;
         _checkTimeLimit = false;
-        _currentStage.RevivePlayer();
+    }
+
+    private void HandlePlayerDeath()
+    {
+        ChangeGameState(GameState.Dead);
     }
 
     public StageClearInfo GetStageClearInfo()
