@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioManager _audioManager;
     private StageManager _stageManager;
 
-    // 튜토리얼[0] + 개인 제작[1 ~ 5] + 엔딩[6] => 총 7개
-    public static readonly int STAGE_NUM = 7;
     public int MaxClearStageId => _scoreManager.MaxClearStageId;
 
     private void Awake()
@@ -35,6 +33,8 @@ public class GameManager : MonoBehaviour
         {
             _scoreManager = GetComponentInChildren<ScoreManager>();
         }
+
+        SettingWindow.SetActive(false);
     }
 
     private void Start()
@@ -125,6 +125,9 @@ public class GameManager : MonoBehaviour
         _stageManager.SelectStage(id);
         Logger.Log("젬 확인 델리게이트 추가");
         _scoreManager.OnCheckGemCount += _stageManager.HandleCheckGemCount;
+
+        _audioManager.PlayClip(Define.SFX_SELECT);
+        _audioManager.ChangeBackGroundMusic(Define.BGM_INPLAY);
     }
 
     public void StartStage()
@@ -146,6 +149,7 @@ public class GameManager : MonoBehaviour
     {
         _scoreManager.CheckStageScore();
         _stageManager.ChangeGameState(GameState.Clear);
+        _audioManager.PlayClip(Define.SFX_WIN);
     }
 
     public void StartNextStage()
@@ -166,6 +170,8 @@ public class GameManager : MonoBehaviour
         _stageManager.ChangeGameState(GameState.Exit);
         Logger.Log("젬 확인 델리게이트 제거");
         _scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
+
+        _audioManager.ChangeBackGroundMusic(Define.BGM_INTRO);
     }
 
     private void HandleStageClear()

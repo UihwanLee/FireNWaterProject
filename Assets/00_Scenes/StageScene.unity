@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1075350607506316753, guid: 7382b0ec828cf8642998db76a9a87e77, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b5e52f8e3cf4d6947958bc1f12620cdb, type: 2}
     - target: {fileID: 2155341943621742917, guid: 7382b0ec828cf8642998db76a9a87e77, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -170,9 +174,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3814764930052393002, guid: 7382b0ec828cf8642998db76a9a87e77, type: 3}
+      propertyPath: buttonId
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4754786678669071983, guid: 7382b0ec828cf8642998db76a9a87e77, type: 3}
+      propertyPath: buttonId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5374639798936929533, guid: 7382b0ec828cf8642998db76a9a87e77, type: 3}
       propertyPath: m_Name
       value: StageManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5834076277037296985, guid: 7382b0ec828cf8642998db76a9a87e77, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8986,7 +9002,7 @@ Transform:
   m_GameObject: {fileID: 5400161423044105303}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.03, y: 3.12, z: 0}
+  m_LocalPosition: {x: 16.03, y: 2.648, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10772,6 +10788,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   isHorizontal: 1
   openType: 0
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &2078734381503266180
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11727,8 +11744,8 @@ MonoBehaviour:
   _emberSpwanPoint: {fileID: 7162809748887997665}
   _wadeSpwanPoint: {fileID: 3340062370361815665}
   _stageId: 3
-  _gemCount: 0
-  _limitTime: 0
+  _gemCount: 14
+  _limitTime: 100
   _gems: {fileID: 6482956937459451950}
 --- !u!1 &2409863934052110846
 GameObject:
@@ -23136,6 +23153,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   isHorizontal: 1
   openType: 1
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &4197734201730202190
 Transform:
   m_ObjectHideFlags: 0
@@ -30841,6 +30859,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   isHorizontal: 0
   openType: 1
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!58 &4420972085478414327
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -38757,16 +38776,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -11, y: -1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 0, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -38813,7 +38822,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: adb60c3b901e17849ae88e4cfbdf0255, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: d92253af4a2f02d4ba804dcc3cfef6cc, type: 2}
-  - m_RefCount: 7
+  - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: da5bfc75e1924d3428fe5ee96627d734, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 42124f9c8bf1c714b904817ed904772e, type: 2}
@@ -38826,7 +38835,7 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: b9fe691538f6cfa44b5652c63572d74f, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 21300000, guid: f7ad008c495496d419d309af9e107a87, type: 3}
-  - m_RefCount: 7
+  - m_RefCount: 6
     m_Data: {fileID: 21300000, guid: 87e3c38cc8d5c5f478daa09faa256aff, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 21300000, guid: ee4bcd8bab3e98543bade9dd3a47b6c9, type: 3}
@@ -38835,7 +38844,7 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: cba4eff586e4ac14597eee42cc97a778, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 18
+  - m_RefCount: 17
     m_Data:
       e00: 1
       e01: 0
@@ -38854,7 +38863,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 18
+  - m_RefCount: 17
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -38983,6 +38992,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   isHorizontal: 0
   openType: 0
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!483693784 &4851796886547287750
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -48299,6 +48309,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   isHorizontal: 1
   openType: 0
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!58 &5376642301762426446
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -60937,6 +60948,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   isHorizontal: 1
   openType: 1
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &6928141559082108461
 Transform:
   m_ObjectHideFlags: 0
@@ -62426,8 +62438,8 @@ MonoBehaviour:
   _emberSpwanPoint: {fileID: 3160965832793137166}
   _wadeSpwanPoint: {fileID: 7413805896657280670}
   _stageId: 2
-  _gemCount: 0
-  _limitTime: 0
+  _gemCount: 10
+  _limitTime: 95
   _gems: {fileID: 1243414429073695937}
 --- !u!1 &7628914707886592538
 GameObject:
@@ -71312,6 +71324,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   isHorizontal: 1
   openType: 1
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &8587549771607004377
 Transform:
   m_ObjectHideFlags: 0

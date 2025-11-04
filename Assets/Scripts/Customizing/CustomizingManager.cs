@@ -261,7 +261,7 @@ public class CustomizingManager : MonoBehaviour
 
     #region 커스터마이징 업데이트
 
-    private void UpdateJem()
+    public void UpdateJem()
     {
         fireJemCount.text = GameManager.Instance.GetFireGemCount().ToString();
         waterJemCount.text = GameManager.Instance.GetWaterGemCount().ToString();

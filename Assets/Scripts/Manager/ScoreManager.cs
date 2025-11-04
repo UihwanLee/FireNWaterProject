@@ -56,6 +56,7 @@ public class ScoreManager : MonoBehaviour
                 _maxClearStageId = value;
             }
             PlayerPrefs.SetInt(StageIdKey, _maxClearStageId);
+            Logger.Log($"최대 스테이지 클리어 ID: {_maxClearStageId}");
         }
     }
 
@@ -87,10 +88,18 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
+        ResetPP();
         SavePath = Path.Combine(Application.persistentDataPath, "SaveStageData.json");
         Load();
         LoadGemCount();
         _maxClearStageId = PlayerPrefs.GetInt(StageIdKey, 0);
+        Logger.Log($"초기화 - 최대 스테이지 클리어 ID: {_maxClearStageId}");
+    }
+
+    private void ResetPP()
+    {
+        Logger.Log("Player prefs 초기화");
+        PlayerPrefs.DeleteAll();
     }
 
     public void CheckStageScore()
@@ -158,7 +167,7 @@ public class ScoreManager : MonoBehaviour
         // 최대 스테이지 정보 저장
         if (id > _maxClearStageId)
         {
-            _maxClearStageId = id;
+            MaxClearStageId = id;
         }
 
         // StageScore: A = 0 / B = 1 / C = 2 / None = 3
@@ -195,14 +204,14 @@ public class ScoreManager : MonoBehaviour
         {
             string json = File.ReadAllText(SavePath);
             _saveData = JsonUtility.FromJson<StageClearInfoWrapper>(json) ??
-                new StageClearInfoWrapper(GameManager.STAGE_NUM);
+                new StageClearInfoWrapper(Define.STAGE_NUM);
         }
         else
         {
-            _saveData = new StageClearInfoWrapper(GameManager.STAGE_NUM);
+            _saveData = new StageClearInfoWrapper(Define.STAGE_NUM);
         }
 
-        for (int i = _saveData.StageClearInfos.Count; i < GameManager.STAGE_NUM; i++)
+        for (int i = _saveData.StageClearInfos.Count; i < Define.STAGE_NUM; i++)
         {
             _saveData.StageClearInfos.Add(new StageClearInfo(i));
         }
