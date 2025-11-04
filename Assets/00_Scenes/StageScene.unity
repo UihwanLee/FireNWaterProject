@@ -16646,7 +16646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _emberSpwanPoint: {fileID: 7162809748887997665}
   _wadeSpwanPoint: {fileID: 3340062370361815665}
-  _stageId: 0
+  _stageId: 3
   _gemCount: 0
   _limitTime: 0
   _gems: {fileID: 6482956937459451950}
@@ -56267,7 +56267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _emberSpwanPoint: {fileID: 3160965832793137166}
   _wadeSpwanPoint: {fileID: 7413805896657280670}
-  _stageId: 0
+  _stageId: 2
   _gemCount: 0
   _limitTime: 0
   _gems: {fileID: 1243414429073695937}
