@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5834076277037296985, guid: 7382b0ec828cf8642998db76a9a87e77, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6217,7 +6217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &793495743687834311
 Transform:
   m_ObjectHideFlags: 0
@@ -9657,7 +9657,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0052268417, y: -0.0371416}
   serializedVersion: 2
-  m_Radius: 0.038774967
+  m_Radius: 0.3
 --- !u!58 &1687558455099200996
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11058,7 +11058,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0052268417, y: -0.0371416}
   serializedVersion: 2
-  m_Radius: 0.038774967
+  m_Radius: 0.3
 --- !u!58 &2351225195990030936
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11093,7 +11093,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!114 &2385602483294949614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19260,7 +19260,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!50 &2903871788994169131
 Rigidbody2D:
   serializedVersion: 4
@@ -31800,7 +31800,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!483693784 &4869784537393141998
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -32433,7 +32433,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!1839735485 &5298278856010853166
 Tilemap:
   m_ObjectHideFlags: 0
@@ -36089,7 +36089,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!58 &5383477295850484099
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -36124,7 +36124,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0052268417, y: -0.0371416}
   serializedVersion: 2
-  m_Radius: 0.038774967
+  m_Radius: 0.3
 --- !u!4 &5388201153724372229
 Transform:
   m_ObjectHideFlags: 0
@@ -47956,7 +47956,7 @@ MonoBehaviour:
   _emberSpwanPoint: {fileID: 3160965832793137166}
   _wadeSpwanPoint: {fileID: 7413805896657280670}
   _stageId: 2
-  _gemCount: 10
+  _gemCount: 11
   _limitTime: 95
   _gems: {fileID: 1243414429073695937}
 --- !u!1 &7628914707886592538
@@ -55909,7 +55909,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0052268417, y: -0.0371416}
   serializedVersion: 2
-  m_Radius: 0.038774967
+  m_Radius: 0.3
 --- !u!1 &8127598893815766989
 GameObject:
   m_ObjectHideFlags: 0
@@ -56513,7 +56513,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!4 &8363985543231708743
 Transform:
   m_ObjectHideFlags: 0
@@ -56725,7 +56725,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0052268417, y: -0.0371416}
   serializedVersion: 2
-  m_Radius: 0.038774967
+  m_Radius: 0.3
 --- !u!58 &8653362590855205525
 CircleCollider2D:
   m_ObjectHideFlags: 0
