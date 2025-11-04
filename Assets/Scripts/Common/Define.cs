@@ -33,4 +33,7 @@ public static class Define
 
     public const float BASE_GRAVITY_SCALE = 1.0f;
     public const float SLOPE_GRAVITY_SCALE = 0.1f;
+
+    [Header("AudioSetting")]
+    public const int AVAILABLE_SOUNDSORUCE_COUNT = 10;
 }
