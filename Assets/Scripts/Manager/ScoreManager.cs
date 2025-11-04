@@ -43,7 +43,21 @@ public class ScoreManager : MonoBehaviour
     // Stage 정보 저장
     private string SavePath;
     private StageClearInfoWrapper _saveData = new();
+
+    public readonly string StageIdKey = "StageId";
     private int _maxClearStageId;
+    public int MaxClearStageId
+    {
+        get { return _maxClearStageId; }
+        set
+        {
+            if (value > _maxClearStageId)
+            {
+                _maxClearStageId = value;
+            }
+            PlayerPrefs.SetInt(StageIdKey, _maxClearStageId);
+        }
+    }
 
     // todo: 누적 젬 개수
     private readonly string WaterGemKey = "WaterGem";
@@ -76,6 +90,7 @@ public class ScoreManager : MonoBehaviour
         SavePath = Path.Combine(Application.persistentDataPath, "SaveStageData.json");
         Load();
         LoadGemCount();
+        _maxClearStageId = PlayerPrefs.GetInt(StageIdKey, 0);
     }
 
     public void CheckStageScore()
