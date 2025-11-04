@@ -51,7 +51,7 @@ public class StageUI : MonoBehaviour
             int buttonId = btn.buttonId;
 
             // todo: 6번은 엔딩 크레딧과 연결
-            if (buttonId == 6)
+            if (buttonId == Define.STAGE_NUM)
             {
                 return;
             }
@@ -67,7 +67,7 @@ public class StageUI : MonoBehaviour
 
         Transform buttonParentTransform = _buttonParent.transform;
 
-        for (int i = 0; i < GameManager.STAGE_NUM; i++)
+        for (int i = 0; i < Define.STAGE_NUM; i++)
         {
             GameObject btnObj = Instantiate(_buttonPrefab, buttonParentTransform);
             RectTransform rect = btnObj.GetComponent<RectTransform>();

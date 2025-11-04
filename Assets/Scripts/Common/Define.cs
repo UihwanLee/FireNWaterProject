@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /*
@@ -7,7 +5,7 @@ using UnityEngine;
  */
 
 public static class Define
-{ 
+{
     public static class LayerMask
     {
         public const int GROUND = 1 << 6;
@@ -49,4 +47,8 @@ public static class Define
     public const string SFX_LOSE = "SFX_LOSE";
     public const string SFX_SELECT = "SFX_SELECT";
     public const string SFX_WIN = "SFX_WIN";
+
+    [Header("Stage Setting")]
+    // 튜토리얼[0] + 개인 제작[1 ~ 5] 
+    public const int STAGE_NUM = 6;
 }

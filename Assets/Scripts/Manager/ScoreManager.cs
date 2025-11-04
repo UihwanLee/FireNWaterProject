@@ -204,14 +204,14 @@ public class ScoreManager : MonoBehaviour
         {
             string json = File.ReadAllText(SavePath);
             _saveData = JsonUtility.FromJson<StageClearInfoWrapper>(json) ??
-                new StageClearInfoWrapper(GameManager.STAGE_NUM);
+                new StageClearInfoWrapper(Define.STAGE_NUM);
         }
         else
         {
-            _saveData = new StageClearInfoWrapper(GameManager.STAGE_NUM);
+            _saveData = new StageClearInfoWrapper(Define.STAGE_NUM);
         }
 
-        for (int i = _saveData.StageClearInfos.Count; i < GameManager.STAGE_NUM; i++)
+        for (int i = _saveData.StageClearInfos.Count; i < Define.STAGE_NUM; i++)
         {
             _saveData.StageClearInfos.Add(new StageClearInfo(i));
         }

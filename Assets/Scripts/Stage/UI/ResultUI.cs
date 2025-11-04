@@ -36,7 +36,9 @@ public class ResultUI : MonoBehaviour
         _restartButton.gameObject.SetActive(true);
         _homeButton.gameObject.SetActive(true);
         if (StageScore.None == stageScore) return;
-        _nextButton.gameObject.SetActive(true);
+        _nextButton.gameObject.SetActive(
+            GameManager.Instance.MaxClearStageId < Define.STAGE_NUM
+            );
     }
 
     public void DeactivateAll()

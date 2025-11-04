@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioManager _audioManager;
     private StageManager _stageManager;
 
-    // 튜토리얼[0] + 개인 제작[1 ~ 5] + 엔딩[6] => 총 7개
-    public static readonly int STAGE_NUM = 7;
     public int MaxClearStageId => _scoreManager.MaxClearStageId;
 
     private void Awake()
