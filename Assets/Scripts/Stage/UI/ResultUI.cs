@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ResultUI : MonoBehaviour
@@ -11,25 +12,37 @@ public class ResultUI : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Button _restartButton;
     [SerializeField] private UnityEngine.UI.Button _nextButton;
 
+    private List<GameObject> _results;
+
+    private void Awake()
+    {
+        // StageScore: [0]A, [1]B, [2]C, [3]None
+        _results = new(4)
+        {
+            [0] = _star3,
+            [1] = _star2,
+            [2] = _star1,
+            [3] = _lose,
+        };
+    }
+
+    private void OnEnable()
+    {
+        _restartButton.onClick.AddListener(() => GameManager.Instance.StartStage());
+        _nextButton.onClick.AddListener(() => GameManager.Instance.StartNextStage());
+    }
+
     public void Activate(StageScore stageScore)
     {
         DeactivateAll();
 
-        switch (stageScore)
+        _results[(int)stageScore].SetActive(true);
+        if (StageScore.None != stageScore)
         {
-            case StageScore.A:
-                _star3.SetActive(true);
-                break;
-            case StageScore.B:
-                _star2.SetActive(true);
-                break;
-            case StageScore.C:
-                _star1.SetActive(true);
-                break;
-            default:
-                _lose.SetActive(true);
-                break;
+            _nextButton.gameObject.SetActive(true);
+            return;
         }
+        _restartButton.gameObject.SetActive(true);
     }
 
     public void DeactivateAll()
@@ -38,5 +51,7 @@ public class ResultUI : MonoBehaviour
         _star2.SetActive(false);
         _star1.SetActive(false);
         _lose.SetActive(false);
+        _restartButton.gameObject.SetActive(false);
+        _nextButton.gameObject.SetActive(false);
     }
 }
