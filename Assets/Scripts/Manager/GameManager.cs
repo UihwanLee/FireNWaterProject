@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -107,6 +108,9 @@ public class GameManager : MonoBehaviour
             _scoreManager.ResetScoreFlags();
         };
         _stageManager.OnClearStage += HandleStageClear;
+
+        UnityEngine.UI.Button btnHome = this.transform.GetComponentInChildren<UnityEngine.UI.Button>(true);
+        btnHome.onClick.AddListener(ExitStage);
 
         //int stageId = 0;
         //Logger.Log($"{stageId}번째 스테이지 선택");
