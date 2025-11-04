@@ -368,6 +368,14 @@ PrefabInstance:
       propertyPath: _stageId
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9123327401812275478, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
+      propertyPath: _gemCount
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123327401812275478, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
+      propertyPath: _limitTime
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -394,12 +402,24 @@ PrefabInstance:
       propertyPath: _stageId
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4679537083028946985, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: _gemCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679537083028946985, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: _limitTime
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5725779723632196838, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: m_Name
       value: Stage_DongWook
       objectReference: {fileID: 0}
     - target: {fileID: 5725779723632196838, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5796881852452425336, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6696818444377896916, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
@@ -440,6 +460,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6696818444377896916, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718455590955074001, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8814011286559921806, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
@@ -9649,7 +9673,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0052268417, y: -0.0371416}
   serializedVersion: 2
-  m_Radius: 0.038774967
+  m_Radius: 0.3
 --- !u!58 &1687558455099200996
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11050,7 +11074,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0052268417, y: -0.0371416}
   serializedVersion: 2
-  m_Radius: 0.038774967
+  m_Radius: 0.3
 --- !u!58 &2351225195990030936
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11085,7 +11109,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!114 &2385602483294949614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19252,7 +19276,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!50 &2903871788994169131
 Rigidbody2D:
   serializedVersion: 4
@@ -31792,7 +31816,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!483693784 &4869784537393141998
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -32425,7 +32449,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!1839735485 &5298278856010853166
 Tilemap:
   m_ObjectHideFlags: 0
@@ -36081,7 +36105,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!58 &5383477295850484099
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -36116,7 +36140,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0052268417, y: -0.0371416}
   serializedVersion: 2
-  m_Radius: 0.038774967
+  m_Radius: 0.3
 --- !u!4 &5388201153724372229
 Transform:
   m_ObjectHideFlags: 0
@@ -47948,7 +47972,7 @@ MonoBehaviour:
   _emberSpwanPoint: {fileID: 3160965832793137166}
   _wadeSpwanPoint: {fileID: 7413805896657280670}
   _stageId: 2
-  _gemCount: 10
+  _gemCount: 11
   _limitTime: 95
   _gems: {fileID: 1243414429073695937}
 --- !u!1 &7628914707886592538
@@ -55901,7 +55925,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0052268417, y: -0.0371416}
   serializedVersion: 2
-  m_Radius: 0.038774967
+  m_Radius: 0.3
 --- !u!1 &8127598893815766989
 GameObject:
   m_ObjectHideFlags: 0
@@ -56033,8 +56057,8 @@ MonoBehaviour:
   _emberSpwanPoint: {fileID: 3718518364066309038}
   _wadeSpwanPoint: {fileID: 9126531741069892926}
   _stageId: 0
-  _gemCount: 0
-  _limitTime: 0
+  _gemCount: 8
+  _limitTime: 50
   _gems: {fileID: 650114530532140897}
 --- !u!212 &8190213084204272606
 SpriteRenderer:
@@ -56505,7 +56529,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00065333844, y: -0.012313569}
   serializedVersion: 2
-  m_Radius: 0.045962166
+  m_Radius: 0.3
 --- !u!4 &8363985543231708743
 Transform:
   m_ObjectHideFlags: 0
@@ -56717,7 +56741,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0052268417, y: -0.0371416}
   serializedVersion: 2
-  m_Radius: 0.038774967
+  m_Radius: 0.3
 --- !u!58 &8653362590855205525
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -7,13 +7,16 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance => _instance;
 
-    public GameObject SettingWindow;
-
     // 추후 매니저 추가 예정
     [Header("Managers")]
     [SerializeField] private ScoreManager _scoreManager;
     [SerializeField] private AudioManager _audioManager;
     private StageManager _stageManager;
+
+    [Header("Setting Window")]
+    public GameObject SettingWindow;
+    [SerializeField] private UnityEngine.UI.Button _homeButton;
+    [SerializeField] private UnityEngine.UI.Button _retryButton;
 
     public int MaxClearStageId => _scoreManager.MaxClearStageId;
 
@@ -36,23 +39,6 @@ public class GameManager : MonoBehaviour
 
         SettingWindow.SetActive(false);
     }
-
-    private void Start()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-        Logger.Log("델리게이트 제거 (시간 제한, 스테이지 시작, 스테이지 클리어");
-        _stageManager.OnFailedToClearWithinTimeLimit -= _scoreManager.HandleTimeLimitFailed;
-        _stageManager.OnStartStage -= () =>
-        {
-            _scoreManager.ResetScoreFlags();
-        };
-        _stageManager.OnClearStage -= HandleStageClear;
-    }
-
     private void Update()
     {
         if (Input.GetButtonDown("Cancel"))
@@ -64,18 +50,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region setting UI
     private void OpenSettingWindow()
     {
         SettingWindow.SetActive(true);
-        PauseStage();
+        if (_stageManager != null) PauseStage();
     }
 
     private void CloseSettingWindow()
     {
         SettingWindow.SetActive(false);
-        ResumeStage();
+        if (_stageManager != null) ResumeStage();
     }
 
+    private void SetActiveSettingUIButtons(bool active)
+    {
+        _homeButton.gameObject.SetActive(active);
+        _retryButton.gameObject.SetActive(active);
+    }
+    #endregion
+
+    #region stage scene 로드
     public void LoadStageScene()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -108,10 +103,15 @@ public class GameManager : MonoBehaviour
         };
         _stageManager.OnClearStage += HandleStageClear;
 
+        // button 초기화
+        _homeButton.onClick.AddListener(ExitStage);
+        _retryButton.onClick.AddListener(StartStage);
+
         //int stageId = 0;
         //Logger.Log($"{stageId}번째 스테이지 선택");
         //SelectStage(stageId);
     }
+    #endregion
 
     #region Stage 상태 관리 메서드
     public void SelectStage(int id)
@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
 
         _audioManager.PlayClip(Define.SFX_SELECT);
         _audioManager.ChangeBackGroundMusic(Define.BGM_INPLAY);
+        SetActiveSettingUIButtons(true);
     }
 
     public void StartStage()
@@ -172,6 +173,7 @@ public class GameManager : MonoBehaviour
         _scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
 
         _audioManager.ChangeBackGroundMusic(Define.BGM_INTRO);
+        SetActiveSettingUIButtons(false);
     }
 
     private void HandleStageClear()
