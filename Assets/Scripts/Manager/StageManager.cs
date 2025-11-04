@@ -134,7 +134,7 @@ public class StageManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeGameState(GameState.Resume);
         if (Input.GetKeyDown(KeyCode.Alpha5)) ChangeGameState(GameState.Dead);
         if (Input.GetKeyDown(KeyCode.Alpha7)) ChangeGameState(GameState.Exit);
-        if (Input.GetKeyDown(KeyCode.Alpha8)) ChangeGameState(GameState.Clear);
+        if (Input.GetKeyDown(KeyCode.Alpha8)) GameManager.Instance.ClearStage();
         if (Input.GetKeyDown(KeyCode.Alpha9)) ChangeGameState(GameState.Next);
     }
 
