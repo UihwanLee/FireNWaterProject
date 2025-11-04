@@ -156,6 +156,7 @@ public class StageManager : MonoBehaviour
 
         if (_currentStage != null)
         {
+            _currentStage.ReseetObstacles();
             _currentStage.gameObject.SetActive(false);          // 이전 스테이지 확인
         }
 
@@ -163,6 +164,7 @@ public class StageManager : MonoBehaviour
         _currentStage.gameObject.SetActive(true);               // 활성화
         _currentStage.Init(_ember, _wade, _emberController, _wadeController);
         Logger.Log($"{id} 번째 스테이지 활성화");
+        _stageUI.CloseStageMapUI();
 
         ChangeGameState(GameState.Start);                       // 자동 시작
     }

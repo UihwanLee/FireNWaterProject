@@ -44,6 +44,21 @@ public class ScoreManager : MonoBehaviour
     private string SavePath;
     private StageClearInfoWrapper _saveData = new();
 
+    public readonly string StageIdKey = "StageId";
+    private int _maxClearStageId;
+    public int MaxClearStageId
+    {
+        get { return _maxClearStageId; }
+        set
+        {
+            if (value > _maxClearStageId)
+            {
+                _maxClearStageId = value;
+            }
+            PlayerPrefs.SetInt(StageIdKey, _maxClearStageId);
+        }
+    }
+
     // todo: 누적 젬 개수
     private readonly string WaterGemKey = "WaterGem";
     private readonly string FireGemKey = "FireGem";
@@ -75,6 +90,7 @@ public class ScoreManager : MonoBehaviour
         SavePath = Path.Combine(Application.persistentDataPath, "SaveStageData.json");
         Load();
         LoadGemCount();
+        _maxClearStageId = PlayerPrefs.GetInt(StageIdKey, 0);
     }
 
     public void CheckStageScore()
@@ -138,6 +154,12 @@ public class ScoreManager : MonoBehaviour
         // 젬 데이터 저장
         TotalWaterGemCount += _currentWaterGemCount;
         TotalFireGemCount += _currentFireGemCount;
+
+        // 최대 스테이지 정보 저장
+        if (id > _maxClearStageId)
+        {
+            _maxClearStageId = id;
+        }
 
         // StageScore: A = 0 / B = 1 / C = 2 / None = 3
         // 점수가 더 낮거나, 클리어 시간이 길 경우 저장 x
@@ -253,8 +275,8 @@ public class ScoreManager : MonoBehaviour
 
     private void LoadGemCount()
     {
-        PlayerPrefs.GetInt(WaterGemKey, _totalWaterGemCount);
-        PlayerPrefs.GetInt(FireGemKey, _totalFireGemCount);
+        _totalWaterGemCount = PlayerPrefs.GetInt(WaterGemKey, 0);
+        _totalFireGemCount = PlayerPrefs.GetInt(FireGemKey, 0);
         Logger.Log($"젬 개수 로드 완료: " +
             $"FireGem({_totalFireGemCount}), " +
             $"WateGem({_totalWaterGemCount})");
