@@ -156,6 +156,7 @@ public class StageManager : MonoBehaviour
 
         if (_currentStage != null)
         {
+            Logger.Log("Obstacles 초기화");
             _currentStage.ReseetObstacles();
             _currentStage.gameObject.SetActive(false);          // 이전 스테이지 확인
         }
