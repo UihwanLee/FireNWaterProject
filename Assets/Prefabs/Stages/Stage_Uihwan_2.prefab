@@ -8146,8 +8146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitDurationTime: 1.5
-  exitEmber: {fileID: 0}
-  exitWade: {fileID: 0}
+  exitEmber: {fileID: 4448825812777286769}
+  exitWade: {fileID: 1481575093410619670}
 --- !u!1 &4544289007753654044
 GameObject:
   m_ObjectHideFlags: 0

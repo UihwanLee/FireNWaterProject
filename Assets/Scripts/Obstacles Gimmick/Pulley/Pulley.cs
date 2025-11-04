@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pulley : MonoBehaviour, InteractWithController
+public class Pulley : MonoBehaviour, InteractWithController, IObstacle
 {
     [SerializeField] private GameObject chainPrefab;
     [SerializeField] private GameObject stoolPrefab;
@@ -10,6 +10,17 @@ public class Pulley : MonoBehaviour, InteractWithController
     [SerializeField] private Transform anchor;
     [SerializeField] private int chainCount = 4;
     [SerializeField] private Vector2 stoolScale = new Vector2(1.6f, 1f);
+
+    private List<HingeJoint2D> pulleyObjects = new List<HingeJoint2D>();
+
+    public void Init()
+    {
+        foreach(var obj in pulleyObjects)
+        {
+            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero;
+        }
+    }
 
     public void Activate(BaseController bc)
     {
@@ -40,11 +51,15 @@ public class Pulley : MonoBehaviour, InteractWithController
             chain.connectedBody = prevRb;
 
             prevRb = currentRb;
+
+            pulleyObjects.Add(chain);
         }
 
         HingeJoint2D stool = Instantiate(stoolPrefab, anchor).GetComponent<HingeJoint2D>();
         stool.transform.localPosition = new Vector3(0f, finalHeight + extraHeight, 0f);
         stool.transform.localScale = stoolScale;
         stool.connectedBody = prevRb;
+
+        pulleyObjects.Add(stool);
     }
 }
