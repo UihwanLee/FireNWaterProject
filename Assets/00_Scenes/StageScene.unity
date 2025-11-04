@@ -39395,8 +39395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitDurationTime: 1.5
-  exitEmber: {fileID: 0}
-  exitWade: {fileID: 0}
+  exitEmber: {fileID: 5618756084634044152}
+  exitWade: {fileID: 7262951395954695071}
 --- !u!212 &4935993788767285229
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65675,8 +65675,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitDurationTime: 1.5
-  exitEmber: {fileID: 0}
-  exitWade: {fileID: 0}
+  exitEmber: {fileID: 9064871274324590350}
+  exitWade: {fileID: 6124366999916225129}
 --- !u!4 &8390326167413150657
 Transform:
   m_ObjectHideFlags: 0

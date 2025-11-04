@@ -23,14 +23,15 @@ public class ExitCalculator : MonoBehaviour , IObstacle
             spriteRenderer.color = color;
         }
         //출구 초기화
-        var eE = exitEmber.GetComponent<SpriteRenderer>();
-        var eW = exitWade. GetComponent<SpriteRenderer>();
+        var eE = exitEmber.GetComponentInChildren<SpriteRenderer>();
+        var eW = exitWade.GetComponentInChildren<SpriteRenderer>();
         var cEe = eE.color;
         var cEw = eW.color;
         cEe.a = 1;
         cEw.a = 1;
         eE.color = cEe;
         eW.color = cEw;
+        players.Clear();
     }
     
     public void AddPlayer(BaseController player)
