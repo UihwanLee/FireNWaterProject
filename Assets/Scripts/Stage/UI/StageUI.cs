@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class StageUI : MonoBehaviour
 {
-    [Header("자식 오브젝트")]
+    [Header("배경")]
     [SerializeField] private GameObject _bgImg;
     [SerializeField] private GameObject _logo;
-    [SerializeField] private GameObject _buttonParent;
+    [SerializeField] private GameObject _bgEndAnim;
+
+    [Header("커스터마이징")]
     [SerializeField] private GameObject _customizingUI;
+
+    [Header("타이머")]
     [SerializeField] private GameObject _timerUI;
     [SerializeField] private TextMeshProUGUI _timerText;
+
+    [Header("스테이지 결과")]
     [SerializeField] private ResultUI _resultUI;
 
     [Header("스테이지 선택 버튼")]
+    [SerializeField] private GameObject _buttonParent;
     [SerializeField] private GameObject _buttonPrefab;
     [SerializeField] private float _spacing;
 
@@ -27,15 +34,21 @@ public class StageUI : MonoBehaviour
     #region Stage Map UI
     public void ShowStageMapUI()
     {
-        if (_bgImg.activeSelf) return;
-        _bgImg.SetActive(true);
+        if (GameManager.Instance.MaxClearStageId == Define.STAGE_NUM - 1)
+        {
+            _bgEndAnim.SetActive(true);
+        }
+        else
+        {
+            _bgImg.SetActive(true);
+        }
         _logo.SetActive(true);
         _buttonParent.SetActive(true);
     }
 
     public void CloseStageMapUI()
     {
-        if (!_bgImg.activeSelf) return;
+        _bgEndAnim.SetActive(false);
         _bgImg.SetActive(false);
         _logo.SetActive(false);
         _buttonParent.SetActive(false);
@@ -50,13 +63,13 @@ public class StageUI : MonoBehaviour
             btnObj.TryGetComponent(out StageSelectButton btn);
             int buttonId = btn.buttonId;
 
-            // todo: 6번은 엔딩 크레딧과 연결
-            if (buttonId == 6)
+            if (buttonId == Define.STAGE_NUM)
             {
+                btnObj.onClick.AddListener(OnClickEndButton);
                 return;
             }
 
-            btnObj.onClick.AddListener(() => OnClickButtoon(buttonId));
+            btnObj.onClick.AddListener(() => OnClickStageSelectButton(buttonId));
         }
     }
 
@@ -67,7 +80,7 @@ public class StageUI : MonoBehaviour
 
         Transform buttonParentTransform = _buttonParent.transform;
 
-        for (int i = 0; i < GameManager.STAGE_NUM; i++)
+        for (int i = 0; i < Define.STAGE_NUM; i++)
         {
             GameObject btnObj = Instantiate(_buttonPrefab, buttonParentTransform);
             RectTransform rect = btnObj.GetComponent<RectTransform>();
@@ -90,28 +103,34 @@ public class StageUI : MonoBehaviour
             btn.onClick.AddListener(() =>
             {
                 Logger.Log($"{btn.name} 선택");
-                OnClickButtoon(stageNum);
+                OnClickStageSelectButton(stageNum);
             });
         }
     }
 
-    private void OnClickButtoon(int stageNum)
+    private void OnClickStageSelectButton(int stageNum)
     {
         Debug.Log($"{stageNum}번째 스테이지 선택");
         GameManager.Instance.SelectStage(stageNum);
+    }
+
+    private void OnClickEndButton()
+    {
+        Debug.Log("End 크레딧 보기");
+        // todo: 엔딩 씬으로 넘어가기
+        SceneController.Instance.LoadScene(SceneType.EndScene);
+        GameManager.Instance.UseEndBgm();
     }
     #endregion
 
     #region Customizing UI
     public void ShowCustomizingUI()
     {
-        if (_customizingUI.activeSelf) return;
         _customizingUI.SetActive(true);
     }
 
     public void CloseCustomizingUI()
     {
-        if (!_customizingUI.activeSelf) return;
         _customizingUI.SetActive(false);
     }
     #endregion
@@ -119,19 +138,16 @@ public class StageUI : MonoBehaviour
     #region Timer UI 
     public void ShowTimerUI()
     {
-        if (_timerUI.activeSelf) return;
         _timerUI.SetActive(true);
     }
 
     public void CloseTimeUI()
     {
-        if (!_timerUI.activeSelf) return;
         _timerUI.SetActive(false);
     }
 
     public void UpdateTime(float time)
     {
-        if (!_timerUI.activeSelf) return;
         _timerText.text = time.ToString("n2");
     }
     #endregion
