@@ -176,11 +176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3814764930052393002, guid: 7382b0ec828cf8642998db76a9a87e77, type: 3}
       propertyPath: buttonId
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4754786678669071983, guid: 7382b0ec828cf8642998db76a9a87e77, type: 3}
       propertyPath: buttonId
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5374639798936929533, guid: 7382b0ec828cf8642998db76a9a87e77, type: 3}
       propertyPath: m_Name
