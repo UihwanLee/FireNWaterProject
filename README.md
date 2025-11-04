@@ -33,11 +33,9 @@ Fire&Water 게임을 레퍼런스하여 만든 2D 플랫포머 게임입니다.
 
 ## 3. 기술적 이슈
 
-### 플레이어 <-> 장애물 간의 상호작용(충돌) 감지
+ > 플레이어 <-> 장애물 간의 상호작용(충돌) 감지
 
 <img width="1061" height="499" alt="13" src="https://github.com/user-attachments/assets/8fdf1674-f5f9-46b4-8805-939480baa475" />
-
- > 문제 해결
 
 <pre>
 <code>
@@ -68,8 +66,9 @@ public interface InteractableObstacle
 
  - interface를 이용, Obstacle과 Gimmik 상호작용 처리
 
+<br>
  
-### 레버 경사면 이동 문제
+ > 레버 경사면 이동 문제
 
 ![SlopeClimb3-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/023ba4d6-9f16-4e86-b2d4-353ea6948205)
  - Fire&Water 프로젝트 내 캐릭터가 레버 경사면을 타서 올라가는 기능을 확인
