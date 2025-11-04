@@ -270,6 +270,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage_Shin0112
       objectReference: {fileID: 0}
+    - target: {fileID: 5729845275442495529, guid: bc50d37aeebc07644927344cd3d5c88a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615681031799321273, guid: bc50d37aeebc07644927344cd3d5c88a, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -288,6 +296,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 101383188}
     m_Modifications:
+    - target: {fileID: 48438779642899811, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216167099655997007, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216167099655997007, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887059508302393324, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.18
+      objectReference: {fileID: 0}
     - target: {fileID: 5072081010181338158, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -332,9 +356,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage_hyeonwoo
       objectReference: {fileID: 0}
+    - target: {fileID: 5729845275442495529, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9123327401812275478, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
       propertyPath: _stageId
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -356,11 +384,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2996643992343077389, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: _stageId
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5725779723632196838, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: m_Name
       value: Stage_DongWook
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725779723632196838, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6696818444377896916, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -400,6 +432,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6696818444377896916, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8814011286559921806, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6163,7 +6199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &793495743687834311
 Transform:
   m_ObjectHideFlags: 0
@@ -8821,7 +8857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1356237385566753720
 GameObject:
   m_ObjectHideFlags: 0
@@ -30081,7 +30117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &4782985488035479150
 Animator:
   serializedVersion: 5
