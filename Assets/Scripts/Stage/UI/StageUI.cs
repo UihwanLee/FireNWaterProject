@@ -7,6 +7,7 @@ public class StageUI : MonoBehaviour
     [Header("배경")]
     [SerializeField] private GameObject _bgImg;
     [SerializeField] private GameObject _logo;
+    [SerializeField] private GameObject _bgEndAnim;
 
     [Header("커스터마이징")]
     [SerializeField] private GameObject _customizingUI;
@@ -33,15 +34,21 @@ public class StageUI : MonoBehaviour
     #region Stage Map UI
     public void ShowStageMapUI()
     {
-        if (_bgImg.activeSelf) return;
-        _bgImg.SetActive(true);
+        if (GameManager.Instance.MaxClearStageId == Define.STAGE_NUM - 1)
+        {
+            _bgEndAnim.SetActive(true);
+        }
+        else
+        {
+            _bgImg.SetActive(true);
+        }
         _logo.SetActive(true);
         _buttonParent.SetActive(true);
     }
 
     public void CloseStageMapUI()
     {
-        if (!_bgImg.activeSelf) return;
+        _bgEndAnim.SetActive(true);
         _bgImg.SetActive(false);
         _logo.SetActive(false);
         _buttonParent.SetActive(false);
@@ -56,9 +63,9 @@ public class StageUI : MonoBehaviour
             btnObj.TryGetComponent(out StageSelectButton btn);
             int buttonId = btn.buttonId;
 
-            // todo: 6번은 엔딩 크레딧과 연결
             if (buttonId == Define.STAGE_NUM)
             {
+                btnObj.onClick.AddListener(OnClickEndButton);
                 return;
             }
 
@@ -105,6 +112,12 @@ public class StageUI : MonoBehaviour
     {
         Debug.Log($"{stageNum}번째 스테이지 선택");
         GameManager.Instance.SelectStage(stageNum);
+    }
+
+    private void OnClickEndButton()
+    {
+        Debug.Log("End 크레딧 보기");
+        // todo: 엔딩 씬으로 넘어가기
     }
     #endregion
 
