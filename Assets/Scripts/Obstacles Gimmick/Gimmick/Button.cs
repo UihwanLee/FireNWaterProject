@@ -65,6 +65,13 @@ public class Button : MonoBehaviour
 
         _pressed = nextPressed;
 
+        if (!gameObject.activeInHierarchy)
+        {
+            Logger.Log("비활성화라 코루틴 실행 안됨");
+            return;
+        }
+
+        Logger.Log("평가 실행");
         // 1) 게이트 신호 — 단 한 번
         if (targetGate != null)
         {

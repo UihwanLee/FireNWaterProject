@@ -93,13 +93,19 @@ public class Gate : MonoBehaviour, IObstacle
         if (shouldOpen == _isOpen) return;
         
         _isOpen = on;
-        
-       //가동
-       if (moveRoutine != null)
-       {
-           StopCoroutine(moveRoutine);
-       } 
-       moveRoutine = StartCoroutine(MoveGate(on? tPos :iPos));
+
+        //가동
+        if (!gameObject.activeInHierarchy)
+        {
+            Logger.Log("비활성화라 코루틴 실행 안됨");
+            return;
+        }
+
+        if (moveRoutine != null)
+        {
+            StopCoroutine(moveRoutine);
+        }
+        moveRoutine = StartCoroutine(MoveGate(on ? tPos : iPos));
 
     }
 
