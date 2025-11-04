@@ -7,6 +7,8 @@ public class FireGem : BaseGem, InteractWithController
 {
     public void Activate(BaseController ember)
     {
+        AudioManager.instance.PlayClip(Define.SFX_EARN);
+
         //잼 먹고
         currentColor.a = 0f;
         spriteRenderer.color = currentColor;

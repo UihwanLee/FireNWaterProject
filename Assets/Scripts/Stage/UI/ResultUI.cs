@@ -37,7 +37,7 @@ public class ResultUI : MonoBehaviour
         _homeButton.gameObject.SetActive(true);
         if (StageScore.None == stageScore)
         {
-            GameManager.Instance.UseLoseClip();
+            AudioManager.instance.PlayClip(Define.SFX_LOSE);
             return;
         }
         _nextButton.gameObject.SetActive(
