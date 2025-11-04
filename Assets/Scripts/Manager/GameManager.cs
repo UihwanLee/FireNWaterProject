@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
         Logger.Log("젬 확인 델리게이트 추가");
         _scoreManager.OnCheckGemCount += _stageManager.HandleCheckGemCount;
 
+        _audioManager.PlayClip(Define.SFX_SELECT);
         _audioManager.ChangeBackGroundMusic(Define.BGM_INPLAY);
     }
 
@@ -150,6 +151,7 @@ public class GameManager : MonoBehaviour
     {
         _scoreManager.CheckStageScore();
         _stageManager.ChangeGameState(GameState.Clear);
+        _audioManager.PlayClip(Define.SFX_WIN);
     }
 
     public void StartNextStage()
