@@ -124,13 +124,11 @@ public class StageUI : MonoBehaviour
     #region Customizing UI
     public void ShowCustomizingUI()
     {
-        if (_customizingUI.activeSelf) return;
         _customizingUI.SetActive(true);
     }
 
     public void CloseCustomizingUI()
     {
-        if (!_customizingUI.activeSelf) return;
         _customizingUI.SetActive(false);
     }
     #endregion
@@ -138,19 +136,16 @@ public class StageUI : MonoBehaviour
     #region Timer UI 
     public void ShowTimerUI()
     {
-        if (_timerUI.activeSelf) return;
         _timerUI.SetActive(true);
     }
 
     public void CloseTimeUI()
     {
-        if (!_timerUI.activeSelf) return;
         _timerUI.SetActive(false);
     }
 
     public void UpdateTime(float time)
     {
-        if (!_timerUI.activeSelf) return;
         _timerText.text = time.ToString("n2");
     }
     #endregion
