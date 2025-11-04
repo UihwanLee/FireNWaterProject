@@ -31,7 +31,77 @@ Fire&Water 게임을 레퍼런스하여 만든 2D 플랫포머 게임입니다.
 - 신주은: 스테이지 플로우 및 게임 시스템 관리
 - 이의환: 캐릭터 움직임 관리
 
-  ## 시스템 구성도
+## 3. 기술적 이슈
+
+### 플레이어 <-> 장애물 간의 상호작용(충돌) 감지
+
+<img width="1061" height="499" alt="13" src="https://github.com/user-attachments/assets/8fdf1674-f5f9-46b4-8805-939480baa475" />
+
+ > 문제 해결
+
+<pre>
+<code>
+public interface IObstacle
+{
+    public void Init();
+}
+</code>
+</pre>
+
+<pre>
+<code>
+public interface InteractWithController
+{
+   void Activate(BaseController bc);
+}
+</code>
+</pre>
+
+<pre>
+<code>
+public interface InteractableObstacle
+{
+    void Interact(bool on);
+}
+</code>
+</pre>
+
+ - interface를 이용, Obstacle과 Gimmik 상호작용 처리
+
+ 
+### 레버 경사면 이동 문제
+
+![SlopeClimb3-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/023ba4d6-9f16-4e86-b2d4-353ea6948205)
+ - Fire&Water 프로젝트 내 캐릭터가 레버 경사면을 타서 올라가는 기능을 확인
+ - 실제 플레이 중, 일부 장애물 및 맵 구조에서 경사면 위를 이동해야 하는 상황 발생   
+ - 플레이어가 경사면을 자연스럽게 오를 수 있는 로직(Slope Climb) 필요
+
+ > 문제 해결
+
+<pre>
+<code>
+// Ray를 나가는 위치를 x는 boxCollider 양끝으로 설정, y위치는 height 만큼
+Vector2 origin = new Vector2(center.x + (dir.x * halfWidth), center.y + height);
+Debug.DrawRay(origin, Vector2.down * 0.1f, Color.blue);
+
+// 정한 위치(origin)에서 법선 벡터를 구하기 위해 아래로 RayCast
+RaycastHit2D raycastHit = Physics2D.Raycast(origin, Vector2.down, 0.4f, Define.LayerMask.SLOPE);
+
+// 법선 벡터는 raycatsHit.normal로 구할 수 있음
+Vector2 normal = raycastHit.normal;
+Debug.DrawRay(raycastHit.point, normal, Color.green);
+
+//if(raycastHit.collider != null) Debug.Log(normal);
+
+// 평면 벡터 구하는 함수 Perpendicular를 이용하여 정규화하여 Controller에게 전달
+Vector2 slopeDir = Vector2.Perpendicular(normal).normalized;
+</code>
+</pre>
+ - Raycast를 이용, 경사면의 평면벡터를 구해서 적용하는 것으로 해결하려고 함.
+
+
+
+## 4. 시스템 구성도
 
 > 와이드 프레임
   <img width="989" height="828" alt="1" src="https://github.com/user-attachments/assets/52bb5c2a-eef0-4eeb-9ee4-7cb51da3ddda" />
