@@ -4,11 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class ExitCalculator : MonoBehaviour
+public class ExitCalculator : MonoBehaviour , IObstacle
 {
     //리스트 중복 방지
     private HashSet<BaseController> players = new();
     private bool cleared;
+    SpriteRenderer spriteRenderer;
+    
+    public void Init()
+    {
+        Logger.Log("Exit  초기화");
+        //플레이어 알파값 초기화
+        foreach (var p in players)
+        {
+            spriteRenderer = p.GetComponentInChildren<SpriteRenderer>();
+            var color = spriteRenderer.color;
+            color.a = 1;
+            spriteRenderer.color = color;
+        }
+        //출구 초기화
+        var eE = exitEmber.GetComponent<SpriteRenderer>();
+        var eW = exitWade. GetComponent<SpriteRenderer>();
+        var cEe = eE.color;
+        var cEw = eW.color;
+        cEe.a = 1;
+        cEw.a = 1;
+        eE.color = cEe;
+        eW.color = cEw;
+    }
     
     public void AddPlayer(BaseController player)
     {

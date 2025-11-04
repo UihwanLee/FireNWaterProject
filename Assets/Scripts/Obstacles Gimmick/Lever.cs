@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Lever : MonoBehaviour, InteractWithController
+public class Lever : MonoBehaviour, InteractWithController,IObstacle
 {
     [Header("각도 한계(참조각 기준)")]
     [SerializeField] private float neutralAngle = 0f; // 기준 각
@@ -24,8 +24,14 @@ public class Lever : MonoBehaviour, InteractWithController
     private bool _gateOn; // 게이트 신호
     
     private enum PushSide { None, Left, Right }
-
     
+    private Quaternion _originRotation;
+    
+    public void Init()
+    {
+        Logger.Log("lever transfrom 초기화");
+        gameObject.transform.rotation = _originRotation;
+    }
 
 
     //플레이어의 Push 방향을 확정.

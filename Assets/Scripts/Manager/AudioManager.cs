@@ -111,12 +111,12 @@ public class AudioManager : MonoBehaviour
 
     #region Audio Setting
 
-    public void SetBackGroundVolume(int value)
+    public void SetBackGroundVolume(float value)
     {
         musicAudiosource.volume = value;
     }
 
-    public void SetSoundEffectVolume(int value)
+    public void SetSoundEffectVolume(float value)
     {
         soundEffectVolume = value;
     }
