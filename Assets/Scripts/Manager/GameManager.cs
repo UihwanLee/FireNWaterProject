@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
         {
             _scoreManager = GetComponentInChildren<ScoreManager>();
         }
+
+        SettingWindow.SetActive(false);
     }
 
     private void Start()
@@ -125,6 +127,8 @@ public class GameManager : MonoBehaviour
         _stageManager.SelectStage(id);
         Logger.Log("젬 확인 델리게이트 추가");
         _scoreManager.OnCheckGemCount += _stageManager.HandleCheckGemCount;
+
+        _audioManager.ChangeBackGroundMusic(Define.BGM_INPLAY);
     }
 
     public void StartStage()
@@ -166,6 +170,8 @@ public class GameManager : MonoBehaviour
         _stageManager.ChangeGameState(GameState.Exit);
         Logger.Log("젬 확인 델리게이트 제거");
         _scoreManager.OnCheckGemCount -= _stageManager.HandleCheckGemCount;
+
+        _audioManager.ChangeBackGroundMusic(Define.BGM_INTRO);
     }
 
     private void HandleStageClear()

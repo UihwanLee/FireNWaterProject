@@ -156,6 +156,7 @@ public class StageManager : MonoBehaviour
 
         if (_currentStage != null)
         {
+            Logger.Log("Obstacles 초기화");
             _currentStage.ReseetObstacles();
             _currentStage.gameObject.SetActive(false);          // 이전 스테이지 확인
         }
@@ -279,10 +280,10 @@ public class StageManager : MonoBehaviour
     {
         _stageUI.ShowStageMapUI();
         _stageUI.CloseTimeUI();
+        _stageUI.CloseResultUI();
 
         _currentStage.ExecuteExit();
         _currentStage.gameObject.SetActive(false);  // 비활성화
-        _currentStage = null;
         ChangeGameState(GameState.None);
     }
 
