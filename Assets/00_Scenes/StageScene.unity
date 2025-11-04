@@ -368,6 +368,14 @@ PrefabInstance:
       propertyPath: _stageId
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9123327401812275478, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
+      propertyPath: _gemCount
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123327401812275478, guid: 5a54ca74870891f4e8554f094bc6e221, type: 3}
+      propertyPath: _limitTime
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -393,6 +401,14 @@ PrefabInstance:
     - target: {fileID: 4679537083028946985, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: _stageId
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679537083028946985, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: _gemCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679537083028946985, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
+      propertyPath: _limitTime
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5725779723632196838, guid: 32dc35342db3f448498fca561bf489aa, type: 3}
       propertyPath: m_Name
@@ -6217,7 +6233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &793495743687834311
 Transform:
   m_ObjectHideFlags: 0
