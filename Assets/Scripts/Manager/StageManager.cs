@@ -264,6 +264,7 @@ public class StageManager : MonoBehaviour
     private void GameOver()
     {
         _currentStage.GameOver();
+        _stageUI.ShowResultUI(StageScore.None);
     }
 
     private void HandleStageExit()
@@ -281,6 +282,7 @@ public class StageManager : MonoBehaviour
     {
         _currentStage.ExecuteClear();
         OnClearStage?.Invoke();
+        _stageUI.ShowResultUI(GameManager.Instance.GetCurrentStageScore());
     }
 
     /// <summary>
@@ -301,6 +303,8 @@ public class StageManager : MonoBehaviour
 
     private void ResetStage()
     {
+        _stageUI.CloseResultUI();
+
         OnStartStage?.Invoke();
         ResetTimer();
         _currentStage.RevivePlayer();
