@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Sound
+{
+    public string name; // 곡의 이름.
+    public AudioClip clip; // 곡.
+}
+
 public class AudioManager : MonoBehaviour
 {
     /*
@@ -16,7 +23,6 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     [Header("Setting")]
-    [SerializeField] private AudioClip musicClip;
     [SerializeField][Range(0f, 1f)] private float musicVolume;
     [SerializeField][Range(0f, 1f)] private float soundEffectVolume;
     [SerializeField][Range(0f, 1f)] private float soundEffectPitchVariance;
@@ -25,6 +31,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Transform soundSourceParent;
     [SerializeField] private SoundSource soundSourcePrefab;
     [SerializeField] private SoundSource[] soundSources;
+
+    [Header("SoundEffect")]
+    [SerializeField] List<Sound> backGroundList;
+    [SerializeField] List<Sound> soundEffectList;
 
     private AudioSource musicAudiosource;
 
@@ -42,7 +52,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeBackGroundMusic(musicClip);
+        ChangeBackGroundMusic(Define.BGM_INTRO);
         GenerateAvailableSoundSource();
     }
 
@@ -59,7 +69,6 @@ public class AudioManager : MonoBehaviour
             soundSource.gameObject.SetActive(false);
 
             soundSources[i] = soundSource;
-
         }
     }
 
@@ -67,12 +76,63 @@ public class AudioManager : MonoBehaviour
 
     #region Audio Play
 
-    public void ChangeBackGroundMusic(AudioClip clip)
+    public void ChangeBackGroundMusic(string bgmName)
     {
+        AudioClip bgm = FindBGMByName(bgmName);
+
+        if(bgm == null)
+        {
+            Debug.Log("해당 BGM이 존재하지 않습니다.");
+            return;
+        }
+
         // 배경음악 변경
-        musicAudiosource.Stop();
-        musicAudiosource.clip = clip;
-        musicAudiosource.Play();
+        instance.musicAudiosource.Stop();
+        instance.musicAudiosource.clip = bgm;
+        instance.musicAudiosource.Play();
+    }
+
+    public AudioClip FindBGMByName(string soundName)
+    {
+        for (int i = 0; i < instance.backGroundList.Count; i++)
+        {
+            if (soundName.Equals(instance.backGroundList[i].name)) return instance.backGroundList[i].clip;
+        }
+
+        return null;
+    }
+
+    public void PlayClip(string soundName)
+    {
+        // 1. Clip 찾기
+        AudioClip clip = FindSFXByName(soundName);
+        if (clip == null)
+        {
+            Debug.Log("해당 SFX가 존재하지 않습니다.");
+            return;
+        }
+
+        // 2. 가용 가능한 SoundSource 찾기
+        SoundSource availableSoundSource = GetAvailableSoundSource();
+
+        if (availableSoundSource == null)
+        {
+            Debug.Log("사용할 수 있는 SoundSource가 없습니다!");
+            return;
+        }
+
+        // 효과음 재생
+        availableSoundSource.Play(clip, instance.soundEffectVolume, instance.soundEffectPitchVariance);
+    }
+
+    public AudioClip FindSFXByName(string soundName)
+    {
+        for(int i=0; i< instance.soundEffectList.Count; i++)
+        {
+            if (soundName.Equals(instance.soundEffectList[i].name)) return instance.soundEffectList[i].clip;
+        }
+
+        return null;
     }
 
     public static void PlayClip(AudioClip clip)

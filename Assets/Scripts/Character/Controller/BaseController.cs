@@ -134,6 +134,7 @@ public class BaseController : MonoBehaviour
         if (currentState == CharacterState.Pause || currentState == CharacterState.Die) return;
         if (isGrounded || isClimbed)
         {
+            AudioManager.instance.PlayClip(Define.SFX_JUMP);
             // 캐릭터가 땅에 착지된 상태라면 점프
             _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false;
@@ -223,6 +224,8 @@ public class BaseController : MonoBehaviour
 
         ChangeState(CharacterState.Die);
         animationHandler.Die((currentState == CharacterState.Die));
+
+        AudioManager.instance.PlayClip(Define.SFX_DIE);
 
         if (DieEffect != null)
         {
