@@ -117,4 +117,16 @@ public class StageUI : MonoBehaviour
         _timerText.text = time.ToString("n2");
     }
     #endregion
+
+    #region Result UI
+    public void ShowResultUI(StageScore score)
+    {
+        _resultUI.Activate(score);
+    }
+
+    public void CloseResultUI()
+    {
+        _resultUI.DeactivateAll();
+    }
+    #endregion
 }

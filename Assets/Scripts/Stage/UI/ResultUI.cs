@@ -1,18 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ResultUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject _star3;
+    [SerializeField] private GameObject _star2;
+    [SerializeField] private GameObject _star1;
+    [SerializeField] private GameObject _lose;
+
+    public void Activate(StageScore stageScore)
     {
-        
+        DeactivateAll();
+
+        switch (stageScore)
+        {
+            case StageScore.A:
+                _star3.SetActive(true);
+                break;
+            case StageScore.B:
+                _star2.SetActive(true);
+                break;
+            case StageScore.C:
+                _star1.SetActive(true);
+                break;
+            default:
+                _lose.SetActive(true);
+                break;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DeactivateAll()
     {
-        
+        _star3.SetActive(false);
+        _star2.SetActive(false);
+        _star1.SetActive(false);
+        _lose.SetActive(false);
     }
 }
