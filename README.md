@@ -33,7 +33,33 @@ Fire&Water 게임을 레퍼런스하여 만든 2D 플랫포머 게임입니다.
 
 ## 3. 기술적 이슈
 
- > 플레이어 <-> 장애물 간의 상호작용(충돌) 감지
+### 1) 스테이지 관리
+
+<img width="796" height="618" alt="14" src="https://github.com/user-attachments/assets/06e7ed96-c159-4b69-923f-a51e10cc945a" />
+
+<pre>
+<code>
+ private readonly Dictionary<GameState, GameState[]> _allowedTransitions = new()
+{
+    { GameState.None,  new[] { GameState.Start } },
+    { GameState.Start, new[] { GameState.Play } },
+    { GameState.Play,  new[] { GameState.Pause, GameState.Clear, GameState.Dead } },
+    { GameState.Pause,  new[] { GameState.Start, GameState.Resume, GameState.Exit } },
+    { GameState.Resume, new[] { GameState.Play } },
+    { GameState.Dead,  new[] { GameState.Start, GameState.Exit } },
+    { GameState.Clear, new[] { GameState.Exit, GameState.Next, GameState.Start } },
+    { GameState.Exit,   new[] { GameState.None } },
+    { GameState.Next,   new[] { GameState.Start } }
+};
+</code>
+</pre>
+
+ - FSM 기반으로 일관성 있는 상태 변경 가능
+ - 딕셔너리로 상태가 변경될 수 있는지 검증
+
+<br>
+
+### 2) 플레이어 <-> 장애물 간의 상호작용(충돌) 감지
 
 <img width="1061" height="499" alt="13" src="https://github.com/user-attachments/assets/8fdf1674-f5f9-46b4-8805-939480baa475" />
 
@@ -68,14 +94,12 @@ public interface InteractableObstacle
 
 <br>
  
- > 레버 경사면 이동 문제
+### 3) 레버 경사면 이동 문제
 
 ![SlopeClimb3-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/023ba4d6-9f16-4e86-b2d4-353ea6948205)
  - Fire&Water 프로젝트 내 캐릭터가 레버 경사면을 타서 올라가는 기능을 확인
  - 실제 플레이 중, 일부 장애물 및 맵 구조에서 경사면 위를 이동해야 하는 상황 발생   
  - 플레이어가 경사면을 자연스럽게 오를 수 있는 로직(Slope Climb) 필요
-
- > 문제 해결
 
 <pre>
 <code>
@@ -98,6 +122,16 @@ Vector2 slopeDir = Vector2.Perpendicular(normal).normalized;
 </pre>
  - Raycast를 이용, 경사면의 평면벡터를 구해서 적용하는 것으로 해결하려고 함.
 
+<br>
+
+### 4) TitleLogoAnmation
+
+<img width="1123" height="507" alt="15" src="https://github.com/user-attachments/assets/40545f7e-2b07-449d-9766-c116fc07ca68" />
+
+ - 로고->버튼이 순차적으로 FadeIn 되고 멈추는 애니메이션을 구현하려 했으나 버튼 FadeIn이 시작되면 로고가 사라지고 다시 로고 FadeIn부터 반복되는 문제상황 발생
+ - Exit 연결을 해제해봤지만 로고 애니메이션의 Loop오류 동일 -> Animation 하나에 로고/버튼애니메이션을 모두 넣어서 해결
+
+<br>
 
 
 ## 4. 시스템 구성도
