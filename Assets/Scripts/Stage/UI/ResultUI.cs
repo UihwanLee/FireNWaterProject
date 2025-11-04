@@ -35,7 +35,11 @@ public class ResultUI : MonoBehaviour
         _results[(int)stageScore].SetActive(true);
         _restartButton.gameObject.SetActive(true);
         _homeButton.gameObject.SetActive(true);
-        if (StageScore.None == stageScore) return;
+        if (StageScore.None == stageScore)
+        {
+            GameManager.Instance.UseLoseClip();
+            return;
+        }
         _nextButton.gameObject.SetActive(
             GameManager.Instance.MaxClearStageId < Define.STAGE_NUM - 1
             );
