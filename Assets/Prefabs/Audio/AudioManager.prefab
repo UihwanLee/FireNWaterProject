@@ -78,12 +78,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicClip: {fileID: 0}
-  musicVolume: 0
-  soundEffectVolume: 0
-  soundEffectPitchVariance: 0
+  musicVolume: 1
+  soundEffectVolume: 1
+  soundEffectPitchVariance: 0.405
   soundSourceParent: {fileID: 4345387863094945294}
   soundSourcePrefab: {fileID: 4454794897724704463, guid: e138f4c5fa31fc54fb232a361371b5a2, type: 3}
   soundSources: []
+  backGroundList:
+  - name: BGM_INPLAY
+    clip: {fileID: 8300000, guid: c25bc4186a622d24c80a803f2003907b, type: 3}
+  - name: BGM_INTRO
+    clip: {fileID: 8300000, guid: bdc9b1b6d7b52d442a9919e337a8b562, type: 3}
+  - name: BGM_OUTRO
+    clip: {fileID: 8300000, guid: baf26433ff0fa674da8fdff4b96e1b8d, type: 3}
+  soundEffectList:
+  - name: SFX_DIE
+    clip: {fileID: 8300000, guid: e89c598ab46d3904581f51621b5f938f, type: 3}
+  - name: SFX_FALL
+    clip: {fileID: 8300000, guid: 601b8b4ca2fe76a41bd86686e53660a7, type: 3}
+  - name: SFX_JUMP
+    clip: {fileID: 8300000, guid: 87cb80046820f0e4aa80930a8a2e11bb, type: 3}
+  - name: SFX_LOSE
+    clip: {fileID: 8300000, guid: 41994f651cd6947428807ba3af78b367, type: 3}
+  - name: SFX_SELECT
+    clip: {fileID: 8300000, guid: 1d32782c5ca695942815805b41a08b70, type: 3}
+  - name: SFX_WIN
+    clip: {fileID: 8300000, guid: 119165aae9f4ded4e9f19d18e17f042e, type: 3}
 --- !u!82 &6207422988466218908
 AudioSource:
   m_ObjectHideFlags: 0

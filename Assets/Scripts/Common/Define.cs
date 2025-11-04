@@ -36,4 +36,17 @@ public static class Define
 
     [Header("AudioSetting")]
     public const int AVAILABLE_SOUNDSORUCE_COUNT = 10;
+
+    // 배경음악
+    public const string BGM_INPLAY = "BGM_INPLAY";
+    public const string BGM_INTRO = "BGM_INTRO";
+    public const string BGM_OUTRO = "BGM_OUTRO";
+
+    // 효과음
+    public const string SFX_DIE = "SFX_DIE";
+    public const string SFX_FALL = "SFX_FALL";
+    public const string SFX_JUMP = "SFX_JUMP";
+    public const string SFX_LOSE = "SFX_LOSE";
+    public const string SFX_SELECT = "SFX_SELECT";
+    public const string SFX_WIN = "SFX_WIN";
 }
