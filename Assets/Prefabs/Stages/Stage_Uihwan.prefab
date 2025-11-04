@@ -243,6 +243,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   isHorizontal: 1
   openType: 1
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &385230761876650564
 GameObject:
   m_ObjectHideFlags: 0
@@ -4138,7 +4139,7 @@ MonoBehaviour:
   _emberSpwanPoint: {fileID: 1379186596345837160}
   _wadeSpwanPoint: {fileID: 6782133401891653880}
   _stageId: 0
-  _gemCount: 0
+  _gemCount: 10
   _limitTime: 0
   _gems: {fileID: 0}
 --- !u!1 &3622721972191352358
@@ -17660,6 +17661,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   isHorizontal: 0
   openType: 1
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8555884282972518001
 GameObject:
   m_ObjectHideFlags: 0
@@ -17784,6 +17786,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   isHorizontal: 1
   openType: 0
+  _originPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8638885692504177210
 GameObject:
   m_ObjectHideFlags: 0
