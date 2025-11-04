@@ -135,8 +135,8 @@ public class GameManager : MonoBehaviour
 
     public void ClearStage()
     {
-        _stageManager.ChangeGameState(GameState.Clear);
         _scoreManager.CheckStageScore();
+        _stageManager.ChangeGameState(GameState.Clear);
     }
 
     public void StartNextStage()
