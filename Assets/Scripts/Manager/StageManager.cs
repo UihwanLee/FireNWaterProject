@@ -132,14 +132,8 @@ public class StageManager : MonoBehaviour
             // 타이머 돌아가는 로직 작성
             Timer += Time.deltaTime;
         }
-        //Logger.Log($"시간: {Timer.ToString()}");
-        if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeGameState(GameState.Start);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeGameState(GameState.Pause);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeGameState(GameState.Resume);
-        if (Input.GetKeyDown(KeyCode.Alpha5)) ChangeGameState(GameState.Dead);
-        if (Input.GetKeyDown(KeyCode.Alpha7)) ChangeGameState(GameState.Exit);
+
         if (Input.GetKeyDown(KeyCode.Alpha8)) GameManager.Instance.ClearStage();
-        if (Input.GetKeyDown(KeyCode.Alpha9)) ChangeGameState(GameState.Next);
     }
 
     private void OnDisable()
