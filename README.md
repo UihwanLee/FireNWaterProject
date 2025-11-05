@@ -17,6 +17,9 @@ Fire&Water 게임을 레퍼런스하여 만든 2D 플랫포머 게임입니다.
  - TileMap 맵 설계 및 UI 구성
  - 점수, 맵 선택 등 다양한 게임 시스템
 
+ - 빌드 파일(https://drive.google.com/file/d/1kGBzVBhhB5oL_IXihrr26T7Hhr_Ubw-J/view?usp=sharing)
+ - 패키지 파일(https://drive.google.com/file/d/1shVO8v64KWqtxA0fMkf9cHbd175y9rKo/view?usp=sharing)
+
 
 ## 2. 팀원 구성 및 역할
 
@@ -130,6 +133,17 @@ Vector2 slopeDir = Vector2.Perpendicular(normal).normalized;
 
  - 로고->버튼이 순차적으로 FadeIn 되고 멈추는 애니메이션을 구현하려 했으나 버튼 FadeIn이 시작되면 로고가 사라지고 다시 로고 FadeIn부터 반복되는 문제상황 발생
  - Exit 연결을 해제해봤지만 로고 애니메이션의 Loop오류 동일 -> Animation 하나에 로고/버튼애니메이션을 모두 넣어서 해결
+
+<br>
+
+### 5) 게임 설정창 구현
+
+<img width="702" height="368" alt="트러블 슈팅_자료_장현우" src="https://github.com/user-attachments/assets/dfcde5db-1bbf-492e-8228-209dbdd46c54" />
+
+- 배경 : 게임 플레이로 인해 여러 씬들이 구성되므로써 씬들 간에 이동 수단이 필요했는데 설정창을 구현하여 언제든 어디서든 메인 스테이지로 복귀하는 기능을 구현하기로 계획
+- 발단 : 설정창을 어디에 구현해야 할지 살펴보다가 각 씬마다 특성을 고려해 매니저로 각각 관리되고 있다는 사실을 파악, 전역에서 관리되어야 할 세팅창이 구현할 곳을 찾기 힘들어 별개의 관리 구조로 구현하려 시도
+- 절정 : 각각 독립적인 관리 매니저 스크립트가 설계되어 있는 상황에서 전역에서 관리하는 설정창을 구현하려하니 머리가 복잡해지고 갈피를 못 잡고 있었다. 고민하다 튜터님에게 가이드를 받아 DontdestroyOnLoad  함수를 사용하면 가능하다는 방법을 찾음
+- 결말 : 해당 함수를 작성하다 GameManager에서 같은 함수를 사용하고 GameManager도 전역에서 관리되는 것을 찾아내, GameManager 하위에서 추가하여 구현에 성공
 
 <br>
 
