@@ -17,8 +17,8 @@ Fire&Water 게임을 레퍼런스하여 만든 2D 플랫포머 게임입니다.
  - TileMap 맵 설계 및 UI 구성
  - 점수, 맵 선택 등 다양한 게임 시스템
 
- - 빌드 파일(https://drive.google.com/file/d/1kGBzVBhhB5oL_IXihrr26T7Hhr_Ubw-J/view?usp=sharing)
- - 패키지 파일(https://drive.google.com/file/d/1shVO8v64KWqtxA0fMkf9cHbd175y9rKo/view?usp=sharing)
+ - [Build File](https://drive.google.com/file/d/1kGBzVBhhB5oL_IXihrr26T7Hhr_Ubw-J/view?usp=sharing)
+ - [Package File](https://drive.google.com/file/d/1shVO8v64KWqtxA0fMkf9cHbd175y9rKo/view?usp=sharing)
 
 
 ## 2. 팀원 구성 및 역할
