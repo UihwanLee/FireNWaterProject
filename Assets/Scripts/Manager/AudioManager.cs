@@ -106,8 +106,11 @@ public class AudioManager : MonoBehaviour
 
         // 배경음악 변경
         if(instance.musicAudiosource != null) instance.musicAudiosource.Stop();
-        instance.musicAudiosource.clip = bgm;
-        instance.musicAudiosource.Play();
+        if(bgm != null && instance.musicAudiosource != null)
+        {
+            instance.musicAudiosource.clip = bgm;
+            instance.musicAudiosource.Play();
+        }
     }
 
     public AudioClip FindBGMByName(string soundName)
