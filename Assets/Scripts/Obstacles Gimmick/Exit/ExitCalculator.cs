@@ -35,6 +35,7 @@ public class ExitCalculator : MonoBehaviour , IObstacle
         cleared = false;
     }
     
+    //리스트 관리
     public void AddPlayer(BaseController player)
     {
         players.Add(player);
@@ -45,16 +46,17 @@ public class ExitCalculator : MonoBehaviour , IObstacle
         players.Remove(player);
     }
     
+    //스테이지 클리어 판정 로직(중복 신호 관리)
     public void IsStageOver()
     {
-        if (cleared) return;            // 이미 끝났으면 무시
+        if (cleared) return;            
         if (players.Count >= 2)
         {
             cleared = true;
             
             EndingAction(players);
             
-            GameManager.Instance.ClearStage();  // 딱 한 번만 호출
+            GameManager.Instance.ClearStage();  
         }
     }
 
@@ -64,6 +66,7 @@ public class ExitCalculator : MonoBehaviour , IObstacle
      [SerializeField] private GameObject exitWade;
 
 
+     //스테이지 클리어 연출
      private void EndingAction(HashSet<BaseController> p)
     {
         if (p.Count != 2) return;

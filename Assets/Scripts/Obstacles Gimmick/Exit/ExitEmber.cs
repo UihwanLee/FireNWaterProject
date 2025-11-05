@@ -11,9 +11,11 @@ public class ExitEmber : MonoBehaviour, InteractWithController
     {
         exitCalculator = GetComponentInParent<ExitCalculator>();
     }
-
+    
+    // [ 엠버-출구 ] 상호작용
     public void Activate(BaseController bc)
     {
+        //엡버 입장 시 체크
         if (bc.gameObject.layer == LayerMask.NameToLayer("Ember"))
         {
             exitCalculator.AddPlayer(bc);
@@ -23,6 +25,7 @@ public class ExitEmber : MonoBehaviour, InteractWithController
 
     public void Deactivate(BaseController bc)
     {
+        //엠버 퇴장 시 체크
         if (bc.gameObject.layer == LayerMask.NameToLayer("Ember"))
         {
             exitCalculator.RemovePlayer(bc);

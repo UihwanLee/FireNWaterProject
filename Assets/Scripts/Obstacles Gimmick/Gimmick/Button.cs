@@ -20,8 +20,8 @@ public class Button : MonoBehaviour
 
     private Coroutine moveRoutine;
     
-    private Vector3 initPos;
-    private Vector3 endPos;
+    private Vector3 initPos; //시점 선언
+    private Vector3 endPos; //종점 선언
     
     private void Awake()
     {
@@ -30,18 +30,17 @@ public class Button : MonoBehaviour
         endPos = new Vector3(initPos.x, initPos.y - moveRange, initPos.z);
     }
 
+    //pusher 등록 및 동작
     public void RegisterPusher(GameObject pusher)
     {
         if (!IsPusher(pusher)) return;
         if (_inside.Add(pusher))
         {
-            // 들어올 때는 즉시 평가
             EvaluateNow();
-            
         }
-        
     }
 
+    //pusher 해제 및 동작
     public void UnregisterPusher(GameObject pusher)
     {
         if (!IsPusher(pusher)) return;
@@ -49,19 +48,18 @@ public class Button : MonoBehaviour
         {
             StopCoroutine(moveRoutine);
             EvaluateNow();
-            
         }
-        
     }
     
+    //Pusher 조건 검사
     private bool IsPusher(GameObject go)
         => ((1 << go.layer) & pusherLayers) != 0;
     
-    
+    //상태변화 감지, 신호 및 동작 제어
     private void EvaluateNow()
     {
         bool nextPressed = (_inside.Count > 0);
-        if (nextPressed == _pressed) return;  // 상태 변화시에만 발화
+        if (nextPressed == _pressed) return;  // 상태 변화시에만
 
         _pressed = nextPressed;
 
@@ -78,7 +76,7 @@ public class Button : MonoBehaviour
             targetGate.Interact(_pressed);
         }
 
-        // 2) 캡 애니 — 코루틴 1개만 유지
+        // 2) 버튼 애니 — 코루틴 1개만 유지
         if (moveRoutine != null) StopCoroutine(moveRoutine);
         moveRoutine = StartCoroutine(MoveButton(_pressed));
     }

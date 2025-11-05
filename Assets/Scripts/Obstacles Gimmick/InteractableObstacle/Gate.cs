@@ -32,7 +32,7 @@ public class Gate : MonoBehaviour, IObstacle
 
     private bool isPusing;
    
-    
+    // 스테이지 시작 전 초기화
     public void Init()
     {
         gameObject.GetComponentInChildren<Transform>().localPosition =  Vector3.zero;
@@ -45,6 +45,7 @@ public class Gate : MonoBehaviour, IObstacle
         InitOpenType();
     }
 
+    //스테이지 시작 시, 게이트 배치 
     public void InitOpenType()
     {
         //초기화: 게이트가 닫혀있을 때 기준
@@ -78,7 +79,7 @@ public class Gate : MonoBehaviour, IObstacle
         }
     }
     
-    
+    //신호 감지 및 동작
     public void Interact( bool on) 
     {
         //활성 객체 수 카운트

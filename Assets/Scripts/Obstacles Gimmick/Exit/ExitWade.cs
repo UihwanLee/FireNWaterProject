@@ -11,8 +11,10 @@ public class ExitWade : MonoBehaviour, InteractWithController
         exitCalculator = GetComponentInParent<ExitCalculator>();
     }
 
+    // [ 엠버-출구 ] 상호작용
     public void Activate(BaseController bc)
     {
+        //웨이드 입장 시 체크
         if (bc.gameObject.layer == LayerMask.NameToLayer("Wade"))
         {
             exitCalculator.AddPlayer(bc);
@@ -22,6 +24,7 @@ public class ExitWade : MonoBehaviour, InteractWithController
 
     public void Deactivate(BaseController bc)
     {
+        //웨이드 퇴장 시 체크
         if (bc.gameObject.layer == LayerMask.NameToLayer("Wade"))
         {
             exitCalculator.RemovePlayer(bc);

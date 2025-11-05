@@ -7,7 +7,7 @@ public class Water : MonoBehaviour , InteractWithController
         
     public void Activate(BaseController ember)
     {
-      //사망
+      //캐릭터 사망
       ember.Death();
     }
     
